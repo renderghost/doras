@@ -1,0 +1,36 @@
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/format.json",
+  "motion": {
+    "$description": "Short, purposeful motion. Every duration becomes 0 when people ask for reduced motion.",
+    "duration": {
+      "$type": "duration",
+      "instant": {
+        "$value": "{primitive.duration.0}"
+      },
+      "fast": {
+        "$value": "{primitive.duration.150}",
+        "$description": "Feedback on a control, such as a hover."
+      },
+      "moderate": {
+        "$value": "{primitive.duration.250}",
+        "$description": "Something appearing, such as a field message."
+      },
+      "slow": {
+        "$value": "{primitive.duration.400}",
+        "$description": "Something large moving, such as a sheet opening."
+      }
+    },
+    "easing": {
+      "$type": "cubicBezier",
+      "standard": {
+        "$value": "{primitive.easing.standard}"
+      },
+      "enter": {
+        "$value": "{primitive.easing.decelerate}"
+      },
+      "exit": {
+        "$value": "{primitive.easing.accelerate}"
+      }
+    }
+  }
+}

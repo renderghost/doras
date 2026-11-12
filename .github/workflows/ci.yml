@@ -14,7 +14,7 @@ concurrency:
 
 jobs:
   check:
-    name: Lint, type-check and test
+    name: Lint, type-check, build and test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -27,4 +27,30 @@ jobs:
       - run: pnpm format:check
       - run: pnpm lint
       - run: pnpm typecheck
+      - run: pnpm build
       - run: pnpm test
+
+  mobile-tokens:
+    name: Compile the Swift and Kotlin tokens
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter @doras/tokens build
+      - name: Swift
+        run: |
+          command -v swiftc || { echo "swiftc is not on this runner"; exit 1; }
+          swiftc --version
+          # The SwiftUI helpers are skipped on Linux by #if canImport(SwiftUI).
+          swiftc -typecheck packages/tokens/dist/swift/*.swift
+      - name: Kotlin
+        run: |
+          command -v kotlinc || { echo "kotlinc is not on this runner"; exit 1; }
+          kotlinc -version
+          # The Compose helpers need Compose, so only the core file is compiled.
+          kotlinc packages/tokens/dist/kotlin/io/github/renderghost/doras/tokens/DorasTokens.kt -d "$RUNNER_TEMP/kotlin-out"

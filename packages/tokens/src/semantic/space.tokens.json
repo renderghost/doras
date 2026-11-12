@@ -1,0 +1,181 @@
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/format.json",
+  "space": {
+    "$type": "dimension",
+    "$description": "Space between and inside things. Inset is padding, stack is vertical gaps, inline is horizontal gaps.",
+    "inset": {
+      "xs": {
+        "$value": "{primitive.dimension.4}"
+      },
+      "sm": {
+        "$value": "{primitive.dimension.8}"
+      },
+      "md": {
+        "$value": "{primitive.dimension.12}"
+      },
+      "lg": {
+        "$value": "{primitive.dimension.16}"
+      },
+      "xl": {
+        "$value": "{primitive.dimension.24}"
+      },
+      "2xl": {
+        "$value": "{primitive.dimension.32}"
+      }
+    },
+    "stack": {
+      "2xs": {
+        "$value": "{primitive.dimension.2}"
+      },
+      "xs": {
+        "$value": "{primitive.dimension.4}"
+      },
+      "sm": {
+        "$value": "{primitive.dimension.8}"
+      },
+      "md": {
+        "$value": "{primitive.dimension.12}"
+      },
+      "lg": {
+        "$value": "{primitive.dimension.16}"
+      },
+      "xl": {
+        "$value": "{primitive.dimension.24}"
+      },
+      "2xl": {
+        "$value": "{primitive.dimension.32}"
+      },
+      "3xl": {
+        "$value": "{primitive.dimension.48}"
+      }
+    },
+    "inline": {
+      "xs": {
+        "$value": "{primitive.dimension.4}"
+      },
+      "sm": {
+        "$value": "{primitive.dimension.8}"
+      },
+      "md": {
+        "$value": "{primitive.dimension.12}"
+      },
+      "lg": {
+        "$value": "{primitive.dimension.16}"
+      },
+      "xl": {
+        "$value": "{primitive.dimension.24}"
+      }
+    }
+  },
+  "size": {
+    "$type": "dimension",
+    "target": {
+      "min": {
+        "$value": "{primitive.dimension.44}",
+        "$description": "The smallest anything people can press may be, in both directions (WCAG 2.5.5, AAA)."
+      }
+    },
+    "control": {
+      "height": {
+        "$value": "{primitive.dimension.48}",
+        "$description": "The height of fields and buttons."
+      },
+      "height-prominent": {
+        "$value": "{primitive.dimension.56}",
+        "$description": "The height of the main call to action, such as Continue with Atmosphere."
+      }
+    },
+    "icon": {
+      "sm": {
+        "$value": "{primitive.dimension.16}"
+      },
+      "md": {
+        "$value": "{primitive.dimension.20}"
+      },
+      "lg": {
+        "$value": "{primitive.dimension.24}"
+      },
+      "xl": {
+        "$value": "{primitive.dimension.32}"
+      }
+    },
+    "avatar": {
+      "sm": {
+        "$value": "{primitive.dimension.24}"
+      },
+      "md": {
+        "$value": "{primitive.dimension.32}"
+      },
+      "lg": {
+        "$value": "{primitive.dimension.40}"
+      },
+      "xl": {
+        "$value": "{primitive.dimension.56}"
+      }
+    },
+    "content": {
+      "narrow": {
+        "$value": "{primitive.dimension.420}",
+        "$description": "The widest a sheet or form gets."
+      },
+      "default": {
+        "$value": "{primitive.dimension.560}",
+        "$description": "The widest a provider page card gets."
+      }
+    }
+  },
+  "radius": {
+    "$type": "dimension",
+    "badge": {
+      "$value": "{primitive.dimension.6}"
+    },
+    "control": {
+      "$value": "{primitive.dimension.10}",
+      "$description": "Fields and buttons."
+    },
+    "card": {
+      "$value": "{primitive.dimension.14}"
+    },
+    "sheet": {
+      "$value": "{primitive.dimension.20}"
+    },
+    "pill": {
+      "$value": "{primitive.dimension.9999}",
+      "$description": "Fully rounded ends, as on Continue with Atmosphere."
+    }
+  },
+  "border-width": {
+    "$type": "dimension",
+    "$description": "Kept in px on the web, so borders stay crisp when text is resized.",
+    "default": {
+      "$value": "{primitive.dimension.1}"
+    },
+    "strong": {
+      "$value": "{primitive.dimension.1_5}"
+    },
+    "focus": {
+      "$value": "{primitive.dimension.2}",
+      "$description": "The focus ring: at least 2px, as WCAG 2.4.13 (AAA) asks."
+    }
+  },
+  "focus": {
+    "$type": "dimension",
+    "offset": {
+      "$value": "{primitive.dimension.2}",
+      "$description": "The gap between a control and its focus ring."
+    }
+  },
+  "breakpoint": {
+    "$type": "dimension",
+    "$description": "Window size classes, the same on every platform: compact below medium, then medium, expanded and large.",
+    "medium": {
+      "$value": "{primitive.dimension.600}"
+    },
+    "expanded": {
+      "$value": "{primitive.dimension.840}"
+    },
+    "large": {
+      "$value": "{primitive.dimension.1200}"
+    }
+  }
+}

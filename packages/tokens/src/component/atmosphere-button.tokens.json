@@ -1,0 +1,45 @@
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/format.json",
+  "component": {
+    "$description": "Component tokens, only where a component must differ from the semantic defaults.",
+    "atmosphere-button": {
+      "$description": "Continue with Atmosphere looks the same in every app, so it has its own tokens that apps can’t change.",
+      "surface": {
+        "$type": "color",
+        "$value": "{color.action.primary.surface}"
+      },
+      "surface-hover": {
+        "$type": "color",
+        "$value": "{color.action.primary.surface-hover}"
+      },
+      "border": {
+        "$type": "color",
+        "$value": "{color.border.emphasis}"
+      },
+      "text": {
+        "$type": "color",
+        "$value": "{color.action.primary.text}"
+      },
+      "border-width": {
+        "$type": "dimension",
+        "$value": "{border-width.strong}"
+      },
+      "radius": {
+        "$type": "dimension",
+        "$value": "{radius.pill}"
+      },
+      "min-height": {
+        "$type": "dimension",
+        "$value": "{size.control.height-prominent}"
+      },
+      "padding-inline": {
+        "$type": "dimension",
+        "$value": "{space.inset.xl}"
+      },
+      "label": {
+        "$type": "typography",
+        "$value": "{type.label.lg}"
+      }
+    }
+  }
+}

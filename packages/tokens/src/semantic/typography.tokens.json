@@ -1,0 +1,129 @@
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/format.json",
+  "type": {
+    "$type": "typography",
+    "heading": {
+      "lg": {
+        "$value": {
+          "fontFamily": "{primitive.font.family.sans}",
+          "fontSize": "{primitive.font.size.24}",
+          "fontWeight": "{primitive.font.weight.bold}",
+          "letterSpacing": "{primitive.font.letter-spacing.tighter}",
+          "lineHeight": "{primitive.font.line-height.tight}"
+        },
+        "$description": "Page titles on provider pages."
+      },
+      "md": {
+        "$value": {
+          "fontFamily": "{primitive.font.family.sans}",
+          "fontSize": "{primitive.font.size.20}",
+          "fontWeight": "{primitive.font.weight.bold}",
+          "letterSpacing": "{primitive.font.letter-spacing.tight}",
+          "lineHeight": "{primitive.font.line-height.tight}"
+        },
+        "$description": "Sheet titles."
+      },
+      "sm": {
+        "$value": {
+          "fontFamily": "{primitive.font.family.sans}",
+          "fontSize": "{primitive.font.size.17}",
+          "fontWeight": "{primitive.font.weight.semibold}",
+          "letterSpacing": "{primitive.font.letter-spacing.none}",
+          "lineHeight": "{primitive.font.line-height.snug}"
+        },
+        "$description": "Section headings."
+      }
+    },
+    "body": {
+      "lg": {
+        "$value": {
+          "fontFamily": "{primitive.font.family.sans}",
+          "fontSize": "{primitive.font.size.17}",
+          "fontWeight": "{primitive.font.weight.regular}",
+          "letterSpacing": "{primitive.font.letter-spacing.none}",
+          "lineHeight": "{primitive.font.line-height.normal}"
+        }
+      },
+      "md": {
+        "$value": {
+          "fontFamily": "{primitive.font.family.sans}",
+          "fontSize": "{primitive.font.size.15}",
+          "fontWeight": "{primitive.font.weight.regular}",
+          "letterSpacing": "{primitive.font.letter-spacing.none}",
+          "lineHeight": "{primitive.font.line-height.normal}"
+        },
+        "$description": "Most text."
+      },
+      "sm": {
+        "$value": {
+          "fontFamily": "{primitive.font.family.sans}",
+          "fontSize": "{primitive.font.size.14}",
+          "fontWeight": "{primitive.font.weight.regular}",
+          "letterSpacing": "{primitive.font.letter-spacing.none}",
+          "lineHeight": "{primitive.font.line-height.normal}"
+        }
+      }
+    },
+    "label": {
+      "lg": {
+        "$value": {
+          "fontFamily": "{primitive.font.family.sans}",
+          "fontSize": "{primitive.font.size.17}",
+          "fontWeight": "{primitive.font.weight.bold}",
+          "letterSpacing": "{primitive.font.letter-spacing.none}",
+          "lineHeight": "{primitive.font.line-height.snug}"
+        },
+        "$description": "Continue with Atmosphere."
+      },
+      "md": {
+        "$value": {
+          "fontFamily": "{primitive.font.family.sans}",
+          "fontSize": "{primitive.font.size.15}",
+          "fontWeight": "{primitive.font.weight.semibold}",
+          "letterSpacing": "{primitive.font.letter-spacing.none}",
+          "lineHeight": "{primitive.font.line-height.snug}"
+        },
+        "$description": "Buttons and field labels."
+      },
+      "sm": {
+        "$value": {
+          "fontFamily": "{primitive.font.family.sans}",
+          "fontSize": "{primitive.font.size.14}",
+          "fontWeight": "{primitive.font.weight.semibold}",
+          "letterSpacing": "{primitive.font.letter-spacing.none}",
+          "lineHeight": "{primitive.font.line-height.snug}"
+        }
+      }
+    },
+    "caption": {
+      "$value": {
+        "fontFamily": "{primitive.font.family.sans}",
+        "fontSize": "{primitive.font.size.13}",
+        "fontWeight": "{primitive.font.weight.regular}",
+        "letterSpacing": "{primitive.font.letter-spacing.none}",
+        "lineHeight": "{primitive.font.line-height.normal}"
+      },
+      "$description": "Hints and help text."
+    },
+    "fine": {
+      "$value": {
+        "fontFamily": "{primitive.font.family.sans}",
+        "fontSize": "{primitive.font.size.12}",
+        "fontWeight": "{primitive.font.weight.regular}",
+        "letterSpacing": "{primitive.font.letter-spacing.none}",
+        "lineHeight": "{primitive.font.line-height.normal}"
+      },
+      "$description": "Small print. Never for anything people must read to continue."
+    },
+    "code": {
+      "$value": {
+        "fontFamily": "{primitive.font.family.mono}",
+        "fontSize": "{primitive.font.size.20}",
+        "fontWeight": "{primitive.font.weight.medium}",
+        "letterSpacing": "{primitive.font.letter-spacing.wide}",
+        "lineHeight": "{primitive.font.line-height.snug}"
+      },
+      "$description": "Sign-in and verification codes, spaced for reading out."
+    }
+  }
+}

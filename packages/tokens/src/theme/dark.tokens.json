@@ -1,0 +1,271 @@
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/format.json",
+  "color": {
+    "$type": "color",
+    "text": {
+      "default": {
+        "$value": "{primitive.color.neutral.0}"
+      },
+      "subtle": {
+        "$value": "{primitive.color.neutral.300}"
+      },
+      "inverse": {
+        "$value": "{primitive.color.neutral.1000}"
+      },
+      "error": {
+        "$value": "{primitive.color.error.300}"
+      },
+      "success": {
+        "$value": "{primitive.color.accent.300}"
+      },
+      "automated": {
+        "$value": "{primitive.color.automated.200}"
+      }
+    },
+    "icon": {
+      "default": {
+        "$value": "{primitive.color.neutral.0}"
+      },
+      "subtle": {
+        "$value": "{primitive.color.neutral.300}"
+      }
+    },
+    "link": {
+      "text": {
+        "$value": "{primitive.color.neutral.0}"
+      },
+      "decoration": {
+        "$value": "{primitive.color.link.300}"
+      },
+      "decoration-hover": {
+        "$value": "{primitive.color.link.200}"
+      }
+    },
+    "surface": {
+      "default": {
+        "$value": "{primitive.color.neutral.900}"
+      },
+      "subtle": {
+        "$value": "{primitive.color.neutral.800}"
+      },
+      "raised": {
+        "$value": "{primitive.color.neutral.850}"
+      },
+      "overlay": {
+        "$value": "{primitive.color.alpha.black-60}"
+      }
+    },
+    "border": {
+      "default": {
+        "$value": "{primitive.color.alpha.white-12}"
+      },
+      "strong": {
+        "$value": "{primitive.color.alpha.white-24}"
+      },
+      "control": {
+        "$value": "{primitive.color.neutral.400}"
+      },
+      "emphasis": {
+        "$value": "{primitive.color.neutral.0}"
+      },
+      "focus": {
+        "$value": "{primitive.color.link.300}"
+      },
+      "error": {
+        "$value": "{primitive.color.error.300}"
+      },
+      "success": {
+        "$value": "{primitive.color.accent.300}"
+      },
+      "automated": {
+        "$value": "{primitive.color.automated.300}"
+      }
+    },
+    "action": {
+      "primary": {
+        "surface": {
+          "$value": "{primitive.color.accent.300}"
+        },
+        "surface-hover": {
+          "$value": "{primitive.color.accent.200}"
+        },
+        "border": {
+          "$value": "{primitive.color.accent.400}"
+        },
+        "text": {
+          "$value": "{primitive.color.neutral.1000}"
+        }
+      },
+      "secondary": {
+        "surface": {
+          "$value": "{primitive.color.neutral.850}"
+        },
+        "surface-hover": {
+          "$value": "{primitive.color.neutral.800}"
+        },
+        "border": {
+          "$value": "{primitive.color.alpha.white-24}"
+        },
+        "text": {
+          "$value": "{primitive.color.neutral.0}"
+        }
+      }
+    },
+    "selected": {
+      "surface": {
+        "$value": "{primitive.color.accent.950}"
+      },
+      "border": {
+        "$value": "{primitive.color.accent.300}"
+      },
+      "icon": {
+        "$value": "{primitive.color.accent.300}"
+      }
+    },
+    "feedback": {
+      "success": {
+        "surface": {
+          "$value": "{primitive.color.accent.950}"
+        },
+        "border": {
+          "$value": "{primitive.color.accent.700}"
+        },
+        "icon": {
+          "$value": "{primitive.color.accent.300}"
+        },
+        "text": {
+          "$value": "{primitive.color.neutral.0}"
+        }
+      },
+      "error": {
+        "surface": {
+          "$value": "{primitive.color.error.950}"
+        },
+        "border": {
+          "$value": "{primitive.color.error.700}"
+        },
+        "icon": {
+          "$value": "{primitive.color.error.300}"
+        },
+        "text": {
+          "$value": "{primitive.color.neutral.0}"
+        }
+      },
+      "info": {
+        "surface": {
+          "$value": "{primitive.color.link.950}"
+        },
+        "border": {
+          "$value": "{primitive.color.link.700}"
+        },
+        "icon": {
+          "$value": "{primitive.color.link.300}"
+        },
+        "text": {
+          "$value": "{primitive.color.neutral.0}"
+        }
+      },
+      "automated": {
+        "surface": {
+          "$value": "{primitive.color.automated.950}"
+        },
+        "border": {
+          "$value": "{primitive.color.automated.700}"
+        },
+        "icon": {
+          "$value": "{primitive.color.automated.300}"
+        },
+        "text": {
+          "$value": "{primitive.color.neutral.0}"
+        }
+      }
+    }
+  },
+  "shadow": {
+    "$type": "shadow",
+    "raised": {
+      "$value": [
+        {
+          "color": "{primitive.color.alpha.black-40}",
+          "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+          "offsetY": {
+            "value": 1,
+            "unit": "px"
+          },
+          "blur": {
+            "value": 2,
+            "unit": "px"
+          },
+          "spread": {
+            "value": 0,
+            "unit": "px"
+          }
+        },
+        {
+          "color": "{primitive.color.alpha.black-20}",
+          "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+          "offsetY": {
+            "value": 2,
+            "unit": "px"
+          },
+          "blur": {
+            "value": 8,
+            "unit": "px"
+          },
+          "spread": {
+            "value": 0,
+            "unit": "px"
+          }
+        }
+      ]
+    },
+    "overlay": {
+      "$value": [
+        {
+          "color": "{primitive.color.alpha.black-60}",
+          "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+          "offsetY": {
+            "value": 28,
+            "unit": "px"
+          },
+          "blur": {
+            "value": 70,
+            "unit": "px"
+          },
+          "spread": {
+            "value": 0,
+            "unit": "px"
+          }
+        },
+        {
+          "color": "{primitive.color.alpha.black-40}",
+          "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+          "offsetY": {
+            "value": 4,
+            "unit": "px"
+          },
+          "blur": {
+            "value": 14,
+            "unit": "px"
+          },
+          "spread": {
+            "value": 0,
+            "unit": "px"
+          }
+        }
+      ]
+    }
+  }
+}

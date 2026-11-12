@@ -9,5 +9,32 @@
     "type": "git",
     "url": "git+https://github.com/renderghost/doras.git",
     "directory": "packages/tokens"
+  },
+  "sideEffects": [
+    "*.css"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./css": "./dist/css/doras.css",
+    "./tokens.json": "./dist/tokens.json",
+    "./swift/*": "./dist/swift/*",
+    "./kotlin/*": "./dist/kotlin/*",
+    "./src/*": "./src/*"
+  },
+  "files": [
+    "dist",
+    "src",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "node build/index.ts"
+  },
+  "devDependencies": {
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1",
+    "style-dictionary": "5.8.0"
   }
 }

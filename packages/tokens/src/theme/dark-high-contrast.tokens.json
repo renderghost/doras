@@ -1,0 +1,121 @@
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/format.json",
+  "color": {
+    "$type": "color",
+    "text": {
+      "subtle": {
+        "$value": "{primitive.color.neutral.0}"
+      },
+      "error": {
+        "$value": "{primitive.color.error.200}"
+      },
+      "success": {
+        "$value": "{primitive.color.accent.200}"
+      },
+      "automated": {
+        "$value": "{primitive.color.automated.100}"
+      }
+    },
+    "icon": {
+      "subtle": {
+        "$value": "{primitive.color.neutral.0}"
+      }
+    },
+    "link": {
+      "decoration": {
+        "$value": "{primitive.color.link.200}"
+      },
+      "decoration-hover": {
+        "$value": "{primitive.color.neutral.0}"
+      }
+    },
+    "surface": {
+      "default": {
+        "$value": "{primitive.color.neutral.1000}"
+      },
+      "subtle": {
+        "$value": "{primitive.color.neutral.900}"
+      },
+      "raised": {
+        "$value": "{primitive.color.neutral.950}"
+      }
+    },
+    "border": {
+      "default": {
+        "$value": "{primitive.color.neutral.300}"
+      },
+      "strong": {
+        "$value": "{primitive.color.neutral.0}"
+      },
+      "control": {
+        "$value": "{primitive.color.neutral.0}"
+      },
+      "focus": {
+        "$value": "{primitive.color.link.200}"
+      },
+      "error": {
+        "$value": "{primitive.color.error.200}"
+      },
+      "success": {
+        "$value": "{primitive.color.accent.200}"
+      },
+      "automated": {
+        "$value": "{primitive.color.automated.200}"
+      }
+    },
+    "action": {
+      "primary": {
+        "border": {
+          "$value": "{primitive.color.neutral.0}"
+        }
+      },
+      "secondary": {
+        "border": {
+          "$value": "{primitive.color.neutral.0}"
+        }
+      }
+    },
+    "selected": {
+      "border": {
+        "$value": "{primitive.color.accent.200}"
+      },
+      "icon": {
+        "$value": "{primitive.color.accent.200}"
+      }
+    },
+    "feedback": {
+      "success": {
+        "border": {
+          "$value": "{primitive.color.accent.300}"
+        },
+        "icon": {
+          "$value": "{primitive.color.accent.200}"
+        }
+      },
+      "error": {
+        "border": {
+          "$value": "{primitive.color.error.300}"
+        },
+        "icon": {
+          "$value": "{primitive.color.error.200}"
+        }
+      },
+      "info": {
+        "border": {
+          "$value": "{primitive.color.link.300}"
+        },
+        "icon": {
+          "$value": "{primitive.color.link.200}"
+        }
+      },
+      "automated": {
+        "border": {
+          "$value": "{primitive.color.automated.300}"
+        },
+        "icon": {
+          "$value": "{primitive.color.automated.200}"
+        }
+      }
+    }
+  }
+}

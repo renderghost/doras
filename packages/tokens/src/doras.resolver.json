@@ -1,0 +1,95 @@
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/resolver.json",
+  "name": "Doras",
+  "version": "2025.10",
+  "description": "How the Doras tokens combine: primitives, then semantic tokens, then one of four themes, then component tokens.",
+  "sets": {
+    "primitive": {
+      "description": "Raw values.",
+      "sources": [
+        {
+          "$ref": "primitive/color.tokens.json"
+        },
+        {
+          "$ref": "primitive/dimension.tokens.json"
+        },
+        {
+          "$ref": "primitive/typography.tokens.json"
+        },
+        {
+          "$ref": "primitive/motion.tokens.json"
+        }
+      ]
+    },
+    "semantic": {
+      "description": "What values are for: space, size, type and motion, the same in every theme.",
+      "sources": [
+        {
+          "$ref": "semantic/space.tokens.json"
+        },
+        {
+          "$ref": "semantic/typography.tokens.json"
+        },
+        {
+          "$ref": "semantic/motion.tokens.json"
+        }
+      ]
+    },
+    "component": {
+      "description": "Component tokens, only where a component must differ.",
+      "sources": [
+        {
+          "$ref": "component/atmosphere-button.tokens.json"
+        }
+      ]
+    }
+  },
+  "modifiers": {
+    "theme": {
+      "description": "Colour theme. High contrast builds on light or dark and only overrides what changes.",
+      "contexts": {
+        "light": [
+          {
+            "$ref": "theme/light.tokens.json"
+          }
+        ],
+        "lightHighContrast": [
+          {
+            "$ref": "theme/light.tokens.json"
+          },
+          {
+            "$ref": "theme/light-high-contrast.tokens.json"
+          }
+        ],
+        "dark": [
+          {
+            "$ref": "theme/dark.tokens.json"
+          }
+        ],
+        "darkHighContrast": [
+          {
+            "$ref": "theme/dark.tokens.json"
+          },
+          {
+            "$ref": "theme/dark-high-contrast.tokens.json"
+          }
+        ]
+      },
+      "default": "light"
+    }
+  },
+  "resolutionOrder": [
+    {
+      "$ref": "#/sets/primitive"
+    },
+    {
+      "$ref": "#/sets/semantic"
+    },
+    {
+      "$ref": "#/modifiers/theme"
+    },
+    {
+      "$ref": "#/sets/component"
+    }
+  ]
+}
