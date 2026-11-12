@@ -1,0 +1,219 @@
+/* The flows' own layout (#16): Potluck's backdrop and the spacing between a
+   step's parts. Everything inside a step is a Doras component. */
+
+flow-harness {
+  display: block;
+  min-block-size: 100dvh;
+  color: var(--doras-color-text-default);
+  font-family: var(--doras-type-body-md-font-family);
+  font-size: var(--doras-type-body-md-font-size);
+  line-height: var(--doras-type-body-md-line-height);
+}
+
+/* Potluck, the sample app. */
+.potluck {
+  min-block-size: 100dvh;
+  background: var(--doras-color-surface-subtle);
+}
+
+.potluck-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--doras-space-inline-md);
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--doras-space-inset-md) var(--doras-space-inset-lg);
+  border-block-end: var(--doras-border-width-default) solid var(--doras-color-border-default);
+  background: var(--doras-color-surface-default);
+}
+
+.potluck-who {
+  display: inline-flex;
+  gap: var(--doras-space-inline-sm);
+  align-items: center;
+}
+
+.potluck-main {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+  gap: var(--doras-space-stack-xl);
+  align-items: start;
+  box-sizing: border-box;
+  max-inline-size: 60rem;
+  margin-inline: auto;
+  padding: var(--doras-space-inset-xl) var(--doras-space-inset-lg);
+}
+
+.potluck-home {
+  grid-template-columns: minmax(0, 40rem);
+  justify-content: center;
+}
+
+.potluck-intro > p {
+  margin-block: 0 var(--doras-space-stack-sm);
+}
+
+.potluck-kicker {
+  color: var(--doras-color-text-subtle);
+  font-size: var(--doras-type-caption-font-size);
+  font-weight: var(--doras-type-label-md-font-weight);
+}
+
+.potluck-display {
+  font-family: var(--doras-type-heading-lg-font-family);
+  font-size: var(--doras-type-heading-lg-font-size);
+  font-weight: var(--doras-type-heading-lg-font-weight);
+  line-height: var(--doras-type-heading-lg-line-height);
+}
+
+.potluck-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--doras-space-stack-md);
+  padding: var(--doras-space-inset-xl);
+  border: var(--doras-border-width-default) solid var(--doras-color-border-default);
+  border-radius: var(--doras-radius-card);
+  background: var(--doras-color-surface-raised);
+}
+
+.potluck-card > p,
+.potluck-title {
+  margin: 0;
+}
+
+.potluck-title {
+  font-family: var(--doras-type-heading-md-font-family);
+  font-size: var(--doras-type-heading-md-font-size);
+  font-weight: var(--doras-type-heading-md-font-weight);
+  line-height: var(--doras-type-heading-md-line-height);
+}
+
+/* A step: its parts, evenly spaced. */
+.flow-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--doras-space-stack-md);
+}
+
+.flow-stack > p,
+.flow-stack > h1,
+.flow-stack > h2,
+.flow-stack > h3 {
+  margin: 0;
+}
+
+.flow-heading {
+  font-family: var(--doras-type-heading-lg-font-family);
+  font-size: var(--doras-type-heading-lg-font-size);
+  font-weight: var(--doras-type-heading-lg-font-weight);
+  line-height: var(--doras-type-heading-lg-line-height);
+  letter-spacing: var(--doras-type-heading-lg-letter-spacing);
+}
+
+/* Focus moves here when a step opens, for screen readers; no ring for that. */
+.flow-heading:focus {
+  outline: none;
+}
+
+.flow-subheading {
+  margin: 0;
+  font-family: var(--doras-type-heading-sm-font-family);
+  font-size: var(--doras-type-heading-sm-font-size);
+  font-weight: var(--doras-type-heading-sm-font-weight);
+  line-height: var(--doras-type-heading-sm-line-height);
+}
+
+.flow-fine {
+  color: var(--doras-color-text-subtle);
+  font-size: var(--doras-type-caption-font-size);
+  line-height: var(--doras-type-caption-line-height);
+}
+
+.flow-hero {
+  color: var(--doras-color-text-subtle);
+}
+
+.flow-links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--doras-space-stack-xs);
+  align-items: flex-start;
+}
+
+.flow-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--doras-space-inline-sm);
+  justify-content: flex-end;
+}
+
+.flow-account {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--doras-space-inline-sm);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flow-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--doras-space-stack-sm);
+  padding: var(--doras-space-inset-md);
+  border: var(--doras-border-width-default) solid var(--doras-color-border-default);
+  border-radius: var(--doras-radius-card);
+}
+
+.flow-panel > p {
+  margin: 0;
+}
+
+.flow-kicker {
+  display: flex;
+  gap: var(--doras-space-inline-xs);
+  align-items: center;
+  color: var(--doras-color-text-subtle);
+  font-size: var(--doras-type-caption-font-size);
+}
+
+.flow-hops,
+.flow-never,
+.flow-choices {
+  display: flex;
+  flex-direction: column;
+  gap: var(--doras-space-stack-sm);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.flow-hops li,
+.flow-never li,
+.flow-verified {
+  display: flex;
+  gap: var(--doras-space-inline-sm);
+  align-items: flex-start;
+}
+
+.flow-hops doras-icon,
+.flow-never doras-icon,
+.flow-verified doras-icon {
+  flex: none;
+}
+
+.flow-choices li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--doras-space-inline-sm);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flow-hidden {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

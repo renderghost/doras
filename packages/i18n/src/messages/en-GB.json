@@ -129,6 +129,642 @@
     "provider.foot": {
       "message": "This is {provider}’s own page. {provider} hosts your Atmosphere account, and {app} never sees your password.",
       "description": "At the foot of a provider's page. {provider} is its name; {app} is the app's name."
+    },
+    "common.cancel": {
+      "message": "Cancel",
+      "description": "Button that cancels the current step."
+    },
+    "common.notNow": {
+      "message": "Not now",
+      "description": "Button that turns down an offer for now, such as adding a passkey."
+    },
+    "common.checking": {
+      "message": "Checking…",
+      "description": "What a button says while a code is checked."
+    },
+    "common.signIn": {
+      "message": "Sign in",
+      "description": "Button that signs in on the provider's page."
+    },
+    "common.change": {
+      "message": "Change",
+      "description": "Button next to a filled-in handle that goes back to choose another account."
+    },
+    "common.email": {
+      "message": "Email address",
+      "description": "Label of an email address field."
+    },
+    "common.password": {
+      "message": "Password",
+      "description": "Label of a password field, and the name of the password option."
+    },
+    "find.heading": {
+      "message": "Sign in to {app}",
+      "description": "Heading of the first step, where people type their handle. {app} is the app's name."
+    },
+    "find.lede": {
+      "message": "Use your Atmosphere account. If you use Bluesky or another Atmosphere app, you already have one.",
+      "description": "Under the first heading: says that Bluesky users already have an account."
+    },
+    "find.label": {
+      "message": "Your handle",
+      "description": "Label of the handle field."
+    },
+    "find.hint": {
+      "message": "It’s on your profile, like {example} or {other}. You can type your name instead.",
+      "description": "Hint under the handle field. {example} and {other} are example handles."
+    },
+    "find.submit": {
+      "message": "Find my account",
+      "description": "Button that looks up the handle."
+    },
+    "find.busy": {
+      "message": "Finding your account…",
+      "description": "What the find button says while it looks."
+    },
+    "find.forgot": {
+      "message": "Forgot your handle?",
+      "description": "Link to finding the account by email."
+    },
+    "find.create": {
+      "message": "New here? Create an Atmosphere account",
+      "description": "Link to creating an account."
+    },
+    "find.errorEmpty": {
+      "message": "Type your handle or your name to find your Atmosphere account.",
+      "description": "Error when nothing was typed."
+    },
+    "find.errorEmail": {
+      "message": "That looks like an email address. Handles look like {example}.",
+      "description": "Error when an email address was typed. {example} is an example handle."
+    },
+    "find.useEmail": {
+      "message": "Find my account with this email",
+      "description": "Button under the email error: finds the account by that email."
+    },
+    "find.partial": {
+      "message": "Handles have a dot in them, like {example}. Is it one of these?",
+      "description": "When a name, not a handle, was typed and accounts match. {example} is an example handle."
+    },
+    "find.noOne": {
+      "message": "We couldn’t find anyone called “{name}”. Handles look like {example} or {other}.",
+      "description": "When a name was typed and nobody matches. {name} is what was typed."
+    },
+    "find.notFound": {
+      "message": "We couldn’t find {handle}. Check the spelling, or find your account with your email.",
+      "description": "When a full handle was typed and no account has it. {handle} is the handle."
+    },
+    "search.heading": {
+      "message": "Find your Atmosphere account",
+      "description": "Heading of the search-by-name step."
+    },
+    "search.lede": {
+      "message": "Start typing your name or handle. We’ll show matching Atmosphere accounts.",
+      "description": "Under the search heading."
+    },
+    "search.label": {
+      "message": "Your name or handle",
+      "description": "Label of the search field."
+    },
+    "recover.heading": {
+      "message": "Type the handle from the email",
+      "description": "Heading after the recovery email arrives."
+    },
+    "recover.lede": {
+      "message": "Your provider asks for the sign-in code from the same email next.",
+      "description": "Under the heading: the code comes next."
+    },
+    "recover.hint": {
+      "message": "It’s near the top of the email, under “Your handle”.",
+      "description": "Hint under the field: where to find the handle."
+    },
+    "recover.noEmail": {
+      "message": "No email? Try another provider",
+      "description": "Link back to the email step."
+    },
+    "confirm.heading": {
+      "message": "Is this you?",
+      "description": "Heading when an account is found."
+    },
+    "confirm.next": {
+      "message": "Next, sign in with {provider}",
+      "description": "Heading of what happens next. {provider} hosts the account."
+    },
+    "confirm.go": {
+      "message": "You’ll go to {host}. {provider} hosts your Atmosphere account, so that’s where you sign in.",
+      "description": "First step of what happens next. {host} is the provider's address."
+    },
+    "confirm.decide": {
+      "message": "{provider} will show what {app} wants to do. You decide.",
+      "description": "Second step: the provider shows the permissions."
+    },
+    "confirm.return": {
+      "message": "Then you’ll come straight back to {app}.",
+      "description": "Third step: back to the app."
+    },
+    "confirm.continue": {
+      "message": "Continue to {provider}",
+      "description": "Button that goes to the provider's sign-in page."
+    },
+    "create.heading": {
+      "message": "Create your Atmosphere account",
+      "description": "Heading of the step where people choose who hosts their new account."
+    },
+    "create.alreadyHeading": {
+      "message": "Used Bluesky or another Atmosphere app before?",
+      "description": "Heading of the notice that people may already have an account."
+    },
+    "create.alreadyBody": {
+      "message": "Then you already have an Atmosphere account, and you can sign in with it.",
+      "description": "Body of that notice."
+    },
+    "create.signInWithIt": {
+      "message": "Sign in with it",
+      "description": "Link in that notice, to sign in instead."
+    },
+    "create.searchYourself": {
+      "message": "Not sure? Search for yourself",
+      "description": "Link in that notice, to search by name."
+    },
+    "create.legend": {
+      "message": "Who should host your Atmosphere account?",
+      "description": "Question above the providers."
+    },
+    "create.hint": {
+      "message": "Your provider keeps your Atmosphere account safe and online. It works in every Atmosphere app whichever provider you pick, and you can move to another provider later and take your posts and followers with you, like keeping your number when you change mobile network.",
+      "description": "Explains what a provider is, and that people can move."
+    },
+    "create.suggestedBy": {
+      "message": "Suggested by {app}",
+      "description": "Tag on the app's own hosting, which it suggests."
+    },
+    "create.another": {
+      "message": "Another provider",
+      "description": "Option for any other provider."
+    },
+    "create.anotherBlurb": {
+      "message": "Use any provider’s address, or your own server.",
+      "description": "Description of that option."
+    },
+    "create.address": {
+      "message": "Provider address",
+      "description": "Label of the field for another provider's address."
+    },
+    "create.addressHint": {
+      "message": "Your provider can tell you what it is.",
+      "description": "Hint under the provider address field."
+    },
+    "create.addressError": {
+      "message": "Enter the provider’s address, like {example}.",
+      "description": "Error when the address isn't one. {example} is an example address."
+    },
+    "create.continueWith": {
+      "message": "Continue with {provider}",
+      "description": "Button that goes to the chosen provider."
+    },
+    "provider.blurb.app": {
+      "message": "{app} hosts your Atmosphere account for you. The quickest way to start.",
+      "description": "Description of the app's own hosting."
+    },
+    "provider.blurb.blacksky": {
+      "message": "A community-run home for Black people on the open social web.",
+      "description": "Placeholder description of Blacksky. Who is listed, and how, is still open."
+    },
+    "provider.blurb.bluesky": {
+      "message": "The biggest provider, run by the team behind the Bluesky app.",
+      "description": "Placeholder description of Bluesky as a provider."
+    },
+    "provider.blurb.eurosky": {
+      "message": "Hosted in Europe and open to everyone.",
+      "description": "Placeholder description of Eurosky."
+    },
+    "provider.blurb.northsky": {
+      "message": "A community-run provider.",
+      "description": "Placeholder description of Northsky."
+    },
+    "found.heading": {
+      "message": "Before you create an Atmosphere account",
+      "description": "Heading when the browser knows an account the person may already have."
+    },
+    "found.kicker": {
+      "message": "Found on this device",
+      "description": "Small label above the found account."
+    },
+    "found.title": {
+      "message": "You already have an Atmosphere account",
+      "description": "Heading of the found account."
+    },
+    "found.one": {
+      "message": "This browser knows {name}’s Atmosphere account, hosted by {provider}. It works on {app} too, so there’s no need to make another one.",
+      "description": "When the browser knows one account. {name} is the person's name."
+    },
+    "found.several": {
+      "message": "This browser knows these Atmosphere accounts. Any of them works on {app}, so there’s no need to make another one.",
+      "description": "When the browser knows several accounts."
+    },
+    "found.use": {
+      "message": "Use this account",
+      "description": "Button on each found account."
+    },
+    "found.anyway": {
+      "message": "Create another Atmosphere account anyway",
+      "description": "Disclosure that opens the providers after all."
+    },
+    "forgot.heading": {
+      "message": "Find your Atmosphere account with your email",
+      "description": "Heading of the recovery step."
+    },
+    "forgot.lede": {
+      "message": "The provider that hosts your Atmosphere account can email you your handle and a code to sign in. {app} never finds out whether you have an account.",
+      "description": "Explains who emails, and that the app learns nothing."
+    },
+    "forgot.legend": {
+      "message": "Which provider hosts your Atmosphere account?",
+      "description": "Question above the providers."
+    },
+    "forgot.notSure": {
+      "message": "Not sure",
+      "description": "Option for people who don't know their provider."
+    },
+    "forgot.submit": {
+      "message": "Email me my account details",
+      "description": "Button that asks the provider to email."
+    },
+    "forgot.searchInstead": {
+      "message": "Search by name instead",
+      "description": "Link to searching by name."
+    },
+    "forgot.errorEmail": {
+      "message": "Enter the email address you used when you created your Atmosphere account, like {example}.",
+      "description": "Error when the email address isn't one. {example} is an example address."
+    },
+    "forgot.errorProvider": {
+      "message": "Choose the provider that hosts your account, or choose “Not sure”.",
+      "description": "Error when no provider is chosen."
+    },
+    "checkEmail.heading": {
+      "message": "Check your email",
+      "description": "Heading after the email is requested."
+    },
+    "checkEmail.body": {
+      "message": "If {provider} hosts an Atmosphere account for {email}, it’s emailing your handle and a sign-in code there now.",
+      "description": "Never says whether the account exists. {email} is the address typed."
+    },
+    "checkEmail.bodyUnsure": {
+      "message": "If one of the providers we asked hosts an Atmosphere account for {email}, it’s emailing your handle and a sign-in code there now.",
+      "description": "The same, when the person wasn't sure of their provider."
+    },
+    "checkEmail.asked": {
+      "message": "We asked {providers}. Only the provider that hosts your account will email you.",
+      "description": "Which providers were asked. {providers} is a list."
+    },
+    "checkEmail.from": {
+      "message": "The email comes from {provider}, not from {app}. It can take a minute or two, and sometimes lands in spam or junk.",
+      "description": "Who sends the email, and where to look."
+    },
+    "checkEmail.fromUnsure": {
+      "message": "The email comes from your provider, not from {app}. It can take a minute or two, and sometimes lands in spam or junk.",
+      "description": "The same, when the person wasn't sure of their provider."
+    },
+    "checkEmail.got": {
+      "message": "I’ve got the email",
+      "description": "Button for when the email has arrived."
+    },
+    "checkEmail.another": {
+      "message": "Try another provider",
+      "description": "Link back to choose another provider."
+    },
+    "signin.heading": {
+      "message": "Sign in to your Atmosphere account",
+      "description": "Heading of the provider's sign-in page."
+    },
+    "signin.lede": {
+      "message": "{provider} hosts your account. Sign in here to continue to {app}.",
+      "description": "Under the heading."
+    },
+    "signin.handle": {
+      "message": "Handle",
+      "description": "Label of the handle on the provider's page."
+    },
+    "signin.forgot": {
+      "message": "Forgot password?",
+      "description": "Link to signing in with an emailed code."
+    },
+    "signin.busy": {
+      "message": "Signing in…",
+      "description": "What the sign-in button says while it works."
+    },
+    "signin.usePasskey": {
+      "message": "Use a passkey",
+      "description": "Button that asks the browser for a passkey."
+    },
+    "signin.errorEmpty": {
+      "message": "Type your password, or choose “Forgot password?”.",
+      "description": "Error when no password was typed."
+    },
+    "signin.errorPasskeyOnly": {
+      "message": "This account signs in with a passkey only. Use a passkey, or get a code by email if you can’t.",
+      "description": "Error when an account with “Passkey only” is given a password."
+    },
+    "signin.passkeyCancelled": {
+      "message": "Can’t use a passkey? Sign in with your password, or get a code by email.",
+      "description": "After the passkey prompt is cancelled."
+    },
+    "signin.getCode": {
+      "message": "Get a code by email",
+      "description": "Link that sends a sign-in code by email."
+    },
+    "totp.heading": {
+      "message": "Enter the code from your authenticator app",
+      "description": "Heading of the verification code step."
+    },
+    "totp.lede": {
+      "message": "Open the app you set up for {handle} and type the 6-digit code it shows.",
+      "description": "Under the heading. {handle} is the account's handle."
+    },
+    "totp.label": {
+      "message": "Verification code",
+      "description": "Label of the verification code field."
+    },
+    "totp.error": {
+      "message": "Type the 6-digit code from your authenticator app.",
+      "description": "Error when the code isn't 6 digits."
+    },
+    "totp.usePasskey": {
+      "message": "Use a passkey instead",
+      "description": "Button that uses a passkey instead of the code."
+    },
+    "totp.lostPhone": {
+      "message": "Lost your phone? Get a code by email",
+      "description": "Link for people without their authenticator app."
+    },
+    "offer.signedIn": {
+      "message": "You’re signed in to your Atmosphere account, {handle}.",
+      "description": "Success notice after signing in."
+    },
+    "offer.heading": {
+      "message": "Sign in faster next time?",
+      "description": "Heading of the passkey offer."
+    },
+    "offer.lede": {
+      "message": "Add a passkey, and next time you can sign in with your fingerprint, face or screen lock instead of your password. A passkey can’t be phished.",
+      "description": "Why to add a passkey."
+    },
+    "offer.fine": {
+      "message": "Your browser saves it on this device. It works with {provider} in every Atmosphere app.",
+      "description": "Where the passkey is kept."
+    },
+    "offer.add": {
+      "message": "Add a passkey",
+      "description": "Button that makes a passkey."
+    },
+    "code.heading": {
+      "message": "Enter your sign-in code",
+      "description": "Heading of the emailed code step."
+    },
+    "code.lede": {
+      "message": "We sent a 6-digit code to {email}.",
+      "description": "Under the heading. {email} is partly hidden."
+    },
+    "code.label": {
+      "message": "Sign-in code",
+      "description": "Label of the code field."
+    },
+    "code.error": {
+      "message": "That code doesn’t match. Use the code in the latest email from {provider}, or send a new one.",
+      "description": "Error when the code is wrong."
+    },
+    "code.resend": {
+      "message": "No email? Send a new code",
+      "description": "Link that sends a new code."
+    },
+    "code.sent": {
+      "message": "We sent a new code. Use the one in the latest email.",
+      "description": "After a new code is sent."
+    },
+    "code.passwordInstead": {
+      "message": "Know your password? Sign in with it instead",
+      "description": "Link back to the password."
+    },
+    "nextTime.heading": {
+      "message": "How do you want to sign in next time?",
+      "description": "Heading after signing in with an emailed code."
+    },
+    "nextTime.lede": {
+      "message": "Add a passkey, or set a new password. You can also do this later in your account settings on {provider}.",
+      "description": "Under the heading."
+    },
+    "nextTime.lost": {
+      "message": "Your passkey on {device} still works on that device. If it’s lost, remove it so nobody else can use it.",
+      "description": "When a passkey is on a lost device. {device} names it."
+    },
+    "nextTime.remove": {
+      "message": "Remove it",
+      "description": "Button that removes the lost passkey."
+    },
+    "nextTime.removed": {
+      "message": "The passkey on {device} is removed. It no longer works.",
+      "description": "After the lost passkey is removed."
+    },
+    "nextTime.passwordInstead": {
+      "message": "Set a new password instead",
+      "description": "Disclosure that opens the new password field."
+    },
+    "nextTime.newPassword": {
+      "message": "New password",
+      "description": "Label of the new password field."
+    },
+    "nextTime.save": {
+      "message": "Save password",
+      "description": "Button that saves the new password."
+    },
+    "signup.lede": {
+      "message": "{provider} will host it. Use it with {app} and every other Atmosphere app.",
+      "description": "Under the sign-up heading."
+    },
+    "signup.legend": {
+      "message": "How do you want to sign in?",
+      "description": "Question above the passkey and password options."
+    },
+    "signup.passkey": {
+      "message": "Passkey",
+      "description": "Name of the passkey option."
+    },
+    "signup.passkeyBlurb": {
+      "message": "Use your fingerprint, face or screen lock. Nothing to remember.",
+      "description": "Description of the passkey option."
+    },
+    "signup.passwordBlurb": {
+      "message": "Choose a password of at least 8 characters.",
+      "description": "Description of the password option."
+    },
+    "signup.passkeyNote": {
+      "message": "Your browser saves the passkey on this device. It works with {provider} in every Atmosphere app. If you ever move your account to another provider, you’ll set up a new passkey there.",
+      "description": "Shown when the passkey is chosen."
+    },
+    "signup.passwordHint": {
+      "message": "At least 8 characters.",
+      "description": "Hint under a new password field."
+    },
+    "signup.terms": {
+      "message": "By creating an Atmosphere account hosted by {provider}, you agree to {provider}’s Terms and Privacy Policy.",
+      "description": "Above the button: the provider's terms."
+    },
+    "signup.submit": {
+      "message": "Next: choose your handle",
+      "description": "Button that goes to the handle step."
+    },
+    "signup.signInInstead": {
+      "message": "Already have an Atmosphere account? Sign in instead",
+      "description": "Link back to signing in."
+    },
+    "signup.errorEmail": {
+      "message": "Enter an email address, like {example}. You’ll use it if you ever need to get back into your account.",
+      "description": "Error when the email address isn't one."
+    },
+    "signup.errorMethod": {
+      "message": "Choose a passkey or a password.",
+      "description": "Error when no way to sign in is chosen."
+    },
+    "signup.errorPassword": {
+      "message": "Use at least 8 characters.",
+      "description": "Error when the password is too short."
+    },
+    "signup.passkeyCancelled": {
+      "message": "No passkey was made. Try again, or choose a password.",
+      "description": "After the passkey prompt is cancelled during sign-up."
+    },
+    "newHandle.heading": {
+      "message": "Choose your handle",
+      "description": "Heading of the handle step."
+    },
+    "newHandle.lede": {
+      "message": "It’s how people find you on {app}, Bluesky and other Atmosphere apps. You can change it later.",
+      "description": "Under the heading."
+    },
+    "newHandle.name": {
+      "message": "Your name",
+      "description": "Label of the name field."
+    },
+    "newHandle.label": {
+      "message": "Handle",
+      "description": "Label of the new handle field."
+    },
+    "newHandle.ending": {
+      "message": "Your handle ends in {ending}.",
+      "description": "Hint under the handle field. {ending} is the provider's ending."
+    },
+    "newHandle.available": {
+      "message": "{handle} is available.",
+      "description": "When the handle is free."
+    },
+    "newHandle.taken": {
+      "message": "{handle} is taken. How about {suggestion}?",
+      "description": "When the handle is taken. {suggestion} is a free one."
+    },
+    "newHandle.errorChars": {
+      "message": "Use letters, numbers and hyphens only.",
+      "description": "Error for other characters."
+    },
+    "newHandle.errorLength": {
+      "message": "Handles are 3 to 20 characters long.",
+      "description": "Error when the handle is too short or long."
+    },
+    "newHandle.errorName": {
+      "message": "Type your name.",
+      "description": "Error when no name was typed."
+    },
+    "newHandle.submit": {
+      "message": "Create account",
+      "description": "Button that creates the account."
+    },
+    "newHandle.busy": {
+      "message": "Creating your account…",
+      "description": "What the button says while it works."
+    },
+    "connect.heading": {
+      "message": "Connect {app} to your Atmosphere account?",
+      "description": "Heading of the Connect page."
+    },
+    "connect.notYou": {
+      "message": "Not you?",
+      "description": "Link that goes back to choose another account."
+    },
+    "connect.can": {
+      "message": "{app} will be able to",
+      "description": "Heading of what the app can do."
+    },
+    "connect.cannot": {
+      "message": "{app} won’t be able to",
+      "description": "Heading of what the app can't do."
+    },
+    "connect.neverPassword": {
+      "message": "See your password",
+      "description": "Something the app can never do."
+    },
+    "connect.neverMessages": {
+      "message": "Read your private messages",
+      "description": "Something the app can't do here."
+    },
+    "connect.neverProfile": {
+      "message": "Delete your posts or change your profile",
+      "description": "Something the app can't do here."
+    },
+    "connect.optional": {
+      "message": "Optional. You can switch this off.",
+      "description": "Under a permission the person can turn off."
+    },
+    "connect.technical": {
+      "message": "Technical details",
+      "description": "Summary of the technical details."
+    },
+    "connect.techApp": {
+      "message": "App",
+      "description": "Label of the app's address in the technical details."
+    },
+    "connect.approve": {
+      "message": "Connect",
+      "description": "Button that connects the app."
+    },
+    "connect.busy": {
+      "message": "Connecting…",
+      "description": "What the Connect button says while it works."
+    },
+    "connect.verified": {
+      "message": "{provider} has checked this request comes from {domain}. You can disconnect {app} at any time in your account settings on {provider}.",
+      "description": "Under the buttons: the request is verified."
+    },
+    "connect.ready": {
+      "message": "Your Atmosphere account is ready",
+      "description": "Heading of the short Connect page, when the app hosts the account."
+    },
+    "connect.readyLede": {
+      "message": "{app} hosts it, so you can use it with {app} straight away.",
+      "description": "Under that heading."
+    },
+    "connect.whatAppCan": {
+      "message": "What {app} can do with your account",
+      "description": "Summary of the permissions on the short Connect page."
+    },
+    "connect.continue": {
+      "message": "Continue to {app}",
+      "description": "Button on the short Connect page."
+    },
+    "connect.oneAccount": {
+      "message": "It’s one account for {app}, Bluesky and every other Atmosphere app, so you can use it to sign in to all of them.",
+      "description": "Under the button on the short Connect page."
+    },
+    "connect.cancelled": {
+      "message": "You didn’t connect your Atmosphere account, so you’re not signed in. Try again whenever you like.",
+      "description": "Shown in the app after Connect is cancelled."
+    },
+    "connect.returning": {
+      "message": "Taking you back to {app}…",
+      "description": "Shown while returning to the app."
+    },
+    "provider.footApp": {
+      "message": "This is {app}’s account hosting, separate from the app. Your Atmosphere account works in every Atmosphere app, whoever hosts it.",
+      "description": "Footer of the provider page when the app hosts the account itself. {app} is the app's name."
     }
   }
 }

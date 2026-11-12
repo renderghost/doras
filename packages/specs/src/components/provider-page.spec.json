@@ -42,6 +42,12 @@
       "type": "string",
       "description": "The app the person came from, for the footer.",
       "required": true
+    },
+    {
+      "name": "appHosted",
+      "type": "boolean",
+      "description": "The app hosts the account itself, as its own provider. The footer then says the account works in every Atmosphere app, whoever hosts it. Defaults to false.",
+      "default": false
     }
   ],
   "states": [
@@ -52,6 +58,10 @@
     {
       "name": "Phone",
       "description": "Full width."
+    },
+    {
+      "name": "Hosted by the app",
+      "description": "The app is the provider. The footer says the account works in every Atmosphere app."
     }
   ],
   "events": [],
@@ -83,7 +93,7 @@
     "type.caption",
     "type.body.sm"
   ],
-  "strings": ["provider.label", "provider.foot"],
+  "strings": ["provider.label", "provider.foot", "provider.footApp"],
   "related": [
     {
       "component": "Skip link",

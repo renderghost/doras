@@ -292,6 +292,21 @@ Every journey can be clicked from start to finish in Storybook, with switches fo
 - session expired
 - provider unavailable
 
+Settled while building them ([#16](https://github.com/renderghost/doras/issues/16)):
+
+- **Pages are compositions in Storybook, not a package:** templates and pages are built from Doras components in `apps/storybook/src/flows`. Their copy is Doras's, so it lives in the catalogues and is translated: Front Door's steps, the reference provider pages and the Connect page.
+- **The app's copy stays the app's:** Potluck's page and its permissions, in its own words, are sample data in English. An app supplies its own.
+- **One harness:** a Storybook-only element plays the app, Front Door, the browser and the provider, so every page can also open on its own with what the steps before it would have set.
+- **The switches:**
+  - **Failures** fail the next submit on a step they fit, once, keeping what was typed.
+  - **Session expired** starts again from “Is this you?”, with the account still there.
+  - **Too many attempts** never says whether an account exists.
+  - **Passkey variations:** a passkey on this device, one only on a lost phone, verification codes, or passkey only.
+- **Focus moves to each new step's heading,** so screen readers start at the top of the step.
+- **Every journey is a test:** each walks end to end and checks the measurement events it sends, in order.
+- **Apps can host accounts:** the provider page shell's `appHosted` covers an app that hosts accounts itself. Its footer says the account works in every Atmosphere app, whoever hosts it.
+- **The sheet header is not a landmark:** inside the sheet's dialog, a `<header>` was a second banner next to the app's own.
+
 ## Quality
 
 ### Accessibility: WCAG 2.2 AA plus key AAA criteria
