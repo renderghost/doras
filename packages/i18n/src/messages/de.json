@@ -9,6 +9,6 @@
     "identity.hostedBy": "Gehostet von {provider}",
     "email.recovery.codeLifetime": "Der Code ist {minutes, plural, one {# Minute} other {# Minuten}} lang gültig.",
     "email.recovery.noLinks": "Wir schicken nie einen Anmeldelink per E-Mail. Wenn eine E-Mail Sie auffordert, zum Anmelden zu klicken, ist sie nicht von uns.",
-    "example.chip.remove": "{label} entfernen"
+    "link.opensInNewTab": "(öffnet in einem neuen Tab)"
   }
 }

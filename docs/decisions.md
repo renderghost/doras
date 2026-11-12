@@ -113,6 +113,24 @@ Details settled while building it ([#4](https://github.com/renderghost/doras/iss
 - **Re-running the sync:** it finds everything by name, so running it again updates in place and keeps every link. It never deletes: variables the tokens no longer have are kept and reported.
 - **Running it:** designers run it as a development plugin. Agents use `use_figma`, which takes at most 50,000 characters, so the plan and code travel into the file as text in SVGs, and a short loader runs them.
 
+### Actions, the first components
+
+Settled while building them ([#8](https://github.com/renderghost/doras/issues/8)):
+
+- **Lit, without decorators:** components declare their properties with `static properties`, so they build with plain TypeScript and need no decorator transform.
+- **Each implements its spec:** its class implements the props type generated from its spec, so the build fails if the code and the spec disagree.
+- **Button:**
+  - Never disabled. While busy, presses do nothing, the busy label replaces the label, and a polite live region announces it (until the shared announcer in #12).
+  - Form-associated through `ElementInternals`, defaulting to `type="button"`.
+  - Pressing Enter in a field only submits through a native submit button, so the fields in #9 will submit their form themselves.
+- **Icon button:** 44px targets, up from the prototype's 36px.
+- **Link:** a link that opens a new tab says “(opens in a new tab)” as part of its text, so everyone knows, screen reader users included.
+- **Continue with Atmosphere:**
+  - Its label comes from the catalogue, so apps can't change it.
+  - It wraps onto two lines in long languages, instead of overflowing as the prototype's would.
+- **Motion through tokens:** even the busy spinner's speed comes from a duration token, so reduced motion stops it, whether the system or the Storybook toolbar asks.
+- **The Example chip is gone:** the Actions components document themselves with the real template.
+
 ### Fonts, icons and motion
 
 - **Fonts and icons:** Inter, loaded from Google Fonts, and Lucide icons.

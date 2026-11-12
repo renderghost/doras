@@ -1,0 +1,105 @@
+{
+  "$schema": "../../schema/component.schema.json",
+  "name": "Link",
+  "group": "Actions",
+  "summary": "Goes somewhere: another page, the provider's site or help. A link that opens in a new tab says so, so nobody's surprised.",
+  "usage": {
+    "when": [
+      "To go to another page or site.",
+      "Inside running text, such as a hint that links to help."
+    ],
+    "whenNot": [
+      { "text": "To do something on this page.", "instead": "Button" },
+      { "text": "To go back a step inside Front Door.", "instead": "Step back links" }
+    ]
+  },
+  "anatomy": [
+    { "part": "Text", "description": "Says where it goes." },
+    {
+      "part": "New tab hint",
+      "description": "“(opens in a new tab)”, after the text, when it opens one.",
+      "optional": true
+    }
+  ],
+  "props": [
+    { "name": "href", "type": "string", "description": "Where it goes.", "required": true },
+    {
+      "name": "newTab",
+      "type": "boolean",
+      "description": "Opens in a new tab, and adds “(opens in a new tab)” after the text. Use it only when leaving would lose someone's place.",
+      "default": false
+    }
+  ],
+  "states": [
+    { "name": "Default", "description": "Underlined, in the link colours." },
+    { "name": "Hover", "description": "The underline darkens." },
+    { "name": "Focus", "description": "A 2px focus ring around the text." },
+    { "name": "New tab", "description": "With the new tab hint after the text." }
+  ],
+  "events": [],
+  "accessibility": {
+    "role": "link",
+    "name": "Its text, including the new tab hint.",
+    "keyboard": [
+      { "keys": "Tab", "action": "Moves focus to it." },
+      { "keys": "Enter", "action": "Follows it." }
+    ],
+    "screenReader": [
+      "Announced as a link, with its text.",
+      "A link that opens a new tab says so in its name, so screen reader users know before they press it."
+    ],
+    "notes": [
+      "Underlined, so it doesn't rely on colour alone (WCAG 1.4.1).",
+      "Links inside running text are exempt from the 44px target size."
+    ]
+  },
+  "tokens": [
+    "color.link.text",
+    "color.link.decoration",
+    "color.link.decoration-hover",
+    "color.border.focus",
+    "border-width.focus",
+    "focus.offset"
+  ],
+  "strings": ["link.opensInNewTab"],
+  "related": [
+    { "component": "Button", "relationship": "For doing something, not going somewhere." },
+    {
+      "component": "Link to the provider",
+      "relationship": "A link to the provider's site, naming the provider."
+    }
+  ],
+  "content": {
+    "guidelines": [
+      "Say where it goes, such as “Manage your account on Bluesky”. Never “Click here” or “Learn more” alone.",
+      "Open a new tab only when leaving would lose someone's place, such as in the middle of signing in."
+    ]
+  },
+  "dosAndDonts": [
+    { "do": "Say where the link goes.", "dont": "Use “Click here”." },
+    { "do": "Say when a link opens a new tab.", "dont": "Open new tabs without warning." }
+  ],
+  "evidence": [
+    {
+      "point": "Unexpected new tabs disorient people, especially screen reader users, who may not notice the change.",
+      "source": {
+        "label": "WCAG technique G201",
+        "href": "https://www.w3.org/WAI/WCAG22/Techniques/general/G201"
+      }
+    },
+    {
+      "point": "Link text that makes sense on its own helps people who browse a page by its links.",
+      "source": {
+        "label": "WCAG 2.4.4 Link Purpose",
+        "href": "https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context"
+      }
+    }
+  ],
+  "platforms": {
+    "web": {
+      "tag": "doras-link",
+      "formAssociated": false,
+      "slots": [{ "name": "", "description": "The link's text." }]
+    }
+  }
+}

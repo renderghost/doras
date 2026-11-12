@@ -1,0 +1,134 @@
+{
+  "$schema": "../../schema/component.schema.json",
+  "name": "Disclosure",
+  "group": "Actions",
+  "summary": "Shows and hides content that most people don't need, such as “Set a new password instead”. Pressing it toggles the content, and screen readers hear whether it's open.",
+  "usage": {
+    "when": [
+      "For a less common choice that would distract most people, such as “Create another Atmosphere account anyway”.",
+      "For extra options under the main one."
+    ],
+    "whenNot": [
+      { "text": "For content most people need. Show it instead." },
+      { "text": "For long technical content, such as on the Connect page.", "instead": "Details" },
+      { "text": "To go to another step.", "instead": "Button" }
+    ]
+  },
+  "anatomy": [
+    { "part": "Trigger", "description": "A button with the summary and a chevron." },
+    {
+      "part": "Summary",
+      "description": "Says what's hidden, such as “Set a new password instead”."
+    },
+    { "part": "Chevron", "description": "Points down when closed and up when open. Decorative." },
+    { "part": "Content", "description": "What's shown when open, directly after the trigger." }
+  ],
+  "props": [
+    {
+      "name": "open",
+      "type": "boolean",
+      "description": "Whether the content is shown.",
+      "default": false
+    },
+    {
+      "name": "variant",
+      "type": "enum",
+      "description": "How much the trigger stands out.",
+      "values": [
+        { "value": "panel", "description": "A bordered bar, as a full-width option." },
+        {
+          "value": "link",
+          "description": "Underlined text, for a quiet option under the main one."
+        }
+      ],
+      "default": "panel"
+    }
+  ],
+  "states": [
+    { "name": "Closed", "description": "The content is hidden, and the chevron points down." },
+    { "name": "Open", "description": "The content is shown, and the chevron points up." },
+    { "name": "Hover", "description": "The trigger's surface or underline darkens." },
+    { "name": "Focus", "description": "A 2px focus ring around the trigger." }
+  ],
+  "events": [
+    {
+      "name": "doras-toggle",
+      "kind": "ui",
+      "when": "It's opened or closed.",
+      "detail": { "open": { "type": "boolean", "description": "Whether it's now open." } }
+    }
+  ],
+  "accessibility": {
+    "role": "button, with aria-expanded and aria-controls",
+    "name": "Its summary.",
+    "keyboard": [
+      { "keys": "Tab", "action": "Moves focus to the trigger." },
+      { "keys": "Enter or Space", "action": "Opens or closes it. Focus stays on the trigger." }
+    ],
+    "screenReader": ["Announced as a button with its summary, and “collapsed” or “expanded”."],
+    "notes": [
+      "The content follows the trigger in reading order, so it's found straight after opening.",
+      "The chevron turns with the motion tokens, so it doesn't animate for reduced motion."
+    ]
+  },
+  "tokens": [
+    "color.text.default",
+    "color.icon.default",
+    "color.surface.default",
+    "color.border.strong",
+    "color.action.secondary.surface-hover",
+    "color.link.text",
+    "color.link.decoration",
+    "color.link.decoration-hover",
+    "color.border.focus",
+    "border-width.focus",
+    "focus.offset",
+    "border-width.default",
+    "radius.control",
+    "size.target.min",
+    "size.icon.md",
+    "space.inset.md",
+    "space.inset.lg",
+    "space.inline.sm",
+    "space.stack.md",
+    "type.label.md",
+    "motion.duration.fast",
+    "motion.easing.standard"
+  ],
+  "strings": [],
+  "related": [
+    {
+      "component": "Details",
+      "relationship": "For longer hidden content, such as technical details."
+    },
+    { "component": "Button", "relationship": "For actions that change the page." }
+  ],
+  "content": {
+    "guidelines": [
+      "Say what's hidden, as an option: “Set a new password instead”.",
+      "Don't use “More” or “Show more” alone."
+    ]
+  },
+  "dosAndDonts": [
+    { "do": "Hide less common options.", "dont": "Hide something most people need." }
+  ],
+  "evidence": [
+    {
+      "point": "The disclosure pattern: a button with aria-expanded that controls the content.",
+      "source": {
+        "label": "ARIA Authoring Practices: Disclosure",
+        "href": "https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/"
+      }
+    }
+  ],
+  "platforms": {
+    "web": {
+      "tag": "doras-disclosure",
+      "formAssociated": false,
+      "slots": [
+        { "name": "summary", "description": "The trigger's text." },
+        { "name": "", "description": "The content." }
+      ]
+    }
+  }
+}

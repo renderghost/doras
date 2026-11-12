@@ -1,0 +1,116 @@
+{
+  "$schema": "../../schema/component.schema.json",
+  "name": "Continue with Atmosphere",
+  "group": "Actions",
+  "summary": "The one door into signing in and creating an account, in every app. It looks the same everywhere, so people learn it once.",
+  "usage": {
+    "when": [
+      "On an app's sign-in screen, as the way to sign in with an Atmosphere account.",
+      "As the way to create an account too: Front Door asks which once it opens."
+    ],
+    "whenNot": [
+      { "text": "For anything other than opening Front Door.", "instead": "Button" },
+      { "text": "Restyled to match the app. Its look is the point." }
+    ]
+  },
+  "anatomy": [
+    {
+      "part": "Container",
+      "description": "A pill with a strong border, in the Atmosphere colours."
+    },
+    { "part": "Atmosphere mark", "description": "Decorative: the label names the button." },
+    {
+      "part": "Label",
+      "description": "“Continue with Atmosphere”, from the catalogue, in the person's language."
+    }
+  ],
+  "props": [
+    {
+      "name": "fullWidth",
+      "type": "boolean",
+      "description": "Fills the width of its container, as on a narrow sign-in screen.",
+      "default": false
+    }
+  ],
+  "states": [
+    { "name": "Default", "description": "Ready to press." },
+    { "name": "Hover", "description": "The surface changes to its hover colour." },
+    { "name": "Focus", "description": "A 2px focus ring, 2px away from the pill." },
+    {
+      "name": "Long label",
+      "description": "In long languages, the label wraps onto two lines instead of overflowing."
+    }
+  ],
+  "events": [{ "name": "click", "kind": "ui", "when": "It's pressed. The app opens Front Door." }],
+  "accessibility": {
+    "role": "button",
+    "name": "“Continue with Atmosphere”, in the page's language. The mark is hidden from screen readers.",
+    "keyboard": [
+      { "keys": "Tab", "action": "Moves focus to it." },
+      { "keys": "Enter or Space", "action": "Presses it." }
+    ],
+    "screenReader": ["Announced as “Continue with Atmosphere, button”."],
+    "notes": [
+      "Its target is 56px high, larger than the 44px minimum (WCAG 2.5.5).",
+      "Its label is locked copy: apps can't change it."
+    ]
+  },
+  "tokens": [
+    "component.atmosphere-button.surface",
+    "component.atmosphere-button.surface-hover",
+    "component.atmosphere-button.border",
+    "component.atmosphere-button.text",
+    "component.atmosphere-button.border-width",
+    "component.atmosphere-button.radius",
+    "component.atmosphere-button.min-height",
+    "component.atmosphere-button.padding-inline",
+    "component.atmosphere-button.label",
+    "color.border.focus",
+    "border-width.focus",
+    "focus.offset",
+    "space.inline.sm",
+    "space.inset.sm",
+    "size.icon.lg",
+    "motion.duration.fast",
+    "motion.easing.standard"
+  ],
+  "strings": ["atmosphere.continue"],
+  "related": [
+    { "component": "Button", "relationship": "For every other action." },
+    { "component": "Sheet", "relationship": "Front Door, which it opens." },
+    { "component": "Atmosphere mark", "relationship": "The mark inside it." }
+  ],
+  "content": {
+    "guidelines": [
+      "The label is always “Continue with Atmosphere”: it works for signing in and for creating an account.",
+      "“Atmosphere” is never translated."
+    ],
+    "terms": [
+      {
+        "term": "Atmosphere account",
+        "meaning": "One account that works across every Atmosphere app, hosted by a provider such as Bluesky."
+      }
+    ]
+  },
+  "dosAndDonts": [
+    {
+      "do": "Use it as it is, in every app.",
+      "dont": "Change its colours, shape or label to match the app."
+    },
+    {
+      "do": "Use it for both signing in and creating an account.",
+      "dont": "Add a separate “Create an Atmosphere account” button."
+    }
+  ],
+  "evidence": [
+    {
+      "point": "A single, recognisable button lowers the effort of choosing how to sign in, as “Sign in with Apple” and “Sign in with Google” do."
+    },
+    {
+      "point": "One door for both journeys: Front Door checks for an existing account before creating a new one, so people don't make duplicates."
+    }
+  ],
+  "platforms": {
+    "web": { "tag": "doras-continue-with-atmosphere", "formAssociated": false, "slots": [] }
+  }
+}

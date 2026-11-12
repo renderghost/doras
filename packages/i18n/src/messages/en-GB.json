@@ -30,9 +30,9 @@
       "message": "We never put a sign-in link in an email. If an email asks you to click to sign in, it isn’t from us.",
       "description": "Recovery email: teaches people that real sign-in emails never ask them to click."
     },
-    "example.chip.remove": {
-      "message": "Remove {label}",
-      "description": "Storybook sample only. Accessible name of the chip's remove button. {label} is the chip's text."
+    "link.opensInNewTab": {
+      "message": "(opens in a new tab)",
+      "description": "After a link's text, when the link opens in a new tab, so nobody is surprised by it."
     }
   }
 }

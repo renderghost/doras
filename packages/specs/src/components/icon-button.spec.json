@@ -1,0 +1,111 @@
+{
+  "$schema": "../../schema/component.schema.json",
+  "name": "Icon button",
+  "group": "Actions",
+  "summary": "A button with only an icon, such as closing the sheet or going back. It always has an accessible name, and a 44px target however small its icon.",
+  "usage": {
+    "when": [
+      "For actions everyone recognises from the icon alone: close, back, and show or hide a password.",
+      "Where space is tight, such as the sheet's header."
+    ],
+    "whenNot": [
+      {
+        "text": "When the icon alone could be misread.",
+        "instead": "Button, with the icon beside a label"
+      },
+      { "text": "To go to another page.", "instead": "Link" }
+    ]
+  },
+  "anatomy": [
+    {
+      "part": "Target",
+      "description": "The area people press: at least 44px by 44px, even when it looks smaller."
+    },
+    { "part": "Icon", "description": "Decorative: the button's label names it." }
+  ],
+  "props": [
+    {
+      "name": "label",
+      "type": "string",
+      "description": "Its accessible name, such as “Close”. Required, because the icon alone has no name. Pass a catalogue string.",
+      "required": true
+    }
+  ],
+  "states": [
+    { "name": "Default", "description": "Just the icon, on no background." },
+    { "name": "Hover", "description": "A round background appears behind the icon." },
+    { "name": "Focus", "description": "A 2px focus ring around the round target." }
+  ],
+  "events": [
+    {
+      "name": "click",
+      "kind": "ui",
+      "when": "It's pressed, by pointer, keyboard or assistive technology."
+    }
+  ],
+  "accessibility": {
+    "role": "button",
+    "name": "Its label prop. The icon is hidden from screen readers.",
+    "keyboard": [
+      { "keys": "Tab", "action": "Moves focus to it." },
+      { "keys": "Enter or Space", "action": "Presses it." }
+    ],
+    "screenReader": ["Announced as a button, with its label, such as “Close, button”."],
+    "notes": [
+      "Its target is at least 44px by 44px (WCAG 2.5.5), even beside a 20px icon.",
+      "The icon keeps its colour in forced colours, so it stays visible."
+    ]
+  },
+  "tokens": [
+    "color.icon.default",
+    "color.action.secondary.surface-hover",
+    "color.border.focus",
+    "border-width.focus",
+    "focus.offset",
+    "radius.pill",
+    "size.target.min",
+    "size.icon.md",
+    "motion.duration.fast",
+    "motion.easing.standard"
+  ],
+  "strings": [],
+  "related": [
+    { "component": "Button", "relationship": "When a label is clearer than an icon." },
+    { "component": "Icon", "relationship": "What goes inside it." }
+  ],
+  "content": {
+    "guidelines": [
+      "Name it after what it does, not what it shows: “Close”, not “X”.",
+      "Use the same name for the same action everywhere."
+    ]
+  },
+  "dosAndDonts": [
+    {
+      "do": "Give it a label that says what it does.",
+      "dont": "Leave it unnamed, or name it after the icon."
+    }
+  ],
+  "evidence": [
+    {
+      "point": "A button with no accessible name is announced as just “button”.",
+      "source": {
+        "label": "WCAG 4.1.2 Name, Role, Value",
+        "href": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value"
+      }
+    },
+    {
+      "point": "The prototype's 36px icon buttons were too small; the target is now 44px.",
+      "source": {
+        "label": "WCAG 2.5.5 Target Size (Enhanced)",
+        "href": "https://www.w3.org/WAI/WCAG22/Understanding/target-size-enhanced"
+      }
+    }
+  ],
+  "platforms": {
+    "web": {
+      "tag": "doras-icon-button",
+      "formAssociated": false,
+      "slots": [{ "name": "", "description": "The icon." }]
+    }
+  }
+}

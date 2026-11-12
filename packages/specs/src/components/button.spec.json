@@ -9,7 +9,10 @@
       "To submit a form. Use one primary button per step, for the main thing people came to do."
     ],
     "whenNot": [
-      { "text": "To go to another page or site.", "instead": "Link" },
+      {
+        "text": "To go to another page or site.",
+        "instead": "Link"
+      },
       {
         "text": "For an action with only an icon, such as closing the sheet.",
         "instead": "Icon button"
@@ -18,7 +21,10 @@
         "text": "To sign in or create an account from an app.",
         "instead": "Continue with Atmosphere"
       },
-      { "text": "To show or hide content.", "instead": "Disclosure" }
+      {
+        "text": "To show or hide content.",
+        "instead": "Disclosure"
+      }
     ]
   },
   "anatomy": [
@@ -31,10 +37,13 @@
       "description": "Before or after the label. Decorative: the label names the button.",
       "optional": true
     },
-    { "part": "Label", "description": "Says what happens, starting with a verb." },
+    {
+      "part": "Label",
+      "description": "Says what happens, starting with a verb."
+    },
     {
       "part": "Busy indicator",
-      "description": "A spinner shown while busy. It stops spinning for reduced motion.",
+      "description": "A spinner shown while busy. Its speed comes from the motion tokens, so it stops for reduced motion.",
       "optional": true
     }
   ],
@@ -44,8 +53,14 @@
       "type": "enum",
       "description": "How much it stands out.",
       "values": [
-        { "value": "primary", "description": "The one main action on a step." },
-        { "value": "secondary", "description": "Other actions, beside or below the primary one." },
+        {
+          "value": "primary",
+          "description": "The one main action on a step."
+        },
+        {
+          "value": "secondary",
+          "description": "Other actions, beside or below the primary one."
+        },
         {
           "value": "tertiary",
           "description": "Low-emphasis actions that look like links, such as “Try another provider”."
@@ -58,8 +73,14 @@
       "type": "enum",
       "description": "What it does in a form. Doras buttons only submit when asked to, so a new button never submits a form by accident.",
       "values": [
-        { "value": "button", "description": "Does nothing in a form; the app handles the press." },
-        { "value": "submit", "description": "Submits its form." },
+        {
+          "value": "button",
+          "description": "Does nothing in a form; the app handles the press."
+        },
+        {
+          "value": "submit",
+          "description": "Submits its form."
+        },
         {
           "value": "reset",
           "description": "Resets its form. Rarely right: people lose what they typed."
@@ -86,10 +107,22 @@
     }
   ],
   "states": [
-    { "name": "Default", "description": "Ready to press." },
-    { "name": "Hover", "description": "The surface changes to its hover colour." },
-    { "name": "Pressed", "description": "While held down." },
-    { "name": "Focus", "description": "A 2px focus ring, 2px away from the button." },
+    {
+      "name": "Default",
+      "description": "Ready to press."
+    },
+    {
+      "name": "Hover",
+      "description": "The surface changes to its hover colour."
+    },
+    {
+      "name": "Pressed",
+      "description": "While held down."
+    },
+    {
+      "name": "Focus",
+      "description": "A 2px focus ring, 2px away from the button."
+    },
     {
       "name": "Busy",
       "description": "The busy label and spinner show, and presses do nothing until it's done."
@@ -106,15 +139,21 @@
     "role": "button",
     "name": "Its label. Icons are hidden from screen readers.",
     "keyboard": [
-      { "keys": "Tab", "action": "Moves focus to it, in reading order." },
-      { "keys": "Enter or Space", "action": "Presses it." }
+      {
+        "keys": "Tab",
+        "action": "Moves focus to it, in reading order."
+      },
+      {
+        "keys": "Enter or Space",
+        "action": "Presses it."
+      }
     ],
     "screenReader": [
       "Announced as a button, with its label.",
       "While busy, its name becomes the busy label, and pressing it again does nothing."
     ],
     "announcements": [
-      "When it becomes busy, the busy label is announced politely through the shared announcer (#12)."
+      "When it becomes busy, its busy label is announced politely. The shared announcer (#12) will take this over."
     ],
     "notes": [
       "Never disabled. A disabled button can't be focused or explain itself, so people can't tell what's wrong (decision in #1).",
@@ -151,8 +190,14 @@
   ],
   "strings": [],
   "related": [
-    { "component": "Icon button", "relationship": "For actions with only an icon." },
-    { "component": "Link", "relationship": "For going somewhere, not doing something." },
+    {
+      "component": "Icon button",
+      "relationship": "For actions with only an icon."
+    },
+    {
+      "component": "Link",
+      "relationship": "For going somewhere, not doing something."
+    },
     {
       "component": "Continue with Atmosphere",
       "relationship": "The one door into signing in, with its own look."
@@ -161,7 +206,10 @@
       "component": "Error summary",
       "relationship": "Says what's missing when a submit button is pressed too soon."
     },
-    { "component": "Busy state", "relationship": "The spinner it shows while busy." }
+    {
+      "component": "Disclosure",
+      "relationship": "For showing and hiding content, rather than doing something."
+    }
   ],
   "content": {
     "guidelines": [
@@ -217,9 +265,18 @@
       "tag": "doras-button",
       "formAssociated": true,
       "slots": [
-        { "name": "", "description": "The label." },
-        { "name": "icon-start", "description": "An icon before the label." },
-        { "name": "icon-end", "description": "An icon after the label." }
+        {
+          "name": "",
+          "description": "The label."
+        },
+        {
+          "name": "icon-start",
+          "description": "An icon before the label."
+        },
+        {
+          "name": "icon-end",
+          "description": "An icon after the label."
+        }
       ]
     }
   }
