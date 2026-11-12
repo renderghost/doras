@@ -30,9 +30,65 @@ jobs:
       # built tokens, so the build comes first.
       - run: pnpm build
       - run: pnpm typecheck
-      # The story tests run in Chromium.
+      # The story tests run in Chromium here, and in Firefox and WebKit below.
       - run: pnpm --filter @doras/storybook exec playwright install --with-deps chromium
       - run: pnpm test
+
+  browsers:
+    name: Story tests in ${{ matrix.browser }}
+    runs-on: ubuntu-latest
+    # The Playwright image has every browser, at the version the repo pins.
+    container:
+      image: mcr.microsoft.com/playwright:v1.65.0-noble
+      options: --ipc=host
+    env:
+      # Firefox won't run as root unless HOME is root's own.
+      HOME: /root
+      DORAS_BROWSERS: ${{ matrix.browser }}
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [firefox, webkit]
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+      - run: pnpm test:stories
+
+  visual:
+    name: Visual checks
+    runs-on: ubuntu-latest
+    # Baselines are made in this same image, so fonts and rendering match.
+    container:
+      image: mcr.microsoft.com/playwright:v1.65.0-noble
+      options: --ipc=host
+    env:
+      HOME: /root
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+      - run: pnpm --filter @doras/storybook visual
+      # What changed, for review: the report shows each expected, actual and
+      # diff image. Updating the baselines is a separate, deliberate step.
+      - if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: visual-changes
+          path: |
+            apps/storybook/visual-report/
+            apps/storybook/visual-results/
+          retention-days: 14
 
   mobile-tokens:
     name: Compile the Swift and Kotlin tokens

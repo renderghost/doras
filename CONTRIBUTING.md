@@ -22,13 +22,28 @@ Then `pnpm build` once, so the tokens exist: Storybook and its type-check read t
 
 ### Story tests
 
-Every story is also a test: Vitest runs it in Chromium, runs its play function, and fails on any accessibility violation axe finds. `pnpm test` runs them with the unit tests; `pnpm test:stories` runs only them.
+Every story is also a test: Vitest runs it in a browser, runs its play function, and fails on any accessibility violation axe finds. `pnpm test` runs them with the unit tests; `pnpm test:stories` runs only them.
 
 They need Playwright's Chromium. Install it once with `pnpm --filter @doras/storybook exec playwright install chromium`, or point `CHROMIUM_PATH` at a Chromium you already have.
 
 Components draw into their shadow DOM, which Testing Library's usual queries can't see. Use `shadow-dom-testing-library` in play functions, for example `findByShadowRole`. Don't query by visible names that change with the locale.
 
 Testing Library's simulated Tab can't enter shadow roots either. To test the keyboard, focus the component, check focus reached its control through `shadowRoot.activeElement`, then press keys. The Actions stories' `focusInside` helper does this.
+
+### Other browsers
+
+CI also runs the story tests in Firefox and WebKit. To run them yourself, set `DORAS_BROWSERS`, for example `DORAS_BROWSERS=firefox pnpm test:stories`, after installing that browser with `pnpm --filter @doras/storybook exec playwright install firefox`.
+
+### Visual checks
+
+CI compares screenshots of every story, and of every flow page in dark, increased contrast, Arabic and the pseudo-locale, with the baselines in `apps/storybook/visual/baselines`. If a change is meant to look different:
+
+1. Build: `pnpm build`.
+2. Check what changed: `pnpm visual`. It runs in Docker, in the Playwright image CI uses, because screenshots from other machines don't match. The report is in `apps/storybook/visual-report`.
+3. When every change is intended, make new baselines: `pnpm visual:update`.
+4. Look at the new images, and commit them with the change.
+
+Without Docker, run the **Update visual baselines** workflow on your branch from the Actions tab, and commit the baselines it uploads.
 
 ## Conventions
 

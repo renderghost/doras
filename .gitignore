@@ -9,3 +9,7 @@ playwright-report/
 .env
 .env.*
 packages/i18n/src/generated/
+
+# Visual checks (#18): results and the HTML report. Baselines are committed.
+apps/storybook/visual-results/
+apps/storybook/visual-report/

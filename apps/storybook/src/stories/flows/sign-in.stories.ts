@@ -39,16 +39,39 @@ export const ClickThrough: Story = {
   },
 };
 
-export const ContinueWithAtmosphere: Story = { name: 'Continue with Atmosphere' };
-export const FindYourAccount: Story = { name: 'Find your account', args: { start: 'find' } };
-export const IsThisYou: Story = { name: 'Is this you?', args: { start: 'confirm' } };
-export const ProviderSignIn: Story = { name: 'Provider sign-in', args: { start: 'pv-signin' } };
+export const ContinueWithAtmosphere: Story = {
+  tags: ['page'],
+  name: 'Continue with Atmosphere',
+};
+export const FindYourAccount: Story = {
+  tags: ['page'],
+  name: 'Find your account',
+  args: { start: 'find' },
+};
+export const IsThisYou: Story = {
+  tags: ['page'],
+  name: 'Is this you?',
+  args: { start: 'confirm' },
+};
+export const ProviderSignIn: Story = {
+  tags: ['page'],
+  name: 'Provider sign-in',
+  args: { start: 'pv-signin' },
+};
 export const VerificationCode: Story = {
+  tags: ['page'],
   name: 'Verification code',
   args: { start: 'pv-totp', passkey: 'codes' },
 };
-export const OfferAPasskey: Story = { name: 'Offer a passkey', args: { start: 'pv-offer' } };
-export const Connect: Story = { args: { start: 'pv-connect' } };
+export const OfferAPasskey: Story = {
+  tags: ['page'],
+  name: 'Offer a passkey',
+  args: { start: 'pv-offer' },
+};
+export const Connect: Story = {
+  tags: ['page'],
+  args: { start: 'pv-connect' },
+};
 
 /** Alex has three accounts, and the browser offers them. No handle to type. */
 export const WithTheBrowser: Story = {

@@ -7,10 +7,16 @@ export default meta;
 type Story = StoryObj<FlowArgs>;
 
 /** What Potluck can and can't do, in its own words, and the optional permission. */
-export const Full: Story = { args: { start: 'pv-connect' } };
+export const Full: Story = {
+  tags: ['page'],
+  args: { start: 'pv-connect' },
+};
 
 /** Potluck hosts the new account, so there's nothing to approve. */
-export const Short: Story = { args: { start: 'pv-ready', scenario: 'jo' } };
+export const Short: Story = {
+  tags: ['page'],
+  args: { start: 'pv-ready', scenario: 'jo' },
+};
 
 /** Cancelled: back in Potluck, not signed in, and told so. */
 export const Cancelled: Story = {
