@@ -11,7 +11,7 @@
     "directory": "packages/figma-sync"
   },
   "scripts": {
-    "build": "node build/index.ts"
+    "build": "node ../../scripts/check-no-mocks.ts && node build/index.ts"
   },
   "dependencies": {
     "@doras/tokens": "workspace:*"

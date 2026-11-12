@@ -39,4 +39,23 @@ export default defineConfig(
     extends: [lit.configs['flat/recommended'], wc.configs['flat/recommended']],
     languageOptions: { globals: globals.browser },
   },
+  {
+    // Production packages never import a browser mock (#15). Their builds
+    // check too, so this is the early warning.
+    files: ['packages/*/src/**/*.ts', 'packages/*/build/**/*.ts'],
+    ignores: ['packages/browser-mocks/**'],
+    rules: {
+      'no-restricted-imports': [
+        'error',
+        {
+          patterns: [
+            {
+              group: ['@doras/browser-mocks', '@doras/browser-mocks/*', '**/browser-mocks/**'],
+              message: 'Browser mocks are for Storybook only (#15).',
+            },
+          ],
+        },
+      ],
+    },
+  },
 );

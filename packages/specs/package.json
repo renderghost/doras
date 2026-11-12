@@ -27,7 +27,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "node build/index.ts"
+    "build": "node ../../scripts/check-no-mocks.ts && node build/index.ts"
   },
   "devDependencies": {
     "@doras/i18n": "workspace:*",

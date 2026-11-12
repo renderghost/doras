@@ -190,6 +190,15 @@
   background: rgb(58 113 188 / 8%);
 }
 
+.doras-docs-mock {
+  padding: 1rem;
+  border: 2px dashed #8a5a00;
+  border-radius: 0.25rem;
+  background: #fff8e6;
+  color: #4d3200;
+  font-weight: 700;
+}
+
 .doras-docs-subheading {
   margin-block: 1.5rem 0;
   font-family: 'Nunito Sans', ui-sans-serif, system-ui, sans-serif;

@@ -31,7 +31,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "node build/index.ts && tsc -p tsconfig.build.json"
+    "build": "node ../../scripts/check-no-mocks.ts && node build/index.ts && tsc -p tsconfig.build.json"
   },
   "dependencies": {
     "intl-messageformat": "^12.1.5"

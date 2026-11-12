@@ -7,6 +7,7 @@ import {
   Description,
   Heading,
   Primary,
+  Source,
   Stories,
   Subtitle,
   Title,
@@ -14,6 +15,7 @@ import {
 } from '@storybook/addon-docs/blocks';
 import type { ReactNode } from 'react';
 import { StringsTable, TokenTable } from './blocks.tsx';
+import { MOCK_WARNING, type MockDocs } from './mock.ts';
 import type { ComponentSpec } from './spec.ts';
 import { token } from './tokens.ts';
 import './docs.css';
@@ -331,13 +333,67 @@ export function SpecSections({ spec, live = true }: { spec: ComponentSpec; live?
   );
 }
 
+/** A browser mock's page: what the browser draws, and what makes it. */
+function MockSections({ mock }: { mock: MockDocs }) {
+  return (
+    <>
+      <p className="doras-docs-mock" role="note">
+        {MOCK_WARNING}
+      </p>
+      <p>{mock.summary}</p>
+      <p className="doras-docs-muted">
+        <code>{`<${mock.tag}>`}</code> · <code>@doras/browser-mocks</code>, which is never published
+      </p>
+
+      <Section title="Overview">
+        <Primary />
+      </Section>
+
+      <Section title="What makes the browser show it">
+        <p>
+          Apps never draw this. They call the browser, and the browser draws its own. Front Door
+          makes these calls for you.
+        </p>
+        {mock.triggers.map((trigger) => (
+          <div key={trigger.api}>
+            <h3 className="doras-docs-subheading">{trigger.api}</h3>
+            <p>{trigger.when}</p>
+            <Source language="jsx" code={trigger.code} />
+            <p>
+              <a href={trigger.href}>More about {trigger.api}</a>
+            </p>
+          </div>
+        ))}
+      </Section>
+
+      <Section title="In the flows">
+        <p>The clickable flows listen for these events, as a page would wait for the browser.</p>
+        <Table
+          head={['Event', 'When']}
+          rows={mock.events.map((event) => [
+            <code key={event.name}>{event.name}</code>,
+            event.when,
+          ])}
+        />
+        {mock.notes && <List items={mock.notes} />}
+        <Stories title="Every state" includePrimary={false} />
+      </Section>
+    </>
+  );
+}
+
 export function DocsPage() {
   const meta = useOf('meta', ['meta']);
-  const spec = (meta.preparedMeta.parameters as { doras?: { spec?: ComponentSpec } }).doras?.spec;
+  const doras = (
+    meta.preparedMeta.parameters as { doras?: { spec?: ComponentSpec; mock?: MockDocs } }
+  ).doras;
+  const spec = doras?.spec;
   return (
     <>
       <Title />
-      {spec ? (
+      {doras?.mock ? (
+        <MockSections mock={doras.mock} />
+      ) : spec ? (
         <SpecSections spec={spec} />
       ) : (
         <>
