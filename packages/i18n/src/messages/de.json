@@ -192,6 +192,24 @@
     "connect.oneAccount": "Es ist ein Konto für {app}, Bluesky und jede andere Atmosphere-App, Sie können sich also bei allen damit anmelden.",
     "connect.cancelled": "Sie haben Ihr Atmosphere-Konto nicht verbunden, deshalb sind Sie nicht angemeldet. Versuchen Sie es wieder, wann immer Sie möchten.",
     "connect.returning": "Sie werden zurück zu {app} gebracht …",
-    "provider.footApp": "Dies ist das Konto-Hosting von {app}, getrennt von der App. Ihr Atmosphere-Konto funktioniert in jeder Atmosphere-App, egal wer es hostet."
+    "provider.footApp": "Dies ist das Konto-Hosting von {app}, getrennt von der App. Ihr Atmosphere-Konto funktioniert in jeder Atmosphere-App, egal wer es hostet.",
+    "email.greeting": "Hallo {name},",
+    "email.handleLabel": "Ihr Handle",
+    "email.signoff": "{provider}, der Anbieter, der Ihr Atmosphere-Konto hostet",
+    "email.recovery.subject": "Ihre Atmosphere-Kontodaten",
+    "email.recovery.preview": "Ihr Handle ist {handle}. Ihr Anmeldecode ist {code}.",
+    "email.recovery.intro": "Sie haben bei der Anmeldung bei {app} nach Ihren Atmosphere-Kontodaten gefragt. Hier sind sie.",
+    "email.recovery.codeLabel": "Ihr Anmeldecode",
+    "email.recovery.next": "Gehen Sie zurück zu {app} und geben Sie den Code ein, wenn {provider} danach fragt.",
+    "email.recovery.ignore": "Wenn Sie das nicht angefordert haben, können Sie diese E-Mail ignorieren. Ohne den Code kommt niemand in Ihr Konto.",
+    "email.recovery.why": "Sie erhalten diese E-Mail, weil jemand die Daten des Atmosphere-Kontos für {email} angefordert hat.",
+    "email.welcome.subject": "Bestätigen Sie die E-Mail-Adresse für Ihr Atmosphere-Konto",
+    "email.welcome.preview": "Ein Tipp genügt. Sie können {app} in der Zwischenzeit weiter nutzen.",
+    "email.welcome.heading": "Bestätigen Sie Ihre E-Mail-Adresse",
+    "email.welcome.ready": "Ihr Atmosphere-Konto ist bereit, und {provider} hostet es. Bitte bestätigen Sie, dass dies Ihre E-Mail-Adresse ist, damit Sie wieder in Ihr Konto kommen, falls die Anmeldung einmal nicht klappt.",
+    "email.welcome.confirm": "Meine E-Mail-Adresse bestätigen",
+    "email.welcome.fallback": "Falls die Schaltfläche nicht funktioniert, kopieren Sie diese Adresse in Ihren Browser: {url}",
+    "email.welcome.everywhere": "Ihr Atmosphere-Konto funktioniert bei {app}, Bluesky und jeder anderen Atmosphere-App. Bewahren Sie diese E-Mail auf: Hier finden Sie Ihren Handle später leicht wieder.",
+    "email.welcome.why": "Sie erhalten diese E-Mail, weil mit dieser Adresse ein Atmosphere-Konto bei {provider} erstellt wurde."
   }
 }

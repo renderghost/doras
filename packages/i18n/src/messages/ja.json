@@ -192,6 +192,24 @@
     "connect.oneAccount": "{app}、Bluesky、ほかのすべての Atmosphere アプリで使える1つのアカウントなので、どれにもこれでサインインできます。",
     "connect.cancelled": "Atmosphere アカウントを接続しなかったので、サインインしていません。いつでももう一度試せます。",
     "connect.returning": "{app} に戻っています…",
-    "provider.footApp": "ここは {app} のアカウントホスティングで、アプリとは別のものです。Atmosphere アカウントは、どこがホストしていても、すべての Atmosphere アプリで使えます。"
+    "provider.footApp": "ここは {app} のアカウントホスティングで、アプリとは別のものです。Atmosphere アカウントは、どこがホストしていても、すべての Atmosphere アプリで使えます。",
+    "email.greeting": "{name} さん、こんにちは。",
+    "email.handleLabel": "あなたのハンドル",
+    "email.signoff": "{provider}（あなたの Atmosphere アカウントをホストするプロバイダー）",
+    "email.recovery.subject": "Atmosphere アカウントの情報",
+    "email.recovery.preview": "あなたのハンドルは {handle}、サインインコードは {code} です。",
+    "email.recovery.intro": "{app} へのサインイン中に、Atmosphere アカウントの情報をリクエストしました。こちらです。",
+    "email.recovery.codeLabel": "サインインコード",
+    "email.recovery.next": "{app} に戻り、{provider} に求められたらコードを入力してください。",
+    "email.recovery.ignore": "心当たりがない場合は、このメールを無視してかまいません。コードがなければ、誰もあなたのアカウントに入れません。",
+    "email.recovery.why": "{email} の Atmosphere アカウントの情報がリクエストされたため、このメールをお送りしています。",
+    "email.welcome.subject": "Atmosphere アカウントのメールアドレスを確認してください",
+    "email.welcome.preview": "ワンタップで確認できます。その間も {app} を使い続けられます。",
+    "email.welcome.heading": "メールアドレスを確認してください",
+    "email.welcome.ready": "Atmosphere アカウントの準備ができ、{provider} がホストしています。サインインできなくなったときにアカウントに戻れるよう、これがあなたのメールアドレスか確認してください。",
+    "email.welcome.confirm": "メールアドレスを確認する",
+    "email.welcome.fallback": "ボタンが使えない場合は、このアドレスをブラウザーにコピーしてください：{url}",
+    "email.welcome.everywhere": "Atmosphere アカウントは {app}、Bluesky、ほかのすべての Atmosphere アプリで使えます。このメールは保管しておくと、後でハンドルを探すときに便利です。",
+    "email.welcome.why": "このメールアドレスで {provider} がホストする Atmosphere アカウントが作成されたため、このメールをお送りしています。"
   }
 }

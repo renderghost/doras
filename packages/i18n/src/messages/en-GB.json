@@ -765,6 +765,78 @@
     "provider.footApp": {
       "message": "This is {app}’s account hosting, separate from the app. Your Atmosphere account works in every Atmosphere app, whoever hosts it.",
       "description": "Footer of the provider page when the app hosts the account itself. {app} is the app's name."
+    },
+    "email.greeting": {
+      "message": "Hi {name},",
+      "description": "Opening line of an email. {name} is the person's first name."
+    },
+    "email.handleLabel": {
+      "message": "Your handle",
+      "description": "Label of the handle in an email's facts."
+    },
+    "email.signoff": {
+      "message": "{provider}, the provider that hosts your Atmosphere account",
+      "description": "Sign-off at the end of an email."
+    },
+    "email.recovery.subject": {
+      "message": "Your Atmosphere account details",
+      "description": "Subject and heading of the recovery email."
+    },
+    "email.recovery.preview": {
+      "message": "Your handle is {handle}. Your sign-in code is {code}.",
+      "description": "Preview text after the subject in the inbox."
+    },
+    "email.recovery.intro": {
+      "message": "You asked for your Atmosphere account details while signing in to {app}. Here they are.",
+      "description": "Why the email came."
+    },
+    "email.recovery.codeLabel": {
+      "message": "Your sign-in code",
+      "description": "Label of the code in the recovery email."
+    },
+    "email.recovery.next": {
+      "message": "Go back to {app}, and enter the code when {provider} asks for it.",
+      "description": "What to do with the code."
+    },
+    "email.recovery.ignore": {
+      "message": "If you didn’t ask for this, you can ignore this email. Nobody can get into your account without the code.",
+      "description": "For people who didn't ask for the email."
+    },
+    "email.recovery.why": {
+      "message": "You’re getting this because someone asked for the details of the Atmosphere account for {email}.",
+      "description": "Footer of the recovery email."
+    },
+    "email.welcome.subject": {
+      "message": "Confirm the email for your Atmosphere account",
+      "description": "Subject of the welcome email."
+    },
+    "email.welcome.preview": {
+      "message": "One tap to confirm. You can keep using {app} in the meantime.",
+      "description": "Preview text after the subject in the inbox."
+    },
+    "email.welcome.heading": {
+      "message": "Confirm your email address",
+      "description": "Heading of the welcome email."
+    },
+    "email.welcome.ready": {
+      "message": "Your Atmosphere account is ready, and {provider} is hosting it. Please confirm this is your email address, so you can get back into your account if you ever can’t sign in.",
+      "description": "Why to confirm."
+    },
+    "email.welcome.confirm": {
+      "message": "Confirm my email address",
+      "description": "The welcome email's button."
+    },
+    "email.welcome.fallback": {
+      "message": "If the button doesn’t work, copy this address into your browser: {url}",
+      "description": "Under the button, for email apps that don't show it."
+    },
+    "email.welcome.everywhere": {
+      "message": "Your Atmosphere account works on {app}, Bluesky and every other Atmosphere app. Keep this email: it’s an easy place to find your handle later.",
+      "description": "Where the account works, and why to keep the email."
+    },
+    "email.welcome.why": {
+      "message": "You’re getting this because this email address was used to create an Atmosphere account hosted by {provider}.",
+      "description": "Footer of the welcome email."
     }
   }
 }

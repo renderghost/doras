@@ -307,6 +307,19 @@ Settled while building them ([#16](https://github.com/renderghost/doras/issues/1
 - **Apps can host accounts:** the provider page shell's `appHosted` covers an app that hosts accounts itself. Its footer says the account works in every Atmosphere app, whoever hosts it.
 - **The sheet header is not a landmark:** inside the sheet's dialog, a `<header>` was a second banner next to the app's own.
 
+### Emails
+
+Settled while building them ([#17](https://github.com/renderghost/doras/issues/17)):
+
+- **MJML, rendered on the provider's server:** `@doras/emails` builds each email from parts (the provider's identity, the facts, a code, a button and the footer) and renders it with MJML in Node.
+- **Token values, not custom properties:** email apps don't support CSS custom properties, so emails use each token's resolved value, light by default and dark in a media query.
+- **No web fonts:** the type stack falls back to the system's. MJML's own Google Fonts import is turned off.
+- **Codes digit by digit,** in groups of three, so screen readers read each digit, in the HTML and the plain text.
+- **Direction:** HTML marks handles, codes and addresses left to right, as email apps don't all honour isolation marks. Plain text keeps the marks.
+- **The recovery email has no links at all,** not just no sign-in link. The welcome email's one link is the confirm button, with its address in full under it.
+- **Checked on every build:** both emails in every locale go through an email HTML check, and the build fails on any problem.
+- **Dark mode is checked in a browser,** using the same media query Apple Mail and Outlook on Mac use. Checking it in the email apps themselves needs a service such as Litmus or Email on Acid.
+
 ## Quality
 
 ### Accessibility: WCAG 2.2 AA plus key AAA criteria

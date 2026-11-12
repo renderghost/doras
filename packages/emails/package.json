@@ -9,5 +9,29 @@
     "type": "git",
     "url": "git+https://github.com/renderghost/doras.git",
     "directory": "packages/emails"
+  },
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./samples": {
+      "types": "./dist/samples.d.ts",
+      "default": "./dist/samples.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "node ../../scripts/check-no-mocks.ts && tsc -p tsconfig.build.json && node build/index.ts"
+  },
+  "dependencies": {
+    "@doras/i18n": "workspace:*",
+    "@doras/tokens": "workspace:*",
+    "htmlparser2": "10.1.0",
+    "mjml": "5.4.1"
   }
 }

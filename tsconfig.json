@@ -8,6 +8,7 @@
     "scripts/**/*.ts",
     "*.config.ts",
     "packages/*/build/**/*.ts",
-    "packages/*/test/**/*.ts"
+    "packages/*/test/**/*.ts",
+    "packages/*/src/**/*.d.ts"
   ]
 }
