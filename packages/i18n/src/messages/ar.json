@@ -192,6 +192,24 @@
     "connect.oneAccount": "إنه حساب واحد لـ {app} وBluesky وكل تطبيقات Atmosphere الأخرى، لذا يمكنك تسجيل الدخول به إليها كلها.",
     "connect.cancelled": "لم تربط حسابك في Atmosphere، لذا لم تسجّل الدخول. حاول مجددًا متى شئت.",
     "connect.returning": "جارٍ إعادتك إلى {app}…",
-    "provider.footApp": "هذه خدمة استضافة الحسابات لدى {app}، وهي منفصلة عن التطبيق. يعمل حسابك في Atmosphere في كل تطبيقات Atmosphere أيًّا كان مستضيفه."
+    "provider.footApp": "هذه خدمة استضافة الحسابات لدى {app}، وهي منفصلة عن التطبيق. يعمل حسابك في Atmosphere في كل تطبيقات Atmosphere أيًّا كان مستضيفه.",
+    "email.greeting": "مرحبًا {name}،",
+    "email.handleLabel": "معرّفك",
+    "email.signoff": "{provider}، المزوّد الذي يستضيف حسابك في Atmosphere",
+    "email.recovery.subject": "تفاصيل حسابك في Atmosphere",
+    "email.recovery.preview": "معرّفك هو {handle}. رمز تسجيل الدخول هو {code}.",
+    "email.recovery.intro": "طلبت تفاصيل حسابك في Atmosphere أثناء تسجيل الدخول إلى {app}. ها هي.",
+    "email.recovery.codeLabel": "رمز تسجيل الدخول",
+    "email.recovery.next": "عُد إلى {app}، وأدخل الرمز عندما يطلبه {provider}.",
+    "email.recovery.ignore": "إذا لم تطلب هذا، يمكنك تجاهل هذا البريد. لا يمكن لأحد الدخول إلى حسابك دون الرمز.",
+    "email.recovery.why": "وصلك هذا البريد لأن أحدهم طلب تفاصيل حساب Atmosphere الخاص بـ {email}.",
+    "email.welcome.subject": "أكّد البريد الإلكتروني لحسابك في Atmosphere",
+    "email.welcome.preview": "نقرة واحدة للتأكيد. يمكنك مواصلة استخدام {app} في الأثناء.",
+    "email.welcome.heading": "أكّد عنوان بريدك الإلكتروني",
+    "email.welcome.ready": "حسابك في Atmosphere جاهز، ويستضيفه {provider}. يُرجى تأكيد أن هذا بريدك الإلكتروني، حتى تتمكن من العودة إلى حسابك إذا تعذّر عليك تسجيل الدخول يومًا.",
+    "email.welcome.confirm": "أكّد عنوان بريدي الإلكتروني",
+    "email.welcome.fallback": "إذا لم يعمل الزر، انسخ هذا العنوان في متصفحك: {url}",
+    "email.welcome.everywhere": "يعمل حسابك في Atmosphere على {app} وBluesky وكل تطبيقات Atmosphere الأخرى. احتفظ بهذا البريد: فهو مكان سهل للعثور على معرّفك لاحقًا.",
+    "email.welcome.why": "وصلك هذا البريد لأن هذا العنوان استُخدم لإنشاء حساب في Atmosphere يستضيفه {provider}."
   }
 }

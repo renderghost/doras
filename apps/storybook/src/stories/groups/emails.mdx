@@ -4,11 +4,39 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 # Emails
 
-The provider's emails, built in MJML to work in Outlook, Gmail and Apple Mail.
+The emails providers send, built in MJML to work in Outlook, Gmail and Apple Mail. They come from `@doras/emails`, with the same tokens and catalogue strings as the components, so they're translated like everything else. Every email has a plain-text version.
 
-## Coming
+## Emails
 
-Built in [#17](https://github.com/renderghost/doras/issues/17):
+Built in [#17](https://github.com/renderghost/doras/issues/17). Use the locale toolbar to see each in every language, and a dark theme to see its dark mode.
 
-- Recovery email
-- Welcome email
+- [Recovery email](?path=/story/emails-recovery-email--email): the handle and a sign-in code, never a link, and “We never put a sign-in link in an email”.
+- [Welcome email](?path=/story/emails-welcome-email--email): confirm the email address, and the handle to keep.
+
+## How they're checked
+
+The build renders both emails in every locale and checks each one. It fails on any problem:
+
+- no CSS that email apps don't support, such as custom properties, `calc()`, flex, grid, positioning, `@import` or web fonts
+- every piece of text styled inline, so nothing depends on a stylesheet some apps strip
+- every image with alt text, and every link with its own colour
+- a `lang` attribute, right to left for Arabic, and one `<h1>`
+- no links at all in the recovery email
+- under 102KB, so Gmail doesn't clip it
+
+## For providers
+
+```js
+import { renderRecovery } from '@doras/emails';
+
+const { subject, html, text } = await renderRecovery({
+  locale: 'en-GB',
+  name: 'Rae',
+  handle: 'rae.blacksky.app',
+  email: 'rae.thompson@example.com',
+  app: 'Potluck',
+  provider: 'Blacksky',
+  code: '482913',
+  minutes: 15,
+});
+```

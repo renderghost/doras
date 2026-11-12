@@ -17,6 +17,7 @@
   "devDependencies": {
     "@doras/browser-mocks": "workspace:*",
     "@doras/components": "workspace:*",
+    "@doras/emails": "workspace:*",
     "@doras/i18n": "workspace:*",
     "@doras/specs": "workspace:*",
     "@doras/tokens": "workspace:*",
