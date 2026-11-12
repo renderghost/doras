@@ -30,6 +30,9 @@
     "failure.providerUnavailable": "{provider} لا يستجيب الآن. هذا ليس بسببك. أعد المحاولة بعد بضع دقائق.",
     "sheet.brand": "حساب Atmosphere",
     "providerLink.manage": "إدارة الحساب على {provider}",
-    "skipLink.label": "تخطَّ إلى المحتوى الرئيسي"
+    "skipLink.label": "تخطَّ إلى المحتوى الرئيسي",
+    "sheet.foot": "حساب Atmosphere واحد لـ Bluesky و{app} وكل تطبيقات Atmosphere الأخرى.",
+    "provider.label": "مزوّد Atmosphere",
+    "provider.foot": "هذه صفحة {provider} الخاصة. يستضيف {provider} حسابك في Atmosphere، ولا يرى {app} كلمة مرورك أبدًا."
   }
 }

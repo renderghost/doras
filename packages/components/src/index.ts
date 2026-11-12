@@ -51,3 +51,8 @@ export { DorasProviderLink } from './provider-link/provider-link.ts';
 export { DorasSheetHeader } from './sheet-header/sheet-header.ts';
 export { DorasSkipLink } from './skip-link/skip-link.ts';
 export { DorasStepLink } from './step-link/step-link.ts';
+export { DorasCard } from './card/card.ts';
+export { DorasDetails } from './details/details.ts';
+export { DorasDialog } from './dialog/dialog.ts';
+export { DorasProviderPage } from './provider-page/provider-page.ts';
+export { DorasSheet } from './sheet/sheet.ts';

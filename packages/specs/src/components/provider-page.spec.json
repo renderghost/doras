@@ -1,0 +1,127 @@
+{
+  "$schema": "../../schema/component.schema.json",
+  "name": "Provider page shell",
+  "group": "Containers",
+  "summary": "The provider's own page: a skip link, a header with the provider and “Atmosphere provider”, the main content, and the reassuring footer.",
+  "usage": {
+    "when": ["For every provider page: signing in, signing up, codes and Connect."],
+    "whenNot": [
+      {
+        "text": "Inside the app.",
+        "instead": "Sheet"
+      }
+    ]
+  },
+  "anatomy": [
+    {
+      "part": "Skip link",
+      "description": "First on the page."
+    },
+    {
+      "part": "Header",
+      "description": "The provider's badge, and the mark with “Atmosphere provider”."
+    },
+    {
+      "part": "Main",
+      "description": "The page's content, usually a card."
+    },
+    {
+      "part": "Footer",
+      "description": "“This is [provider]'s own page. [provider] hosts your Atmosphere account, and [app] never sees your password.”"
+    }
+  ],
+  "props": [
+    {
+      "name": "provider",
+      "type": "string",
+      "description": "The provider: a known provider's id, or its name.",
+      "required": true
+    },
+    {
+      "name": "appName",
+      "type": "string",
+      "description": "The app the person came from, for the footer.",
+      "required": true
+    }
+  ],
+  "states": [
+    {
+      "name": "Default",
+      "description": "Header, main and footer, centred."
+    },
+    {
+      "name": "Phone",
+      "description": "Full width."
+    }
+  ],
+  "events": [],
+  "accessibility": {
+    "role": "main, with header and footer landmarks",
+    "name": "None.",
+    "keyboard": [
+      {
+        "keys": "Tab",
+        "action": "The first Tab shows the skip link."
+      }
+    ],
+    "screenReader": ["Landmarks for the header, main and footer, so people can jump between them."],
+    "notes": [
+      "The main landmark has an id, so the skip link can move focus to it.",
+      "The skip link opens the banner, so it's the first Tab stop and, like everything else on the page, inside a landmark."
+    ]
+  },
+  "tokens": [
+    "color.surface.subtle",
+    "color.text.default",
+    "color.text.subtle",
+    "size.content.narrow",
+    "space.inset.lg",
+    "space.stack.xl",
+    "space.inline.md",
+    "space.inline.xs",
+    "space.inline.sm",
+    "type.caption",
+    "type.body.sm"
+  ],
+  "strings": ["provider.label", "provider.foot"],
+  "related": [
+    {
+      "component": "Skip link",
+      "relationship": "First on the page."
+    },
+    {
+      "component": "Card",
+      "relationship": "Holds the main task."
+    },
+    {
+      "component": "Provider badge",
+      "relationship": "In the header."
+    }
+  ],
+  "content": {
+    "guidelines": ["The footer always says the app never sees the password."]
+  },
+  "dosAndDonts": [
+    {
+      "do": "Name the provider in the header and footer.",
+      "dont": "Show the app's branding on the provider's page."
+    }
+  ],
+  "evidence": [
+    {
+      "point": "Saying the app never sees the password builds trust at the moment people type it (prototype research)."
+    }
+  ],
+  "platforms": {
+    "web": {
+      "tag": "doras-provider-page",
+      "formAssociated": false,
+      "slots": [
+        {
+          "name": "",
+          "description": "The page's content."
+        }
+      ]
+    }
+  }
+}

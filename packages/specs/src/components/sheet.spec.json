@@ -1,0 +1,180 @@
+{
+  "$schema": "../../schema/component.schema.json",
+  "name": "Sheet",
+  "group": "Containers",
+  "summary": "Front Door's container inside the app: a modal dialog, centred on large screens and a bottom sheet on phones, with “One Atmosphere account for…” at its foot.",
+  "usage": {
+    "when": ["For every step of Front Door, inside the app."],
+    "whenNot": [
+      {
+        "text": "For confirmations.",
+        "instead": "Dialog"
+      },
+      {
+        "text": "On provider pages, which are full pages.",
+        "instead": "Provider page shell"
+      }
+    ]
+  },
+  "anatomy": [
+    {
+      "part": "Header",
+      "description": "The sheet header, which stays put."
+    },
+    {
+      "part": "Body",
+      "description": "The step, which scrolls when tall."
+    },
+    {
+      "part": "Foot",
+      "description": "The mark and “One Atmosphere account for Bluesky, [app] and every other Atmosphere app.”, which stays put."
+    }
+  ],
+  "props": [
+    {
+      "name": "open",
+      "type": "boolean",
+      "description": "Whether it's showing.",
+      "default": false
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "description": "Its accessible name: the current step's heading.",
+      "required": true
+    },
+    {
+      "name": "appName",
+      "type": "string",
+      "description": "The app's name, for the foot.",
+      "required": true
+    }
+  ],
+  "states": [
+    {
+      "name": "Closed",
+      "description": "Not shown."
+    },
+    {
+      "name": "Open on a large screen",
+      "description": "Centred, with a backdrop."
+    },
+    {
+      "name": "Open on a phone",
+      "description": "A bottom sheet, full width."
+    },
+    {
+      "name": "Tall content",
+      "description": "The body scrolls; the header and foot stay put."
+    }
+  ],
+  "events": [
+    {
+      "name": "doras-close",
+      "kind": "ui",
+      "when": "It has closed: by Escape, the header's close button, or close(). Sent once, however it closed."
+    },
+    {
+      "name": "doras.door_opened",
+      "kind": "measurement",
+      "when": "It opens."
+    }
+  ],
+  "accessibility": {
+    "role": "dialog (a native modal dialog)",
+    "name": "Its label, the current step's heading.",
+    "keyboard": [
+      {
+        "keys": "Tab",
+        "action": "Moves through the sheet only; the page behind can't be reached."
+      },
+      {
+        "keys": "Arrow keys, Page Up, Page Down",
+        "action": "Scroll the body, when it's tall enough to scroll and has focus."
+      },
+      {
+        "keys": "Escape",
+        "action": "Closes it, and returns focus to what opened it."
+      }
+    ],
+    "screenReader": [
+      "Announced as a dialog with its label. The page behind is inert, so it can't be reached."
+    ],
+    "notes": [
+      "The browser's modal dialog keeps focus in, makes the page inert, and returns focus to the opener on close.",
+      "When the body scrolls, it joins the Tab order so it can be scrolled from the keyboard. When it fits, it doesn't, so there's no empty Tab stop.",
+      "It uses dynamic viewport units, so the phone's on-screen keyboard doesn't hide its fields.",
+      "Its opening movement comes from the motion tokens, so it doesn't move for reduced motion."
+    ]
+  },
+  "tokens": [
+    "color.surface.raised",
+    "color.surface.overlay",
+    "color.border.default",
+    "color.text.default",
+    "color.text.subtle",
+    "border-width.default",
+    "radius.sheet",
+    "shadow.overlay",
+    "size.content.narrow",
+    "space.inset.lg",
+    "space.inset.md",
+    "space.inset.sm",
+    "space.inset.xl",
+    "space.inline.xs",
+    "type.caption",
+    "motion.duration.moderate",
+    "motion.easing.enter",
+    "border-width.focus",
+    "color.border.focus"
+  ],
+  "strings": ["sheet.foot"],
+  "related": [
+    {
+      "component": "Sheet header",
+      "relationship": "Its header."
+    },
+    {
+      "component": "Continue with Atmosphere",
+      "relationship": "Opens it."
+    }
+  ],
+  "content": {
+    "guidelines": ["The foot always says the account works everywhere."]
+  },
+  "dosAndDonts": [
+    {
+      "do": "Return focus to Continue with Atmosphere when it closes.",
+      "dont": "Leave focus at the top of the page."
+    }
+  ],
+  "evidence": [
+    {
+      "point": "The native dialog element's modal behaviour: focus containment, inert background and focus return.",
+      "source": {
+        "label": "HTML: the dialog element",
+        "href": "https://html.spec.whatwg.org/multipage/interactive-elements.html#the-dialog-element"
+      }
+    }
+  ],
+  "platforms": {
+    "web": {
+      "tag": "doras-sheet",
+      "formAssociated": false,
+      "slots": [
+        {
+          "name": "header",
+          "description": "The sheet header."
+        },
+        {
+          "name": "",
+          "description": "The step."
+        },
+        {
+          "name": "foot",
+          "description": "Replaces the foot, rarely."
+        }
+      ]
+    }
+  }
+}

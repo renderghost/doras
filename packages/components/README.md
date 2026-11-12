@@ -80,6 +80,16 @@ Provider logos live in `src/provider-badge/logos/`, each listed in `providers.ts
 | `<doras-provider-link>` | “Manage account on Bluesky”, opening a new tab and saying so.           |
 | `<doras-step-link>`     | A quiet way to another step, such as “Try another provider”.            |
 
+## Containers (#14)
+
+| Element                 | What it does                                                                                 |
+| ----------------------- | -------------------------------------------------------------------------------------------- |
+| `<doras-sheet>`         | Front Door's modal container in the app. Centred on large screens, a bottom sheet on phones. |
+| `<doras-card>`          | A raised surface for a provider page's form.                                                 |
+| `<doras-provider-page>` | The provider page shell: provider banner, main content and the password reassurance.         |
+| `<doras-dialog>`        | A confirmation that needs an answer, such as “Remove this passkey?”.                         |
+| `<doras-details>`       | Extra detail, closed until asked for, such as the technical permission list.                 |
+
 ## Things to know
 
 - **Buttons are never disabled.** While busy, presses do nothing, and the busy label says what's happening.

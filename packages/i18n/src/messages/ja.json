@@ -30,6 +30,9 @@
     "failure.providerUnavailable": "{provider} が現在応答していません。あなたのせいではありません。数分後にもう一度お試しください。",
     "sheet.brand": "Atmosphere アカウント",
     "providerLink.manage": "{provider} でアカウントを管理",
-    "skipLink.label": "メインコンテンツへスキップ"
+    "skipLink.label": "メインコンテンツへスキップ",
+    "sheet.foot": "Bluesky、{app}、その他すべての Atmosphere アプリで使える、ひとつの Atmosphere アカウント。",
+    "provider.label": "Atmosphere プロバイダー",
+    "provider.foot": "ここは {provider} 自身のページです。{provider} があなたの Atmosphere アカウントをホストしており、{app} があなたのパスワードを見ることはありません。"
   }
 }

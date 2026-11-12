@@ -1,0 +1,143 @@
+{
+  "$schema": "../../schema/component.schema.json",
+  "name": "Dialog",
+  "group": "Containers",
+  "summary": "A confirmation that needs an answer, such as removing a lost passkey. A native modal dialog; Escape counts as cancelling.",
+  "usage": {
+    "when": ["To confirm something that can't easily be undone."],
+    "whenNot": [
+      {
+        "text": "For a step of Front Door.",
+        "instead": "Sheet"
+      },
+      {
+        "text": "For information that needs no answer.",
+        "instead": "Notice"
+      }
+    ]
+  },
+  "anatomy": [
+    {
+      "part": "Heading",
+      "description": "The question."
+    },
+    {
+      "part": "Body",
+      "description": "What happens if they confirm."
+    },
+    {
+      "part": "Actions",
+      "description": "Confirm and cancel buttons."
+    }
+  ],
+  "props": [
+    {
+      "name": "open",
+      "type": "boolean",
+      "description": "Whether it's showing.",
+      "default": false
+    },
+    {
+      "name": "heading",
+      "type": "string",
+      "description": "The question, such as “Remove this passkey?”.",
+      "required": true
+    }
+  ],
+  "states": [
+    {
+      "name": "Closed",
+      "description": "Not shown."
+    },
+    {
+      "name": "Open",
+      "description": "Centred, with a backdrop."
+    }
+  ],
+  "events": [
+    {
+      "name": "doras-close",
+      "kind": "ui",
+      "when": "It closes, by an action or Escape."
+    }
+  ],
+  "accessibility": {
+    "role": "alertdialog",
+    "name": "Its heading; its body is its description.",
+    "keyboard": [
+      {
+        "keys": "Tab",
+        "action": "Moves between its actions; focus stays inside."
+      },
+      {
+        "keys": "Escape",
+        "action": "Cancels and closes it."
+      }
+    ],
+    "screenReader": ["Announced as an alert dialog with its heading and body."]
+  },
+  "tokens": [
+    "color.surface.raised",
+    "color.surface.overlay",
+    "color.border.default",
+    "color.text.default",
+    "border-width.default",
+    "radius.card",
+    "shadow.overlay",
+    "size.content.narrow",
+    "space.inset.lg",
+    "space.inset.xl",
+    "space.stack.sm",
+    "space.stack.xl",
+    "space.inline.sm",
+    "type.heading.md"
+  ],
+  "strings": [],
+  "related": [
+    {
+      "component": "Button",
+      "relationship": "Its actions."
+    },
+    {
+      "component": "Sheet",
+      "relationship": "For Front Door's steps."
+    }
+  ],
+  "content": {
+    "guidelines": [
+      "Ask a question in the heading; say what happens in the body.",
+      "Name the actions after what they do: “Remove passkey”, not “OK”."
+    ]
+  },
+  "dosAndDonts": [
+    {
+      "do": "Name the actions after what they do.",
+      "dont": "Use “Yes” and “No”."
+    }
+  ],
+  "evidence": [
+    {
+      "point": "The alert dialog pattern.",
+      "source": {
+        "label": "ARIA Authoring Practices: Alert Dialog",
+        "href": "https://www.w3.org/WAI/ARIA/apg/patterns/alertdialog/"
+      }
+    }
+  ],
+  "platforms": {
+    "web": {
+      "tag": "doras-dialog",
+      "formAssociated": false,
+      "slots": [
+        {
+          "name": "",
+          "description": "The body."
+        },
+        {
+          "name": "actions",
+          "description": "The buttons."
+        }
+      ]
+    }
+  }
+}
