@@ -1,0 +1,303 @@
+// Docs blocks for the foundations pages and the component docs template.
+// Samples are drawn with the real CSS custom properties, inside each theme,
+// so the pages also show the CSS works.
+import { Unstyled } from '@storybook/addon-docs/blocks';
+import type { IconNode } from 'lucide';
+import { createElement, useState, type CSSProperties, type ReactNode } from 'react';
+import { ICONS } from './icons.ts';
+import { THEMES, sameInEveryTheme, type ThemeKey, type Token } from './tokens.ts';
+import './docs.css';
+
+const attributeFor = (key: ThemeKey): string =>
+  THEMES.find((t) => t.key === key)?.attribute ?? 'light';
+
+/** A token's name in each platform's code. Swift and Kotlin share the name. */
+function CodeNames({ code }: { code: NonNullable<Token['code']> }) {
+  return (
+    <div className="doras-docs-muted">
+      CSS <code>{code.web}</code>
+      <br />
+      Swift and Kotlin <code>{code.ios}</code>
+    </div>
+  );
+}
+
+function Swatch({ cssVar, theme }: { cssVar: string; theme: ThemeKey }) {
+  return (
+    <span className="doras-docs-swatch-frame" data-doras-theme={attributeFor(theme)}>
+      <span className="doras-docs-swatch" style={{ background: `var(${cssVar})` }} />
+    </span>
+  );
+}
+
+function ShadowSample({ cssVar, theme }: { cssVar: string; theme: ThemeKey }) {
+  return (
+    <span className="doras-docs-swatch-frame" data-doras-theme={attributeFor(theme)}>
+      <span
+        className="doras-docs-swatch"
+        style={{ background: 'var(--doras-color-surface-raised)', boxShadow: `var(${cssVar})` }}
+      />
+    </span>
+  );
+}
+
+function Value({ t, theme }: { t: Token; theme: ThemeKey }) {
+  const v = t.values[theme];
+  return (
+    <>
+      {t.type === 'color' && t.cssVar && <Swatch cssVar={t.cssVar} theme={theme} />}
+      {t.type === 'shadow' && t.cssVar && <ShadowSample cssVar={t.cssVar} theme={theme} />}
+      <code>{v.css}</code>
+      {v.aliasOf && <div className="doras-docs-muted">{v.aliasOf}</div>}
+    </>
+  );
+}
+
+/** Every token's value in each theme, with its description and names in code. */
+export function TokenTable({ tokens, code = true }: { tokens: Token[]; code?: boolean }) {
+  return (
+    <Unstyled>
+      <table className="doras-docs-table doras-docs-tokens">
+        <thead>
+          <tr>
+            <th scope="col">Token</th>
+            {THEMES.map((theme) => (
+              <th scope="col" key={theme.key}>
+                {theme.title}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {tokens.map((t) => (
+            <tr key={t.name}>
+              <th scope="row">
+                <code>{t.name}</code>
+                {t.description && <div>{t.description}</div>}
+                {code && t.code && <CodeNames code={t.code} />}
+              </th>
+              {sameInEveryTheme(t) ? (
+                <td colSpan={THEMES.length}>
+                  <Value t={t} theme="light" />
+                  <div className="doras-docs-muted">The same in every theme</div>
+                </td>
+              ) : (
+                THEMES.map((theme) => (
+                  <td key={theme.key}>
+                    <Value t={t} theme={theme.key} />
+                  </td>
+                ))
+              )}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </Unstyled>
+  );
+}
+
+const typeStyle = (t: Token): CSSProperties => ({
+  fontFamily: `var(${t.cssVar}-font-family)`,
+  fontSize: `var(${t.cssVar}-font-size)`,
+  fontWeight: `var(${t.cssVar}-font-weight)` as CSSProperties['fontWeight'],
+  lineHeight: `var(${t.cssVar}-line-height)`,
+  letterSpacing: `var(${t.cssVar}-letter-spacing)`,
+});
+
+const SAMPLE_TEXT: Record<string, string> = {
+  heading: 'Find your Atmosphere account',
+  body: 'We never put a sign-in link in an email. Type the code instead.',
+  label: 'Continue with Atmosphere',
+  caption: 'Hosted by Bluesky',
+  fine: 'One Atmosphere account for every app',
+  code: '123 456',
+};
+
+/** Each type style, set in itself, with its values. */
+export function TypeSpecimens({ tokens }: { tokens: Token[] }) {
+  return (
+    <Unstyled>
+      <table className="doras-docs-table">
+        <tbody>
+          {tokens.map((t) => {
+            const kind = t.name.split('.')[1] ?? 'body';
+            return (
+              <tr key={t.name}>
+                <th scope="row" style={{ inlineSize: '14rem' }}>
+                  <code>{t.name}</code>
+                  {t.description && <div>{t.description}</div>}
+                  {t.code && <CodeNames code={t.code} />}
+                </th>
+                <td>
+                  <div className="doras-docs-sample" style={typeStyle(t)}>
+                    {SAMPLE_TEXT[kind] ?? SAMPLE_TEXT.body}
+                  </div>
+                  <div className="doras-docs-muted">
+                    <code>{t.values.light.css}</code>
+                  </div>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </Unstyled>
+  );
+}
+
+/** Lengths drawn to scale: spacing as bars, sizes as squares, radii as corners. */
+export function ScaleTable({
+  tokens,
+  draw,
+}: {
+  tokens: Token[];
+  draw: 'bar' | 'square' | 'radius' | 'border' | 'none';
+}) {
+  const sample = (t: Token): ReactNode => {
+    const v = `var(${t.cssVar})`;
+    switch (draw) {
+      case 'bar':
+        return <span className="doras-docs-bar" style={{ inlineSize: v }} />;
+      case 'square':
+        return (
+          <span
+            className="doras-docs-bar"
+            style={{ inlineSize: `min(${v}, 100%)`, blockSize: `min(${v}, 6rem)` }}
+          />
+        );
+      case 'radius':
+        return (
+          <span
+            className="doras-docs-sample"
+            style={{
+              display: 'block',
+              inlineSize: '6rem',
+              blockSize: '3rem',
+              borderRadius: v,
+              border: '2px solid var(--doras-color-border-emphasis)',
+            }}
+          />
+        );
+      case 'border':
+        return (
+          <span
+            style={{
+              display: 'block',
+              borderBlockStart: `${v} solid currentColor`,
+              inlineSize: '6rem',
+            }}
+          />
+        );
+      case 'none':
+        return null;
+    }
+  };
+  return (
+    <Unstyled>
+      <table className="doras-docs-table">
+        <tbody>
+          {tokens.map((t) => (
+            <tr key={t.name}>
+              <th scope="row" style={{ inlineSize: '16rem' }}>
+                <code>{t.name}</code>
+                {t.description && <div>{t.description}</div>}
+                {t.code && <CodeNames code={t.code} />}
+              </th>
+              <td style={{ inlineSize: '8rem' }}>
+                <code>{t.values.light.css}</code>
+                {t.values.light.aliasOf && (
+                  <div className="doras-docs-muted">{t.values.light.aliasOf}</div>
+                )}
+              </td>
+              <td>{sample(t)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </Unstyled>
+  );
+}
+
+/**
+ * Durations and easings, each with a dot to play. The dots use the real
+ * tokens, so with reduced motion on they jump instead of sliding.
+ */
+export function MotionTable({ tokens }: { tokens: Token[] }) {
+  const [moved, setMoved] = useState(false);
+  const transition = (t: Token): string =>
+    t.type === 'duration'
+      ? `inset-inline-start var(${t.cssVar}) var(--doras-motion-easing-standard)`
+      : `inset-inline-start var(--doras-motion-duration-slow) var(${t.cssVar})`;
+  return (
+    <Unstyled>
+      <button type="button" className="doras-docs-button" onClick={() => setMoved((m) => !m)}>
+        {moved ? 'Play back' : 'Play'}
+      </button>
+      <table className="doras-docs-table">
+        <tbody>
+          {tokens.map((t) => (
+            <tr key={t.name}>
+              <th scope="row" style={{ inlineSize: '16rem' }}>
+                <code>{t.name}</code>
+                {t.description && <div>{t.description}</div>}
+                {t.code && <CodeNames code={t.code} />}
+              </th>
+              <td style={{ inlineSize: '12rem' }}>
+                <code>{t.values.light.css}</code>
+              </td>
+              <td>
+                <span
+                  className="doras-docs-motion-track"
+                  data-moved={moved || undefined}
+                  style={{ display: 'block' }}
+                >
+                  <span className="doras-docs-motion-dot" style={{ transition: transition(t) }} />
+                </span>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </Unstyled>
+  );
+}
+
+function LucideIcon({ node, mirror }: { node: IconNode; mirror: boolean }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      style={mirror ? { transform: 'scaleX(-1)' } : undefined}
+    >
+      {node.map(([tag, attrs], i) => createElement(tag, { key: i, ...attrs }))}
+    </svg>
+  );
+}
+
+/** The Lucide icons Doras uses, with what each means. */
+export function IconGrid({ rtl = false }: { rtl?: boolean }) {
+  return (
+    <Unstyled>
+      <div className="doras-docs-grid">
+        {ICONS.map((icon) => {
+          return (
+            <div className="doras-docs-icon" key={icon.name}>
+              <LucideIcon node={icon.node} mirror={rtl && Boolean(icon.mirrors)} />
+              <code>{icon.name}</code>
+              <span>{icon.meaning}</span>
+              {icon.mirrors && <span className="doras-docs-muted">Mirrors right to left</span>}
+            </div>
+          );
+        })}
+      </div>
+    </Unstyled>
+  );
+}

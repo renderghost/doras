@@ -1,0 +1,48 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Foundations/Overview" />
+
+# Foundations
+
+Doras's values are design tokens, written in the [DTCG 2025.10](https://www.designtokens.org/tr/2025.10/) format in `@doras/tokens`. The same tokens build the CSS, Swift and Kotlin, and sync into the Doras Figma library.
+
+## Three tiers
+
+1. **Primitives:** raw values, such as `primitive.color.accent.500`. They never leave the package, so nothing can use them by accident.
+2. **Semantic tokens:** what a value is for, such as `color.text.error` or `space.inset.md`. Components use these.
+3. **Component tokens:** only where a component truly differs. Today that's only Continue with Atmosphere, which must look the same in every app.
+
+## Four themes
+
+- Light, the default
+- Dark
+- Light, high contrast
+- Dark, high contrast
+
+The system's dark mode and contrast settings choose one. `data-doras-theme` forces one on any element and everything inside it. In Windows forced colours, every colour becomes a system colour and shadows are removed.
+
+Reduced motion sets every duration to 0. The system setting does it, and so does `data-doras-motion="reduce"`.
+
+## Using tokens
+
+On the web, import the CSS once and use the custom properties:
+
+```css
+@import '@doras/tokens/css';
+
+.notice {
+  padding: var(--doras-space-inset-md);
+  color: var(--doras-color-text-default);
+}
+```
+
+In Swift and Kotlin, use `DorasTokens`, for example `DorasTokens.Colors.textDefault`. Each token's name in code is in its table.
+
+## Pages
+
+- **Colour:** every semantic colour in each theme.
+- **Type:** the type styles, set in themselves.
+- **Spacing and size:** spacing, sizes, radii, borders and breakpoints, to scale.
+- **Motion:** durations and easings, to play.
+- **Icons:** the Lucide icons Doras uses.
+- **All tokens:** every public token in one table.

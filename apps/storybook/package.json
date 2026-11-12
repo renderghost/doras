@@ -9,5 +9,31 @@
     "type": "git",
     "url": "git+https://github.com/renderghost/doras.git",
     "directory": "apps/storybook"
+  },
+  "scripts": {
+    "dev": "storybook dev -p 6006",
+    "build": "storybook build --quiet -o storybook-static"
+  },
+  "devDependencies": {
+    "@doras/tokens": "workspace:*",
+    "@storybook/addon-a11y": "10.6.7",
+    "@storybook/addon-designs": "12.0.0",
+    "@storybook/addon-docs": "10.6.7",
+    "@storybook/addon-vitest": "10.6.7",
+    "@storybook/web-components-vite": "10.6.7",
+    "@testing-library/dom": "^10.4.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitest/browser-playwright": "^5.1.0",
+    "lit": "^3.3.3",
+    "lucide": "1.72.0",
+    "playwright": "1.65.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "shadow-dom-testing-library": "1.14.2",
+    "storybook": "10.6.7",
+    "storybook-addon-pseudo-states": "10.6.7",
+    "vite": "^8.3.8",
+    "vitest": "^5.1.0"
   }
 }

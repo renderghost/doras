@@ -189,6 +189,9 @@ export function renderCss(themes: Map<string, ResolvedToken[]>, defaultTheme = '
     '/* Reduced motion: every duration becomes 0. */',
     `@media (prefers-reduced-motion: reduce) {\n${block(everywhere, durations.map(decl), '  ')}\n}`,
     '',
+    "/* data-doras-motion='reduce' asks for reduced motion on any element, as the system setting does. */",
+    block(`[data-doras-motion='reduce']`, durations.map(decl)),
+    '',
   ];
   return parts.join('\n');
 }

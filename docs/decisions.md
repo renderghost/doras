@@ -219,6 +219,19 @@ AA everywhere, which is the European Accessibility Act baseline. Plus these AAA 
   - do and don't
   - evidence and decisions
 
+Details settled while building it ([#5](https://github.com/renderghost/doras/issues/5)):
+
+- **Toolbars:**
+  - **Theme:** follow the system, or force any of the four themes from #3.
+  - **Locale:** the five test locales. The pseudo-locale uses the tag `en-XA`, the usual private-use tag for one.
+  - **Direction:** from the locale by default (Arabic is right to left), or forced either way.
+  - **Motion:** follow the system, or reduce it. The tokens gained `data-doras-motion="reduce"` for this. "Off" never overrides someone's system setting.
+- **Where settings apply:** on its own page, a story sets them on the whole document, as an app would. In docs, each story gets them on its own wrapper, so a docs page can't flip into right to left.
+- **Docs pages:** a template renders the ten sections from a component's spec. Until #7 defines the spec format, the spec's shape is a provisional TypeScript type. A sample component, the Example chip under Contributing, shows the template working; it's removed when the button's docs arrive.
+- **Story tests:** every story runs in Chromium through Vitest, with axe failures as errors. Play functions query through shadow DOM with `shadow-dom-testing-library`, and never by names that change with the locale.
+- **Foundations pages** are generated from `tokens.json`, and draw each sample with the real custom properties inside each theme, so they check the CSS as well as showing it.
+- **Icons:** the Icons page lists the Lucide icons the prototype uses, and which mirror right to left. The Icon component (#10) settles the final set.
+
 ## Process and packaging
 
 - **Repository:** a public pnpm monorepo, dual-licensed MIT or Apache 2.0, like the atproto code it sits alongside.

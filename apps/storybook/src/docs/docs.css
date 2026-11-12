@@ -1,0 +1,163 @@
+/* Styles for the docs blocks. They sit on Storybook's own docs page, so they
+   use Storybook's look, and only the samples use Doras tokens. */
+.doras-docs-table {
+  inline-size: 100%;
+  margin-block: 1rem 2rem;
+  border-collapse: collapse;
+  color: #2e3438;
+  font-family: 'Nunito Sans', ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+}
+
+.doras-docs-table th,
+.doras-docs-table td {
+  padding-block: 0.5rem;
+  padding-inline: 0.5rem;
+  border-block-end: 1px solid rgb(0 0 0 / 10%);
+  font-weight: 400;
+  text-align: start;
+  vertical-align: top;
+}
+
+.doras-docs-table code {
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 0.75rem;
+  overflow-wrap: anywhere;
+}
+
+.doras-docs-table thead th {
+  font-weight: 700;
+}
+
+/* A row's token name. */
+.doras-docs-table th > code:first-child {
+  display: block;
+  font-weight: 700;
+}
+
+/* Token tables: the token column, then four equal theme columns. */
+.doras-docs-tokens {
+  table-layout: fixed;
+}
+
+.doras-docs-tokens thead th:first-child {
+  inline-size: 30%;
+}
+
+.doras-docs-button {
+  padding-block: 0.375rem;
+  padding-inline: 0.875rem;
+  border: 1px solid rgb(0 0 0 / 24%);
+  border-radius: 999px;
+  background: #fff;
+  font: inherit;
+  cursor: pointer;
+}
+
+.doras-docs-muted {
+  color: rgb(0 0 0 / 62%);
+  overflow-wrap: anywhere;
+}
+
+.doras-docs-swatch {
+  display: block;
+  inline-size: 100%;
+  min-inline-size: 4rem;
+  block-size: 2.5rem;
+  border-radius: 0.375rem;
+  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 12%);
+}
+
+/* A swatch sits on its theme's surface, so translucent colours show as they would be used. */
+.doras-docs-swatch-frame {
+  display: block;
+  margin-block-end: 0.25rem;
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+  background: var(--doras-color-surface-default);
+}
+
+.doras-docs-sample {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background: var(--doras-color-surface-default);
+  color: var(--doras-color-text-default);
+  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 10%);
+}
+
+.doras-docs-grid {
+  display: grid;
+  margin-block: 1rem 2rem;
+  font-family: 'Nunito Sans', ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.8125rem;
+  grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+  gap: 0.75rem;
+}
+
+.doras-docs-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 0.5rem;
+  border-radius: 0.5rem;
+  background: var(--doras-color-surface-default);
+  color: var(--doras-color-icon-default);
+  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 10%);
+  text-align: center;
+}
+
+.doras-docs-bar {
+  display: block;
+  block-size: 1rem;
+  border-radius: 0.125rem;
+  background: var(--doras-color-action-primary-border);
+}
+
+.doras-docs-section {
+  margin-block-start: 2.5rem;
+}
+
+.doras-docs-pair {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1rem;
+}
+
+.doras-docs-do,
+.doras-docs-dont {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border-block-start: 4px solid;
+  background: rgb(0 0 0 / 3%);
+}
+
+.doras-docs-do {
+  border-color: #007844;
+}
+
+.doras-docs-dont {
+  border-color: #a73b75;
+}
+
+.doras-docs-motion-track {
+  position: relative;
+  block-size: 1.5rem;
+  border-radius: 999px;
+  background: var(--doras-color-surface-subtle);
+}
+
+.doras-docs-motion-dot {
+  position: absolute;
+  inset-block-start: 0.25rem;
+  inset-inline-start: 0.25rem;
+  inline-size: 1rem;
+  block-size: 1rem;
+  border-radius: 999px;
+  background: var(--doras-color-action-primary-border);
+}
+
+.doras-docs-motion-track[data-moved] .doras-docs-motion-dot {
+  inset-inline-start: calc(100% - 1.25rem);
+}

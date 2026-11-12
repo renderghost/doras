@@ -1,0 +1,22 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { IconGrid } from '../../docs/blocks.tsx';
+
+<Meta title="Foundations/Icons" />
+
+# Icons
+
+Doras uses [Lucide](https://lucide.dev) icons, at 16, 20, 24 or 32px (`size.icon.*`), in the icon colours. These are the icons the Front Door prototype uses. The Icon component arrives in [#10](https://github.com/renderghost/doras/issues/10).
+
+- **Decorative by default:** an icon next to words is hidden from screen readers.
+- **Named when it carries meaning:** an icon on its own gets an accessible name.
+- **Mirrored when it points a direction:** in right-to-left layouts, arrows flip. Icons that don't point a direction never do.
+
+<IconGrid />
+
+## Right to left
+
+The same icons as an Arabic page shows them.
+
+<div dir="rtl">
+  <IconGrid rtl />
+</div>

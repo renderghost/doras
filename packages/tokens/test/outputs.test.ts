@@ -74,6 +74,12 @@ describe('CSS', () => {
     for (const t of durations) expect(block).toContain(`${cssName(t.path)}: 0ms;`);
   });
 
+  it("sets every duration to 0 inside data-doras-motion='reduce'", () => {
+    const block = blockAfter("[data-doras-motion='reduce']");
+    const durations = publicTokens().filter((t) => t.type === 'duration');
+    for (const t of durations) expect(block).toContain(`${cssName(t.path)}: 0ms;`);
+  });
+
   it('keeps component tokens as references, so themes flow through them', () => {
     expect(css).toContain(
       '--doras-atmosphere-button-surface: var(--doras-color-action-primary-surface);',

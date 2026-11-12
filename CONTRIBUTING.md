@@ -18,6 +18,16 @@ pnpm install
 
 Use Node 22 or 24 (see `.nvmrc`) and pnpm 10.
 
+Then `pnpm build` once, so the tokens exist, and `pnpm storybook` to work in Storybook.
+
+### Story tests
+
+Every story is also a test: Vitest runs it in Chromium, runs its play function, and fails on any accessibility violation axe finds. `pnpm test` runs them with the unit tests; `pnpm test:stories` runs only them.
+
+They need Playwright's Chromium. Install it once with `pnpm --filter @doras/storybook exec playwright install chromium`, or point `CHROMIUM_PATH` at a Chromium you already have.
+
+Components draw into their shadow DOM, which Testing Library's usual queries can't see. Use `shadow-dom-testing-library` in play functions, for example `findByShadowRole`. Don't query by visible names that change with the locale.
+
 ## Conventions
 
 - **Names:** custom elements are `<doras-…>`, for example `<doras-button>`. Packages are `@doras/…`.

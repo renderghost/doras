@@ -1,0 +1,13 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { TypeSpecimens } from '../../docs/blocks.tsx';
+import { tokensWith } from '../../docs/tokens.ts';
+
+<Meta title="Foundations/Type" />
+
+# Type
+
+Inter, from Google Fonts, with a system fallback. Codes use the system's monospace font.
+
+Sizes are in rem on the web, so they grow with people's text size. Inter is variable, so the 650 and 750 weights render exactly on the web. iOS and Android round to the nearest weight they have.
+
+<TypeSpecimens tokens={tokensWith('type')} />

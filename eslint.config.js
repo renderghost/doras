@@ -19,8 +19,17 @@ export default defineConfig(
     languageOptions: { globals: globals.node },
   },
   {
+    // Storybook runs in the browser; its config files and Vitest config run in Node.
+    files: ['apps/storybook/**/*.{ts,tsx}'],
+    languageOptions: { globals: { ...globals.browser, ...globals.node } },
+  },
+  {
     // Web Components: Lit's and the custom elements rules.
-    files: ['packages/components/**/*.ts', 'packages/browser-mocks/**/*.ts'],
+    files: [
+      'packages/components/**/*.ts',
+      'packages/browser-mocks/**/*.ts',
+      'apps/storybook/src/example/**/*.ts',
+    ],
     extends: [lit.configs['flat/recommended'], wc.configs['flat/recommended']],
     languageOptions: { globals: globals.browser },
   },
