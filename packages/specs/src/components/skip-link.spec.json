@@ -1,0 +1,99 @@
+{
+  "$schema": "../../schema/component.schema.json",
+  "name": "Skip link",
+  "group": "Navigation",
+  "summary": "The first link on a provider page, hidden until focused, that skips past the header to the main content.",
+  "usage": {
+    "when": ["First thing on every provider page."],
+    "whenNot": [
+      {
+        "text": "Inside Front Door's sheet, which is short."
+      }
+    ]
+  },
+  "anatomy": [
+    {
+      "part": "Link",
+      "description": "“Skip to main content”, shown when focused."
+    }
+  ],
+  "props": [
+    {
+      "name": "target",
+      "type": "string",
+      "description": "The id of the main content.",
+      "default": "main"
+    }
+  ],
+  "states": [
+    {
+      "name": "Hidden",
+      "description": "Off screen until focused."
+    },
+    {
+      "name": "Focused",
+      "description": "At the top of the page."
+    }
+  ],
+  "events": [],
+  "accessibility": {
+    "role": "link",
+    "name": "“Skip to main content”.",
+    "keyboard": [
+      {
+        "keys": "Tab",
+        "action": "The first Tab on the page shows it."
+      },
+      {
+        "keys": "Enter",
+        "action": "Moves focus to the main content."
+      }
+    ],
+    "screenReader": ["Read as a link, first on the page."],
+    "notes": ["It moves focus, not just scroll, so the next Tab continues from the main content."]
+  },
+  "tokens": [
+    "color.link.text",
+    "color.surface.raised",
+    "shadow.overlay",
+    "radius.control",
+    "space.inset.sm",
+    "space.inset.md",
+    "type.label.md",
+    "color.border.focus",
+    "border-width.focus",
+    "focus.offset"
+  ],
+  "strings": ["skipLink.label"],
+  "related": [
+    {
+      "component": "Provider page shell",
+      "relationship": "Holds it."
+    }
+  ],
+  "content": {
+    "guidelines": ["Always “Skip to main content”."]
+  },
+  "dosAndDonts": [
+    {
+      "do": "Make it the first focusable thing on the page.",
+      "dont": "Hide it from keyboard users."
+    }
+  ],
+  "evidence": [
+    {
+      "point": "Bypass blocks.",
+      "source": {
+        "label": "WCAG 2.4.1 Bypass Blocks",
+        "href": "https://www.w3.org/WAI/WCAG22/Understanding/bypass-blocks"
+      }
+    }
+  ],
+  "platforms": {
+    "web": {
+      "tag": "doras-skip-link",
+      "formAssociated": false,
+      "slots": []
+    }
+  }
+}

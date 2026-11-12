@@ -1,0 +1,123 @@
+{
+  "$schema": "../../schema/component.schema.json",
+  "name": "Step link",
+  "group": "Navigation",
+  "summary": "A quiet way to another step, such as “Search by name instead”, “Try another provider” or “Sign in with it instead”. With back, it has an arrow that mirrors right to left.",
+  "usage": {
+    "when": ["Under a step's main action, for another way forward or back."],
+    "whenNot": [
+      {
+        "text": "For the main action.",
+        "instead": "Button"
+      },
+      {
+        "text": "To go to another site.",
+        "instead": "Link"
+      }
+    ]
+  },
+  "anatomy": [
+    {
+      "part": "Arrow",
+      "description": "Points back. Mirrors right to left. Decorative.",
+      "optional": true
+    },
+    {
+      "part": "Label",
+      "description": "Says where it goes."
+    }
+  ],
+  "props": [
+    {
+      "name": "back",
+      "type": "boolean",
+      "description": "Shows a back arrow, for links that go back a step.",
+      "default": false
+    }
+  ],
+  "states": [
+    {
+      "name": "Default",
+      "description": "Underlined text."
+    },
+    {
+      "name": "Back",
+      "description": "With an arrow that mirrors right to left."
+    },
+    {
+      "name": "Focus",
+      "description": "A 2px focus ring."
+    }
+  ],
+  "events": [
+    {
+      "name": "click",
+      "kind": "ui",
+      "when": "It's pressed. The app goes to the other step and moves focus to its heading."
+    }
+  ],
+  "accessibility": {
+    "role": "button",
+    "name": "Its label.",
+    "keyboard": [
+      {
+        "keys": "Tab",
+        "action": "Moves focus to it."
+      },
+      {
+        "keys": "Enter or Space",
+        "action": "Presses it."
+      }
+    ],
+    "screenReader": ["Announced as a button, because it changes the step, not the page."],
+    "notes": ["44px high."]
+  },
+  "tokens": [
+    "color.link.text",
+    "color.link.decoration",
+    "color.link.decoration-hover",
+    "space.inline.xs",
+    "size.target.min",
+    "type.label.md",
+    "color.border.focus",
+    "border-width.focus",
+    "focus.offset"
+  ],
+  "strings": [],
+  "related": [
+    {
+      "component": "Sheet header",
+      "relationship": "Has the main back button."
+    },
+    {
+      "component": "Button",
+      "relationship": "For the main action."
+    }
+  ],
+  "content": {
+    "guidelines": ["Say where it goes: “Search by name instead”."]
+  },
+  "dosAndDonts": [
+    {
+      "do": "Keep it under the main action.",
+      "dont": "Make it look like the main action."
+    }
+  ],
+  "evidence": [
+    {
+      "point": "Arrows that point a direction mirror in right-to-left languages (#6)."
+    }
+  ],
+  "platforms": {
+    "web": {
+      "tag": "doras-step-link",
+      "formAssociated": false,
+      "slots": [
+        {
+          "name": "",
+          "description": "The label."
+        }
+      ]
+    }
+  }
+}

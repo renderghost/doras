@@ -105,6 +105,18 @@
     "failure.providerUnavailable": {
       "message": "{provider} isn’t answering right now. It isn’t something you did. Try again in a few minutes.",
       "description": "Shown when the provider is down. {provider} is its name, such as Bluesky. Doesn't blame the person or the app."
+    },
+    "sheet.brand": {
+      "message": "Atmosphere account",
+      "description": "Beside the Atmosphere mark at the top of Front Door's sheet."
+    },
+    "providerLink.manage": {
+      "message": "Manage account on {provider}",
+      "description": "A link to the provider's own account page. {provider} is its name, such as Bluesky."
+    },
+    "skipLink.label": {
+      "message": "Skip to main content",
+      "description": "The first link on a provider page, shown when focused, that skips to the main content."
     }
   }
 }
