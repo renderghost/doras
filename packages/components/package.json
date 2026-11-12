@@ -2,12 +2,41 @@
   "name": "@doras/components",
   "version": "0.0.0",
   "private": true,
-  "description": "Lit Web Components for creating an Atmosphere account and signing in.",
+  "description": "The <doras-\u2026> Web Components, built with Lit. Importing a component registers its element.",
   "license": "MIT OR Apache-2.0",
   "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/renderghost/doras.git",
     "directory": "packages/components"
+  },
+  "sideEffects": [
+    "./dist/**/*.js"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./*": {
+      "types": "./dist/*.d.ts",
+      "default": "./dist/*.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json"
+  },
+  "dependencies": {
+    "@doras/i18n": "workspace:*",
+    "lit": "^3.3.3"
+  },
+  "devDependencies": {
+    "@doras/specs": "workspace:*",
+    "@doras/tokens": "workspace:*",
+    "typescript": "~6.0.3"
   }
 }

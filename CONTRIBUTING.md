@@ -28,6 +28,8 @@ They need Playwright's Chromium. Install it once with `pnpm --filter @doras/stor
 
 Components draw into their shadow DOM, which Testing Library's usual queries can't see. Use `shadow-dom-testing-library` in play functions, for example `findByShadowRole`. Don't query by visible names that change with the locale.
 
+Testing Library's simulated Tab can't enter shadow roots either. To test the keyboard, focus the component, check focus reached its control through `shadowRoot.activeElement`, then press keys. The Actions stories' `focusInside` helper does this.
+
 ## Conventions
 
 - **Names:** custom elements are `<doras-…>`, for example `<doras-button>`. Packages are `@doras/…`.

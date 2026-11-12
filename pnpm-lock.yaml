@@ -53,6 +53,9 @@ importers:
 
   apps/storybook:
     devDependencies:
+      '@doras/components':
+        specifier: workspace:*
+        version: link:../../packages/components
       '@doras/i18n':
         specifier: workspace:*
         version: link:../../packages/i18n
@@ -125,7 +128,24 @@ importers:
 
   packages/browser-mocks: {}
 
-  packages/components: {}
+  packages/components:
+    dependencies:
+      '@doras/i18n':
+        specifier: workspace:*
+        version: link:../i18n
+      lit:
+        specifier: ^3.3.3
+        version: 3.3.3
+    devDependencies:
+      '@doras/specs':
+        specifier: workspace:*
+        version: link:../specs
+      '@doras/tokens':
+        specifier: workspace:*
+        version: link:../tokens
+      typescript:
+        specifier: ~6.0.3
+        version: 6.0.3
 
   packages/emails: {}
 

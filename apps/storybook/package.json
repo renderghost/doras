@@ -15,6 +15,7 @@
     "build": "storybook build --quiet -o storybook-static"
   },
   "devDependencies": {
+    "@doras/components": "workspace:*",
     "@doras/i18n": "workspace:*",
     "@doras/specs": "workspace:*",
     "@doras/tokens": "workspace:*",

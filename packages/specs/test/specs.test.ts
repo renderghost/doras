@@ -1,7 +1,6 @@
 import { mkdtempSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 import ts from 'typescript';
 import { describe, expect, it } from 'vitest';
 import { render } from '../build/generate.ts';
@@ -41,14 +40,6 @@ describe('the specs and the measurement events list', () => {
 
   it('never let a button be disabled', () => {
     expect(button.props.map((p) => p.name)).not.toContain('disabled');
-  });
-
-  it('also cover the Storybook sample, which follows the same schema', () => {
-    const sample = readSpecs(
-      fileURLToPath(new URL('../../../apps/storybook/src/example/', import.meta.url)),
-    );
-    expect([...sample.keys()]).toEqual(['example-chip']);
-    expect(checkSpecs(sample, known)).toEqual([]);
   });
 });
 

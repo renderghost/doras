@@ -9,6 +9,6 @@
     "identity.hostedBy": "{provider} がホスト",
     "email.recovery.codeLifetime": "コードの有効期限は {minutes, plural, other {# 分}} です。",
     "email.recovery.noLinks": "サインイン用のリンクをメールで送ることはありません。サインインのためにクリックを求めるメールは、私たちからのものではありません。",
-    "example.chip.remove": "{label} を削除"
+    "link.opensInNewTab": "（新しいタブで開きます）"
   }
 }
