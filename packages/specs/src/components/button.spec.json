@@ -153,7 +153,7 @@
       "While busy, its name becomes the busy label, and pressing it again does nothing."
     ],
     "announcements": [
-      "When it becomes busy, its busy label is announced politely. The shared announcer (#12) will take this over."
+      "When it becomes busy, its busy label is announced politely through the shared announcer."
     ],
     "notes": [
       "Never disabled. A disabled button can't be focused or explain itself, so people can't tell what's wrong (decision in #1).",
@@ -209,6 +209,10 @@
     {
       "component": "Disclosure",
       "relationship": "For showing and hiding content, rather than doing something."
+    },
+    {
+      "component": "Announcer",
+      "relationship": "Announces its busy label."
     }
   ],
   "content": {

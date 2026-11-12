@@ -1,9 +1,10 @@
 // Button: makes something happen. Never disabled; while busy, presses do nothing.
 import type { DorasButtonProps } from '@doras/specs';
-import { LitElement, css, html, nothing } from 'lit';
+import { LitElement, css, html, nothing, type PropertyValues } from 'lit';
+import { announce } from '../announcer/announce.ts';
 import { define } from '../shared/define.ts';
 import { loaderCircle } from '../shared/icons.ts';
-import { focusRing, spinner, visuallyHidden } from '../shared/styles.ts';
+import { focusRing, spinner } from '../shared/styles.ts';
 
 export class DorasButton extends LitElement implements DorasButtonProps {
   /** It takes part in forms, as a native button does. */
@@ -41,6 +42,11 @@ export class DorasButton extends LitElement implements DorasButtonProps {
     this.addEventListener('click', this.#onClick, { capture: true });
   }
 
+  protected override updated(changed: PropertyValues): void {
+    // Becoming busy is announced through the shared announcer.
+    if (changed.has('busy') && this.busy && this.busyLabel) announce(this.busyLabel);
+  }
+
   /** The form it belongs to, as on a native button. */
   get form(): HTMLFormElement | null {
     return this.#internals.form;
@@ -64,7 +70,6 @@ export class DorasButton extends LitElement implements DorasButtonProps {
 
   static override styles = [
     focusRing,
-    visuallyHidden,
     spinner,
     css`
       :host {
@@ -168,7 +173,6 @@ export class DorasButton extends LitElement implements DorasButtonProps {
         ${swapLabel ? html`<span>${this.busyLabel}</span>` : nothing}
         ${this.busy ? nothing : html`<slot name="icon-end"></slot>`}
       </button>
-      <span class="visually-hidden" role="status">${swapLabel ? this.busyLabel : ''}</span>
     `;
   }
 }

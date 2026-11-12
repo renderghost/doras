@@ -81,10 +81,12 @@ export const Busy: Story = {
     await userEvent.click(button);
     await userEvent.click(button);
     await expect(args.onClick).not.toHaveBeenCalled();
-    const status = canvasElement
-      .querySelector('doras-button')
-      ?.shadowRoot?.querySelector('[role="status"]');
-    await expect(status).toHaveTextContent('Checking…');
+    // Becoming busy is announced through the page's shared announcer.
+    await waitFor(() =>
+      expect(document.querySelector('[data-doras-announcer] [role="status"]')).toHaveTextContent(
+        'Checking…',
+      ),
+    );
   },
 };
 

@@ -1,0 +1,110 @@
+{
+  "$schema": "../../schema/component.schema.json",
+  "name": "Error summary",
+  "group": "System feedback",
+  "summary": "At the top of a page with more than one field. On submit it lists every error and takes focus; each link moves focus to its field.",
+  "usage": {
+    "when": ["On pages with more than one field, when submitting finds errors."],
+    "whenNot": [
+      {
+        "text": "On pages with one field: the field's own message is enough."
+      }
+    ]
+  },
+  "anatomy": [
+    {
+      "part": "Heading",
+      "description": "“There's a problem”."
+    },
+    {
+      "part": "Links",
+      "description": "One per error, with the field's message, linking to the field."
+    }
+  ],
+  "props": [
+    {
+      "name": "errors",
+      "type": "list",
+      "description": "The errors, in the order of the fields.",
+      "items": "message, and target: the field's id"
+    }
+  ],
+  "states": [
+    {
+      "name": "Hidden",
+      "description": "No errors, nothing shown."
+    },
+    {
+      "name": "Shown",
+      "description": "The heading and a link per error, focused after submit."
+    }
+  ],
+  "events": [],
+  "accessibility": {
+    "role": "a focusable region, labelled by its heading",
+    "name": "Its heading.",
+    "keyboard": [
+      {
+        "keys": "Tab",
+        "action": "Moves through the links."
+      },
+      {
+        "keys": "Enter",
+        "action": "Moves focus to the field."
+      }
+    ],
+    "screenReader": ["Read when it takes focus on submit: the heading, then each error."],
+    "notes": [
+      "Call show(errors) on submit to fill it and move focus to it. Updating errors directly as people fix them doesn't move focus."
+    ]
+  },
+  "tokens": [
+    "color.text.default",
+    "color.text.error",
+    "color.border.error",
+    "color.surface.default",
+    "color.feedback.error.icon",
+    "color.border.focus",
+    "border-width.focus",
+    "focus.offset",
+    "radius.card",
+    "space.inset.lg",
+    "space.stack.sm",
+    "space.stack.xs",
+    "space.inline.sm",
+    "type.heading.sm",
+    "type.label.md"
+  ],
+  "strings": ["errorSummary.heading"],
+  "related": [
+    {
+      "component": "Field message",
+      "relationship": "The same messages, under each field."
+    }
+  ],
+  "content": {
+    "guidelines": ["Each link uses the field's own message, word for word."]
+  },
+  "dosAndDonts": [
+    {
+      "do": "Move focus to it on submit.",
+      "dont": "Show it without moving focus."
+    }
+  ],
+  "evidence": [
+    {
+      "point": "The GOV.UK error summary pattern.",
+      "source": {
+        "label": "GOV.UK Design System: error summary",
+        "href": "https://design-system.service.gov.uk/components/error-summary/"
+      }
+    }
+  ],
+  "platforms": {
+    "web": {
+      "tag": "doras-error-summary",
+      "formAssociated": false,
+      "slots": []
+    }
+  }
+}
