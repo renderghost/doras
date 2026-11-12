@@ -136,6 +136,9 @@ importers:
       lit:
         specifier: ^3.3.3
         version: 3.3.3
+      lucide:
+        specifier: 1.72.0
+        version: 1.72.0
     devDependencies:
       '@doras/specs':
         specifier: workspace:*

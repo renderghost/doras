@@ -36,6 +36,17 @@ Or import one component, such as `@doras/components/button/button`. Components t
 
 The app validates; fields show the result. Set `error` to a catalogue message to mark a field invalid, and clear it when it's fixed. Listen for `doras-input`, which waits for input methods to finish composing, to validate live once a field has an error. `readHandle()` is exported for apps that need the same forgiving reading.
 
+## Display (#10)
+
+| Element                   | What it does                                                                  |
+| ------------------------- | ----------------------------------------------------------------------------- |
+| `<doras-icon>`            | A Lucide icon from the Doras set. Decorative unless labelled; mirrors in RTL. |
+| `<doras-divider>`         | A rule, or “or” between two ways to do the same thing.                        |
+| `<doras-permission-item>` | What an app can do, and why, on the Connect page.                             |
+| `<doras-facts-list>`      | Label and value pairs; handles and codes read correctly in any language.      |
+| `<doras-formatted-code>`  | A code grouped for reading, and read digit by digit.                          |
+| `<doras-atmosphere-mark>` | The placeholder mark, named or decorative.                                    |
+
 ## Things to know
 
 - **Buttons are never disabled.** While busy, presses do nothing, and the busy label says what's happening.

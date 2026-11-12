@@ -18,6 +18,9 @@
     "handle.fixAtSign": "تستخدم المعرّفات النقاط، وليس @ في المنتصف.",
     "handle.fixEnding": "{ending} ليست نهاية معرّف. المعرّفات التي يستضيفها {provider} تنتهي بـ {correct}.",
     "handle.fixLink": "أخذنا المعرّف من رابط الملف الشخصي.",
-    "handle.suggestionCount": "{count, plural, =0 {لا توجد حسابات مطابقة} zero {لا توجد حسابات مطابقة} one {حساب واحد مطابق} two {حسابان مطابقان} few {# حسابات مطابقة} many {# حسابًا مطابقًا} other {# حساب مطابق}}"
+    "handle.suggestionCount": "{count, plural, =0 {لا توجد حسابات مطابقة} zero {لا توجد حسابات مطابقة} one {حساب واحد مطابق} two {حسابان مطابقان} few {# حسابات مطابقة} many {# حسابًا مطابقًا} other {# حساب مطابق}}",
+    "divider.or": "أو",
+    "permission.why": "السبب:",
+    "atmosphere.mark": "Atmosphere"
   }
 }

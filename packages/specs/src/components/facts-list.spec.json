@@ -1,0 +1,96 @@
+{
+  "$schema": "../../schema/component.schema.json",
+  "name": "Facts list",
+  "group": "Display",
+  "summary": "Label and value pairs, such as “Your handle” and “Your sign-in code”. Handles and codes read correctly in any language.",
+  "usage": {
+    "when": ["To show a few facts someone needs, such as in the recovery email."],
+    "whenNot": [
+      {
+        "text": "For long text."
+      }
+    ]
+  },
+  "anatomy": [
+    {
+      "part": "Label",
+      "description": "What the fact is."
+    },
+    {
+      "part": "Value",
+      "description": "The fact. Handles get an @; codes are grouped."
+    }
+  ],
+  "props": [
+    {
+      "name": "facts",
+      "type": "list",
+      "description": "The facts, in order.",
+      "items": "label, value, and kind: text, handle or code"
+    }
+  ],
+  "states": [
+    {
+      "name": "Text",
+      "description": "Plain values."
+    },
+    {
+      "name": "Handle",
+      "description": "With an @, isolated so it reads correctly in Arabic."
+    },
+    {
+      "name": "Code",
+      "description": "Grouped, monospace, and read digit by digit."
+    }
+  ],
+  "events": [],
+  "accessibility": {
+    "role": "description list (dl)",
+    "name": "None.",
+    "keyboard": [],
+    "screenReader": ["Each label is read with its value.", "Codes are read digit by digit."]
+  },
+  "tokens": [
+    "color.text.default",
+    "color.text.subtle",
+    "color.surface.subtle",
+    "radius.card",
+    "space.inset.md",
+    "space.stack.sm",
+    "type.body.sm",
+    "type.label.md",
+    "type.code"
+  ],
+  "strings": [],
+  "related": [
+    {
+      "component": "Formatted code",
+      "relationship": "How codes are shown."
+    },
+    {
+      "component": "Handle",
+      "relationship": "How handles are shown."
+    }
+  ],
+  "content": {
+    "guidelines": ["Labels are short: “Your handle”, “Your sign-in code”."]
+  },
+  "dosAndDonts": [
+    {
+      "do": "Keep it to a few facts.",
+      "dont": "Use it as a table."
+    }
+  ],
+  "evidence": [
+    {
+      "point": "Handles and codes are isolated so they don't reorder inside right-to-left text (#6)."
+    }
+  ],
+  "platforms": {
+    "web": {
+      "tag": "doras-facts-list",
+      "formAssociated": false,
+      "slots": []
+    }
+  }
+}

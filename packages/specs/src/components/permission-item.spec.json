@@ -1,0 +1,109 @@
+{
+  "$schema": "../../schema/component.schema.json",
+  "name": "Permission item",
+  "group": "Display",
+  "summary": "One thing an app can do with someone's account, with the app's reason, on the Connect page.",
+  "usage": {
+    "when": ["On the Connect page, one per permission, in a list."],
+    "whenNot": [
+      {
+        "text": "For the raw technical permissions, which go behind “Technical details”.",
+        "instead": "Details"
+      }
+    ]
+  },
+  "anatomy": [
+    {
+      "part": "Icon",
+      "description": "What kind of permission. Decorative."
+    },
+    {
+      "part": "What",
+      "description": "What the app can do, in plain words."
+    },
+    {
+      "part": "Why",
+      "description": "“Why:” and the app's reason."
+    }
+  ],
+  "props": [
+    {
+      "name": "icon",
+      "type": "string",
+      "description": "The icon's name.",
+      "default": "check"
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "description": "What the app can do, such as “Post as you”.",
+      "required": true
+    },
+    {
+      "name": "reason",
+      "type": "string",
+      "description": "The app's reason, such as “so your recipes stay yours”.",
+      "required": true
+    }
+  ],
+  "states": [
+    {
+      "name": "Default",
+      "description": "Icon, what, and why."
+    }
+  ],
+  "events": [],
+  "accessibility": {
+    "role": "listitem",
+    "name": "Its text.",
+    "keyboard": [],
+    "screenReader": ["Read as a list item: what the app can do, then “Why:” and the reason."],
+    "notes": ["Put items in an element with role list, or a ul."]
+  },
+  "tokens": [
+    "color.text.default",
+    "color.text.subtle",
+    "color.icon.default",
+    "space.inline.md",
+    "space.stack.sm",
+    "space.stack.2xs",
+    "type.label.md",
+    "type.body.sm",
+    "size.icon.md"
+  ],
+  "strings": ["permission.why"],
+  "related": [
+    {
+      "component": "Switch",
+      "relationship": "For optional permissions."
+    },
+    {
+      "component": "Icon",
+      "relationship": "Its icon."
+    }
+  ],
+  "content": {
+    "guidelines": [
+      "Say what the app can do in plain words, never the raw permission.",
+      "Reasons start with “so”: “so friends recognise you”."
+    ]
+  },
+  "dosAndDonts": [
+    {
+      "do": "Explain every permission.",
+      "dont": "Show the technical permission name."
+    }
+  ],
+  "evidence": [
+    {
+      "point": "People grant permissions more confidently when each says why it's needed (prototype research)."
+    }
+  ],
+  "platforms": {
+    "web": {
+      "tag": "doras-permission-item",
+      "formAssociated": false,
+      "slots": []
+    }
+  }
+}

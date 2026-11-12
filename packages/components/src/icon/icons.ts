@@ -1,6 +1,5 @@
-// The Lucide icons Doras uses, taken from the Front Door prototype. The Icon
-// component (#10) will draw them; this list is what the Icons page shows.
-// Each icon is imported by name, so only these reach the bundle.
+// The Lucide icons Doras uses, taken from the Front Door prototype (ISC
+// licence). Each is imported by name, so only these reach a bundle.
 import {
   ArrowLeft,
   ArrowLeftRight,
@@ -53,7 +52,7 @@ export interface DorasIcon {
   mirrors?: boolean;
 }
 
-export const ICONS: DorasIcon[] = [
+const LIST = [
   { name: 'arrow-left', node: ArrowLeft, meaning: 'Back', mirrors: true },
   { name: 'arrow-right', node: ArrowRight, meaning: 'Continue', mirrors: true },
   { name: 'x', node: X, meaning: 'Close' },
@@ -91,4 +90,13 @@ export const ICONS: DorasIcon[] = [
   { name: 'plus', node: Plus, meaning: 'Add' },
   { name: 'undo-2', node: Undo2, meaning: 'Undo', mirrors: true },
   { name: 'log-out', node: LogOut, meaning: 'Sign out', mirrors: true },
-];
+] as const satisfies readonly DorasIcon[];
+
+/** Every icon's name. */
+export type IconName = (typeof LIST)[number]['name'];
+
+/** The icons Doras uses, in the order the Icons page shows them. */
+export const ICONS: readonly DorasIcon[] = LIST;
+
+/** Icons by name. */
+export const ICON_BY_NAME: ReadonlyMap<string, DorasIcon> = new Map(ICONS.map((i) => [i.name, i]));

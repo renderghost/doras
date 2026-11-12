@@ -1,0 +1,128 @@
+{
+  "$schema": "../../schema/component.schema.json",
+  "name": "Icon",
+  "group": "Display",
+  "summary": "A Lucide icon from the Doras set. Decorative unless it's given a label, and mirrored in right-to-left layouts when it points a direction.",
+  "usage": {
+    "when": [
+      "Beside words, to help people scan.",
+      "On its own, inside an Icon button, which names it."
+    ],
+    "whenNot": [
+      {
+        "text": "For an action with only an icon.",
+        "instead": "Icon button"
+      },
+      {
+        "text": "Instead of words that people need."
+      }
+    ]
+  },
+  "anatomy": [
+    {
+      "part": "Drawing",
+      "description": "A Lucide icon, stroked in the current text colour."
+    }
+  ],
+  "props": [
+    {
+      "name": "name",
+      "type": "string",
+      "description": "Which icon, by its Lucide name, such as arrow-left. The Icons page lists them.",
+      "required": true
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "description": "Its accessible name, when it carries meaning on its own. Without one, it's hidden from screen readers."
+    },
+    {
+      "name": "size",
+      "type": "enum",
+      "description": "How big it is.",
+      "values": [
+        {
+          "value": "sm",
+          "description": "16px."
+        },
+        {
+          "value": "md",
+          "description": "20px."
+        },
+        {
+          "value": "lg",
+          "description": "24px."
+        },
+        {
+          "value": "xl",
+          "description": "32px."
+        }
+      ],
+      "default": "md"
+    }
+  ],
+  "states": [
+    {
+      "name": "Decorative",
+      "description": "Hidden from screen readers."
+    },
+    {
+      "name": "Named",
+      "description": "Announced as an image with its label."
+    },
+    {
+      "name": "Mirrored",
+      "description": "Flipped in right-to-left layouts, for icons that point a direction."
+    }
+  ],
+  "events": [],
+  "accessibility": {
+    "role": "img when labelled; hidden otherwise",
+    "name": "Its label, if it has one.",
+    "keyboard": [],
+    "screenReader": [
+      "Decorative icons are hidden.",
+      "Labelled icons are announced as images with their label."
+    ],
+    "notes": [
+      "Icons use the current text colour, so they stay visible in forced colours.",
+      "Arrows, undo, send and sign out mirror right to left; other icons never do."
+    ]
+  },
+  "tokens": ["size.icon.sm", "size.icon.md", "size.icon.lg", "size.icon.xl"],
+  "strings": [],
+  "related": [
+    {
+      "component": "Icon button",
+      "relationship": "For an action with only an icon."
+    }
+  ],
+  "content": {
+    "guidelines": [
+      "Label an icon only when it carries meaning on its own.",
+      "A label says what the icon means here, not what it shows."
+    ]
+  },
+  "dosAndDonts": [
+    {
+      "do": "Pair icons with words.",
+      "dont": "Rely on an icon alone to say something important."
+    }
+  ],
+  "evidence": [
+    {
+      "point": "Directional icons mirror in right-to-left languages; others don't.",
+      "source": {
+        "label": "Material Design: bidirectionality",
+        "href": "https://m2.material.io/design/usability/bidirectionality.html"
+      }
+    }
+  ],
+  "platforms": {
+    "web": {
+      "tag": "doras-icon",
+      "formAssociated": false,
+      "slots": []
+    }
+  }
+}

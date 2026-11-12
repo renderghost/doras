@@ -2,7 +2,7 @@
   "name": "@doras/components",
   "version": "0.0.0",
   "private": true,
-  "description": "The <doras-\u2026> Web Components, built with Lit. Importing a component registers its element.",
+  "description": "The <doras-…> Web Components, built with Lit. Importing a component registers its element.",
   "license": "MIT OR Apache-2.0",
   "type": "module",
   "repository": {
@@ -32,7 +32,8 @@
   },
   "dependencies": {
     "@doras/i18n": "workspace:*",
-    "lit": "^3.3.3"
+    "lit": "^3.3.3",
+    "lucide": "1.72.0"
   },
   "devDependencies": {
     "@doras/specs": "workspace:*",

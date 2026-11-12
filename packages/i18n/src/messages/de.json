@@ -18,6 +18,9 @@
     "handle.fixAtSign": "Handles enthalten Punkte, kein @ in der Mitte.",
     "handle.fixEnding": "{ending} ist keine Handle-Endung. Handles bei {provider} enden auf {correct}.",
     "handle.fixLink": "Wir haben das Handle aus dem Profil-Link übernommen.",
-    "handle.suggestionCount": "{count, plural, =0 {Keine passenden Konten} one {# passendes Konto} other {# passende Konten}}"
+    "handle.suggestionCount": "{count, plural, =0 {Keine passenden Konten} one {# passendes Konto} other {# passende Konten}}",
+    "divider.or": "oder",
+    "permission.why": "Warum:",
+    "atmosphere.mark": "Atmosphere"
   }
 }

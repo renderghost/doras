@@ -18,6 +18,9 @@
     "handle.fixAtSign": "ハンドルでは途中に @ ではなくドットを使います。",
     "handle.fixEnding": "{ending} はハンドルの末尾ではありません。{provider} のハンドルは {correct} で終わります。",
     "handle.fixLink": "プロフィールのリンクからハンドルを取り出しました。",
-    "handle.suggestionCount": "{count, plural, =0 {一致するアカウントはありません} other {一致するアカウント: # 件}}"
+    "handle.suggestionCount": "{count, plural, =0 {一致するアカウントはありません} other {一致するアカウント: # 件}}",
+    "divider.or": "または",
+    "permission.why": "理由:",
+    "atmosphere.mark": "Atmosphere"
   }
 }
