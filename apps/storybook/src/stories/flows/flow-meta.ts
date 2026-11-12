@@ -55,6 +55,9 @@ export const flowMeta: Omit<Meta<FlowArgs>, 'title'> = {
     start: { control: false, table: { disable: true } },
     onMeasure: { table: { disable: true } },
   },
+  // A page that opens on a sheet fades in: settle before the accessibility
+  // check. Stories with a play of their own settle as they walk.
+  play: async () => settle(),
   args: {
     scenario: 'sam',
     failure: 'none',
@@ -103,6 +106,24 @@ function matches(canvasElement: HTMLElement, text: Text, prefix = false): (s: st
   return (s) => (prefix ? plain(s).startsWith(wanted) : plain(s) === wanted);
 }
 
+/**
+ * Every running animation, inside shadow roots too: Firefox's
+ * document.getAnimations() leaves those out, and the sheet fades in its own.
+ */
+function allAnimations(): Animation[] {
+  const found = new Set<Animation>(document.getAnimations());
+  const visit = (root: Document | ShadowRoot) => {
+    for (const el of root.querySelectorAll('*')) {
+      if (el.shadowRoot) {
+        for (const a of el.shadowRoot.getAnimations()) found.add(a);
+        visit(el.shadowRoot);
+      }
+    }
+  };
+  visit(document);
+  return [...found];
+}
+
 /** Waits for a step to show, by its heading. */
 export async function onStep(canvasElement: HTMLElement, name: Text): Promise<HTMLElement> {
   const match = matches(canvasElement, name);
@@ -116,7 +137,25 @@ export async function onStep(canvasElement: HTMLElement, name: Text): Promise<HT
     },
     { timeout: 3000 },
   );
+  await settle();
   return found as HTMLElement;
+}
+
+/**
+ * Lets opening animations, such as the sheet's fade, finish, so the
+ * accessibility check after a story sees the settled page. A step can show a
+ * frame before its sheet starts to fade, so this waits two frames first.
+ * Spinners loop for ever, so only animations that end are waited for.
+ */
+export async function settle(): Promise<void> {
+  for (let frame = 0; frame < 2; frame++) {
+    await new Promise((resolve) => requestAnimationFrame(resolve));
+  }
+  await Promise.all(
+    allAnimations()
+      .filter((a) => a.effect?.getComputedTiming().endTime !== Infinity)
+      .map((a) => a.finished.catch(() => undefined)),
+  );
 }
 
 /** Presses a button by its accessible name, wherever its shadow root is. */

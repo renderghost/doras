@@ -34,14 +34,28 @@ export const ClickThrough: Story = {
   },
 };
 
-export const FindByEmail: Story = { name: 'Find the account by email', args: { start: 'forgot' } };
-export const CheckYourEmail: Story = { name: 'Check your email', args: { start: 'check-email' } };
+export const FindByEmail: Story = {
+  tags: ['page'],
+  name: 'Find the account by email',
+  args: { start: 'forgot' },
+};
+export const CheckYourEmail: Story = {
+  tags: ['page'],
+  name: 'Check your email',
+  args: { start: 'check-email' },
+};
 export const TypeTheHandle: Story = {
+  tags: ['page'],
   name: 'Type the handle from the email',
   args: { start: 'recover' },
 };
-export const EnterTheCode: Story = { name: 'Enter the sign-in code', args: { start: 'pv-code' } };
+export const EnterTheCode: Story = {
+  tags: ['page'],
+  name: 'Enter the sign-in code',
+  args: { start: 'pv-code' },
+};
 export const NextTime: Story = {
+  tags: ['page'],
   name: 'How to sign in next time',
   args: { start: 'pv-next-time', passkey: 'lost-phone' },
   play: async ({ canvasElement }) => {

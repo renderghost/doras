@@ -78,10 +78,27 @@ export const WithAnotherProvider: Story = {
 };
 
 export const ExistingAccountCheck: Story = {
+  tags: ['page'],
   name: 'The existing-account check',
   args: { scenario: 'priya', start: 'found' },
 };
-export const ChooseAProvider: Story = { name: 'Choose a provider', args: { start: 'create' } };
-export const SignUp: Story = { name: 'Sign-up: passkey or password', args: { start: 'pv-signup' } };
-export const ChooseAHandle: Story = { name: 'Choose a handle', args: { start: 'pv-handle' } };
-export const ConnectShort: Story = { name: 'Connect, short version', args: { start: 'pv-ready' } };
+export const ChooseAProvider: Story = {
+  tags: ['page'],
+  name: 'Choose a provider',
+  args: { start: 'create' },
+};
+export const SignUp: Story = {
+  tags: ['page'],
+  name: 'Sign-up: passkey or password',
+  args: { start: 'pv-signup' },
+};
+export const ChooseAHandle: Story = {
+  tags: ['page'],
+  name: 'Choose a handle',
+  args: { start: 'pv-handle' },
+};
+export const ConnectShort: Story = {
+  tags: ['page'],
+  name: 'Connect, short version',
+  args: { start: 'pv-ready' },
+};

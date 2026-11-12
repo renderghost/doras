@@ -84,3 +84,25 @@ describe('browser mocks', () => {
     expect(users).toEqual([]);
   });
 });
+
+describe('the visual checks', () => {
+  // Baselines only match screenshots made in the same image, with the same
+  // Playwright, so every place that names the image must agree with the pin.
+  it('use the Playwright image for the pinned Playwright version', () => {
+    const storybook = readJson(join(ROOT, 'apps/storybook/package.json'));
+    const pinned = storybook.devDependencies?.['@playwright/test'];
+    expect(storybook.devDependencies?.playwright).toBe(pinned);
+    const image = `mcr.microsoft.com/playwright:v${pinned}-noble`;
+    for (const file of [
+      '.github/workflows/ci.yml',
+      '.github/workflows/visual-baselines.yml',
+      'scripts/visual.sh',
+    ]) {
+      const named =
+        readFileSync(join(ROOT, file), 'utf8').match(/mcr\.microsoft\.com\/playwright:[\w.-]+/g) ??
+        [];
+      expect(named.length, file).toBeGreaterThan(0);
+      for (const n of named) expect(n, file).toBe(image);
+    }
+  });
+});

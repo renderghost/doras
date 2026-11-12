@@ -1,0 +1,35 @@
+name: Update visual baselines
+
+# Deliberate only: run by hand on a branch when a visual change is intended.
+# It makes new baselines in the same Playwright image as the checks, and
+# uploads them. A person reviews them, then commits them to the branch.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  update:
+    name: Make new baselines
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.65.0-noble
+      options: --ipc=host
+    env:
+      HOME: /root
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+      - run: pnpm --filter @doras/storybook visual:update
+      - uses: actions/upload-artifact@v7
+        with:
+          name: visual-baselines
+          path: apps/storybook/visual/baselines/
+          retention-days: 14

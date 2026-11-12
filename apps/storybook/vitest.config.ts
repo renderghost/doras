@@ -8,6 +8,11 @@ import { defineConfig } from 'vitest/config';
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
 
+// The browser matrix (#18): Chromium by default; CI runs each browser in a
+// job of its own, with DORAS_BROWSERS=firefox, and so on.
+type Browser = 'chromium' | 'firefox' | 'webkit';
+const browsers = (process.env.DORAS_BROWSERS ?? 'chromium').split(',') as Browser[];
+
 export default defineConfig({
   plugins: [storybookTest({ configDir: path.join(dirname, '.storybook') })],
   test: {
@@ -22,7 +27,7 @@ export default defineConfig({
           ? { executablePath: process.env.CHROMIUM_PATH }
           : {},
       }),
-      instances: [{ browser: 'chromium' }],
+      instances: browsers.map((browser) => ({ browser })),
     },
   },
 });

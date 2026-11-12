@@ -34,6 +34,7 @@ pnpm install
 | `pnpm lint`      | ESLint for TypeScript and Lit, and Stylelint for CSS               |
 | `pnpm typecheck` | TypeScript in strict mode                                          |
 | `pnpm test`      | Vitest: the unit tests, and every story as a browser test          |
+| `pnpm visual`    | Compares screenshots with the baselines, in Docker                 |
 | `pnpm storybook` | Runs Storybook at localhost:6006                                   |
 | `pnpm format`    | Formats everything with Prettier (`pnpm format:check` only checks) |
 | `pnpm changeset` | Records a change for the next release                              |

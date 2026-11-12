@@ -1,0 +1,10 @@
+# Doras's support targets (#18). CI runs the story tests in Chromium,
+# Firefox and WebKit; Safari and iOS Safari are also checked by hand before
+# each release (docs/safari-checklist.md). packages/components/test/
+# browser-support.test.ts keeps out features these browsers lack.
+last 2 Chrome versions
+last 2 Edge versions
+last 2 Firefox versions
+last 2 Samsung versions
+Safari >= 16.4
+iOS >= 16.4

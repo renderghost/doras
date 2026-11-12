@@ -374,10 +374,29 @@ Details settled while building it ([#6](https://github.com/renderghost/doras/iss
 - Last 2 versions of Chrome, Edge, Firefox and Samsung Internet.
 - Safari and iOS Safari from 16.4.
 
+Settled while setting up testing ([#18](https://github.com/renderghost/doras/issues/18)):
+
+- **The targets are in `.browserslistrc`.**
+- **A test keeps out what's too new:** it fails if the components or the token CSS use a feature newer than the targets, such as `light-dark()`, CSS nesting or `dialog.requestClose()`. Features that only improve things where they're supported, such as `text-wrap: balance`, are allowed.
+- **Safari 16.4 is the floor** because that's when form-associated custom elements, `:dir()` and constructable stylesheets arrived.
+- **Real Safari and iOS Safari are checked by hand** before each release, from [the checklist](safari-checklist.md): VoiceOver, the on-screen keyboard, iCloud Keychain and Apple Mail can't be tested in CI.
+
 ### Testing
 
 - Interaction tests and axe checks on every story.
 - Playwright screenshots for visual regression, on the key combinations of theme, locale and screen width. Chromatic isn't used.
+
+Settled while setting it up ([#18](https://github.com/renderghost/doras/issues/18)):
+
+- **The browser matrix:** every story test runs in Chromium, Firefox and WebKit in CI, each in a job of its own. Locally, `DORAS_BROWSERS=firefox pnpm test:stories` picks the browser.
+- **What's screenshotted:**
+  - every story, in the light theme, UK English, at desktop width
+  - every flow page in dark, increased contrast, Arabic and the pseudo-locale, at phone and desktop widths
+- **Baselines come from the Playwright image CI uses,** `mcr.microsoft.com/playwright` at the pinned version, because fonts and rendering differ between machines. A test fails if the image and the pinned Playwright ever disagree.
+- **Inter comes from a local copy** during the checks, and every other request is blocked, so screenshots never depend on the network.
+- **Each screenshot waits for the story's play function to finish,** then compares exactly, allowing only a few pixels of anti-aliasing.
+- **Changed screenshots are uploaded** with the CI run: the report shows expected, actual and diff.
+- **Updating baselines is always deliberate:** `pnpm visual:update` on a machine with Docker, or the Update visual baselines workflow, run by hand. Its baselines are an artifact a person reviews and commits. Nothing updates them automatically.
 
 ## Storybook
 
