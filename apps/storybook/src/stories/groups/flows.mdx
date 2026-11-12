@@ -4,13 +4,31 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 # Flows
 
-Every journey, clickable from start to finish, with switches for the four failure states.
+Every journey, clickable from start to finish: Potluck, the sample app, then Front Door's sheet, then the provider's own pages, and back. The browser's own UI comes from the [browser mocks](?path=/docs/browser-mocks-overview--docs).
 
-## Coming
+## Journeys
 
-Built in [#16](https://github.com/renderghost/doras/issues/16):
+Built in [#16](https://github.com/renderghost/doras/issues/16). Each journey has a **Click through** story that walks it in a test, and a story for each of its pages.
 
-- Sign in
-- Create an account
-- Recover
-- Connect
+- [Sign in](?path=/story/flows-sign-in--click-through): Continue with Atmosphere, find your account, “Is this you?”, the provider's sign-in, a verification code, the passkey offer, and Connect. Also with the browser's account chooser, and each passkey variation.
+- [Create an account](?path=/story/flows-create-an-account--click-through): the existing-account check, choosing a provider, sign-up with a passkey or a password, choosing a handle, and the short Connect.
+- [Recover](?path=/story/flows-recover--click-through): finding the account by email, checking the email, typing the handle from it, the sign-in code, and how to sign in next time.
+- [Connect](?path=/story/flows-connect--full): full, short and cancelled.
+- [Failure states](?path=/story/flows-failure-states--network-failure): network failure, too many attempts, session expired, and provider unavailable.
+
+## The switches
+
+Every flow story has these Controls:
+
+- **Scenario:** who is at the keyboard, and which accounts this browser already knows. From the prototype: Sam, Alex, Priya, Rae and Jo.
+- **Failure:** the next submit on a step it fits fails this way, once. What was typed stays, and Try again goes on.
+- **Passkey:** what the account has: a passkey on this device, one only on a lost phone, verification codes, or passkey only.
+- **App name, domain and logo:** the sample app.
+
+Measurement events show in the Actions panel as the flow runs.
+
+## What's Doras's and what isn't
+
+- **Doras's:** Front Door's sheet and the provider pages are built from Doras components, with copy from the catalogues, so they follow the locale toolbar.
+- **The app's:** Potluck is a plain backdrop, not built from components. Its own copy, such as its permissions in its own words, stays in English, as an app would supply its own.
+- **The browser's:** the account chooser, passkey prompts and autofill are mocks. They're drawn in English, as a browser set to English would draw them.

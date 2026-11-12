@@ -166,8 +166,8 @@ function chooseProvider(f: FlowHarness) {
   const options = [
     {
       value: 'app',
-      label: `${f.appName} · ${f.t('create.suggestedBy', { app: f.appName })}`,
-      description: f.t('provider.blurb.app', { app: f.appName }),
+      label: f.appName,
+      description: `${f.t('create.suggestedBy', { app: f.appName })}. ${f.t('provider.blurb.app', { app: f.appName })}`,
     },
     ...PROVIDERS.map((p) => ({
       value: p.id,

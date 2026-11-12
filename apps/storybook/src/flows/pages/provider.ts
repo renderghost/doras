@@ -30,7 +30,7 @@ export function signIn(f: FlowHarness) {
   const provider = f.providerName();
   return providerPage(
     f,
-    html`${handshake(f)} ${heading(f.t('signin.heading'), 'h1')}
+    html`${heading(f.t('signin.heading'), 'h1')}
       <p>${f.t('signin.lede', { provider, app: f.appName })}</p>
       ${info(f)}
       <form class="flow-stack" novalidate @submit=${form(f.signIn)}>
@@ -76,7 +76,7 @@ export function totp(f: FlowHarness) {
   const account = f.s.account as Person;
   return providerPage(
     f,
-    html`${handshake(f)} ${heading(f.t('totp.heading'), 'h1')}
+    html`${heading(f.t('totp.heading'), 'h1')}
       <p>${f.t('totp.lede', { handle: `@${account.handle}` })}</p>
       <form class="flow-stack" novalidate @submit=${form(f.verify)}>
         <doras-code-field
@@ -121,7 +121,7 @@ export function code(f: FlowHarness) {
   const email = account.email ?? f.s.recovery?.email ?? '';
   return providerPage(
     f,
-    html`${handshake(f)} ${heading(f.t('code.heading'), 'h1')}
+    html`${heading(f.t('code.heading'), 'h1')}
       <p>${f.t('code.lede', { email: maskEmail(email) })}</p>
       ${info(f)}
       <form class="flow-stack" novalidate @submit=${form(f.checkCode)}>
@@ -315,20 +315,15 @@ export function newHandle(f: FlowHarness) {
 
 /** Connect, full: what the app can and can't do, in its own words. */
 export function connect(f: FlowHarness) {
-  const account = f.s.account as Person;
   const provider = f.providerName();
   const app = f.appName;
   return providerPage(
     f,
-    html`${handshake(f)} ${heading(f.t('connect.heading', { app }), 'h1')}
-      <div class="flow-account">
-        <doras-account-row
-          name=${account.name}
-          handle=${account.handle}
-          provider=${providerOf(f, account)}
-        ></doras-account-row>
+    html`${handshake(f)}
+      <div class="flow-links">
         <doras-step-link @click=${f.changeAccount}>${f.t('connect.notYou')}</doras-step-link>
       </div>
+      ${heading(f.t('connect.heading', { app }), 'h1')}
       <section class="flow-stack" aria-labelledby="can">
         <h2 id="can" class="flow-subheading">${f.t('connect.can', { app })}</h2>
         <div role="list" class="flow-stack">

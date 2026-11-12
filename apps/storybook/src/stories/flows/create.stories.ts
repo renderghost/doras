@@ -1,6 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { expect } from 'storybook/test';
-import { choose, flowMeta, measured, onStep, press, type FlowArgs, type } from './flow-meta.ts';
+import {
+  choose,
+  flowMeta,
+  measured,
+  onStep,
+  press,
+  type FlowArgs,
+  type,
+  walk,
+} from './flow-meta.ts';
+import { CREATE } from './walks.ts';
 
 const meta: Meta<FlowArgs> = {
   ...flowMeta,
@@ -17,19 +27,7 @@ type Story = StoryObj<FlowArgs>;
 export const ClickThrough: Story = {
   name: 'Click through',
   play: async ({ canvasElement, args }) => {
-    await press(canvasElement, /Create an Atmosphere account/);
-    await onStep(canvasElement, /Create your Atmosphere account/);
-    await press(canvasElement, /Continue with .?Potluck/);
-    await onStep(canvasElement, /Create your Atmosphere account/);
-    await type(canvasElement, /Email address/, 'jo.park@example.com');
-    await choose(canvasElement, /Passkey/);
-    await press(canvasElement, /Next: choose your handle/);
-    await press(canvasElement, /^Continue$/);
-    await onStep(canvasElement, /Choose your handle/);
-    await press(canvasElement, /Create account/);
-    await onStep(canvasElement, /Your Atmosphere account is ready/);
-    await press(canvasElement, /Continue to .?Potluck/);
-    await onStep(canvasElement, /Welcome to Potluck, Jo\./);
+    await walk(canvasElement, CREATE);
     await expect(measured(args.onMeasure)).toEqual([
       'doras.door_opened',
       'doras.provider_chosen',

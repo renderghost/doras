@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { expect } from 'storybook/test';
-import { choose, flowMeta, measured, onStep, press, type FlowArgs, type } from './flow-meta.ts';
+import { flowMeta, measured, press, walk, type FlowArgs } from './flow-meta.ts';
+import { RECOVER } from './walks.ts';
 
 const meta: Meta<FlowArgs> = {
   ...flowMeta,
@@ -18,26 +19,7 @@ type Story = StoryObj<FlowArgs>;
 export const ClickThrough: Story = {
   name: 'Click through',
   play: async ({ canvasElement, args }) => {
-    await press(canvasElement, /Continue with Atmosphere/);
-    await press(canvasElement, /Forgot your handle\?/);
-    await onStep(canvasElement, /Find your Atmosphere account with your email/);
-    await type(canvasElement, /Email address/, 'rae.thompson@example.com');
-    await choose(canvasElement, /^Blacksky/);
-    await press(canvasElement, /Email me my account details/);
-    await onStep(canvasElement, /Check your email/);
-    await press(canvasElement, /I’ve got the email/);
-    await onStep(canvasElement, /Type the handle from the email/);
-    await type(canvasElement, /Your handle/, 'rae.blacksky.app');
-    await press(canvasElement, /^Continue$/);
-    await onStep(canvasElement, /Enter your sign-in code/);
-    await press(canvasElement, /482 913/);
-    await press(canvasElement, /^Sign in$/);
-    await onStep(canvasElement, /How do you want to sign in next time\?/);
-    await press(canvasElement, /^Add a passkey$/);
-    await press(canvasElement, /^Continue$/);
-    await onStep(canvasElement, /Connect .?Potluck.? to your Atmosphere account\?/);
-    await press(canvasElement, /^Connect$/);
-    await onStep(canvasElement, /You’re in, Rae\./);
+    await walk(canvasElement, RECOVER);
     await expect(measured(args.onMeasure)).toEqual([
       'doras.door_opened',
       'doras.recovery_started',

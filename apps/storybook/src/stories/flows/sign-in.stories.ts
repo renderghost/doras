@@ -8,7 +8,9 @@ import {
   press,
   type FlowArgs,
   type,
+  walk,
 } from './flow-meta.ts';
+import { SIGN_IN } from './walks.ts';
 
 const meta: Meta<FlowArgs> = { ...flowMeta, title: 'Flows/Sign in' };
 export default meta;
@@ -22,20 +24,7 @@ type Story = StoryObj<FlowArgs>;
 export const ClickThrough: Story = {
   name: 'Click through',
   play: async ({ canvasElement, args }) => {
-    await press(canvasElement, /Continue with Atmosphere/);
-    await onStep(canvasElement, /Sign in to Potluck/);
-    await type(canvasElement, /Your handle/, 'sam.bsky.social');
-    await press(canvasElement, /Find my account/);
-    await onStep(canvasElement, /Is this you\?/);
-    await press(canvasElement, /Continue to .?Bluesky/);
-    await onStep(canvasElement, /Sign in to your Atmosphere account/);
-    await type(canvasElement, /^Password/, 'correct horse battery');
-    await press(canvasElement, /^Sign in$/);
-    await onStep(canvasElement, /Sign in faster next time\?/);
-    await press(canvasElement, /Not now/);
-    await onStep(canvasElement, /Connect .?Potluck.? to your Atmosphere account\?/);
-    await press(canvasElement, /^Connect$/);
-    await onStep(canvasElement, /You’re in, Sam\./);
+    await walk(canvasElement, SIGN_IN);
     await waitFor(() =>
       expect(measured(args.onMeasure)).toEqual([
         'doras.door_opened',
