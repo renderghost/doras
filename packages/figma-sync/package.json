@@ -1,0 +1,22 @@
+{
+  "name": "@doras/figma-sync",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Syncs the Doras tokens into Figma variables, text styles and effect styles.",
+  "license": "MIT OR Apache-2.0",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/renderghost/doras.git",
+    "directory": "packages/figma-sync"
+  },
+  "scripts": {
+    "build": "node build/index.ts"
+  },
+  "dependencies": {
+    "@doras/tokens": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "~6.0.3"
+  }
+}

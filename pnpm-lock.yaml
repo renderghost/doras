@@ -56,6 +56,16 @@ importers:
 
   packages/emails: {}
 
+  packages/figma-sync:
+    dependencies:
+      '@doras/tokens':
+        specifier: workspace:*
+        version: link:../tokens
+    devDependencies:
+      typescript:
+        specifier: ~6.0.3
+        version: 6.0.3
+
   packages/i18n: {}
 
   packages/specs: {}

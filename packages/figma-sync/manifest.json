@@ -1,0 +1,9 @@
+{
+  "name": "Doras token sync",
+  "id": "doras-token-sync",
+  "api": "1.0.0",
+  "main": "dist/code.js",
+  "editorType": ["figma"],
+  "documentAccess": "dynamic-page",
+  "networkAccess": { "allowedDomains": ["none"] }
+}

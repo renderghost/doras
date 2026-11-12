@@ -36,16 +36,25 @@ interface Member {
 }
 
 /** Groups public tokens by namespace, with each theme's value side by side. */
+/** Where a public token lives in the Swift and Kotlin output: DorasTokens.<namespace>.<name>. */
+export function mobileName(token: { tier: string; path: string[] }): {
+  namespace: string;
+  name: string;
+} {
+  const path = token.tier === 'component' ? token.path.slice(1) : token.path;
+  const [head = '', ...rest] = path;
+  return { namespace: NAMESPACES[head] ?? pascal([head]), name: camel(rest) };
+}
+
 export function members(themes: Map<string, ResolvedToken[]>): Member[] {
   const order = [...themes.keys()];
   const first = themes.get(order[0] ?? '') ?? [];
   const lookup = order.map((t) => new Map((themes.get(t) ?? []).map((x) => [x.name, x])));
   return first.filter(isPublic).map((token) => {
-    const path = token.tier === 'component' ? token.path.slice(1) : token.path;
-    const [head = '', ...rest] = path;
+    const { namespace, name } = mobileName(token);
     return {
-      namespace: NAMESPACES[head] ?? pascal([head]),
-      name: camel(rest),
+      namespace,
+      name,
       token: token.name,
       description: token.description,
       values: lookup.map((map) => {

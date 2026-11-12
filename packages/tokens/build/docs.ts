@@ -1,6 +1,7 @@
 // Writes tokens.json for documentation and the Figma sync, and a small typed
 // entry point that maps token names to CSS custom properties.
 import { cssDeclarations, cssName, isPublic } from './css.ts';
+import { mobileName } from './mobile.ts';
 import type { ResolvedToken, Tier } from './resolve.ts';
 import { aliasOf } from './values.ts';
 
@@ -13,14 +14,28 @@ export interface DocToken {
   cssVar: string | null;
   /** The Windows forced-colours system colour, for colours that have one. */
   forcedColor: string | null;
-  /** For each theme: the resolved value, its CSS, and the token it refers to, if any. */
-  values: Record<string, { value: unknown; css: string | null; aliasOf: string | null }>;
+  /** The name in code on each platform, or null for primitives. */
+  code: { web: string; ios: string; android: string } | null;
+  /**
+   * For each theme: the resolved value, the value as written (which may hold
+   * references), its CSS, and the token it refers to, if it's a single reference.
+   */
+  values: Record<
+    string,
+    { value: unknown; original: unknown; css: string | null; aliasOf: string | null }
+  >;
 }
 
 export interface DocTokens {
   themes: string[];
   defaultTheme: string;
   tokens: DocToken[];
+}
+
+function codeNames(token: ResolvedToken): { web: string; ios: string; android: string } {
+  const { namespace, name } = mobileName(token);
+  const mobile = `DorasTokens.${namespace}.${name}`;
+  return { web: `var(${cssName(token.path)})`, ios: mobile, android: mobile };
 }
 
 export function renderDocs(
@@ -45,7 +60,12 @@ export function renderDocs(
             )
             .join('; ')
         : null;
-      values[theme] = { value: t.value, css, aliasOf: aliasOf(t.original) ?? null };
+      values[theme] = {
+        value: t.value,
+        original: t.original,
+        css,
+        aliasOf: aliasOf(t.original) ?? null,
+      };
     }
     const forced = (token.extensions?.['org.doras'] as { forcedColor?: string } | undefined)
       ?.forcedColor;
@@ -56,6 +76,7 @@ export function renderDocs(
       description: token.description ?? null,
       cssVar: isPublic(token) ? cssName(token.path) : null,
       forcedColor: forced ?? null,
+      code: isPublic(token) ? codeNames(token) : null,
       values,
     };
   });
