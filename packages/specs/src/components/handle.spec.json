@@ -1,0 +1,81 @@
+{
+  "$schema": "../../schema/component.schema.json",
+  "name": "Handle",
+  "group": "Identity",
+  "summary": "An Atmosphere handle, always with an @, isolated so it reads correctly inside Arabic text, and breaking after its dots when long.",
+  "usage": {
+    "when": ["Wherever a handle appears in running text."],
+    "whenNot": [
+      {
+        "text": "For typing a handle.",
+        "instead": "Handle field"
+      }
+    ]
+  },
+  "anatomy": [
+    {
+      "part": "@ and handle",
+      "description": "Isolated as one unit."
+    }
+  ],
+  "props": [
+    {
+      "name": "handle",
+      "type": "string",
+      "description": "The handle, with or without its @.",
+      "required": true
+    }
+  ],
+  "states": [
+    {
+      "name": "Default",
+      "description": "@sam.bsky.social."
+    },
+    {
+      "name": "Long",
+      "description": "Breaks after its dots, then anywhere, never overflowing."
+    }
+  ],
+  "events": [],
+  "accessibility": {
+    "role": "text",
+    "name": "None.",
+    "keyboard": [],
+    "screenReader": ["Read as text, with its @."]
+  },
+  "tokens": [],
+  "strings": [],
+  "related": [
+    {
+      "component": "Account row",
+      "relationship": "Shows it under the name."
+    }
+  ],
+  "content": {
+    "guidelines": ["Always show a handle with its @ in running text."],
+    "terms": [
+      {
+        "term": "Handle",
+        "meaning": "An Atmosphere account's username, such as @sam.bsky.social."
+      }
+    ]
+  },
+  "dosAndDonts": [
+    {
+      "do": "Show the whole handle.",
+      "dont": "Cut it short with an ellipsis."
+    }
+  ],
+  "evidence": [
+    {
+      "point": "Handles are isolated with <bdi> so their dots and @ don't reorder inside right-to-left text (#6)."
+    }
+  ],
+  "platforms": {
+    "web": {
+      "tag": "doras-handle",
+      "formAssociated": false,
+      "slots": []
+    }
+  }
+}

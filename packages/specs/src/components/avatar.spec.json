@@ -1,0 +1,125 @@
+{
+  "$schema": "../../schema/component.schema.json",
+  "name": "Avatar",
+  "group": "Identity",
+  "summary": "A person's picture, or their initials in any script when there's no picture or it doesn't load. Decorative when their name is shown beside it.",
+  "usage": {
+    "when": ["Beside an account's name and handle."],
+    "whenNot": [
+      {
+        "text": "For an app or provider.",
+        "instead": "App identity"
+      }
+    ]
+  },
+  "anatomy": [
+    {
+      "part": "Picture or initials",
+      "description": "The picture, or up to two initials, in a circle."
+    }
+  ],
+  "props": [
+    {
+      "name": "name",
+      "type": "string",
+      "description": "The person's name, for the initials and the accessible name.",
+      "required": true
+    },
+    {
+      "name": "src",
+      "type": "string",
+      "description": "The picture's URL. If it fails to load, the initials show."
+    },
+    {
+      "name": "size",
+      "type": "enum",
+      "description": "How big it is.",
+      "values": [
+        {
+          "value": "sm",
+          "description": "24px."
+        },
+        {
+          "value": "md",
+          "description": "32px."
+        },
+        {
+          "value": "lg",
+          "description": "40px."
+        },
+        {
+          "value": "xl",
+          "description": "56px."
+        }
+      ],
+      "default": "md"
+    },
+    {
+      "name": "decorative",
+      "type": "boolean",
+      "description": "Hides it from screen readers, when the name is shown beside it.",
+      "default": false
+    }
+  ],
+  "states": [
+    {
+      "name": "Picture",
+      "description": "The person's picture."
+    },
+    {
+      "name": "Initials",
+      "description": "Up to two initials, from whole graphemes, so emoji and any script work."
+    },
+    {
+      "name": "Failed picture",
+      "description": "Falls back to initials."
+    }
+  ],
+  "events": [],
+  "accessibility": {
+    "role": "img, unless decorative",
+    "name": "The person's name.",
+    "keyboard": [],
+    "screenReader": ["Announced as an image with the person's name, unless decorative."]
+  },
+  "tokens": [
+    "color.surface.subtle",
+    "color.border.default",
+    "color.text.default",
+    "border-width.default",
+    "radius.pill",
+    "size.avatar.sm",
+    "size.avatar.md",
+    "size.avatar.lg",
+    "size.avatar.xl",
+    "type.label.md"
+  ],
+  "strings": [],
+  "related": [
+    {
+      "component": "Account row",
+      "relationship": "Shows it beside the name and handle."
+    }
+  ],
+  "content": {
+    "guidelines": ["Initials come from the first and last words of the name."]
+  },
+  "dosAndDonts": [
+    {
+      "do": "Make it decorative beside the name.",
+      "dont": "Announce the name twice."
+    }
+  ],
+  "evidence": [
+    {
+      "point": "Neutral colours, not the feedback colours the prototype tinted avatars with, so no avatar looks like an error."
+    }
+  ],
+  "platforms": {
+    "web": {
+      "tag": "doras-avatar",
+      "formAssociated": false,
+      "slots": []
+    }
+  }
+}

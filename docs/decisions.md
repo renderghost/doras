@@ -172,6 +172,20 @@ Settled while building it ([#10](https://github.com/renderghost/doras/issues/10)
 - **Codes:** shown grouped and left to right. Screen readers get the digits spaced (“4 8 2 9 1 3”), so they're read one by one, not as a number.
 - **Roles checkers can see:** a permission item sets `role="listitem"` as an attribute. Browsers understand a role set through `ElementInternals`, but axe and Testing Library don't yet.
 
+### Identity
+
+Settled while building it ([#11](https://github.com/renderghost/doras/issues/11)):
+
+- **Initials in any script:** taken as whole graphemes from the first and last words, so emoji, accents, Japanese and Arabic names come out whole.
+- **Neutral avatars:** the prototype tinted avatars with the feedback colours. Doras uses neutral ones, so no avatar looks like an error.
+- **Provider logos aren't drawn or guessed:**
+  - Each provider is listed in `providers.ts` with its logo file, the logo's source and who gave permission.
+  - No logo has a recorded permission yet, so badges show a plain initial.
+  - An address someone typed shows a globe.
+  - A logo can be swapped or removed by editing one entry.
+- **The link badge stays centred:** it's centred with `inset: 0; margin: auto`, not a transform, so it stays exactly on the seam in right-to-left layouts too. A test measures it.
+- **Handles break after their dots,** then anywhere, and are never cut short with an ellipsis.
+
 ### Fonts, icons and motion
 
 - **Fonts and icons:** Inter, loaded from Google Fonts, and Lucide icons.

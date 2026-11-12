@@ -5,8 +5,11 @@ import { within } from 'shadow-dom-testing-library';
 import { html } from 'lit';
 
 /** A catalogue string in the locale an element is in, as people see it. */
-export const textIn = (element: Element, key: MessageKey): string =>
-  withoutIsolation(format(localeOf(element), key));
+export const textIn = (
+  element: Element,
+  key: MessageKey,
+  values?: Record<string, string | number>,
+): string => withoutIsolation(format(localeOf(element), key, values));
 
 /** A catalogue string in the toolbar's locale, for a story's sample text. */
 export const textFor = (globals: Record<string, unknown>, key: MessageKey): string =>

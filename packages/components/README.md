@@ -47,6 +47,19 @@ The app validates; fields show the result. Set `error` to a catalogue message to
 | `<doras-formatted-code>`  | A code grouped for reading, and read digit by digit.                          |
 | `<doras-atmosphere-mark>` | The placeholder mark, named or decorative.                                    |
 
+## Identity (#11)
+
+| Element                   | What it does                                                                    |
+| ------------------------- | ------------------------------------------------------------------------------- |
+| `<doras-avatar>`          | A picture, or initials in any script. Decorative beside a name.                 |
+| `<doras-handle>`          | A handle with its @, isolated, breaking after its dots.                         |
+| `<doras-account-row>`     | Avatar, name, handle and “Hosted by”, with a “Did you mean” style.              |
+| `<doras-provider-badge>`  | A provider's name and logo, from the provider list.                             |
+| `<doras-app-identity>`    | The app's name, logo and verified domain.                                       |
+| `<doras-linked-accounts>` | The app and the account in two cards, with the link badge centred between them. |
+
+Provider logos live in `src/provider-badge/logos/`, each listed in `providers.ts` with its source and permission. None is there yet: see that folder's README.
+
 ## Things to know
 
 - **Buttons are never disabled.** While busy, presses do nothing, and the busy label says what's happening.

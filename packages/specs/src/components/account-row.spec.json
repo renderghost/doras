@@ -1,0 +1,137 @@
+{
+  "$schema": "../../schema/component.schema.json",
+  "name": "Account row",
+  "group": "Identity",
+  "summary": "An Atmosphere account at a glance: avatar, name, handle and “Hosted by [provider]”, with a “Did you mean” style for corrections.",
+  "usage": {
+    "when": ["In lists of accounts, such as suggestions and the browser's account chooser."],
+    "whenNot": [
+      {
+        "text": "For the app and account together.",
+        "instead": "Linked accounts"
+      }
+    ]
+  },
+  "anatomy": [
+    {
+      "part": "Avatar",
+      "description": "Decorative, because the name is shown."
+    },
+    {
+      "part": "Name and handle",
+      "description": "The name, and the handle under it."
+    },
+    {
+      "part": "Hosted by",
+      "description": "The provider's badge and name.",
+      "optional": true
+    },
+    {
+      "part": "Did you mean",
+      "description": "In the automated style, above the row.",
+      "optional": true
+    }
+  ],
+  "props": [
+    {
+      "name": "name",
+      "type": "string",
+      "description": "The account's name.",
+      "required": true
+    },
+    {
+      "name": "handle",
+      "type": "string",
+      "description": "The account's handle.",
+      "required": true
+    },
+    {
+      "name": "avatar",
+      "type": "string",
+      "description": "The account's picture."
+    },
+    {
+      "name": "provider",
+      "type": "string",
+      "description": "The hosting provider: a known provider's id, or its name."
+    },
+    {
+      "name": "didYouMean",
+      "type": "boolean",
+      "description": "Shows “Did you mean”, in the automated style, for a correction.",
+      "default": false
+    }
+  ],
+  "states": [
+    {
+      "name": "Default",
+      "description": "Avatar, name, handle and provider."
+    },
+    {
+      "name": "Did you mean",
+      "description": "On the automated surface, with “Did you mean”."
+    },
+    {
+      "name": "Long or right-to-left names",
+      "description": "Wrap rather than overflow."
+    }
+  ],
+  "events": [],
+  "accessibility": {
+    "role": "text",
+    "name": "None.",
+    "keyboard": [],
+    "screenReader": ["Read as the name, the handle, then “Hosted by [provider]”."]
+  },
+  "tokens": [
+    "color.text.default",
+    "color.text.subtle",
+    "color.text.automated",
+    "color.feedback.automated.surface",
+    "radius.control",
+    "space.inset.sm",
+    "space.inline.md",
+    "space.inline.xs",
+    "space.stack.xs",
+    "type.label.md",
+    "type.label.sm",
+    "type.body.sm",
+    "type.caption"
+  ],
+  "strings": ["identity.hostedBy", "handle.didYouMean"],
+  "related": [
+    {
+      "component": "Avatar",
+      "relationship": "Its picture."
+    },
+    {
+      "component": "Handle",
+      "relationship": "Its handle."
+    },
+    {
+      "component": "Provider badge",
+      "relationship": "Its provider."
+    }
+  ],
+  "content": {
+    "guidelines": ["“Hosted by” names the provider, never “PDS” or “server”."]
+  },
+  "dosAndDonts": [
+    {
+      "do": "Show who hosts the account.",
+      "dont": "Call the provider a server."
+    }
+  ],
+  "evidence": [
+    {
+      "point": "Naming the host helps people tell two accounts with similar names apart (prototype research)."
+    }
+  ],
+  "platforms": {
+    "web": {
+      "tag": "doras-account-row",
+      "formAssociated": false,
+      "slots": []
+    }
+  }
+}

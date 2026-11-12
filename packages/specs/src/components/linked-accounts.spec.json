@@ -1,0 +1,145 @@
+{
+  "$schema": "../../schema/component.schema.json",
+  "name": "Linked accounts",
+  "group": "Identity",
+  "summary": "The app and the Atmosphere account in two cards, with the link badge centred on the seam between them.",
+  "usage": {
+    "when": ["On the Connect page, to show what's being connected."],
+    "whenNot": [
+      {
+        "text": "For a single account.",
+        "instead": "Account row"
+      }
+    ]
+  },
+  "anatomy": [
+    {
+      "part": "App card",
+      "description": "The app's identity."
+    },
+    {
+      "part": "Account card",
+      "description": "The account's avatar, handle and provider."
+    },
+    {
+      "part": "Link badge",
+      "description": "Centred on the seam between the cards. Decorative."
+    }
+  ],
+  "props": [
+    {
+      "name": "appName",
+      "type": "string",
+      "description": "The app's name.",
+      "required": true
+    },
+    {
+      "name": "appDomain",
+      "type": "string",
+      "description": "The app's verified domain.",
+      "required": true
+    },
+    {
+      "name": "appLogo",
+      "type": "string",
+      "description": "The app's logo URL."
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "The account's name, for its avatar.",
+      "required": true
+    },
+    {
+      "name": "handle",
+      "type": "string",
+      "description": "The account's handle.",
+      "required": true
+    },
+    {
+      "name": "avatar",
+      "type": "string",
+      "description": "The account's picture."
+    },
+    {
+      "name": "provider",
+      "type": "string",
+      "description": "The hosting provider's id or name.",
+      "required": true
+    }
+  ],
+  "states": [
+    {
+      "name": "Default",
+      "description": "Two cards and the centred link badge."
+    },
+    {
+      "name": "Right to left",
+      "description": "The badge stays centred."
+    }
+  ],
+  "events": [],
+  "accessibility": {
+    "role": "text",
+    "name": "None.",
+    "keyboard": [],
+    "screenReader": [
+      "Read as the app's name and domain, then the handle and its provider. The link badge is decorative; the page's heading says what's being connected."
+    ]
+  },
+  "tokens": [
+    "color.text.default",
+    "color.text.subtle",
+    "color.surface.raised",
+    "color.surface.default",
+    "color.border.strong",
+    "color.selected.surface",
+    "color.selected.border",
+    "color.selected.icon",
+    "border-width.default",
+    "radius.card",
+    "radius.pill",
+    "size.icon.lg",
+    "space.inset.md",
+    "space.inset.lg",
+    "space.inline.md",
+    "space.stack.xs",
+    "space.stack.2xs",
+    "type.label.lg",
+    "type.body.sm"
+  ],
+  "strings": ["identity.hostedBy"],
+  "related": [
+    {
+      "component": "App identity",
+      "relationship": "The app card."
+    },
+    {
+      "component": "Account row",
+      "relationship": "The account, in lists."
+    }
+  ],
+  "content": {
+    "guidelines": [
+      "The page's heading says what happens, such as “Connect Potluck to your Atmosphere account”."
+    ]
+  },
+  "dosAndDonts": [
+    {
+      "do": "Keep the link badge centred between the cards.",
+      "dont": "Move it to one side."
+    }
+  ],
+  "evidence": [
+    {
+      "point": "The link badge sits centred on the seam, for readability (prototype feedback)."
+    }
+  ],
+  "platforms": {
+    "web": {
+      "tag": "doras-linked-accounts",
+      "formAssociated": false,
+      "slots": []
+    }
+  }
+}
