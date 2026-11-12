@@ -1,8 +1,8 @@
 // The docs page template. A component whose meta has parameters.doras.spec
-// gets every section, from overview to evidence. Anything else gets
-// Storybook's usual page.
+// gets every section, from overview to evidence. A spec whose component
+// isn't built yet gets the same page without the live examples.
+import { measurementEvents } from '@doras/specs';
 import {
-  ArgTypes,
   Controls,
   Description,
   Heading,
@@ -19,6 +19,7 @@ import { token } from './tokens.ts';
 import './docs.css';
 
 function List({ items }: { items: ReactNode[] }) {
+  if (!items.length) return <p>None.</p>;
   return (
     <ul>
       {items.map((item, i) => (
@@ -37,42 +38,144 @@ function Section({ title, children }: { title: string; children: ReactNode }) {
   );
 }
 
-export function SpecSections({ spec }: { spec: ComponentSpec }) {
-  const ui = spec.events.filter((e) => e.kind === 'ui');
-  const measurement = spec.events.filter((e) => e.kind === 'measurement');
-  const eventTable = (events: ComponentSpec['events']) => (
-    <table className="doras-docs-table">
+function Table({ head, rows }: { head: string[]; rows: ReactNode[][] }) {
+  return (
+    <table className="doras-docs-table doras-docs-api">
       <thead>
         <tr>
-          <th scope="col">Event</th>
-          <th scope="col">When</th>
-          <th scope="col">Detail</th>
+          {head.map((h) => (
+            <th scope="col" key={h}>
+              {h}
+            </th>
+          ))}
         </tr>
       </thead>
       <tbody>
-        {events.map((e) => (
-          <tr key={e.name}>
-            <th scope="row">
-              <code>{e.name}</code>
-            </th>
-            <td>{e.when}</td>
-            <td>{e.detail ? <code>{e.detail}</code> : 'None'}</td>
+        {rows.map(([first, ...rest], i) => (
+          <tr key={i}>
+            <th scope="row">{first}</th>
+            {rest.map((cell, j) => (
+              <td key={j}>{cell}</td>
+            ))}
           </tr>
         ))}
       </tbody>
     </table>
   );
+}
 
+function PropsTable({ spec }: { spec: ComponentSpec }) {
+  return (
+    <Table
+      head={['Prop', 'Values', 'Default', 'What it does']}
+      rows={spec.props.map((p) => [
+        <code key="n">{p.name}</code>,
+        p.type === 'enum' ? (
+          <ul className="doras-docs-values">
+            {(p.values ?? []).map((v) => (
+              <li key={v.value}>
+                <code>{v.value}</code>: {v.description}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          p.type
+        ),
+        p.default === undefined ? (
+          p.required ? (
+            'Required'
+          ) : (
+            'None'
+          )
+        ) : (
+          <code>{JSON.stringify(p.default)}</code>
+        ),
+        p.description,
+      ])}
+    />
+  );
+}
+
+function EventsTables({ spec }: { spec: ComponentSpec }) {
+  const ui = spec.events.filter((e) => e.kind === 'ui');
+  const measured = spec.events.filter((e) => e.kind === 'measurement');
+  return (
+    <>
+      <h3>Events</h3>
+      {ui.length ? (
+        <Table
+          head={['Event', 'When', 'Carries']}
+          rows={ui.map((e) => [
+            <code key="n">{e.name}</code>,
+            e.when,
+            'detail' in e && e.detail
+              ? Object.entries(e.detail).map(([k, v]) => (
+                  <div key={k}>
+                    <code>
+                      {k}: {v.type}
+                    </code>{' '}
+                    {v.description}
+                  </div>
+                ))
+              : 'Nothing',
+          ])}
+        />
+      ) : (
+        <p>None.</p>
+      )}
+      <h3>Measurement events</h3>
+      <p>
+        Shared names for sign-in moments that apps can count, sent as <code>doras-measure</code>{' '}
+        events. Nothing personal is included, and Doras never sends them anywhere.
+      </p>
+      {measured.length ? (
+        <Table
+          head={['Event', 'When', 'Carries']}
+          rows={measured.map((e) => {
+            const listed = measurementEvents.find((m) => m.name === e.name);
+            const carries = Object.entries(listed?.carries ?? {});
+            return [
+              <code key="n">{e.name}</code>,
+              e.when,
+              carries.length
+                ? carries.map(([k, v]) => (
+                    <div key={k}>
+                      <code>{k}</code>: {v.values ? v.values.join(', ') : v.type}
+                    </div>
+                  ))
+                : 'Nothing',
+            ];
+          })}
+        />
+      ) : (
+        <p>None.</p>
+      )}
+    </>
+  );
+}
+
+export function SpecSections({ spec, live = true }: { spec: ComponentSpec; live?: boolean }) {
+  const web = spec.platforms.web;
+  const a11y = spec.accessibility;
   return (
     <>
       <p>{spec.summary}</p>
       <p className="doras-docs-muted">
-        <code>{`<${spec.tag}>`}</code> · {spec.group}
+        <code>{`<${web.tag}>`}</code> · {spec.group}
       </p>
 
       <Section title="Overview">
-        <Primary />
-        <Controls />
+        {live ? (
+          <>
+            <Primary />
+            <Controls />
+          </>
+        ) : (
+          <p className="doras-docs-note">
+            This component isn't built yet. This page is generated from its spec, which the build
+            implements.
+          </p>
+        )}
       </Section>
 
       <Section title="When to use it">
@@ -86,13 +189,22 @@ export function SpecSections({ spec }: { spec: ComponentSpec }) {
             </>
           ))}
         />
+        <h3>Related components</h3>
+        <List
+          items={spec.related.map((r) => (
+            <>
+              <strong>{r.component}:</strong> {r.relationship}
+            </>
+          ))}
+        />
       </Section>
 
       <Section title="Anatomy">
         <ol>
           {spec.anatomy.map((a) => (
             <li key={a.part}>
-              <strong>{a.part}:</strong> {a.description}
+              <strong>{a.part}</strong>
+              {a.optional && ' (optional)'}: {a.description}
             </li>
           ))}
         </ol>
@@ -106,52 +218,52 @@ export function SpecSections({ spec }: { spec: ComponentSpec }) {
             </>
           ))}
         />
-        <Stories title="" includePrimary={false} />
+        {live && <Stories title="Every state" includePrimary={false} />}
       </Section>
 
       <Section title="Props and events">
-        <ArgTypes />
-        <h3>Events</h3>
-        {ui.length ? eventTable(ui) : <p>None.</p>}
-        <h3>Measurement events</h3>
+        <PropsTable spec={spec} />
+        <EventsTables spec={spec} />
+        <h3>On the web</h3>
         <p>
-          Shared names for sign-in moments that apps can count. Nothing personal is included, and
-          Doras never sends them anywhere.
+          <code>{`<${web.tag}>`}</code>
+          {web.formAssociated ? ' takes part in forms, as native buttons and inputs do.' : '.'}{' '}
+          Props are properties, and kebab-case attributes.
         </p>
-        {measurement.length ? eventTable(measurement) : <p>None.</p>}
+        {web.slots.length > 0 && (
+          <Table
+            head={['Slot', 'What goes in it']}
+            rows={web.slots.map((s) => [
+              s.name ? <code key="n">{s.name}</code> : 'Default',
+              s.description,
+            ])}
+          />
+        )}
       </Section>
 
       <Section title="Accessibility">
         <p>
-          <strong>Role:</strong> {spec.accessibility.role}
+          <strong>Role:</strong> {a11y.role}
           <br />
-          <strong>Accessible name:</strong> {spec.accessibility.name}
+          <strong>Accessible name:</strong> {a11y.name}
         </p>
         <h3>Keyboard</h3>
-        <table className="doras-docs-table">
-          <thead>
-            <tr>
-              <th scope="col">Keys</th>
-              <th scope="col">What happens</th>
-            </tr>
-          </thead>
-          <tbody>
-            {spec.accessibility.keyboard.map((k) => (
-              <tr key={k.keys}>
-                <th scope="row">
-                  <kbd>{k.keys}</kbd>
-                </th>
-                <td>{k.action}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <Table
+          head={['Keys', 'What happens']}
+          rows={a11y.keyboard.map((k) => [<kbd key="k">{k.keys}</kbd>, k.action])}
+        />
         <h3>Screen readers</h3>
-        <List items={spec.accessibility.screenReader} />
-        {spec.accessibility.notes && (
+        <List items={a11y.screenReader} />
+        {a11y.announcements && (
+          <>
+            <h3>Announcements</h3>
+            <List items={a11y.announcements} />
+          </>
+        )}
+        {a11y.notes && (
           <>
             <h3>Notes</h3>
-            <List items={spec.accessibility.notes} />
+            <List items={a11y.notes} />
           </>
         )}
       </Section>
@@ -163,7 +275,11 @@ export function SpecSections({ spec }: { spec: ComponentSpec }) {
       <Section title="Content">
         <List items={spec.content.guidelines} />
         <h3>Strings</h3>
-        <StringsTable keys={spec.content.strings} />
+        {spec.strings.length ? (
+          <StringsTable keys={spec.strings as Parameters<typeof StringsTable>[0]['keys']} />
+        ) : (
+          <p>It shows no strings of its own: its text comes from the app.</p>
+        )}
         {spec.content.terms && (
           <>
             <h3>Words it uses</h3>

@@ -1,0 +1,30 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { MeasurementTable } from '../../docs/blocks.tsx';
+
+<Meta title="Foundations/Measurement events" />
+
+# Measurement events
+
+Doras announces key sign-in moments under shared names, such as `doras.account_found` or `doras.passkey_added`. Apps can count them, and because every app uses the same names, the Atmosphere community can compare sign-in across apps and improve it together.
+
+## Nothing personal, nothing sent
+
+- **Doras never sends data anywhere.** It only announces moments in the page. Each app decides whether to count them, and where.
+- **Nothing personal is included:** no handles, names, email addresses, providers' or apps' names, or codes. Events carry only a fixed set of values, a flag or a count. The spec schema rejects anything else.
+
+## Listening for them
+
+Components send a `doras-measure` event that bubbles out of their shadow roots to the document. Its `detail` holds the event's name and what it carries:
+
+```js
+document.addEventListener('doras-measure', (event) => {
+  const { name, ...carries } = event.detail;
+  analytics.count(name, carries); // Your own analytics, if you use any.
+});
+```
+
+In TypeScript, `@doras/specs` types `event.detail` as `DorasMeasurement`, so each name comes with exactly the fields it carries.
+
+## The list
+
+<MeasurementTable />

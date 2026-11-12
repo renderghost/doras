@@ -16,6 +16,7 @@
   },
   "devDependencies": {
     "@doras/i18n": "workspace:*",
+    "@doras/specs": "workspace:*",
     "@doras/tokens": "workspace:*",
     "@storybook/addon-a11y": "10.6.7",
     "@storybook/addon-designs": "12.0.0",

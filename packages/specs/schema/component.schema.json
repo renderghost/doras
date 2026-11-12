@@ -1,0 +1,493 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/renderghost/doras/blob/main/packages/specs/schema/component.schema.json",
+  "title": "ComponentSpec",
+  "description": "A platform-neutral spec for one Doras component. The web build implements it, Storybook's docs are generated from it, and mobile apps build from it. Everything outside platforms applies to every platform.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "name",
+    "group",
+    "summary",
+    "usage",
+    "anatomy",
+    "props",
+    "states",
+    "events",
+    "accessibility",
+    "tokens",
+    "strings",
+    "related",
+    "content",
+    "dosAndDonts",
+    "evidence",
+    "platforms"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "name": {
+      "description": "The component's name, as people say it, such as Button.",
+      "type": "string",
+      "pattern": "^[A-Z][A-Za-z ]*$"
+    },
+    "group": {
+      "description": "The behaviour group it's filed under. New groups are added here when a component fits none of these.",
+      "enum": [
+        "Actions",
+        "User input",
+        "Display",
+        "Identity",
+        "System feedback",
+        "Navigation",
+        "Containers",
+        "Browser mocks",
+        "Emails",
+        "Contributing"
+      ]
+    },
+    "summary": {
+      "description": "One or two sentences: what it is and what it's for.",
+      "type": "string",
+      "minLength": 1
+    },
+    "usage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["when", "whenNot"],
+      "properties": {
+        "when": {
+          "$ref": "#/$defs/sentences"
+        },
+        "whenNot": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["text"],
+            "properties": {
+              "text": {
+                "type": "string",
+                "minLength": 1
+              },
+              "instead": {
+                "description": "The component to use instead, by name.",
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "anatomy": {
+      "description": "Its named parts, in reading order.",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["part", "description"],
+        "properties": {
+          "part": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          },
+          "optional": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "props": {
+      "description": "What an app can set. Copy is never a prop: strings come from the catalogue, except text the app supplies, such as a button's label.",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/prop"
+      }
+    },
+    "states": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "description"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "events": {
+      "description": "UI events for the app to act on, and the measurement events it announces.",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/event"
+      }
+    },
+    "accessibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["role", "name", "keyboard", "screenReader"],
+      "properties": {
+        "role": {
+          "description": "The ARIA role, which each platform maps to its own (a button trait on iOS, Role.Button on Android).",
+          "type": "string",
+          "minLength": 1
+        },
+        "name": {
+          "description": "Where its accessible name comes from.",
+          "type": "string",
+          "minLength": 1
+        },
+        "keyboard": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["keys", "action"],
+            "properties": {
+              "keys": {
+                "type": "string",
+                "minLength": 1
+              },
+              "action": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        "screenReader": {
+          "$ref": "#/$defs/sentences"
+        },
+        "announcements": {
+          "$ref": "#/$defs/sentences"
+        },
+        "notes": {
+          "$ref": "#/$defs/sentences"
+        }
+      }
+    },
+    "tokens": {
+      "description": "The semantic or component tokens it uses. Never primitives.",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9-]*(\\.[a-z0-9][a-z0-9_-]*)+$"
+      }
+    },
+    "strings": {
+      "description": "The catalogue keys of the strings it shows itself.",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][A-Za-z0-9]*(\\.[a-z][A-Za-z0-9]*)+$"
+      }
+    },
+    "related": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["component", "relationship"],
+        "properties": {
+          "component": {
+            "type": "string",
+            "minLength": 1
+          },
+          "relationship": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "content": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["guidelines"],
+      "properties": {
+        "guidelines": {
+          "$ref": "#/$defs/sentences"
+        },
+        "terms": {
+          "description": "Words it uses, as the glossary defines them.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["term", "meaning"],
+            "properties": {
+              "term": {
+                "type": "string",
+                "minLength": 1
+              },
+              "meaning": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "dosAndDonts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["do", "dont"],
+        "properties": {
+          "do": {
+            "type": "string",
+            "minLength": 1
+          },
+          "dont": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "evidence": {
+      "description": "Why it is the way it is: research, standards and decisions.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["point"],
+        "properties": {
+          "point": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["label", "href"],
+            "properties": {
+              "label": {
+                "type": "string",
+                "minLength": 1
+              },
+              "href": {
+                "type": "string",
+                "pattern": "^https://"
+              }
+            }
+          }
+        }
+      }
+    },
+    "platforms": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["web"],
+      "properties": {
+        "web": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["tag", "formAssociated", "slots"],
+          "properties": {
+            "tag": {
+              "type": "string",
+              "pattern": "^doras-[a-z]+(-[a-z]+)*$"
+            },
+            "formAssociated": {
+              "description": "Whether it takes part in a form, as native inputs and buttons do.",
+              "type": "boolean"
+            },
+            "slots": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["name", "description"],
+                "properties": {
+                  "name": {
+                    "description": "The slot's name, or an empty string for the default slot.",
+                    "type": "string",
+                    "pattern": "^([a-z]+(-[a-z]+)*)?$"
+                  },
+                  "description": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "sentences": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "title": "Sentences"
+    },
+    "prop": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "type", "description"],
+      "properties": {
+        "name": {
+          "description": "camelCase. On the web it's a property, and a kebab-case attribute.",
+          "type": "string",
+          "pattern": "^[a-z][A-Za-z0-9]*$"
+        },
+        "type": {
+          "enum": ["string", "boolean", "number", "enum"]
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "values": {
+          "description": "For enum props: every allowed value, with what it means.",
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["value", "description"],
+            "properties": {
+              "value": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9-]*$"
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        "default": {
+          "type": ["string", "boolean", "number"]
+        },
+        "required": {
+          "type": "boolean"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "enum"
+              }
+            }
+          },
+          "then": {
+            "required": ["values", "default"]
+          },
+          "else": {
+            "not": {
+              "required": ["values"]
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "boolean"
+              }
+            }
+          },
+          "then": {
+            "description": "Boolean props are off unless set, as HTML boolean attributes are.",
+            "properties": {
+              "default": {
+                "const": false
+              }
+            },
+            "required": ["default"]
+          }
+        }
+      ],
+      "title": "PropSpec"
+    },
+    "event": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["name", "kind", "when"],
+          "properties": {
+            "name": {
+              "description": "The event's name: a native event such as click, or doras- and a verb.",
+              "type": "string",
+              "pattern": "^([a-z]+|doras-[a-z]+(-[a-z]+)*)$"
+            },
+            "kind": {
+              "const": "ui"
+            },
+            "when": {
+              "type": "string",
+              "minLength": 1
+            },
+            "detail": {
+              "description": "What the event carries, by field.",
+              "type": "object",
+              "additionalProperties": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["type", "description"],
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "description": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["name", "kind", "when"],
+          "properties": {
+            "name": {
+              "description": "A name from the measurement events list.",
+              "type": "string",
+              "pattern": "^doras\\.[a-z]+(_[a-z]+)*$"
+            },
+            "kind": {
+              "const": "measurement"
+            },
+            "when": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      ],
+      "title": "EventSpec"
+    }
+  }
+}

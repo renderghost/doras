@@ -4,6 +4,7 @@
 import { catalogues, format, withoutIsolation, type Locale, type MessageKey } from '@doras/i18n';
 import { IntlMessageFormat } from 'intl-messageformat';
 import source from '@doras/i18n/messages/en-GB.json';
+import { measurementEvents } from '@doras/specs';
 import { Unstyled } from '@storybook/addon-docs/blocks';
 import type { IconNode } from 'lucide';
 import { createElement, useState, type CSSProperties, type ReactNode } from 'react';
@@ -381,6 +382,57 @@ export function StringsTable({ keys }: { keys: readonly MessageKey[] }) {
           ))}
         </tbody>
       </table>
+    </Unstyled>
+  );
+}
+
+/** Every measurement event, by journey, with when it fires and what it carries. */
+export function MeasurementTable() {
+  const journeys = [...new Set(measurementEvents.map((e) => e.journey))];
+  return (
+    <Unstyled>
+      {journeys.map((journey) => (
+        <section key={journey}>
+          <h3 className="doras-docs-subheading">{journey}</h3>
+          <table className="doras-docs-table">
+            <thead>
+              <tr>
+                <th scope="col">Event</th>
+                <th scope="col">When</th>
+                <th scope="col">Carries</th>
+              </tr>
+            </thead>
+            <tbody>
+              {measurementEvents
+                .filter((e) => e.journey === journey)
+                .map((e) => (
+                  <tr key={e.name}>
+                    <th scope="row" style={{ inlineSize: '16rem' }}>
+                      <code>{e.name}</code>
+                    </th>
+                    <td>{e.when}</td>
+                    <td>
+                      {Object.entries(e.carries).length
+                        ? Object.entries(e.carries).map(([k, v]) => (
+                            <div key={k}>
+                              <code>{k}</code>: {v.description}{' '}
+                              <span className="doras-docs-muted">
+                                {v.values
+                                  ? v.values.join(', ')
+                                  : v.type === 'integer'
+                                    ? 'a count'
+                                    : 'true or false'}
+                              </span>
+                            </div>
+                          ))
+                        : 'Nothing'}
+                    </td>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
+        </section>
+      ))}
     </Unstyled>
   );
 }

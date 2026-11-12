@@ -69,6 +69,7 @@ const preview: Preview = {
             'Motion',
             'Icons',
             'Localisation',
+            'Measurement events',
             'All tokens',
           ],
           'Actions',
