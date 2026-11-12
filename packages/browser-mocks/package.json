@@ -2,12 +2,32 @@
   "name": "@doras/browser-mocks",
   "version": "0.0.0",
   "private": true,
-  "description": "Look-alikes of the browser\u2019s own UI, for Storybook only.",
+  "description": "Look-alikes of the browser’s own UI, for Storybook only.",
   "license": "MIT OR Apache-2.0",
   "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/renderghost/doras.git",
     "directory": "packages/browser-mocks"
+  },
+  "sideEffects": [
+    "./dist/**/*.js"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json"
+  },
+  "dependencies": {
+    "@doras/components": "workspace:*",
+    "lit": "^3.3.3"
   }
 }

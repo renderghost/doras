@@ -1,15 +1,22 @@
 import { Meta } from '@storybook/addon-docs/blocks';
+import { MOCK_WARNING } from '../../docs/mock.ts';
 
 <Meta title="Browser mocks/Overview" />
 
 # Browser mocks
 
-Look-alikes of the UI the browser draws itself, so flows can be clicked through. Never for production: real browsers draw their own.
+<p className="doras-docs-mock" role="note">
+  {MOCK_WARNING}
+</p>
 
-## Coming
+Look-alikes of the UI the browser draws itself, so flows can be clicked through. Real browsers draw their own, so these live in `@doras/browser-mocks`, which is never published. A production package that imports one fails to build.
 
-Built in [#15](https://github.com/renderghost/doras/issues/15):
+Each page says which browser API makes the browser show it, so you know what to call instead.
 
-- Account chooser
-- Passkey prompts
-- Autofill suggestions
+## Components
+
+Built in [#15](https://github.com/renderghost/doras/issues/15). Each has its own page: what it shows, what triggers it, and working examples.
+
+- [Account chooser](?path=/docs/browser-mocks-account-chooser--docs): the browser’s list of Atmosphere accounts (FedCM).
+- [Passkey prompt](?path=/docs/browser-mocks-passkey-prompt--docs): signing in with a passkey, making one, using a phone or tablet, no passkey on this device, and cancelling (WebAuthn).
+- [Autofill](?path=/docs/browser-mocks-autofill--docs): a saved passkey, and a code from Mail (`autocomplete`).

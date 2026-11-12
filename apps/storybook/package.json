@@ -15,6 +15,7 @@
     "build": "storybook build --quiet -o storybook-static"
   },
   "devDependencies": {
+    "@doras/browser-mocks": "workspace:*",
     "@doras/components": "workspace:*",
     "@doras/i18n": "workspace:*",
     "@doras/specs": "workspace:*",

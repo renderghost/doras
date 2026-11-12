@@ -257,6 +257,22 @@ They live in a package that is never published and that production code can't de
 
 **Why:** the browser draws these for real, but the flows don't make sense without them.
 
+Settled while building them ([#15](https://github.com/renderghost/doras/issues/15)):
+
+- **Kept out of production three ways:**
+  - Every production package's build runs `scripts/check-no-mocks.ts` first, and fails if anything imports `@doras/browser-mocks` or a path into it.
+  - ESLint flags the same import in an editor.
+  - A workspace test fails if any package but Storybook depends on the mocks.
+- **They look like the browser, not Doras:** the system font and plain, compact controls, with a “Drawn by the browser” tag on each. Colours come from the tokens, so they stay readable in every theme and in forced colours.
+- **English, left to right:** the browser speaks its own language, not the app's, so on an Arabic page a browser set to English still draws its UI in English, left to right. None of this ships.
+- **No specs:** specs describe what ships. Each mock's docs page says instead which browser API shows it, with the call to make.
+- **Events stand in for the browser's answer:**
+  - `doras-mock-pick`, `doras-mock-other` and `doras-mock-dismiss` from the account chooser.
+  - `doras-mock-passkey` and `doras-mock-cancel` from the passkey prompt. A cancel carries `NotAllowedError`, as the page's call would reject.
+  - `doras-mock-autofill` from autofill.
+  - The flows (#16) listen for these.
+- **The QR code is a picture of one,** never a real code, so nothing can scan it.
+
 ### Potluck and providers in stories
 
 Potluck is the default sample app, shown as a backdrop, not built as components. Providers use their real names and logos, kept as swappable files with their source and permission recorded.
