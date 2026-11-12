@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { expect } from 'storybook/test';
 import { argTypesFromSpec, argsFromSpec } from '../../docs/controls.ts';
-import { host, inner, textIn } from './helpers.ts';
+import { host, inner, textIn } from '../helpers.ts';
 
 interface Args {
   text: string;

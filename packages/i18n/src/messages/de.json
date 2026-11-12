@@ -9,6 +9,15 @@
     "identity.hostedBy": "Gehostet von {provider}",
     "email.recovery.codeLifetime": "Der Code ist {minutes, plural, one {# Minute} other {# Minuten}} lang gültig.",
     "email.recovery.noLinks": "Wir schicken nie einen Anmeldelink per E-Mail. Wenn eine E-Mail Sie auffordert, zum Anmelden zu klicken, ist sie nicht von uns.",
-    "link.opensInNewTab": "(öffnet in einem neuen Tab)"
+    "link.opensInNewTab": "(öffnet in einem neuen Tab)",
+    "field.errorPrefix": "Fehler:",
+    "password.show": "Passwort anzeigen",
+    "password.hide": "Passwort verbergen",
+    "handle.didYouMean": "Meinten Sie",
+    "handle.readAs": "Wir haben {typed} als {handle} gelesen.",
+    "handle.fixAtSign": "Handles enthalten Punkte, kein @ in der Mitte.",
+    "handle.fixEnding": "{ending} ist keine Handle-Endung. Handles bei {provider} enden auf {correct}.",
+    "handle.fixLink": "Wir haben das Handle aus dem Profil-Link übernommen.",
+    "handle.suggestionCount": "{count, plural, =0 {Keine passenden Konten} one {# passendes Konto} other {# passende Konten}}"
   }
 }

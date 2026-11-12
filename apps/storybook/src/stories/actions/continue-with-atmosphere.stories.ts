@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { expect, fn, userEvent } from 'storybook/test';
 import { argTypesFromSpec, argsFromSpec } from '../../docs/controls.ts';
-import { focusInside, host, inner, textIn } from './helpers.ts';
+import { focusInside, host, inner, textIn } from '../helpers.ts';
 
 interface Args {
   fullWidth: boolean;

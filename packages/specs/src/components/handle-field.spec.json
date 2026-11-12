@@ -1,0 +1,293 @@
+{
+  "$schema": "../../schema/component.schema.json",
+  "name": "Handle field",
+  "group": "User input",
+  "summary": "Finds an Atmosphere account by its handle or the person's name. It forgives how people type handles, suggests accounts as they type, and says when it understood something differently.",
+  "usage": {
+    "when": [
+      "To find someone's Atmosphere account in Front Door, or to type the handle from a recovery email."
+    ],
+    "whenNot": [
+      {
+        "text": "To choose a new handle when signing up.",
+        "instead": "Text field"
+      }
+    ]
+  },
+  "anatomy": [
+    {
+      "part": "Label",
+      "description": "Says what to type."
+    },
+    {
+      "part": "Hint",
+      "description": "Help, such as an example.",
+      "optional": true
+    },
+    {
+      "part": "Input",
+      "description": "Where people type."
+    },
+    {
+      "part": "Suggestions",
+      "description": "Matching accounts, as a list under the input. “Did you mean” suggestions are in the automated style.",
+      "optional": true
+    },
+    {
+      "part": "Message",
+      "description": "An error, or what the field understood, such as “We read sam@bsky.social as @sam.bsky.social”.",
+      "optional": true
+    }
+  ],
+  "props": [
+    {
+      "name": "label",
+      "type": "string",
+      "description": "The field's label. Pass a catalogue string.",
+      "required": true
+    },
+    {
+      "name": "hint",
+      "type": "string",
+      "description": "Help under the label, such as an example. Pass a catalogue string."
+    },
+    {
+      "name": "error",
+      "type": "string",
+      "description": "The error message. Setting it marks the field invalid; clearing it marks it valid. The app validates."
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "The name the form submits the value under."
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "description": "What's in the field."
+    },
+    {
+      "name": "required",
+      "type": "boolean",
+      "description": "Whether it must be filled in. Screen readers say so; the app checks it.",
+      "default": false
+    },
+    {
+      "name": "suggestions",
+      "type": "list",
+      "description": "The accounts to suggest. The app looks them up when it hears doras-query.",
+      "items": "handle, and optionally name, hostedBy, and didYouMean for a correction"
+    }
+  ],
+  "states": [
+    {
+      "name": "Default",
+      "description": "Empty or filled."
+    },
+    {
+      "name": "Focus",
+      "description": "A 2px focus ring, and a darker border."
+    },
+    {
+      "name": "Invalid",
+      "description": "A red border and surface, and the error message under it."
+    },
+    {
+      "name": "Autofilled",
+      "description": "Filled by the browser, in the theme's colours."
+    },
+    {
+      "name": "Suggesting",
+      "description": "Matching accounts show under the input."
+    },
+    {
+      "name": "Did you mean",
+      "description": "A suggestion that corrects a slip, in the automated style."
+    },
+    {
+      "name": "Understood differently",
+      "description": "After leaving the field, an automated message says how it read what was typed."
+    }
+  ],
+  "events": [
+    {
+      "name": "doras-input",
+      "kind": "ui",
+      "when": "The value changes, but never while text is still being composed with an input method, such as Japanese. Once a field has an error, validate live on this.",
+      "detail": {
+        "value": {
+          "type": "string",
+          "description": "The new value."
+        }
+      }
+    },
+    {
+      "name": "change",
+      "kind": "ui",
+      "when": "Someone leaves the field after changing it."
+    },
+    {
+      "name": "doras-query",
+      "kind": "ui",
+      "when": "The text changes, so the app can look up accounts. Never while text is being composed.",
+      "detail": {
+        "text": {
+          "type": "string",
+          "description": "What's typed."
+        }
+      }
+    },
+    {
+      "name": "doras-select",
+      "kind": "ui",
+      "when": "A suggestion is chosen.",
+      "detail": {
+        "handle": {
+          "type": "string",
+          "description": "The chosen handle, without an @."
+        }
+      }
+    }
+  ],
+  "accessibility": {
+    "role": "combobox, with a listbox of suggestions (ARIA 1.2)",
+    "name": "Its label.",
+    "keyboard": [
+      {
+        "keys": "Tab",
+        "action": "Moves focus to the input."
+      },
+      {
+        "keys": "Down arrow and up arrow",
+        "action": "Move through the suggestions."
+      },
+      {
+        "keys": "Enter",
+        "action": "Chooses the highlighted suggestion, or submits the form."
+      },
+      {
+        "keys": "Escape",
+        "action": "Closes the suggestions."
+      }
+    ],
+    "screenReader": [
+      "Announced as a combobox with its label, hint and any message.",
+      "The highlighted suggestion is announced as people move, and the number of matching accounts as suggestions appear."
+    ],
+    "announcements": [
+      "“3 matching accounts”, politely, as suggestions change.",
+      "What it understood, politely, after someone leaves the field."
+    ],
+    "notes": [
+      "It accepts a leading @, email-style handles such as sam@bsky.social, profile links, and common slips such as bsky.app.",
+      "Handles up to 253 characters break safely in the suggestions.",
+      "Lookups are the app's job: the field never calls the network."
+    ]
+  },
+  "tokens": [
+    "color.text.default",
+    "color.text.subtle",
+    "color.text.error",
+    "color.surface.default",
+    "color.border.control",
+    "color.border.emphasis",
+    "color.border.error",
+    "color.feedback.error.surface",
+    "color.border.focus",
+    "border-width.focus",
+    "focus.offset",
+    "border-width.strong",
+    "radius.control",
+    "size.control.height",
+    "size.icon.sm",
+    "space.inset.md",
+    "space.stack.xs",
+    "space.inline.xs",
+    "type.label.md",
+    "type.body.sm",
+    "type.body.lg",
+    "color.text.automated",
+    "color.feedback.automated.surface",
+    "color.surface.raised",
+    "color.border.strong",
+    "color.action.secondary.surface-hover",
+    "border-width.default",
+    "radius.card",
+    "shadow.overlay",
+    "size.target.min",
+    "space.inset.xs",
+    "space.inset.sm",
+    "space.inline.sm",
+    "type.caption",
+    "type.label.sm"
+  ],
+  "strings": [
+    "field.errorPrefix",
+    "handle.didYouMean",
+    "handle.readAs",
+    "handle.fixAtSign",
+    "handle.fixEnding",
+    "handle.fixLink",
+    "handle.suggestionCount",
+    "identity.hostedBy"
+  ],
+  "related": [
+    {
+      "component": "Account row",
+      "relationship": "How each suggestion will look."
+    },
+    {
+      "component": "Notice",
+      "relationship": "The automated style it shares."
+    }
+  ],
+  "content": {
+    "guidelines": [
+      "Labels are short nouns, such as “Email address”.",
+      "Hints give an example, not instructions.",
+      "Error messages say what to do: “Enter your email address”, not “Invalid input”.",
+      "The hint gives real examples, such as “It's on your profile, like sam.bsky.social”."
+    ],
+    "terms": [
+      {
+        "term": "Handle",
+        "meaning": "An Atmosphere account's username, such as @sam.bsky.social. Always shown with an @ in running text."
+      }
+    ]
+  },
+  "dosAndDonts": [
+    {
+      "do": "Accept what people type and say how it was read.",
+      "dont": "Reject a handle because it starts with @ or uses the wrong ending."
+    }
+  ],
+  "evidence": [
+    {
+      "point": "Errors tied to the field with aria-describedby, and an “Error:” prefix, so screen reader users hear what's wrong and where.",
+      "source": {
+        "label": "GOV.UK Design System: error message",
+        "href": "https://design-system.service.gov.uk/components/error-message/"
+      }
+    },
+    {
+      "point": "Validating on submit, then live, is the least stressful timing (decision in #1)."
+    },
+    {
+      "point": "The combobox pattern with a listbox popup.",
+      "source": {
+        "label": "ARIA Authoring Practices: Combobox",
+        "href": "https://www.w3.org/WAI/ARIA/apg/patterns/combobox/"
+      }
+    },
+    {
+      "point": "The prototype's research found people type handles as emails and use bsky.app for bsky.social; forgiving both avoids dead ends."
+    }
+  ],
+  "platforms": {
+    "web": {
+      "tag": "doras-handle-field",
+      "formAssociated": true,
+      "slots": []
+    }
+  }
+}

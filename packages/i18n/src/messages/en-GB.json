@@ -33,6 +33,42 @@
     "link.opensInNewTab": {
       "message": "(opens in a new tab)",
       "description": "After a link's text, when the link opens in a new tab, so nobody is surprised by it."
+    },
+    "field.errorPrefix": {
+      "message": "Error:",
+      "description": "Read before a field's error message by screen readers, and hidden on screen. The message itself follows."
+    },
+    "password.show": {
+      "message": "Show password",
+      "description": "Accessible name of the button that shows the password as text."
+    },
+    "password.hide": {
+      "message": "Hide password",
+      "description": "Accessible name of the same button once the password is showing."
+    },
+    "handle.didYouMean": {
+      "message": "Did you mean",
+      "description": "Above a suggested account when what someone typed looks like a slip, such as bsky.app for bsky.social."
+    },
+    "handle.readAs": {
+      "message": "We read {typed} as {handle}.",
+      "description": "Under the handle field when Doras corrected what someone typed. {typed} is what they typed; {handle} is the handle, with its @."
+    },
+    "handle.fixAtSign": {
+      "message": "Handles use dots, not an @ in the middle.",
+      "description": "Follows handle.readAs when someone typed a handle like an email address, such as sam@bsky.social."
+    },
+    "handle.fixEnding": {
+      "message": "{ending} isn’t a handle ending. Handles hosted by {provider} end in {correct}.",
+      "description": "Follows handle.readAs when someone typed a common mix-up, such as bsky.app. {provider} is the provider's name, such as Bluesky."
+    },
+    "handle.fixLink": {
+      "message": "We took the handle from the profile link.",
+      "description": "Follows handle.readAs when someone pasted a profile link."
+    },
+    "handle.suggestionCount": {
+      "message": "{count, plural, =0 {No matching accounts} one {# matching account} other {# matching accounts}}",
+      "description": "Announced to screen readers as suggestions appear under the handle field."
     }
   }
 }

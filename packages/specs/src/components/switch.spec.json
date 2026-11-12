@@ -1,0 +1,163 @@
+{
+  "$schema": "../../schema/component.schema.json",
+  "name": "Switch",
+  "group": "User input",
+  "summary": "Turns one optional thing on or off, such as an optional permission on the Connect page.",
+  "usage": {
+    "when": [
+      "For an optional setting that takes effect as a whole, such as letting an app see your email address."
+    ],
+    "whenNot": [
+      {
+        "text": "For a choice between options.",
+        "instead": "Radio cards"
+      },
+      {
+        "text": "For agreeing to terms: use a checkbox."
+      }
+    ]
+  },
+  "anatomy": [
+    {
+      "part": "Label",
+      "description": "What it turns on."
+    },
+    {
+      "part": "Description",
+      "description": "What that means.",
+      "optional": true
+    },
+    {
+      "part": "Track and thumb",
+      "description": "Shows on or off."
+    }
+  ],
+  "props": [
+    {
+      "name": "label",
+      "type": "string",
+      "description": "What it turns on. Pass a catalogue string.",
+      "required": true
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "description": "What turning it on means."
+    },
+    {
+      "name": "checked",
+      "type": "boolean",
+      "description": "Whether it's on.",
+      "default": false
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "The name the form submits the value under."
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "description": "What the form submits when it's on.",
+      "default": "on"
+    }
+  ],
+  "states": [
+    {
+      "name": "Off",
+      "description": "The thumb at the start."
+    },
+    {
+      "name": "On",
+      "description": "The thumb at the end, in the selected colours."
+    },
+    {
+      "name": "Focus",
+      "description": "A 2px focus ring."
+    }
+  ],
+  "events": [
+    {
+      "name": "change",
+      "kind": "ui",
+      "when": "It's turned on or off."
+    }
+  ],
+  "accessibility": {
+    "role": "switch",
+    "name": "Its label; its description is tied to it.",
+    "keyboard": [
+      {
+        "keys": "Tab",
+        "action": "Moves focus to it."
+      },
+      {
+        "keys": "Enter or Space",
+        "action": "Turns it on or off."
+      }
+    ],
+    "screenReader": ["Announced as a switch with its label, and “on” or “off”."],
+    "notes": [
+      "The whole row is the target, at least 44px high.",
+      "On and off differ by position as well as colour."
+    ]
+  },
+  "tokens": [
+    "color.text.default",
+    "color.text.subtle",
+    "color.surface.subtle",
+    "color.border.control",
+    "color.selected.surface",
+    "color.selected.border",
+    "color.selected.icon",
+    "color.border.focus",
+    "border-width.focus",
+    "focus.offset",
+    "border-width.strong",
+    "radius.pill",
+    "size.icon.lg",
+    "size.target.min",
+    "space.inset.xs",
+    "space.inline.md",
+    "space.stack.2xs",
+    "type.label.md",
+    "type.body.sm",
+    "motion.duration.fast",
+    "motion.easing.standard"
+  ],
+  "strings": [],
+  "related": [
+    {
+      "component": "Permission item",
+      "relationship": "The Connect page's permissions, which use it for optional ones."
+    }
+  ],
+  "content": {
+    "guidelines": [
+      "The label says what it turns on, not “Enable”.",
+      "Changes take effect when the form is submitted, not instantly, unless the page says otherwise."
+    ]
+  },
+  "dosAndDonts": [
+    {
+      "do": "Use it for one optional setting.",
+      "dont": "Use it for a required choice."
+    }
+  ],
+  "evidence": [
+    {
+      "point": "The switch pattern.",
+      "source": {
+        "label": "ARIA Authoring Practices: Switch",
+        "href": "https://www.w3.org/WAI/ARIA/apg/patterns/switch/"
+      }
+    }
+  ],
+  "platforms": {
+    "web": {
+      "tag": "doras-switch",
+      "formAssociated": true,
+      "slots": []
+    }
+  }
+}

@@ -1,0 +1,194 @@
+{
+  "$schema": "../../schema/component.schema.json",
+  "name": "Radio cards",
+  "group": "User input",
+  "summary": "A choice between a few options, such as a provider or a way to sign in, drawn as cards. Nothing is chosen until someone chooses.",
+  "usage": {
+    "when": ["For a choice between two to five options that each need a sentence of explanation."],
+    "whenNot": [
+      {
+        "text": "For on or off.",
+        "instead": "Switch"
+      },
+      {
+        "text": "For many options."
+      }
+    ]
+  },
+  "anatomy": [
+    {
+      "part": "Legend",
+      "description": "The question."
+    },
+    {
+      "part": "Hint",
+      "description": "Help for the whole choice.",
+      "optional": true
+    },
+    {
+      "part": "Card",
+      "description": "A radio button, its label and a description."
+    },
+    {
+      "part": "Message",
+      "description": "An error for the group.",
+      "optional": true
+    }
+  ],
+  "props": [
+    {
+      "name": "label",
+      "type": "string",
+      "description": "The question, as the group's legend.",
+      "required": true
+    },
+    {
+      "name": "hint",
+      "type": "string",
+      "description": "Help under the label, such as an example. Pass a catalogue string."
+    },
+    {
+      "name": "error",
+      "type": "string",
+      "description": "The error message. Setting it marks the field invalid; clearing it marks it valid. The app validates."
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "The name the form submits the value under."
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "description": "What's in the field."
+    },
+    {
+      "name": "required",
+      "type": "boolean",
+      "description": "Whether it must be filled in. Screen readers say so; the app checks it.",
+      "default": false
+    },
+    {
+      "name": "options",
+      "type": "list",
+      "description": "The options.",
+      "items": "value, label, and an optional description"
+    }
+  ],
+  "states": [
+    {
+      "name": "Nothing chosen",
+      "description": "Every card is unselected, so the choice is deliberate."
+    },
+    {
+      "name": "Chosen",
+      "description": "The chosen card has the selected surface and a strong border."
+    },
+    {
+      "name": "Focus",
+      "description": "A 2px focus ring around the card."
+    },
+    {
+      "name": "Invalid",
+      "description": "The message under the cards."
+    }
+  ],
+  "events": [
+    {
+      "name": "change",
+      "kind": "ui",
+      "when": "An option is chosen."
+    }
+  ],
+  "accessibility": {
+    "role": "radiogroup, with native radio buttons",
+    "name": "Its legend.",
+    "keyboard": [
+      {
+        "keys": "Tab",
+        "action": "Moves into the group, to the chosen card or the first."
+      },
+      {
+        "keys": "Arrow keys",
+        "action": "Choose the next or previous option."
+      }
+    ],
+    "screenReader": [
+      "Announced as a group with its legend, then each option as a radio button with its label and description."
+    ],
+    "notes": [
+      "Native radios, so keyboard and form behaviour are the browser's own.",
+      "Each card is at least 44px high."
+    ]
+  },
+  "tokens": [
+    "color.text.default",
+    "color.text.subtle",
+    "color.text.error",
+    "color.surface.default",
+    "color.border.control",
+    "color.selected.surface",
+    "color.selected.border",
+    "color.selected.icon",
+    "color.action.secondary.surface-hover",
+    "color.border.focus",
+    "border-width.focus",
+    "focus.offset",
+    "border-width.strong",
+    "radius.card",
+    "size.target.min",
+    "size.icon.md",
+    "size.icon.sm",
+    "space.inset.md",
+    "space.stack.sm",
+    "space.stack.xs",
+    "space.stack.2xs",
+    "space.inline.md",
+    "space.inline.xs",
+    "type.label.md",
+    "type.label.sm",
+    "type.body.sm"
+  ],
+  "strings": ["field.errorPrefix"],
+  "related": [
+    {
+      "component": "Fieldset",
+      "relationship": "The grouping it builds on."
+    },
+    {
+      "component": "Provider badge",
+      "relationship": "Will show each provider's logo on its card."
+    }
+  ],
+  "content": {
+    "guidelines": [
+      "The legend is a question, such as “Where should your account live?”.",
+      "Descriptions say what each choice means for the person."
+    ]
+  },
+  "dosAndDonts": [
+    {
+      "do": "Leave every option unchosen at first.",
+      "dont": "Choose one for people."
+    }
+  ],
+  "evidence": [
+    {
+      "point": "No default, so people make a real choice of provider (decision in #9)."
+    },
+    {
+      "point": "Radio group semantics, with native radios.",
+      "source": {
+        "label": "ARIA Authoring Practices: Radio Group",
+        "href": "https://www.w3.org/WAI/ARIA/apg/patterns/radio/"
+      }
+    }
+  ],
+  "platforms": {
+    "web": {
+      "tag": "doras-radio-cards",
+      "formAssociated": true,
+      "slots": []
+    }
+  }
+}

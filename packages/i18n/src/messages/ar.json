@@ -9,6 +9,15 @@
     "identity.hostedBy": "يستضيفه {provider}",
     "email.recovery.codeLifetime": "يعمل الرمز لمدة {minutes, plural, zero {# دقيقة} one {دقيقة واحدة} two {دقيقتين} few {# دقائق} many {# دقيقة} other {# دقيقة}}.",
     "email.recovery.noLinks": "لا نرسل أبدًا رابط تسجيل دخول في بريد إلكتروني. إذا طلب منك بريد إلكتروني النقر لتسجيل الدخول، فهو ليس منّا.",
-    "link.opensInNewTab": "(يُفتح في علامة تبويب جديدة)"
+    "link.opensInNewTab": "(يُفتح في علامة تبويب جديدة)",
+    "field.errorPrefix": "خطأ:",
+    "password.show": "إظهار كلمة المرور",
+    "password.hide": "إخفاء كلمة المرور",
+    "handle.didYouMean": "هل تقصد",
+    "handle.readAs": "قرأنا {typed} على أنه {handle}.",
+    "handle.fixAtSign": "تستخدم المعرّفات النقاط، وليس @ في المنتصف.",
+    "handle.fixEnding": "{ending} ليست نهاية معرّف. المعرّفات التي يستضيفها {provider} تنتهي بـ {correct}.",
+    "handle.fixLink": "أخذنا المعرّف من رابط الملف الشخصي.",
+    "handle.suggestionCount": "{count, plural, =0 {لا توجد حسابات مطابقة} zero {لا توجد حسابات مطابقة} one {حساب واحد مطابق} two {حسابان مطابقان} few {# حسابات مطابقة} many {# حسابًا مطابقًا} other {# حساب مطابق}}"
   }
 }

@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import { expect, fn, userEvent, waitFor } from 'storybook/test';
 import { argTypesFromSpec, argsFromSpec } from '../../docs/controls.ts';
-import { ICONS, focusInside, host, inner, textFor } from './helpers.ts';
+import { ICONS, focusInside, host, inner, textFor } from '../helpers.ts';
 
 interface Args {
   label: string;
