@@ -27,3 +27,16 @@ export { spokenCode } from './formatted-code/format.ts';
 export { DorasIcon } from './icon/icon.ts';
 export { ICONS, ICON_BY_NAME, type IconName } from './icon/icons.ts';
 export { DorasPermissionItem } from './permission-item/permission-item.ts';
+export { DorasAccountRow } from './account-row/account-row.ts';
+export { DorasAppIdentity } from './app-identity/app-identity.ts';
+export { DorasAvatar } from './avatar/avatar.ts';
+export { initialsFor } from './avatar/initials.ts';
+export { DorasHandle } from './handle/handle.ts';
+export { DorasLinkedAccounts } from './linked-accounts/linked-accounts.ts';
+export { DorasProviderBadge } from './provider-badge/provider-badge.ts';
+export {
+  PROVIDERS,
+  providerById,
+  type Provider,
+  type ProviderLogo,
+} from './provider-badge/providers.ts';

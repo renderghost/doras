@@ -1,0 +1,110 @@
+{
+  "$schema": "../../schema/component.schema.json",
+  "name": "App identity",
+  "group": "Identity",
+  "summary": "The app's name, logo and verified domain, as on the Connect page: “Potluck, potluck.kitchen”.",
+  "usage": {
+    "when": ["On the Connect page, so people see which app they're connecting."],
+    "whenNot": [
+      {
+        "text": "For providers.",
+        "instead": "Provider badge"
+      }
+    ]
+  },
+  "anatomy": [
+    {
+      "part": "Logo",
+      "description": "The app's logo, or its initial. Decorative."
+    },
+    {
+      "part": "Name",
+      "description": "The app's name."
+    },
+    {
+      "part": "Domain",
+      "description": "Its verified domain, with a shield."
+    }
+  ],
+  "props": [
+    {
+      "name": "name",
+      "type": "string",
+      "description": "The app's name.",
+      "required": true
+    },
+    {
+      "name": "domain",
+      "type": "string",
+      "description": "The app's verified domain.",
+      "required": true
+    },
+    {
+      "name": "logo",
+      "type": "string",
+      "description": "The app's logo URL."
+    }
+  ],
+  "states": [
+    {
+      "name": "Logo",
+      "description": "With the app's logo."
+    },
+    {
+      "name": "No logo",
+      "description": "With its initial."
+    }
+  ],
+  "events": [],
+  "accessibility": {
+    "role": "text",
+    "name": "None.",
+    "keyboard": [],
+    "screenReader": ["Read as the app's name, then its domain."],
+    "notes": ["The domain is isolated, so it reads correctly in right-to-left text."]
+  },
+  "tokens": [
+    "color.text.default",
+    "color.text.subtle",
+    "color.surface.subtle",
+    "color.border.default",
+    "border-width.default",
+    "radius.control",
+    "size.avatar.md",
+    "size.icon.sm",
+    "space.inline.md",
+    "space.inline.xs",
+    "space.stack.2xs",
+    "type.label.md",
+    "type.label.lg",
+    "type.body.sm"
+  ],
+  "strings": [],
+  "related": [
+    {
+      "component": "Linked accounts",
+      "relationship": "Shows it beside the account."
+    }
+  ],
+  "content": {
+    "guidelines": ["Show the domain the provider verified, not one the app chose to display."]
+  },
+  "dosAndDonts": [
+    {
+      "do": "Show the verified domain.",
+      "dont": "Show only the app's name."
+    }
+  ],
+  "evidence": [
+    {
+      "point": "The domain is what lets people check an app is really who it says it is."
+    }
+  ],
+  "platforms": {
+    "web": {
+      "tag": "doras-app-identity",
+      "formAssociated": false,
+      "slots": []
+    }
+  }
+}

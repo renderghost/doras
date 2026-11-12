@@ -1,0 +1,125 @@
+{
+  "$schema": "../../schema/component.schema.json",
+  "name": "Provider badge",
+  "group": "Identity",
+  "summary": "A provider's name with its logo. Logos are swappable files with their source and permission recorded; until a provider's permission is, the badge shows a plain initial.",
+  "usage": {
+    "when": [
+      "Wherever a provider is named: account rows, the provider page header, choosing a provider."
+    ],
+    "whenNot": [
+      {
+        "text": "For apps.",
+        "instead": "App identity"
+      }
+    ]
+  },
+  "anatomy": [
+    {
+      "part": "Tile",
+      "description": "The logo, an initial, or a globe for an address someone typed."
+    },
+    {
+      "part": "Name",
+      "description": "The provider's name."
+    }
+  ],
+  "props": [
+    {
+      "name": "provider",
+      "type": "string",
+      "description": "A known provider's id, such as bluesky, or an address someone typed."
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "The name to show, if it's not a known provider's."
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "description": "Text to show instead of the name, such as “Hosted by Bluesky”."
+    },
+    {
+      "name": "size",
+      "type": "enum",
+      "description": "How big it is.",
+      "values": [
+        {
+          "value": "sm",
+          "description": "For use in running text."
+        },
+        {
+          "value": "md",
+          "description": "On its own."
+        }
+      ],
+      "default": "md"
+    }
+  ],
+  "states": [
+    {
+      "name": "Logo",
+      "description": "The provider's logo, when its permission is recorded."
+    },
+    {
+      "name": "No logo yet",
+      "description": "A plain tile with the provider's initial."
+    },
+    {
+      "name": "Typed address",
+      "description": "A globe, for a provider someone typed in."
+    }
+  ],
+  "events": [],
+  "accessibility": {
+    "role": "text",
+    "name": "None.",
+    "keyboard": [],
+    "screenReader": ["Read as the provider's name; the tile is decorative."]
+  },
+  "tokens": [
+    "color.text.default",
+    "color.surface.subtle",
+    "color.border.default",
+    "border-width.default",
+    "radius.badge",
+    "size.icon.md",
+    "size.icon.lg",
+    "space.inline.xs",
+    "type.label.md",
+    "type.body.sm"
+  ],
+  "strings": [],
+  "related": [
+    {
+      "component": "Account row",
+      "relationship": "Shows who hosts an account."
+    },
+    {
+      "component": "Provider page shell",
+      "relationship": "Shows whose page it is."
+    }
+  ],
+  "content": {
+    "guidelines": ["Use the provider's own name, such as Bluesky."]
+  },
+  "dosAndDonts": [
+    {
+      "do": "Use a provider's logo only with its permission recorded.",
+      "dont": "Draw or approximate a provider's logo."
+    }
+  ],
+  "evidence": [
+    {
+      "point": "Real names and logos, kept as swappable files with their source and permission (decision in #1)."
+    }
+  ],
+  "platforms": {
+    "web": {
+      "tag": "doras-provider-badge",
+      "formAssociated": false,
+      "slots": []
+    }
+  }
+}
