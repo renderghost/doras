@@ -1,18 +1,9 @@
 // A sample component for the docs template (#5). It lives only in Storybook
 // and is deleted once the button's real docs land (#7, #8).
+import { LocaleController } from '@doras/i18n/lit';
 import { LitElement, css, html, nothing } from 'lit';
 
 export type ChipTone = 'neutral' | 'info' | 'success' | 'automated';
-
-// Placeholder strings until the ICU catalogues arrive in #6.
-const removeInEnglish = (label: string): string => `Remove ${label}`;
-const REMOVE: Record<string, (label: string) => string> = {
-  'en-GB': removeInEnglish,
-  'en-XA': (label) => `[Ŕéɱöṽé ${label} one two]`,
-  ar: (label) => `إزالة ${label}`,
-  de: (label) => `${label} entfernen`,
-  ja: (label) => `${label}を削除`,
-};
 
 const X_ICON = html`<svg
   xmlns="http://www.w3.org/2000/svg"
@@ -43,6 +34,9 @@ export class DorasExampleChip extends LitElement {
   declare selected: boolean;
   declare removable: boolean;
 
+  // Strings come from the catalogue, in the locale of the nearest lang attribute.
+  #i18n = new LocaleController(this);
+
   constructor() {
     super();
     this.label = '';
@@ -56,6 +50,7 @@ export class DorasExampleChip extends LitElement {
       display: inline-flex;
       align-items: center;
       gap: var(--doras-space-inline-xs);
+
       --chip-surface: var(--doras-color-surface-default);
       --chip-border: var(--doras-color-border-control);
     }
@@ -148,12 +143,8 @@ export class DorasExampleChip extends LitElement {
     this.dispatchEvent(new CustomEvent('doras-remove', { bubbles: true, composed: true }));
   }
 
-  get #lang(): string {
-    return this.closest('[lang]')?.getAttribute('lang') ?? 'en-GB';
-  }
-
   override render() {
-    const removeLabel = (REMOVE[this.#lang] ?? removeInEnglish)(this.label);
+    const removeLabel = this.#i18n.t('example.chip.remove', { label: this.label });
     return html`
       <button
         class="chip"

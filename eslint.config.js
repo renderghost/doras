@@ -8,7 +8,13 @@ import tseslint from 'typescript-eslint';
 
 export default defineConfig(
   {
-    ignores: ['**/node_modules/**', '**/dist/**', '**/storybook-static/**', '**/coverage/**'],
+    ignores: [
+      '**/node_modules/**',
+      '**/dist/**',
+      '**/storybook-static/**',
+      '**/coverage/**',
+      'packages/i18n/src/generated/**',
+    ],
   },
   js.configs.recommended,
   tseslint.configs.strict,

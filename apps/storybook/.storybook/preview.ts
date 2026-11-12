@@ -61,7 +61,16 @@ const preview: Preview = {
         order: [
           'Introduction',
           'Foundations',
-          ['Overview', 'Colour', 'Type', 'Spacing and size', 'Motion', 'Icons', 'All tokens'],
+          [
+            'Overview',
+            'Colour',
+            'Type',
+            'Spacing and size',
+            'Motion',
+            'Icons',
+            'Localisation',
+            'All tokens',
+          ],
           'Actions',
           ['Overview', '*'],
           'User input',

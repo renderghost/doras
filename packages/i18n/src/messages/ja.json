@@ -1,0 +1,14 @@
+{
+  "locale": "ja",
+  "status": "test",
+  "messages": {
+    "atmosphere.continue": "Atmosphere で続ける",
+    "common.back": "戻る",
+    "common.close": "閉じる",
+    "common.continue": "続ける",
+    "identity.hostedBy": "{provider} がホスト",
+    "email.recovery.codeLifetime": "コードの有効期限は {minutes, plural, other {# 分}} です。",
+    "email.recovery.noLinks": "サインイン用のリンクをメールで送ることはありません。サインインのためにクリックを求めるメールは、私たちからのものではありません。",
+    "example.chip.remove": "{label} を削除"
+  }
+}

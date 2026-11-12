@@ -1,6 +1,9 @@
 // Docs blocks for the foundations pages and the component docs template.
 // Samples are drawn with the real CSS custom properties, inside each theme,
 // so the pages also show the CSS works.
+import { catalogues, format, withoutIsolation, type Locale, type MessageKey } from '@doras/i18n';
+import { IntlMessageFormat } from 'intl-messageformat';
+import source from '@doras/i18n/messages/en-GB.json';
 import { Unstyled } from '@storybook/addon-docs/blocks';
 import type { IconNode } from 'lucide';
 import { createElement, useState, type CSSProperties, type ReactNode } from 'react';
@@ -298,6 +301,86 @@ export function IconGrid({ rtl = false }: { rtl?: boolean }) {
           );
         })}
       </div>
+    </Unstyled>
+  );
+}
+
+const LOCALE_NAMES: [Locale, string][] = [
+  ['en-GB', 'UK English (source)'],
+  ['en-XA', 'Pseudo-locale'],
+  ['ar', 'Arabic (test)'],
+  ['de', 'German (test)'],
+  ['ja', 'Japanese (test)'],
+];
+
+// Sample values for placeholders: numbers for plurals and numbers, words for the rest.
+const SAMPLE_VALUES: Record<string, string> = {
+  provider: 'Bluesky',
+  label: 'Passkey',
+  handle: 'sam.bsky.social',
+};
+
+function sampleValues(message: string): Record<string, string | number> {
+  const values: Record<string, string | number> = {};
+  const visit = (elements: ReturnType<IntlMessageFormat['getAst']>) => {
+    for (const el of elements) {
+      if ('options' in el) {
+        values[el.value] = 15;
+        for (const option of Object.values(el.options)) visit(option.value);
+      } else if (el.type === 1) values[el.value] = SAMPLE_VALUES[el.value] ?? 'Sample';
+      else if (el.type === 2) values[el.value] = 15;
+    }
+  };
+  visit(new IntlMessageFormat(message, 'en-GB').getAst());
+  return values;
+}
+
+/** A message formatted with sample values, then as written, if it has placeholders. */
+function sample(locale: Locale, key: MessageKey) {
+  const message = catalogues[locale][key];
+  const formatted = withoutIsolation(format(locale, key, sampleValues(catalogues['en-GB'][key])));
+  return (
+    <>
+      {formatted}
+      {formatted !== message && (
+        <div dir="ltr">
+          <code>{message}</code>
+        </div>
+      )}
+    </>
+  );
+}
+
+const descriptions = (source as { messages: Record<string, { description: string }> }).messages;
+
+/** Catalogue messages in every locale, as ICU MessageFormat, with their descriptions. */
+export function StringsTable({ keys }: { keys: readonly MessageKey[] }) {
+  return (
+    <Unstyled>
+      <table className="doras-docs-table">
+        <tbody>
+          {keys.map((key) => (
+            <tr key={key}>
+              <th scope="row" style={{ inlineSize: '16rem' }}>
+                <code>{key}</code>
+                <div>{descriptions[key]?.description}</div>
+              </th>
+              <td>
+                <dl className="doras-docs-strings">
+                  {LOCALE_NAMES.map(([locale, name]) => (
+                    <div key={locale}>
+                      <dt className="doras-docs-muted">{name}</dt>
+                      <dd lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+                        {sample(locale, key)}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </Unstyled>
   );
 }

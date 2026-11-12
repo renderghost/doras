@@ -14,7 +14,7 @@
   },
   "scripts": {
     "build": "pnpm -r --if-present build",
-    "lint": "eslint . && stylelint \"**/*.css\" --allow-empty-input",
+    "lint": "eslint . && stylelint \"**/*.css\" \"packages/*/src/**/*.ts\" \"apps/storybook/src/**/*.ts\" --allow-empty-input",
     "typecheck": "tsc -p tsconfig.json && tsc -p apps/storybook/tsconfig.json",
     "test": "vitest run",
     "test:unit": "vitest run --project unit",
@@ -33,6 +33,7 @@
     "eslint-plugin-lit": "^2.3.1",
     "eslint-plugin-wc": "^3.1.0",
     "globals": "^17.14.0",
+    "postcss-lit": "^1.4.1",
     "prettier": "^3.10.1",
     "stylelint": "^18.0.0",
     "stylelint-config-standard": "^41.0.0",

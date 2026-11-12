@@ -1,0 +1,89 @@
+{
+  "$comment": "Words that never appear in UK English copy, from the design team's glossary. Each pattern is a regular expression; the check ignores case unless caseSensitive is true.",
+  "terms": [
+    {
+      "term": "Bluesky account",
+      "patterns": ["\\bBluesky accounts?\\b"],
+      "useInstead": "Atmosphere account, hosted by Bluesky"
+    },
+    {
+      "term": "DID",
+      "patterns": ["\\bDIDs?\\b", "\\bdid:(plc|web)"],
+      "caseSensitive": true,
+      "useInstead": "Nothing: use the handle, or “Atmosphere account”"
+    },
+    {
+      "term": "ATmosphere",
+      "patterns": ["\\bATmosphere\\b", "\\bAT-mosphere\\b"],
+      "caseSensitive": true,
+      "useInstead": "Atmosphere"
+    },
+    {
+      "term": "Front Door",
+      "patterns": ["\\bFront Door\\b"],
+      "caseSensitive": true,
+      "useInstead": "Nothing: people see “Continue with Atmosphere” and “Atmosphere account”"
+    },
+    {
+      "term": "AT Protocol",
+      "patterns": ["\\bAT Protocol\\b", "\\batproto\\b"],
+      "useInstead": "Atmosphere"
+    },
+    {
+      "term": "Decentralised",
+      "patterns": ["\\bdecentrali[sz](ed|ation)\\b", "\\bfederated\\b"],
+      "useInstead": "The benefit: one account works everywhere, and you can move to another provider"
+    },
+    {
+      "term": "Repository",
+      "patterns": ["\\brepositor(y|ies)\\b", "\\brepos?\\b"],
+      "useInstead": "your posts and data"
+    },
+    {
+      "term": "PDS",
+      "patterns": ["\\bPDS(e?s)?\\b", "\\bpersonal data servers?\\b"],
+      "useInstead": "provider"
+    },
+    {
+      "term": "Entryway",
+      "patterns": ["\\bEntryway\\b"],
+      "caseSensitive": true,
+      "useInstead": "Bluesky, as the provider"
+    },
+    { "term": "Instance", "patterns": ["\\binstances?\\b"], "useInstead": "provider" },
+    {
+      "term": "Migrate",
+      "patterns": ["\\bmigrat(e|es|ed|ing|ion)\\b"],
+      "useInstead": "move (to another provider)"
+    },
+    {
+      "term": "Log in",
+      "patterns": ["\\blog(s|ged|ging)? ?(in|on)\\b", "\\blogins?\\b"],
+      "useInstead": "sign in (verb), sign-in (noun)"
+    },
+    {
+      "term": "FedCM",
+      "patterns": ["\\bFedCM\\b"],
+      "useInstead": "Nothing: it's the browser's own panel"
+    },
+    {
+      "term": "Credentials",
+      "patterns": ["\\bcredentials?\\b"],
+      "useInstead": "Name the thing: password, passkey or code"
+    },
+    {
+      "term": "One-time password",
+      "patterns": ["\\bone-time (password|code)s?\\b", "\\bOTPs?\\b"],
+      "useInstead": "sign-in code if emailed, verification code if from an authenticator app"
+    },
+    { "term": "Magic link", "patterns": ["\\bmagic links?\\b"], "useInstead": "sign-in code" },
+    { "term": "Scope", "patterns": ["\\bscopes?\\b"], "useInstead": "permission" },
+    { "term": "Consent", "patterns": ["\\bconsent\\b"], "useInstead": "Connect" },
+    { "term": "OAuth", "patterns": ["\\bOAuth\\b"], "useInstead": "Connect, or sign in" },
+    {
+      "term": "App password",
+      "patterns": ["\\bapp passwords?\\b"],
+      "useInstead": "Continue with Atmosphere"
+    }
+  ]
+}

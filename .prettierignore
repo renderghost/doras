@@ -5,3 +5,4 @@ LICENSE*
 **/storybook-static/
 **/coverage/
 packages/tokens/schemas/
+packages/i18n/src/generated/

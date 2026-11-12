@@ -172,6 +172,24 @@ AA everywhere, which is the European Accessibility Act baseline. Plus these AAA 
 
 **Why:** ICU strings can be shared with iOS and Android later. Locked copy means people learn the words once and meet them in every app.
 
+Details settled while building it ([#6](https://github.com/renderghost/doras/issues/6)):
+
+- **Catalogues:**
+  - The source, `en-GB.json`, gives each message a description for translators.
+  - Translations are flat, and marked `"status": "test"` until reviewed.
+  - The pseudo-locale is generated from the source, so it's never out of date. Its tag is `en-XA`.
+- **Formatting:** FormatJS's `intl-messageformat`. A Lit controller gives components the locale of the nearest `lang` attribute, looking out through shadow roots, and re-renders them if it changes.
+- **Isolation:** text values in a sentence are wrapped in Unicode's isolate characters, not `<bdi>` elements. They do the same job, and also work inside attributes like `aria-label` and in plain-text emails. Components that show a handle or code on its own still use `<bdi>`.
+- **What the build checks:**
+  - every message parses
+  - every locale has every key, with the same placeholders
+  - every plural has its locale's plural forms
+  - “Atmosphere” is never translated
+  - no UK English string uses a naughty-list word
+- **Naughty list:** only the list is in the repo (`packages/i18n/naughty-list.json`): each word, the forms to match, and what to use instead. The rest of the glossary stays internal.
+- **Logical CSS:** Stylelint's own disallowed-property rules enforce it, in CSS files and Lit `css` templates. The logical-CSS plugins don't support Stylelint 18 yet.
+- **Strings arrive with components:** #6 holds the shared strings from the prototype. Each component phase adds its own strings, with test translations.
+
 ### Browsers
 
 - Last 2 versions of Chrome, Edge, Firefox and Samsung Internet.

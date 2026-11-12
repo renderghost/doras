@@ -1,0 +1,14 @@
+{
+  "locale": "ar",
+  "status": "test",
+  "messages": {
+    "atmosphere.continue": "المتابعة باستخدام Atmosphere",
+    "common.back": "رجوع",
+    "common.close": "إغلاق",
+    "common.continue": "متابعة",
+    "identity.hostedBy": "يستضيفه {provider}",
+    "email.recovery.codeLifetime": "يعمل الرمز لمدة {minutes, plural, zero {# دقيقة} one {دقيقة واحدة} two {دقيقتين} few {# دقائق} many {# دقيقة} other {# دقيقة}}.",
+    "email.recovery.noLinks": "لا نرسل أبدًا رابط تسجيل دخول في بريد إلكتروني. إذا طلب منك بريد إلكتروني النقر لتسجيل الدخول، فهو ليس منّا.",
+    "example.chip.remove": "إزالة {label}"
+  }
+}

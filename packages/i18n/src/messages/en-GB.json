@@ -1,0 +1,38 @@
+{
+  "locale": "en-GB",
+  "status": "source",
+  "messages": {
+    "atmosphere.continue": {
+      "message": "Continue with Atmosphere",
+      "description": "The one button for signing in and for creating an account, in every app."
+    },
+    "common.back": {
+      "message": "Back",
+      "description": "Accessible name of the button that goes to the previous step."
+    },
+    "common.close": {
+      "message": "Close",
+      "description": "Accessible name of the button that closes the sheet or a dialog."
+    },
+    "common.continue": {
+      "message": "Continue",
+      "description": "Button that goes on to the next step."
+    },
+    "identity.hostedBy": {
+      "message": "Hosted by {provider}",
+      "description": "Under an account: the provider that hosts it. {provider} is the provider's name, such as Bluesky."
+    },
+    "email.recovery.codeLifetime": {
+      "message": "The code works for {minutes, plural, one {# minute} other {# minutes}}.",
+      "description": "Recovery email: how long the sign-in code lasts. {minutes} is a whole number, usually 15."
+    },
+    "email.recovery.noLinks": {
+      "message": "We never put a sign-in link in an email. If an email asks you to click to sign in, it isn’t from us.",
+      "description": "Recovery email: teaches people that real sign-in emails never ask them to click."
+    },
+    "example.chip.remove": {
+      "message": "Remove {label}",
+      "description": "Storybook sample only. Accessible name of the chip's remove button. {label} is the chip's text."
+    }
+  }
+}

@@ -31,9 +31,9 @@ Components draw into their shadow DOM, which Testing Library's usual queries can
 ## Conventions
 
 - **Names:** custom elements are `<doras-…>`, for example `<doras-button>`. Packages are `@doras/…`.
-- **Copy:** UK English, plain and short. Strings live in the message catalogues (`@doras/i18n`), never in component code. The glossary's naughty-list words, such as PDS, DID or "log in", never appear in copy.
+- **Copy:** UK English, plain and short. Strings live in the message catalogues (`@doras/i18n`), never in component code: see its README for adding one. The glossary's naughty-list words, such as PDS, DID or "log in", never appear in copy, and the build fails if they do.
 - **Tokens:** components use semantic tokens only, never primitives or raw values.
-- **CSS:** logical properties only, such as `margin-inline-start`, so layouts mirror for right-to-left languages.
+- **CSS:** logical properties only, such as `margin-inline-start`, so layouts mirror for right-to-left languages. Stylelint rejects physical ones, in CSS files and in Lit's `css` templates.
 - **Logic:** components draw the interface and send events. They never call the network, OAuth or WebAuthn themselves.
 - **Browser mocks** live in `@doras/browser-mocks`, which only Storybook may depend on. A test enforces this.
 - **Licence:** every package is `MIT OR Apache-2.0` and stays `private` until the public name and owner are agreed. A test enforces this too.
