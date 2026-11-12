@@ -4,7 +4,7 @@ Doras (Irish for "door") is the design system for creating an Atmosphere account
 
 It grows out of the Front Door prototype at [renderghost/at-frontdoor](https://github.com/renderghost/at-frontdoor). The plan is in the epic, [#1](https://github.com/renderghost/doras/issues/1). The decisions behind it are in [docs/decisions.md](docs/decisions.md).
 
-Doras is at an early stage: the packages exist but are mostly empty, and nothing is published to npm yet.
+Doras is at an early stage: the tokens, the Figma sync and Storybook are built, the components are not yet, and nothing is published to npm. Storybook is published at [renderghost.github.io/doras](https://renderghost.github.io/doras/).
 
 ## Packages
 
@@ -30,10 +30,11 @@ pnpm install
 
 | Command          | What it does                                                       |
 | ---------------- | ------------------------------------------------------------------ |
-| `pnpm build`     | Builds every package that has a build, such as the tokens          |
+| `pnpm build`     | Builds every package that has a build, and Storybook               |
 | `pnpm lint`      | ESLint for TypeScript and Lit, and Stylelint for CSS               |
 | `pnpm typecheck` | TypeScript in strict mode                                          |
-| `pnpm test`      | Vitest                                                             |
+| `pnpm test`      | Vitest: the unit tests, and every story as a browser test          |
+| `pnpm storybook` | Runs Storybook at localhost:6006                                   |
 | `pnpm format`    | Formats everything with Prettier (`pnpm format:check` only checks) |
 | `pnpm changeset` | Records a change for the next release                              |
 

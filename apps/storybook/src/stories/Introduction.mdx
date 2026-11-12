@@ -1,0 +1,41 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Introduction" />
+
+# Doras
+
+Doras (Irish for “door”) is the design system for creating an Atmosphere account and signing in with one. It holds the tokens, components, pages and emails for Front Door, the provider pages and the Connect page, so sign-in looks and works the same in every Atmosphere app.
+
+## How it's organised
+
+The sidebar groups components by what they do, not by how they're built:
+
+- **Foundations:** colour, type, spacing, motion, icons and every token.
+- **Actions:** things people press.
+- **User input:** things people type into or choose.
+- **Display:** things that show information.
+- **Identity:** who someone is, and who hosts their account.
+- **System feedback:** what happened, what's wrong and what's happening now.
+- **Navigation:** moving between steps.
+- **Containers:** things that hold other things.
+- **Browser mocks:** look-alikes of the browser's own UI, for clicking through flows. Never for production.
+- **Emails:** the recovery and welcome emails.
+- **Flows:** every journey, clickable from start to finish.
+
+## The toolbar
+
+Every story can be checked in the conditions people really use:
+
+- **Theme:** follow the system, or force light, dark, or either with high contrast.
+- **Locale:** UK English, the pseudo-locale, Arabic, German or Japanese.
+- **Direction:** from the locale, or forced left to right or right to left.
+- **Motion:** follow the system, or reduce it.
+
+Viewports include a 320px reflow width, for WCAG's reflow check at 400% zoom. Windows forced colours can't be switched from the toolbar: use your browser's rendering settings to emulate it.
+
+## Quality
+
+- WCAG 2.2 AA everywhere, plus 44px targets, enhanced focus, no time limits and 7:1 contrast in the high-contrast themes.
+- Every story runs as a test, with an accessibility check that fails on any violation.
+
+The code and decisions are on [GitHub](https://github.com/renderghost/doras), with the reasons for each decision in [docs/decisions.md](https://github.com/renderghost/doras/blob/main/docs/decisions.md).

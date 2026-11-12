@@ -26,8 +26,12 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm format:check
       - run: pnpm lint
-      - run: pnpm typecheck
+      # Builds every package, and Storybook. Storybook's type-check reads the
+      # built tokens, so the build comes first.
       - run: pnpm build
+      - run: pnpm typecheck
+      # The story tests run in Chromium.
+      - run: pnpm --filter @doras/storybook exec playwright install --with-deps chromium
       - run: pnpm test
 
   mobile-tokens:

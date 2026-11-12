@@ -1,0 +1,35 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { TokenTable } from '../../docs/blocks.tsx';
+import { tokensWith } from '../../docs/tokens.ts';
+
+<Meta title="Foundations/Colour" />
+
+# Colour
+
+Every semantic colour, in each theme. Each swatch is drawn with the real custom property inside that theme, on its own surface.
+
+Text is at least 4.5:1 against its surfaces, or 7:1 in the high-contrast themes. Field edges, focus rings and meaningful icons are at least 3:1. The token tests check every pairing in all four themes.
+
+Colour is never the only signal: errors, success and automated suggestions always have an icon or words too.
+
+## Text and icons
+
+<TokenTable tokens={tokensWith('color.text', 'color.icon', 'color.link')} />
+
+## Surfaces
+
+<TokenTable tokens={tokensWith('color.surface')} />
+
+## Borders
+
+<TokenTable tokens={tokensWith('color.border')} />
+
+## Actions and selection
+
+<TokenTable tokens={tokensWith('color.action', 'color.selected')} />
+
+## Feedback
+
+Info, success, error and automated. Automated (purple) marks something the system worked out or filled in for someone, such as a “Did you mean” suggestion.
+
+<TokenTable tokens={tokensWith('color.feedback')} />

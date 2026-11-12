@@ -1,0 +1,17 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { MotionTable } from '../../docs/blocks.tsx';
+import { tokensWith } from '../../docs/tokens.ts';
+
+<Meta title="Foundations/Motion" />
+
+# Motion
+
+Minimal and purposeful: motion shows where something came from or went, and never decorates. With reduced motion, every duration becomes 0, so things change without moving. If your system asks for reduced motion, the dots below jump instead of sliding.
+
+## Durations
+
+<MotionTable tokens={tokensWith('motion.duration')} />
+
+## Easings
+
+<MotionTable tokens={tokensWith('motion.easing')} />

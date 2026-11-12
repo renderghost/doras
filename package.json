@@ -15,8 +15,11 @@
   "scripts": {
     "build": "pnpm -r --if-present build",
     "lint": "eslint . && stylelint \"**/*.css\" --allow-empty-input",
-    "typecheck": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json && tsc -p apps/storybook/tsconfig.json",
     "test": "vitest run",
+    "test:unit": "vitest run --project unit",
+    "test:stories": "vitest run --project storybook",
+    "storybook": "pnpm --filter @doras/storybook dev",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "changeset": "changeset",

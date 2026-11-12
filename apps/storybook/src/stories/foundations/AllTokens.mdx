@@ -1,0 +1,11 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { TokenTable } from '../../docs/blocks.tsx';
+import { tokens } from '../../docs/tokens.ts';
+
+<Meta title="Foundations/All tokens" />
+
+# All tokens
+
+Every token apps can use, with its value in each theme and its name in CSS, Swift and Kotlin. This table is generated from the DTCG files, so it's always current. Primitives aren't listed, because they never leave the package.
+
+<TokenTable tokens={tokens} />

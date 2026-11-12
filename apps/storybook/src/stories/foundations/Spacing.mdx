@@ -1,0 +1,35 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { ScaleTable } from '../../docs/blocks.tsx';
+import { tokensWith } from '../../docs/tokens.ts';
+
+<Meta title="Foundations/Spacing and size" />
+
+# Spacing and size
+
+Lengths are written in px and become rem on the web, so layouts grow with text size. Border widths and the focus ring stay in px. iOS uses the same numbers as points, and Android as dp.
+
+## Spacing
+
+- **Inset:** padding inside a container.
+- **Stack:** space between things above and below each other.
+- **Inline:** space between things side by side.
+
+<ScaleTable tokens={tokensWith('space')} draw="bar" />
+
+## Sizes
+
+Every target is at least 44px (WCAG 2.5.5, AAA).
+
+<ScaleTable tokens={tokensWith('size')} draw="square" />
+
+## Radius
+
+<ScaleTable tokens={tokensWith('radius')} draw="radius" />
+
+## Borders and focus
+
+<ScaleTable tokens={tokensWith('border-width', 'focus')} draw="border" />
+
+## Breakpoints
+
+<ScaleTable tokens={tokensWith('breakpoint')} draw="none" />
