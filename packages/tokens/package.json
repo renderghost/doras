@@ -1,0 +1,13 @@
+{
+  "name": "@doras/tokens",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Design tokens in the DTCG 2025.10 format, built for CSS, Swift and Kotlin.",
+  "license": "MIT OR Apache-2.0",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/renderghost/doras.git",
+    "directory": "packages/tokens"
+  }
+}

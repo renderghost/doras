@@ -1,0 +1,6 @@
+pnpm-lock.yaml
+LICENSE*
+.changeset/*.md
+**/dist/
+**/storybook-static/
+**/coverage/
