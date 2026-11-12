@@ -250,7 +250,7 @@ export class FlowHarness extends LitElement {
     };
     if (start === 'pv-signup' || start === 'pv-handle' || start === 'pv-ready') {
       const newcomer = this.newcomer ?? { name: 'Jo Park', email: 'jo.park@example.com' };
-      this.s.values = { email: newcomer.email, name: newcomer.name };
+      this.s.values = { email: newcomer.email, name: newcomer.name, newHandle: 'jopark' };
       this.s.account = {
         name: newcomer.name,
         handle: 'jopark.potluck.kitchen',

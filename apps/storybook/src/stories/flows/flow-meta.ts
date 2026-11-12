@@ -100,6 +100,28 @@ export async function press(canvasElement: HTMLElement, name: RegExp): Promise<v
   await userEvent.click(button);
 }
 
+/**
+ * Picks an account in the browser's chooser. Testing Library can't name a
+ * button from text in nested shadow roots, so this finds the row by handle.
+ */
+export async function pickAccount(canvasElement: HTMLElement, handle: string): Promise<void> {
+  let button: HTMLElement | undefined;
+  await waitFor(() => {
+    const chooser = canvasElement.querySelector('doras-mock-account-chooser');
+    button = [...(chooser?.shadowRoot?.querySelectorAll<HTMLElement>('li button') ?? [])].find(
+      (b) => b.querySelector('doras-account-row')?.getAttribute('handle') === handle,
+    );
+    expect(button, handle).toBeTruthy();
+  });
+  await userEvent.click(button as HTMLElement);
+}
+
+/** Chooses a radio card by its name. */
+export async function choose(canvasElement: HTMLElement, name: RegExp): Promise<void> {
+  const radio = await within(canvasElement).findByShadowRole('radio', { name }, { timeout: 3000 });
+  await userEvent.click(radio);
+}
+
 /** Types into a field by its label. */
 export async function type(canvasElement: HTMLElement, label: RegExp, text: string): Promise<void> {
   const labelled = await within(canvasElement).findAllByShadowLabelText(
@@ -107,7 +129,9 @@ export async function type(canvasElement: HTMLElement, label: RegExp, text: stri
     {},
     { timeout: 3000 },
   );
-  const field = labelled.find((el) => el instanceof HTMLInputElement) as HTMLInputElement;
+  const field = labelled.find(
+    (el) => el instanceof HTMLInputElement && el.type !== 'radio' && el.type !== 'checkbox',
+  ) as HTMLInputElement;
   // Testing Library can't see focus inside shadow roots, so focus the input
   // and type with the keyboard, replacing what's there.
   field.focus();
