@@ -27,6 +27,9 @@
     "failure.network": "Wir konnten keine Verbindung herstellen. Prüfen Sie Ihre Internetverbindung und versuchen Sie es dann erneut. Ihre Eingaben sind noch da.",
     "failure.tooManyAttempts": "Zu viele Versuche. Warten Sie {minutes, plural, one {# Minute} other {# Minuten}} und versuchen Sie es dann erneut.",
     "failure.sessionExpired": "Das hat eine Weile gedauert, deshalb haben wir zum Schutz Ihres Kontos neu begonnen. Sie können hier weitermachen.",
-    "failure.providerUnavailable": "{provider} antwortet gerade nicht. Das liegt nicht an Ihnen. Versuchen Sie es in ein paar Minuten erneut."
+    "failure.providerUnavailable": "{provider} antwortet gerade nicht. Das liegt nicht an Ihnen. Versuchen Sie es in ein paar Minuten erneut.",
+    "sheet.brand": "Atmosphere-Konto",
+    "providerLink.manage": "Konto bei {provider} verwalten",
+    "skipLink.label": "Zum Hauptinhalt springen"
   }
 }

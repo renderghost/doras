@@ -47,3 +47,7 @@ export { DorasErrorSummary, type SummaryError } from './error-summary/error-summ
 export { DorasFieldMessage } from './field-message/field-message.ts';
 export { DorasNotice } from './notice/notice.ts';
 export { DorasToast } from './toast/toast.ts';
+export { DorasProviderLink } from './provider-link/provider-link.ts';
+export { DorasSheetHeader } from './sheet-header/sheet-header.ts';
+export { DorasSkipLink } from './skip-link/skip-link.ts';
+export { DorasStepLink } from './step-link/step-link.ts';

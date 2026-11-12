@@ -1,0 +1,128 @@
+{
+  "$schema": "../../schema/component.schema.json",
+  "name": "Sheet header",
+  "group": "Navigation",
+  "summary": "The top of Front Door's sheet: back, “Atmosphere account” with the mark, and close.",
+  "usage": {
+    "when": ["At the top of every step in Front Door's sheet."],
+    "whenNot": [
+      {
+        "text": "On provider pages.",
+        "instead": "Provider page shell"
+      }
+    ]
+  },
+  "anatomy": [
+    {
+      "part": "Back",
+      "description": "An icon button, from the second step on. Its arrow mirrors right to left.",
+      "optional": true
+    },
+    {
+      "part": "Brand",
+      "description": "The Atmosphere mark and “Atmosphere account”."
+    },
+    {
+      "part": "Close",
+      "description": "An icon button."
+    }
+  ],
+  "props": [
+    {
+      "name": "back",
+      "type": "boolean",
+      "description": "Shows the back button, from the second step on.",
+      "default": false
+    }
+  ],
+  "states": [
+    {
+      "name": "First step",
+      "description": "Close only."
+    },
+    {
+      "name": "Later steps",
+      "description": "Back and close."
+    }
+  ],
+  "events": [
+    {
+      "name": "doras-back",
+      "kind": "ui",
+      "when": "Back is pressed. The app goes to the previous step and moves focus to its heading."
+    },
+    {
+      "name": "doras-close",
+      "kind": "ui",
+      "when": "Close is pressed. The sheet closes and returns focus to whatever opened it."
+    }
+  ],
+  "accessibility": {
+    "role": "banner of the sheet, with two buttons",
+    "name": "The buttons are named “Back” and “Close”.",
+    "keyboard": [
+      {
+        "keys": "Tab",
+        "action": "Moves between back and close."
+      },
+      {
+        "keys": "Enter or Space",
+        "action": "Presses one."
+      },
+      {
+        "keys": "Escape",
+        "action": "Closes the sheet; the sheet handles it (#14)."
+      }
+    ],
+    "screenReader": [
+      "Back and close are announced as buttons with their names. The brand is read as text."
+    ],
+    "notes": [
+      "After moving back or forward, focus goes to the new step's heading, so screen readers start from the top.",
+      "Both buttons have 44px targets."
+    ]
+  },
+  "tokens": [
+    "color.text.default",
+    "space.inline.sm",
+    "space.inline.xs",
+    "size.target.min",
+    "type.label.sm"
+  ],
+  "strings": ["sheet.brand", "common.back", "common.close"],
+  "related": [
+    {
+      "component": "Sheet",
+      "relationship": "Its container, which handles focus and Escape."
+    },
+    {
+      "component": "Icon button",
+      "relationship": "Back and close."
+    },
+    {
+      "component": "Atmosphere mark",
+      "relationship": "The brand."
+    }
+  ],
+  "content": {
+    "guidelines": ["The brand always says “Atmosphere account”, never the app's name."]
+  },
+  "dosAndDonts": [
+    {
+      "do": "Show back from the second step on.",
+      "dont": "Show back on the first step."
+    }
+  ],
+  "evidence": [
+    {
+      "point": "Focus moves to each new step's heading, so screen reader users know the step changed (prototype)."
+    }
+  ],
+  "platforms": {
+    "web": {
+      "tag": "doras-sheet-header",
+      "formAssociated": false,
+      "slots": []
+    }
+  }
+}

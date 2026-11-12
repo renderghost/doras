@@ -27,6 +27,9 @@
     "failure.network": "接続できませんでした。インターネット接続を確認してから、もう一度お試しください。入力した内容はそのまま残っています。",
     "failure.tooManyAttempts": "試行回数が多すぎます。{minutes, plural, other {# 分}}待ってから、もう一度お試しください。",
     "failure.sessionExpired": "時間がかかったため、アカウントを守るために最初からやり直しました。ここから続けられます。",
-    "failure.providerUnavailable": "{provider} が現在応答していません。あなたのせいではありません。数分後にもう一度お試しください。"
+    "failure.providerUnavailable": "{provider} が現在応答していません。あなたのせいではありません。数分後にもう一度お試しください。",
+    "sheet.brand": "Atmosphere アカウント",
+    "providerLink.manage": "{provider} でアカウントを管理",
+    "skipLink.label": "メインコンテンツへスキップ"
   }
 }

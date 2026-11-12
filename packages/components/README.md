@@ -71,6 +71,15 @@ Provider logos live in `src/provider-badge/logos/`, each listed in `providers.ts
 | `<doras-busy-state>`    | Marks an area as loading, with a spinner and what's happening.                           |
 | `<doras-announcer>`     | The page's shared live regions. `announce(message)` uses them.                           |
 
+## Navigation (#13)
+
+| Element                 | What it does                                                            |
+| ----------------------- | ----------------------------------------------------------------------- |
+| `<doras-sheet-header>`  | Back, “Atmosphere account” and close, at the top of Front Door's sheet. |
+| `<doras-skip-link>`     | Skips to the main content on provider pages.                            |
+| `<doras-provider-link>` | “Manage account on Bluesky”, opening a new tab and saying so.           |
+| `<doras-step-link>`     | A quiet way to another step, such as “Try another provider”.            |
+
 ## Things to know
 
 - **Buttons are never disabled.** While busy, presses do nothing, and the busy label says what's happening.

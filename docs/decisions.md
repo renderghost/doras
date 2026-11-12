@@ -203,6 +203,17 @@ Settled while building it ([#12](https://github.com/renderghost/doras/issues/12)
 - **Toasts have no timer:** they stay until closed, because no time limits (WCAG 2.2.3, AAA) was chosen in #1.
 - **Every icon a component names is checked** against the icon list. Testing found the error icon missing: it drew nothing, silently.
 
+### Navigation
+
+Settled while building it ([#13](https://github.com/renderghost/doras/issues/13)):
+
+- **The sheet header only reports:** it sends `doras-back` and `doras-close`. Moving between steps, focusing each new step's heading, Escape and returning focus to the opener belong to the app and the Sheet (#14).
+- **Skip link:** it moves focus, not just the scroll position, to the main content, so the next Tab continues from there.
+- **Provider link:**
+  - It always names the provider: “Manage account on Bluesky”.
+  - It opens a new tab and says so. `sameTab` turns that off. Boolean props are off by default, so “same tab” is the prop, not “new tab”.
+- **Step links are buttons:** “Search by name instead” changes the step, not the page, so it's announced as a button. A back arrow mirrors right to left.
+
 ### Fonts, icons and motion
 
 - **Fonts and icons:** Inter, loaded from Google Fonts, and Lucide icons.

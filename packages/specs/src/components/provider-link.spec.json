@@ -1,0 +1,111 @@
+{
+  "$schema": "../../schema/component.schema.json",
+  "name": "Provider link",
+  "group": "Navigation",
+  "summary": "“Manage account on Bluesky”: a link to the provider's own site that names the provider and says it opens a new tab.",
+  "usage": {
+    "when": [
+      "Where people may want to manage their account on their provider's site, such as an app's account settings."
+    ],
+    "whenNot": [
+      {
+        "text": "For other links.",
+        "instead": "Link"
+      }
+    ]
+  },
+  "anatomy": [
+    {
+      "part": "Text",
+      "description": "“Manage account on [provider]”."
+    },
+    {
+      "part": "Icon",
+      "description": "An external link icon. Decorative."
+    },
+    {
+      "part": "New tab hint",
+      "description": "“(opens in a new tab)”.",
+      "optional": true
+    }
+  ],
+  "props": [
+    {
+      "name": "provider",
+      "type": "string",
+      "description": "The provider: a known provider's id, or its name.",
+      "required": true
+    },
+    {
+      "name": "href",
+      "type": "string",
+      "description": "The provider's account page.",
+      "required": true
+    },
+    {
+      "name": "sameTab",
+      "type": "boolean",
+      "description": "Opens in the same tab instead of a new one. Leave it off where leaving would lose someone's place.",
+      "default": false
+    }
+  ],
+  "states": [
+    {
+      "name": "New tab",
+      "description": "The default, with the hint."
+    },
+    {
+      "name": "Same tab",
+      "description": "With sameTab, and no hint."
+    }
+  ],
+  "events": [],
+  "accessibility": {
+    "role": "link",
+    "name": "Its text, including the provider and the new tab hint.",
+    "keyboard": [
+      {
+        "keys": "Tab",
+        "action": "Moves focus to it."
+      },
+      {
+        "keys": "Enter",
+        "action": "Follows it."
+      }
+    ],
+    "screenReader": ["Read as a link: “Manage account on Bluesky (opens in a new tab)”."]
+  },
+  "tokens": ["space.inline.xs"],
+  "strings": ["providerLink.manage", "link.opensInNewTab"],
+  "related": [
+    {
+      "component": "Link",
+      "relationship": "What it's built on."
+    },
+    {
+      "component": "Provider badge",
+      "relationship": "Names providers elsewhere."
+    }
+  ],
+  "content": {
+    "guidelines": ["Always name the provider: the account lives there, not in the app."]
+  },
+  "dosAndDonts": [
+    {
+      "do": "Name the provider.",
+      "dont": "Say “Manage your account” without saying where."
+    }
+  ],
+  "evidence": [
+    {
+      "point": "People manage their account at their provider; naming it teaches where the account lives (prototype research)."
+    }
+  ],
+  "platforms": {
+    "web": {
+      "tag": "doras-provider-link",
+      "formAssociated": false,
+      "slots": []
+    }
+  }
+}
