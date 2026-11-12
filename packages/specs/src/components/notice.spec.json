@@ -1,0 +1,225 @@
+{
+  "$schema": "../../schema/component.schema.json",
+  "name": "Notice",
+  "group": "System feedback",
+  "summary": "A message on the page with an icon and words, so colour is never the only signal: info, success, error, or automated (something the system worked out or filled in). The four failures use locked copy and are counted.",
+  "usage": {
+    "when": [
+      "To say something about the page or what just happened.",
+      "For the four failures: network, too many attempts, session expired and provider unavailable."
+    ],
+    "whenNot": [
+      {
+        "text": "For a field's error.",
+        "instead": "Field message"
+      },
+      {
+        "text": "For a short confirmation that needs no action.",
+        "instead": "Toast"
+      }
+    ]
+  },
+  "anatomy": [
+    {
+      "part": "Icon",
+      "description": "Matches the tone. Decorative."
+    },
+    {
+      "part": "Heading",
+      "description": "A short heading.",
+      "optional": true
+    },
+    {
+      "part": "Message",
+      "description": "What happened, and what to do."
+    },
+    {
+      "part": "Actions",
+      "description": "Such as “Try again”.",
+      "optional": true
+    }
+  ],
+  "props": [
+    {
+      "name": "tone",
+      "type": "enum",
+      "description": "What kind of message it is.",
+      "values": [
+        {
+          "value": "info",
+          "description": "Information."
+        },
+        {
+          "value": "success",
+          "description": "Something went well."
+        },
+        {
+          "value": "error",
+          "description": "Something went wrong."
+        },
+        {
+          "value": "automated",
+          "description": "Something the system worked out or filled in."
+        }
+      ],
+      "default": "info"
+    },
+    {
+      "name": "heading",
+      "type": "string",
+      "description": "A short heading."
+    },
+    {
+      "name": "failure",
+      "type": "enum",
+      "description": "One of the four failures, with its locked copy. Sets the tone, and sends doras.failure_shown.",
+      "values": [
+        {
+          "value": "none",
+          "description": "Not a failure: the message is in the slot."
+        },
+        {
+          "value": "network",
+          "description": "The network failed. What was typed is kept."
+        },
+        {
+          "value": "too-many-attempts",
+          "description": "Too many tries, with a clear wait. Never says whether an account exists."
+        },
+        {
+          "value": "session-expired",
+          "description": "The session expired; it starts again without losing context."
+        },
+        {
+          "value": "provider-unavailable",
+          "description": "The provider isn't answering. It doesn't blame the person or the app."
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "name": "provider",
+      "type": "string",
+      "description": "The provider's name, for provider-unavailable."
+    },
+    {
+      "name": "minutes",
+      "type": "number",
+      "description": "How long to wait, for too-many-attempts.",
+      "default": 5
+    }
+  ],
+  "states": [
+    {
+      "name": "Info, success, error, automated",
+      "description": "Each with its own colours and icon."
+    },
+    {
+      "name": "Failure",
+      "description": "One of the four failures, in its locked words."
+    },
+    {
+      "name": "Long translations",
+      "description": "Wrap within the notice."
+    }
+  ],
+  "events": [
+    {
+      "name": "doras.failure_shown",
+      "kind": "measurement",
+      "when": "A failure notice is shown. Each failure is counted once per notice."
+    }
+  ],
+  "accessibility": {
+    "role": "none: a static message",
+    "name": "None.",
+    "keyboard": [
+      {
+        "keys": "Tab",
+        "action": "Moves to any actions inside it."
+      }
+    ],
+    "screenReader": ["Read in place, with its icon hidden."],
+    "announcements": [
+      "Notices aren't announced by themselves. To have a new one heard, also announce it through the Announcer."
+    ]
+  },
+  "tokens": [
+    "color.feedback.info.surface",
+    "color.feedback.info.border",
+    "color.feedback.info.icon",
+    "color.feedback.info.text",
+    "color.feedback.success.surface",
+    "color.feedback.success.border",
+    "color.feedback.success.icon",
+    "color.feedback.success.text",
+    "color.feedback.error.surface",
+    "color.feedback.error.border",
+    "color.feedback.error.icon",
+    "color.feedback.error.text",
+    "color.feedback.automated.surface",
+    "color.feedback.automated.border",
+    "color.feedback.automated.icon",
+    "color.feedback.automated.text",
+    "border-width.default",
+    "radius.card",
+    "space.inset.md",
+    "space.inline.sm",
+    "space.stack.xs",
+    "type.body.md",
+    "type.label.md"
+  ],
+  "strings": [
+    "failure.network",
+    "failure.tooManyAttempts",
+    "failure.sessionExpired",
+    "failure.providerUnavailable"
+  ],
+  "related": [
+    {
+      "component": "Announcer",
+      "relationship": "To have a new notice heard."
+    },
+    {
+      "component": "Toast",
+      "relationship": "For confirmations that need no action."
+    }
+  ],
+  "content": {
+    "guidelines": [
+      "Say what happened, then what to do.",
+      "Failures never blame the person, and never say whether an account exists."
+    ]
+  },
+  "dosAndDonts": [
+    {
+      "do": "Pair the colour with an icon and words.",
+      "dont": "Use colour alone."
+    }
+  ],
+  "evidence": [
+    {
+      "point": "Failure copy never reveals whether an account exists, so the door can't be used to find accounts.",
+      "source": {
+        "label": "OWASP: account enumeration",
+        "href": "https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html#authentication-and-error-messages"
+      }
+    }
+  ],
+  "platforms": {
+    "web": {
+      "tag": "doras-notice",
+      "formAssociated": false,
+      "slots": [
+        {
+          "name": "",
+          "description": "The message, when it isn't a failure."
+        },
+        {
+          "name": "actions",
+          "description": "Buttons, such as “Try again”."
+        }
+      ]
+    }
+  }
+}

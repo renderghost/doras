@@ -21,6 +21,12 @@
     "handle.suggestionCount": "{count, plural, =0 {لا توجد حسابات مطابقة} zero {لا توجد حسابات مطابقة} one {حساب واحد مطابق} two {حسابان مطابقان} few {# حسابات مطابقة} many {# حسابًا مطابقًا} other {# حساب مطابق}}",
     "divider.or": "أو",
     "permission.why": "السبب:",
-    "atmosphere.mark": "Atmosphere"
+    "atmosphere.mark": "Atmosphere",
+    "errorSummary.heading": "هناك مشكلة",
+    "common.tryAgain": "إعادة المحاولة",
+    "failure.network": "تعذّر الاتصال. تحقّق من اتصالك بالإنترنت، ثم أعد المحاولة. ما كتبته لا يزال هنا.",
+    "failure.tooManyAttempts": "محاولات كثيرة جدًا. انتظر {minutes, plural, zero {# دقيقة} one {دقيقة واحدة} two {دقيقتين} few {# دقائق} many {# دقيقة} other {# دقيقة}}، ثم أعد المحاولة.",
+    "failure.sessionExpired": "استغرق الأمر وقتًا، فبدأنا من جديد لحماية حسابك. يمكنك المتابعة من هنا.",
+    "failure.providerUnavailable": "{provider} لا يستجيب الآن. هذا ليس بسببك. أعد المحاولة بعد بضع دقائق."
   }
 }

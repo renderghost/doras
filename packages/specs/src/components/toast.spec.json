@@ -1,0 +1,136 @@
+{
+  "$schema": "../../schema/component.schema.json",
+  "name": "Toast",
+  "group": "System feedback",
+  "summary": "A short confirmation that needs no action, such as “Passkey saved”. It's announced politely and stays until it's closed: it never disappears on a timer.",
+  "usage": {
+    "when": ["To confirm something worked, such as saving a passkey."],
+    "whenNot": [
+      {
+        "text": "For errors, or anything people must act on.",
+        "instead": "Notice"
+      }
+    ]
+  },
+  "anatomy": [
+    {
+      "part": "Icon",
+      "description": "Decorative."
+    },
+    {
+      "part": "Message",
+      "description": "A few words."
+    },
+    {
+      "part": "Close",
+      "description": "An icon button."
+    }
+  ],
+  "props": [
+    {
+      "name": "open",
+      "type": "boolean",
+      "description": "Whether it's showing.",
+      "default": false
+    },
+    {
+      "name": "tone",
+      "type": "enum",
+      "description": "Success or information.",
+      "values": [
+        {
+          "value": "success",
+          "description": "Something worked."
+        },
+        {
+          "value": "info",
+          "description": "Something to know."
+        }
+      ],
+      "default": "success"
+    }
+  ],
+  "states": [
+    {
+      "name": "Open",
+      "description": "At the foot of the screen."
+    },
+    {
+      "name": "Closed",
+      "description": "Gone."
+    }
+  ],
+  "events": [
+    {
+      "name": "doras-close",
+      "kind": "ui",
+      "when": "Someone closes it."
+    }
+  ],
+  "accessibility": {
+    "role": "none; announced through the Announcer",
+    "name": "None.",
+    "keyboard": [
+      {
+        "keys": "Tab",
+        "action": "Moves to its close button."
+      }
+    ],
+    "screenReader": ["Its message is announced politely when it opens."],
+    "notes": ["No timer, so people have as long as they need (WCAG 2.2.3, AAA)."]
+  },
+  "tokens": [
+    "color.text.default",
+    "color.surface.raised",
+    "color.feedback.success.icon",
+    "color.feedback.info.icon",
+    "shadow.overlay",
+    "radius.card",
+    "space.inset.xl",
+    "space.inset.lg",
+    "space.inset.xs",
+    "space.inline.sm",
+    "type.label.md"
+  ],
+  "strings": ["common.close"],
+  "related": [
+    {
+      "component": "Announcer",
+      "relationship": "Announces it."
+    },
+    {
+      "component": "Notice",
+      "relationship": "For anything that needs action."
+    }
+  ],
+  "content": {
+    "guidelines": ["A few words, in the past tense: “Passkey saved”."]
+  },
+  "dosAndDonts": [
+    {
+      "do": "Let people close it when they're ready.",
+      "dont": "Make it disappear on a timer."
+    }
+  ],
+  "evidence": [
+    {
+      "point": "No time limits, a key AAA criterion chosen in #1.",
+      "source": {
+        "label": "WCAG 2.2.3 No Timing",
+        "href": "https://www.w3.org/WAI/WCAG22/Understanding/no-timing"
+      }
+    }
+  ],
+  "platforms": {
+    "web": {
+      "tag": "doras-toast",
+      "formAssociated": false,
+      "slots": [
+        {
+          "name": "",
+          "description": "The message."
+        }
+      ]
+    }
+  }
+}

@@ -81,6 +81,30 @@
     "atmosphere.mark": {
       "message": "Atmosphere",
       "description": "Accessible name of the Atmosphere mark, when it's shown on its own. Never translated."
+    },
+    "errorSummary.heading": {
+      "message": "There’s a problem",
+      "description": "Heading of the error summary at the top of a page with more than one field."
+    },
+    "common.tryAgain": {
+      "message": "Try again",
+      "description": "Button that retries what failed, such as after a network failure."
+    },
+    "failure.network": {
+      "message": "We couldn’t connect. Check your internet connection, then try again. What you typed is still here.",
+      "description": "Shown when the network fails. Never blames the person or the app."
+    },
+    "failure.tooManyAttempts": {
+      "message": "Too many tries. Wait {minutes, plural, one {# minute} other {# minutes}}, then try again.",
+      "description": "Shown after too many attempts. Never says whether an account exists. {minutes} is a whole number."
+    },
+    "failure.sessionExpired": {
+      "message": "This took a while, so we started again to keep your account safe. You can carry on from here.",
+      "description": "Shown when a sign-in session expires. Restarts without losing context."
+    },
+    "failure.providerUnavailable": {
+      "message": "{provider} isn’t answering right now. It isn’t something you did. Try again in a few minutes.",
+      "description": "Shown when the provider is down. {provider} is its name, such as Bluesky. Doesn't blame the person or the app."
     }
   }
 }

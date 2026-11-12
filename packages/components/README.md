@@ -60,6 +60,17 @@ The app validates; fields show the result. Set `error` to a catalogue message to
 
 Provider logos live in `src/provider-badge/logos/`, each listed in `providers.ts` with its source and permission. None is there yet: see that folder's README.
 
+## System feedback (#12)
+
+| Element                 | What it does                                                                             |
+| ----------------------- | ---------------------------------------------------------------------------------------- |
+| `<doras-notice>`        | Info, success, error or automated, with an icon. Also the four failures, in locked copy. |
+| `<doras-field-message>` | The message under a field Doras doesn't draw.                                            |
+| `<doras-error-summary>` | Lists a page's errors on submit, takes focus, and links to each field.                   |
+| `<doras-toast>`         | A short confirmation, announced, with no timer.                                          |
+| `<doras-busy-state>`    | Marks an area as loading, with a spinner and what's happening.                           |
+| `<doras-announcer>`     | The page's shared live regions. `announce(message)` uses them.                           |
+
 ## Things to know
 
 - **Buttons are never disabled.** While busy, presses do nothing, and the busy label says what's happening.

@@ -1,0 +1,110 @@
+{
+  "$schema": "../../schema/component.schema.json",
+  "name": "Busy state",
+  "group": "System feedback",
+  "summary": "Marks an area as loading, with aria-busy, and shows a spinner and what's happening over it. The spinner stops for reduced motion.",
+  "usage": {
+    "when": ["Over an area that's loading, such as account suggestions."],
+    "whenNot": [
+      {
+        "text": "Inside a button.",
+        "instead": "Button, with busy"
+      }
+    ]
+  },
+  "anatomy": [
+    {
+      "part": "Content",
+      "description": "The area that's loading."
+    },
+    {
+      "part": "Overlay",
+      "description": "A spinner and what's happening, over the content.",
+      "optional": true
+    }
+  ],
+  "props": [
+    {
+      "name": "busy",
+      "type": "boolean",
+      "description": "Whether it's loading.",
+      "default": false
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "description": "What's happening, such as “Checking…”."
+    }
+  ],
+  "states": [
+    {
+      "name": "Idle",
+      "description": "Just the content."
+    },
+    {
+      "name": "Busy",
+      "description": "aria-busy, with the overlay."
+    },
+    {
+      "name": "Reduced motion",
+      "description": "The spinner stays still."
+    }
+  ],
+  "events": [],
+  "accessibility": {
+    "role": "none",
+    "name": "None.",
+    "keyboard": [],
+    "screenReader": ["The area is marked busy, so screen readers wait for it to finish."],
+    "announcements": ["Its label is announced politely when it becomes busy."]
+  },
+  "tokens": [
+    "color.text.default",
+    "color.surface.default",
+    "space.stack.xs",
+    "size.icon.lg",
+    "type.label.md",
+    "motion.duration.slow"
+  ],
+  "strings": [],
+  "related": [
+    {
+      "component": "Button",
+      "relationship": "Has its own busy state."
+    },
+    {
+      "component": "Announcer",
+      "relationship": "Announces the label."
+    }
+  ],
+  "content": {
+    "guidelines": ["Say what's happening, with an ellipsis: “Checking…”."]
+  },
+  "dosAndDonts": [
+    {
+      "do": "Say what's happening.",
+      "dont": "Show a spinner with no words for long waits."
+    }
+  ],
+  "evidence": [
+    {
+      "point": "aria-busy tells assistive technology to wait for changes to finish.",
+      "source": {
+        "label": "WAI-ARIA: aria-busy",
+        "href": "https://www.w3.org/TR/wai-aria-1.2/#aria-busy"
+      }
+    }
+  ],
+  "platforms": {
+    "web": {
+      "tag": "doras-busy-state",
+      "formAssociated": false,
+      "slots": [
+        {
+          "name": "",
+          "description": "The content."
+        }
+      ]
+    }
+  }
+}

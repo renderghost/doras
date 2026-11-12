@@ -1,0 +1,76 @@
+{
+  "$schema": "../../schema/component.schema.json",
+  "name": "Announcer",
+  "group": "System feedback",
+  "summary": "One shared pair of live regions for the page, so messages screen readers should hear are announced once, in order, even when several arrive together.",
+  "usage": {
+    "when": [
+      "Once, early in the page, so the first message is heard. Components announce through it."
+    ],
+    "whenNot": [
+      {
+        "text": "For anything people need to see: show it too."
+      }
+    ]
+  },
+  "anatomy": [
+    {
+      "part": "Live regions",
+      "description": "Polite and assertive, hidden on screen."
+    }
+  ],
+  "props": [],
+  "states": [
+    {
+      "name": "Present",
+      "description": "Nothing to see; it holds the regions."
+    }
+  ],
+  "events": [],
+  "accessibility": {
+    "role": "status and alert live regions",
+    "name": "None.",
+    "keyboard": [],
+    "screenReader": ["Messages are read as they arrive. Several at once are all read, in order."],
+    "notes": [
+      "Use announce(message) from any component or app code. Assertive is only for something people must hear at once."
+    ]
+  },
+  "tokens": [],
+  "strings": [],
+  "related": [
+    {
+      "component": "Toast",
+      "relationship": "Announces through it."
+    },
+    {
+      "component": "Button",
+      "relationship": "Announces busy labels through it."
+    }
+  ],
+  "content": {
+    "guidelines": ["Announce only what people need to hear, in a few words."]
+  },
+  "dosAndDonts": [
+    {
+      "do": "Use one announcer for the page.",
+      "dont": "Add a live region per component."
+    }
+  ],
+  "evidence": [
+    {
+      "point": "One shared region avoids messages talking over each other.",
+      "source": {
+        "label": "MDN: ARIA live regions",
+        "href": "https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions"
+      }
+    }
+  ],
+  "platforms": {
+    "web": {
+      "tag": "doras-announcer",
+      "formAssociated": false,
+      "slots": []
+    }
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "$schema": "../../schema/component.schema.json",
+  "name": "Field message",
+  "group": "System feedback",
+  "summary": "The error, hint or automated message under a field, for fields Doras doesn't draw. Doras's own fields draw theirs.",
+  "usage": {
+    "when": ["Under a custom field, linked with aria-describedby."],
+    "whenNot": [
+      {
+        "text": "Under a Doras field: set its error instead.",
+        "instead": "Text field"
+      }
+    ]
+  },
+  "anatomy": [
+    {
+      "part": "Icon",
+      "description": "For errors and automated messages. Decorative.",
+      "optional": true
+    },
+    {
+      "part": "Message",
+      "description": "The words, with a hidden “Error:” before errors."
+    }
+  ],
+  "props": [
+    {
+      "name": "tone",
+      "type": "enum",
+      "description": "What kind of message.",
+      "values": [
+        {
+          "value": "hint",
+          "description": "Help."
+        },
+        {
+          "value": "error",
+          "description": "What's wrong, and how to fix it."
+        },
+        {
+          "value": "automated",
+          "description": "What the system worked out."
+        }
+      ],
+      "default": "hint"
+    }
+  ],
+  "states": [
+    {
+      "name": "Hint",
+      "description": "Subtle text."
+    },
+    {
+      "name": "Error",
+      "description": "Error colour and icon, with “Error:” for screen readers."
+    },
+    {
+      "name": "Automated",
+      "description": "Automated colour and icon."
+    }
+  ],
+  "events": [],
+  "accessibility": {
+    "role": "text",
+    "name": "None.",
+    "keyboard": [],
+    "screenReader": ["Read as the field's description, with “Error:” before an error."]
+  },
+  "tokens": [
+    "color.text.subtle",
+    "color.text.error",
+    "color.text.automated",
+    "size.icon.sm",
+    "space.inline.sm",
+    "type.body.sm",
+    "type.label.sm"
+  ],
+  "strings": ["field.errorPrefix"],
+  "related": [
+    {
+      "component": "Text field",
+      "relationship": "Draws the same message itself."
+    },
+    {
+      "component": "Error summary",
+      "relationship": "Lists the errors at the top of the page."
+    }
+  ],
+  "content": {
+    "guidelines": ["Errors say how to fix them: “Enter your email address”."]
+  },
+  "dosAndDonts": [
+    {
+      "do": "Link it to its field with aria-describedby.",
+      "dont": "Leave it floating under the field."
+    }
+  ],
+  "evidence": [
+    {
+      "point": "Messages tied to their field are read when the field is focused.",
+      "source": {
+        "label": "WCAG 3.3.1 Error Identification",
+        "href": "https://www.w3.org/WAI/WCAG22/Understanding/error-identification"
+      }
+    }
+  ],
+  "platforms": {
+    "web": {
+      "tag": "doras-field-message",
+      "formAssociated": false,
+      "slots": [
+        {
+          "name": "",
+          "description": "The message."
+        }
+      ]
+    }
+  }
+}

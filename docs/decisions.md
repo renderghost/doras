@@ -186,6 +186,23 @@ Settled while building it ([#11](https://github.com/renderghost/doras/issues/11)
 - **The link badge stays centred:** it's centred with `inset: 0; margin: auto`, not a transform, so it stays exactly on the seam in right-to-left layouts too. A test measures it.
 - **Handles break after their dots,** then anywhere, and are never cut short with an ellipsis.
 
+### System feedback
+
+Settled while building it ([#12](https://github.com/renderghost/doras/issues/12)):
+
+- **One announcer for the page:**
+  - `announce()` adds each message to a shared pair of live regions, polite and assertive, so several messages at once are all read in order.
+  - The regions are created once. A brand-new region isn't watched yet, so the first message waits a moment.
+  - The Button, Toast and Busy state announce through it.
+- **The four failures have locked copy,** written for #12 and awaiting review:
+  - They never blame the person or the app, and never say whether an account exists.
+  - Too many attempts gives a clear wait.
+  - Network failure says what was typed is kept.
+  - A failure notice sends `doras.failure_shown` once.
+- **Error summary:** `show(errors)` fills it and moves focus to it, for use on submit. Updating `errors` as people fix them doesn't move focus. Each link moves focus to its field.
+- **Toasts have no timer:** they stay until closed, because no time limits (WCAG 2.2.3, AAA) was chosen in #1.
+- **Every icon a component names is checked** against the icon list. Testing found the error icon missing: it drew nothing, silently.
+
 ### Fonts, icons and motion
 
 - **Fonts and icons:** Inter, loaded from Google Fonts, and Lucide icons.
