@@ -198,3 +198,93 @@ describe('the generated script', () => {
     expect(() => new Function('figma', `${js}\nreturn applyPlan;`)).not.toThrow();
   });
 });
+
+describe('the carrier route', () => {
+  it('carries the applier and the plan through SVG text unchanged', async () => {
+    const { carrierSvg, unpack } = await import('../build/carrier.ts');
+    const textsOf = (svg: string): string[] =>
+      [...svg.matchAll(/<text[^>]*>([^<]*)<\/text>/g)].map((m) =>
+        (m[1] ?? '').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&'),
+      );
+    const applier = applierJs();
+    expect(unpack('doras-applier', textsOf(carrierSvg('doras-applier', applier)))).toBe(applier);
+    expect(unpack('doras-plan', textsOf(carrierSvg('doras-plan', plan)))).toEqual(plan);
+  });
+
+  it('keeps carrier text ASCII and free of spaces, so SVG import leaves it alone', async () => {
+    const { pack } = await import('../build/carrier.ts');
+    const packed = pack({ text: 'Success messages that aren’t in a notice.' });
+    expect(packed).toMatch(/^[\x21-\x7e]+$/);
+  });
+
+  it('runs the loader against the carriers in a fake Figma', async () => {
+    const { carrierSvg, loaderJs } = await import('../build/carrier.ts');
+    const textsOf = (svg: string): string[] =>
+      [...svg.matchAll(/<text[^>]*>([^<]*)<\/text>/g)].map((m) =>
+        (m[1] ?? '').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&'),
+      );
+    const texts = [
+      ...textsOf(carrierSvg('doras-applier', applierJs())),
+      ...textsOf(carrierSvg('doras-plan', plan)),
+    ];
+    const figma = fakeFigma();
+    const page = {
+      name: '_doras-sync',
+      loadAsync: async () => undefined,
+      findAllWithCriteria: () => texts.map((characters) => ({ characters })),
+      remove: () => undefined,
+    };
+    const withPages = Object.assign(figma, { root: { children: [page] } });
+    const AsyncFunction = Object.getPrototypeOf(async () => undefined).constructor as new (
+      ...args: string[]
+    ) => (figma: unknown) => Promise<{ variables: { created: number } }>;
+    const report = await new AsyncFunction('figma', loaderJs)(withPages);
+    expect(report.variables.created).toBe(allVariables().length);
+  });
+});
+
+describe('the verifier', () => {
+  it('passes after a sync and catches a changed value', async () => {
+    const { carrierSvg, verifyJs } = await import('../build/carrier.ts');
+    const textsOf = (svg: string): string[] =>
+      [...svg.matchAll(/<text[^>]*>([^<]*)<\/text>/g)].map((m) =>
+        (m[1] ?? '').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&'),
+      );
+    const texts = textsOf(carrierSvg('doras-plan', plan));
+    const figma = fakeFigma();
+    await applyPlan(plan, figma);
+    const page = {
+      name: '_doras-sync',
+      loadAsync: async () => undefined,
+      findAllWithCriteria: () => texts.map((characters) => ({ characters })),
+    };
+    const withPages = Object.assign(figma, { root: { children: [page] } });
+    const AsyncFunction = Object.getPrototypeOf(async () => undefined).constructor as new (
+      ...args: string[]
+    ) => (figma: unknown) => Promise<{ ok: boolean; checked: number; problems: string[] }>;
+    const verify = new AsyncFunction('figma', verifyJs);
+    // Figma hands numbers back as 32-bit floats: 0.9765 comes back as 0.97649997.
+    const f32 = (n: number): number => Math.fround(n);
+    for (const v of figma.allVariables) {
+      for (const [mode, value] of Object.entries(v.valuesByMode)) {
+        if (value && typeof value === 'object' && 'r' in value) {
+          const c = value as { r: number; g: number; b: number; a: number };
+          v.valuesByMode[mode] = { r: f32(c.r), g: f32(c.g), b: f32(c.b), a: f32(c.a) };
+        } else if (typeof value === 'number') v.valuesByMode[mode] = f32(value);
+      }
+    }
+    const good = await verify(withPages);
+    expect(good.problems).toEqual([]);
+    expect(good.ok).toBe(true);
+    expect(good.checked).toBe(allVariables().length);
+    figma.allVariables
+      .find((v) => v.name === 'space/inset/md')
+      ?.setValueForMode(
+        figma.collections.find((c) => c.name === 'Scale')?.modes[0]?.modeId ?? '',
+        99,
+      );
+    const bad = await verify(withPages);
+    expect(bad.ok).toBe(false);
+    expect(bad.problems.join(' ')).toContain('space/inset/md');
+  });
+});

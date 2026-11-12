@@ -42,7 +42,16 @@ pnpm build   # builds @doras/tokens, then this package
 
 ### Through the Figma MCP server (for agents)
 
-Run `dist/use-figma.js` with `use_figma`. If that's too large for one call, run each file in `dist/use-figma/` in order: they sync one collection at a time.
+`use_figma` takes scripts of up to 50,000 characters, and the whole plan is bigger than that. So the plan and the sync code travel into the file as text inside two SVGs, and a short loader runs them:
+
+1. Run `pnpm build`.
+2. With `use_figma`, create a page named `_doras-sync`.
+3. With `upload_assets`, get two upload URLs for that page. Post `dist/carrier/doras-applier.svg` and `dist/carrier/doras-plan.svg` to them as `image/svg+xml`.
+4. Run `dist/use-figma-loader.js` with `use_figma`. It returns a report of what it created and updated.
+5. Run `dist/use-figma-verify.js` with `use_figma`. It's read-only, and checks every variable, mode, alias, scope, code syntax, description and style binding against the plan. It returns `ok: true` and an empty `problems` list when the file matches.
+6. Run the loader again with `REMOVE_CARRIERS = true`. This also proves the sync updates in place: it should create nothing. It then deletes the `_doras-sync` page.
+
+If uploading isn't possible, run the files in `dist/use-figma/` in order instead. Each syncs one collection, and each is under the size limit.
 
 ## Running it again
 

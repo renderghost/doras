@@ -89,11 +89,17 @@ const STYLE_BY_WEIGHT: [number, string][] = [
   [900, 'Black'],
 ];
 
+/** Font families name styles differently, such as "Semi Bold" and "SemiBold". */
+const normalise = (style: string): string => style.replace(/\s+/g, '').toLowerCase();
+
 function nearestStyle(weight: number, available: string[]): string {
   const ranked = [...STYLE_BY_WEIGHT].sort(
     (a, b) => Math.abs(a[0] - weight) - Math.abs(b[0] - weight) || a[0] - b[0],
   );
-  for (const [, style] of ranked) if (available.indexOf(style) >= 0) return style;
+  for (const [, style] of ranked) {
+    const match = available.find((s) => normalise(s) === normalise(style));
+    if (match) return match;
+  }
   return available[0] ?? 'Regular';
 }
 

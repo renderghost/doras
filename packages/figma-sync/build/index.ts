@@ -1,8 +1,9 @@
 // Builds the sync from @doras/tokens' tokens.json:
 //   dist/plan.json     the plan, for reading and debugging
 //   dist/code.js       the Figma plugin (see manifest.json)
-//   dist/use-figma.js  the same, for running through the Figma MCP server
-//   dist/use-figma/*   the same, one collection at a time, in order
+//   dist/carrier/*.svg, dist/use-figma-loader.js and dist/use-figma-verify.js:
+//                      the route for agents using the Figma MCP server
+//   dist/use-figma/*   a fallback for agents: one collection per call, in order
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { join } from 'node:path';
@@ -10,6 +11,7 @@ import { fileURLToPath } from 'node:url';
 import ts from 'typescript';
 import type { DocTokens } from '../../tokens/build/docs.ts';
 import { buildPlan, type Plan } from '../src/plan.ts';
+import { carrierSvg, loaderJs, verifyJs } from './carrier.ts';
 
 const ROOT = join(import.meta.dirname, '..');
 const DIST = join(ROOT, 'dist');
@@ -22,17 +24,23 @@ export function applierJs(): string {
     compilerOptions: {
       target: ts.ScriptTarget.ES2017,
       module: ts.ModuleKind.ESNext,
-      removeComments: false,
+      removeComments: true,
       verbatimModuleSyntax: false,
     },
   });
-  // A plain script: no imports (types only) and no exports.
+  // A plain script: no imports (types only) and no exports, and no indentation to send.
   return outputText
     .replace(/^import .*$/gm, '')
     .replace(/^export \{\};?$/gm, '')
     .replace(/^export (async function|function|const)/gm, '$1')
+    .replace(/^[ \t]+/gm, '')
+    .replace(/\n{2,}/g, '\n')
     .trim();
 }
+
+/** The plan without what only people and tests read: the source token names. */
+const compact = (plan: Plan): string =>
+  JSON.stringify(plan, (k, v: unknown) => (k === 'token' ? undefined : v));
 
 const summary = `function summary(r) {
   return 'Doras tokens synced: ' + r.variables.created + ' variables created, ' + r.variables.updated + ' updated, ' +
@@ -46,7 +54,7 @@ ${applierJs()}
 
 ${summary}
 
-const PLAN = ${JSON.stringify(plan)};
+const PLAN = ${compact(plan)};
 
 applyPlan(PLAN, figma).then(
   (report) => figma.closePlugin(summary(report)),
@@ -55,12 +63,12 @@ applyPlan(PLAN, figma).then(
 `;
 }
 
-/** For the Figma MCP server's use_figma, which runs a function body with top-level await. */
+/** For the Figma MCP server's use_figma, which runs a function body with top-level await and takes up to 50,000 characters. */
 export function renderUseFigma(plan: Plan): string {
   return `${HEADER}
 ${applierJs()}
 
-const PLAN = ${JSON.stringify(plan)};
+const PLAN = ${compact(plan)};
 
 return await applyPlan(PLAN, figma);
 `;
@@ -94,12 +102,20 @@ export function build(): string[] {
   const files: [string, string][] = [
     ['plan.json', `${JSON.stringify(plan, null, 2)}\n`],
     ['code.js', renderPlugin(plan)],
-    ['use-figma.js', renderUseFigma(plan)],
   ];
   for (const [name, part] of splitPlan(plan)) {
     files.push([`use-figma/${name}.js`, renderUseFigma(part)]);
   }
+  // The carrier route: upload these SVGs, then run the small loader.
+  const lean = JSON.parse(
+    JSON.stringify(plan, (k, v: unknown) => (k === 'token' ? undefined : v)),
+  ) as Plan;
+  files.push(['carrier/doras-applier.svg', carrierSvg('doras-applier', applierJs())]);
+  files.push(['carrier/doras-plan.svg', carrierSvg('doras-plan', lean)]);
+  files.push(['use-figma-loader.js', loaderJs]);
+  files.push(['use-figma-verify.js', verifyJs]);
   mkdirSync(join(DIST, 'use-figma'), { recursive: true });
+  mkdirSync(join(DIST, 'carrier'), { recursive: true });
   for (const [name, content] of files) writeFileSync(join(DIST, name), content);
   return files.map(([name]) => name);
 }

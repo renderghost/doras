@@ -8,15 +8,16 @@ Doras is at an early stage: the packages exist but are mostly empty, and nothing
 
 ## Packages
 
-| Package                                          | What it holds                                                     | Issue                                                                                                        |
-| ------------------------------------------------ | ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| [`@doras/tokens`](packages/tokens)               | Design tokens in the DTCG format, built for CSS, Swift and Kotlin | [#3](https://github.com/renderghost/doras/issues/3)                                                          |
-| [`@doras/specs`](packages/specs)                 | Platform-neutral component specs and measurement events           | [#7](https://github.com/renderghost/doras/issues/7)                                                          |
-| [`@doras/components`](packages/components)       | The `<doras-…>` Web Components, built with Lit                    | [#8](https://github.com/renderghost/doras/issues/8) to [#14](https://github.com/renderghost/doras/issues/14) |
-| [`@doras/i18n`](packages/i18n)                   | ICU message catalogues and test locales                           | [#6](https://github.com/renderghost/doras/issues/6)                                                          |
-| [`@doras/emails`](packages/emails)               | Recovery and welcome emails, in MJML                              | [#17](https://github.com/renderghost/doras/issues/17)                                                        |
-| [`@doras/browser-mocks`](packages/browser-mocks) | Look-alikes of the browser's own UI, for Storybook only           | [#15](https://github.com/renderghost/doras/issues/15)                                                        |
-| [`@doras/storybook`](apps/storybook)             | The documentation site                                            | [#5](https://github.com/renderghost/doras/issues/5)                                                          |
+| Package                                          | What it holds                                                           | Issue                                                                                                        |
+| ------------------------------------------------ | ----------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| [`@doras/tokens`](packages/tokens)               | Design tokens in the DTCG format, built for CSS, Swift and Kotlin       | [#3](https://github.com/renderghost/doras/issues/3)                                                          |
+| [`@doras/specs`](packages/specs)                 | Platform-neutral component specs and measurement events                 | [#7](https://github.com/renderghost/doras/issues/7)                                                          |
+| [`@doras/components`](packages/components)       | The `<doras-…>` Web Components, built with Lit                          | [#8](https://github.com/renderghost/doras/issues/8) to [#14](https://github.com/renderghost/doras/issues/14) |
+| [`@doras/i18n`](packages/i18n)                   | ICU message catalogues and test locales                                 | [#6](https://github.com/renderghost/doras/issues/6)                                                          |
+| [`@doras/emails`](packages/emails)               | Recovery and welcome emails, in MJML                                    | [#17](https://github.com/renderghost/doras/issues/17)                                                        |
+| [`@doras/figma-sync`](packages/figma-sync)       | Syncs the tokens into Figma as variables, text styles and effect styles | [#4](https://github.com/renderghost/doras/issues/4)                                                          |
+| [`@doras/browser-mocks`](packages/browser-mocks) | Look-alikes of the browser's own UI, for Storybook only                 | [#15](https://github.com/renderghost/doras/issues/15)                                                        |
+| [`@doras/storybook`](apps/storybook)             | The documentation site                                                  | [#5](https://github.com/renderghost/doras/issues/5)                                                          |
 
 ## Getting started
 

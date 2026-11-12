@@ -53,9 +53,10 @@ export class FakeTextStyle {
   fontSize = 12;
   lineHeight: unknown = { unit: 'AUTO' };
   letterSpacing: unknown = { unit: 'PIXELS', value: 0 };
-  boundVariables: Record<string, string> = {};
+  boundVariables: Record<string, { type: 'VARIABLE_ALIAS'; id: string }> = {};
   setBoundVariable(field: string, variable: FakeVariable | null): void {
-    if (variable) this.boundVariables[field] = variable.id;
+    // As in Figma: a binding is stored as a variable alias.
+    if (variable) this.boundVariables[field] = { type: 'VARIABLE_ALIAS', id: variable.id };
   }
 }
 
@@ -81,9 +82,13 @@ export function fakeFigma({ maxModes = 4, fonts = ['Inter', 'Roboto Mono'] } = {
   const textStyles: FakeTextStyle[] = [];
   const effectStyles: FakeEffectStyle[] = [];
   const loadedFonts: string[] = [];
-  const styles = ['Regular', 'Medium', 'Semi Bold', 'Bold'];
+  // Inter writes "Semi Bold"; Roboto Mono writes "SemiBold", as in Figma.
+  const stylesFor = (family: string): string[] =>
+    family === 'Roboto Mono'
+      ? ['Regular', 'Medium', 'SemiBold', 'Bold']
+      : ['Regular', 'Medium', 'Semi Bold', 'Bold'];
   const available = fonts.flatMap((family) =>
-    styles.map((style) => ({ fontName: { family, style } })),
+    stylesFor(family).map((style) => ({ fontName: { family, style } })),
   );
   return {
     collections,
