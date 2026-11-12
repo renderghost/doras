@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
+import { withoutIsolation } from '@doras/i18n';
 import { within } from 'shadow-dom-testing-library';
-import { expect, fn, userEvent } from 'storybook/test';
+import { expect, fn, userEvent, waitFor } from 'storybook/test';
 import './example-chip.ts';
 import { spec } from './example-chip.spec.ts';
 import type { ChipTone } from './example-chip.ts';
@@ -100,6 +101,29 @@ export const Removable: Story = {
     await expect(remove.getAttribute('aria-label')).toContain(label);
     await userEvent.click(remove);
     await expect(args.onRemove).toHaveBeenCalledTimes(1);
+  },
+};
+
+/** The remove button's name follows the page's language, even when it changes. */
+export const FollowsLanguage: Story = {
+  name: 'Follows the page language',
+  args: { removable: true, label: 'Passkey' },
+  play: async ({ canvasElement }) => {
+    const wrapper = canvasElement.querySelector('.doras-story');
+    if (!wrapper) throw new Error('No story wrapper');
+    const removeName = async () => {
+      const [, remove] = await within(canvasElement).findAllByShadowRole('button');
+      return withoutIsolation(remove?.getAttribute('aria-label') ?? '');
+    };
+    const original = wrapper.getAttribute('lang');
+    try {
+      wrapper.setAttribute('lang', 'de');
+      await waitFor(async () => expect(await removeName()).toBe('Passkey entfernen'));
+      wrapper.setAttribute('lang', 'ja');
+      await waitFor(async () => expect(await removeName()).toBe('Passkey を削除'));
+    } finally {
+      if (original) wrapper.setAttribute('lang', original);
+    }
   },
 };
 

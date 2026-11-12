@@ -75,7 +75,7 @@ export const spec: ComponentSpec = {
   ],
   content: {
     guidelines: ['Keep labels to one or two words.', 'Use sentence case.'],
-    strings: [{ key: 'example.chip.remove', text: 'Remove {label}' }],
+    strings: ['example.chip.remove'],
     terms: [
       {
         term: 'Passkey',

@@ -1,6 +1,7 @@
 // A provisional shape for component specs, so the docs template can be built
 // now. #7 replaces it with types generated from the spec JSON Schema; the
 // sections map one to one onto the docs page.
+import type { MessageKey } from '@doras/i18n';
 
 export interface ComponentSpec {
   /** The component's name, as people say it. */
@@ -35,8 +36,8 @@ export interface ComponentSpec {
   tokens: string[];
   content: {
     guidelines: string[];
-    /** The strings it shows, by key, in UK English. */
-    strings: { key: string; text: string }[];
+    /** The catalogue keys of the strings it shows. The docs page shows each in every locale. */
+    strings: MessageKey[];
     /** Words it uses, as the glossary defines them. */
     terms?: { term: string; meaning: string }[];
   };

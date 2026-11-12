@@ -2,12 +2,51 @@
   "name": "@doras/i18n",
   "version": "0.0.0",
   "private": true,
-  "description": "ICU message catalogues, test locales and the naughty-list check.",
+  "description": "Doras’s strings in ICU MessageFormat: UK English and the test locales, the runtime that formats them, and the naughty-list check.",
   "license": "MIT OR Apache-2.0",
   "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/renderghost/doras.git",
     "directory": "packages/i18n"
+  },
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./lit": {
+      "types": "./dist/lit.d.ts",
+      "default": "./dist/lit.js"
+    },
+    "./catalogues/*": "./dist/catalogues/*",
+    "./naughty-list.json": "./naughty-list.json",
+    "./messages/*": "./src/messages/*"
+  },
+  "files": [
+    "dist",
+    "src/messages",
+    "naughty-list.json",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "node build/index.ts && tsc -p tsconfig.build.json"
+  },
+  "dependencies": {
+    "intl-messageformat": "^12.1.5"
+  },
+  "peerDependencies": {
+    "lit": "^3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "lit": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@formatjs/icu-messageformat-parser": "^3.5.23",
+    "lit": "^3.3.3",
+    "typescript": "~6.0.3"
   }
 }

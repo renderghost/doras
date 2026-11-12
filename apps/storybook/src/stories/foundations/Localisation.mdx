@@ -1,0 +1,35 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { catalogues } from '@doras/i18n';
+import { StringsTable } from '../../docs/blocks.tsx';
+
+<Meta title="Foundations/Localisation" />
+
+# Localisation
+
+Every string Doras shows comes from a message catalogue in `@doras/i18n`, written in [ICU MessageFormat](https://unicode-org.github.io/icu/userguide/format_parse/messages/) with UK English as the source. Use the **Locale** toolbar to see any story in another locale.
+
+## Locales
+
+- **UK English** (`en-GB`): the source.
+- **Pseudo-locale** (`en-XA`): generated from UK English. Accented, about 40% longer, and in brackets, so hard-coded or cut-off text stands out.
+- **Arabic** (`ar`): right to left. A test translation, until a professional one replaces it.
+- **German** (`de`): long compound words. A test translation.
+- **Japanese** (`ja`): no spaces, and different line breaking. A test translation.
+
+Components take their locale from the nearest `lang` attribute, as the browser does. Other tags match the nearest locale: `de-AT` uses German, and `en-US` or any language Doras doesn't have yet uses UK English.
+
+## Rules
+
+- **Copy is locked.** Apps choose the locale, never the words, so people meet the same words in every app.
+- **Never translated:** Atmosphere, handles, domains, codes and provider names. The build fails if a translation drops “Atmosphere”.
+- **Isolated:** text values inside a sentence, such as a handle, a domain or a provider's name, are wrapped in Unicode isolates. They do what `<bdi>` does, and also work in attributes such as `aria-label`. So an English handle reads correctly inside Arabic text, and an Arabic name inside English.
+- **Codes** are grouped for reading, such as 123 456, and always use the digits people type.
+- **Numbers, dates, lists and plurals** use the locale's own rules. Arabic has six plural forms, and the build fails if a translation misses one.
+- **Layouts mirror** for right to left: CSS uses logical properties only, such as `padding-inline-start`, and Stylelint rejects physical ones. Icons that point a direction mirror; others don't.
+- **Naughty list:** the build fails if a UK English string uses a word from the glossary's naughty list, such as “log in” or “magic link”.
+
+## Every string
+
+Each message is shown with sample values, then as written in ICU MessageFormat.
+
+<StringsTable keys={Object.keys(catalogues['en-GB'])} />

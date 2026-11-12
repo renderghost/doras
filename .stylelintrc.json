@@ -1,4 +1,34 @@
 {
   "extends": ["stylelint-config-standard"],
-  "ignoreFiles": ["**/dist/**", "**/storybook-static/**", "**/coverage/**"]
+  "ignoreFiles": ["**/dist/**", "**/storybook-static/**", "**/coverage/**"],
+  "rules": {
+    "property-disallowed-list": [
+      [
+        "/^(margin|padding|scroll-margin|scroll-padding)-(top|right|bottom|left)$/",
+        "/^(top|right|bottom|left)$/",
+        "/^border-(top|right|bottom|left)(-(width|style|color))?$/",
+        "/^border-(top|bottom)-(left|right)-radius$/",
+        "/^(min-|max-)?(width|height)$/",
+        "/^(overflow|overscroll-behavior)-(x|y)$/"
+      ],
+      {
+        "message": "Use the logical property instead (#6), such as margin-inline-start, inset-block-start or inline-size, so layouts mirror for right-to-left languages."
+      }
+    ],
+    "declaration-property-value-disallowed-list": [
+      {
+        "/^(text-align|float|clear)$/": ["/^(left|right)$/"],
+        "resize": ["horizontal", "vertical"]
+      },
+      {
+        "message": "Use start, end, inline or block instead (#6), so layouts mirror for right-to-left languages."
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["**/*.ts"],
+      "customSyntax": "postcss-lit"
+    }
+  ]
 }

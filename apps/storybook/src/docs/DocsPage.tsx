@@ -13,7 +13,7 @@ import {
   useOf,
 } from '@storybook/addon-docs/blocks';
 import type { ReactNode } from 'react';
-import { TokenTable } from './blocks.tsx';
+import { StringsTable, TokenTable } from './blocks.tsx';
 import type { ComponentSpec } from './spec.ts';
 import { token } from './tokens.ts';
 import './docs.css';
@@ -163,24 +163,7 @@ export function SpecSections({ spec }: { spec: ComponentSpec }) {
       <Section title="Content">
         <List items={spec.content.guidelines} />
         <h3>Strings</h3>
-        <table className="doras-docs-table">
-          <thead>
-            <tr>
-              <th scope="col">Key</th>
-              <th scope="col">UK English</th>
-            </tr>
-          </thead>
-          <tbody>
-            {spec.content.strings.map((s) => (
-              <tr key={s.key}>
-                <th scope="row">
-                  <code>{s.key}</code>
-                </th>
-                <td>{s.text}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <StringsTable keys={spec.content.strings} />
         {spec.content.terms && (
           <>
             <h3>Words it uses</h3>
