@@ -30,6 +30,9 @@
     "failure.providerUnavailable": "{provider} antwortet gerade nicht. Das liegt nicht an Ihnen. Versuchen Sie es in ein paar Minuten erneut.",
     "sheet.brand": "Atmosphere-Konto",
     "providerLink.manage": "Konto bei {provider} verwalten",
-    "skipLink.label": "Zum Hauptinhalt springen"
+    "skipLink.label": "Zum Hauptinhalt springen",
+    "sheet.foot": "Ein Atmosphere-Konto für Bluesky, {app} und jede andere Atmosphere-App.",
+    "provider.label": "Atmosphere-Anbieter",
+    "provider.foot": "Dies ist die eigene Seite von {provider}. {provider} hostet Ihr Atmosphere-Konto, und {app} sieht Ihr Passwort nie."
   }
 }

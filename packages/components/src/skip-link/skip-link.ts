@@ -40,14 +40,15 @@ export class DorasSkipLink extends LitElement implements DorasSkipLinkProps {
         padding: var(--doras-space-inset-sm) var(--doras-space-inset-md);
         border-radius: var(--doras-radius-control);
         background: var(--doras-color-surface-raised);
-        box-shadow: var(--doras-shadow-overlay);
         color: var(--doras-color-link-text);
         font-weight: var(--doras-type-label-md-font-weight);
         text-decoration: underline;
         transform: translateY(-200%);
       }
 
+      /* The shadow only when shown: off screen, its blur would still peek in. */
       a:focus {
+        box-shadow: var(--doras-shadow-overlay);
         transform: none;
       }
     `,

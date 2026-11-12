@@ -214,6 +214,20 @@ Settled while building it ([#13](https://github.com/renderghost/doras/issues/13)
   - It opens a new tab and says so. `sameTab` turns that off. Boolean props are off by default, so “same tab” is the prop, not “new tab”.
 - **Step links are buttons:** “Search by name instead” changes the step, not the page, so it's announced as a button. A back arrow mirrors right to left.
 
+### Containers
+
+Settled while building it ([#14](https://github.com/renderghost/doras/issues/14)):
+
+- **Native dialogs:** the Sheet and the Dialog are `<dialog>` elements opened with `showModal()`. The browser moves focus in, keeps it there, makes the page behind inert, closes on Escape and returns focus to the opener. Doras adds nothing to that.
+- **The Sheet:**
+  - It counts `doras.door_opened` when it opens.
+  - It closes itself when its header's close button is pressed. Consumers hear `doras-close` once, from the Sheet, when it has actually closed, however it was closed.
+  - Centred on large screens, a bottom sheet below 600px. The header and foot stay put; the body scrolls.
+  - A body that scrolls takes keyboard focus, so it can be scrolled without a mouse. A body that fits doesn't, so there's no empty Tab stop.
+- **The Dialog** is an `alertdialog`, named by its heading and described by its body. It's for questions that need an answer, such as “Remove this passkey?”. Focus starts on the first action, so put the safe one first.
+- **The provider page shell:** banner, main and footer landmarks. The skip link opens the banner, so it's the first Tab stop and inside a landmark. The footer says the app never sees the password.
+- **Details** is the native `<details>`, so it works with the keyboard and screen readers without script.
+
 ### Fonts, icons and motion
 
 - **Fonts and icons:** Inter, loaded from Google Fonts, and Lucide icons.

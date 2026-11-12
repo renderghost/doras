@@ -1,0 +1,82 @@
+{
+  "$schema": "../../schema/component.schema.json",
+  "name": "Card",
+  "group": "Containers",
+  "summary": "The provider page's main card: a raised surface for a page's main task.",
+  "usage": {
+    "when": ["For the main task on a provider page, such as signing in."],
+    "whenNot": [
+      {
+        "text": "Inside Front Door's sheet, which is already a surface.",
+        "instead": "Sheet"
+      }
+    ]
+  },
+  "anatomy": [
+    {
+      "part": "Surface",
+      "description": "Raised, with a border and a soft shadow."
+    }
+  ],
+  "props": [],
+  "states": [
+    {
+      "name": "Default",
+      "description": "Raised surface."
+    },
+    {
+      "name": "Phone",
+      "description": "Less padding."
+    }
+  ],
+  "events": [],
+  "accessibility": {
+    "role": "none",
+    "name": "None.",
+    "keyboard": [],
+    "screenReader": ["Not announced; its content is read in order."]
+  },
+  "tokens": [
+    "color.surface.raised",
+    "color.border.default",
+    "color.text.default",
+    "border-width.default",
+    "radius.card",
+    "shadow.raised",
+    "space.inset.xl",
+    "space.inset.lg"
+  ],
+  "strings": [],
+  "related": [
+    {
+      "component": "Provider page shell",
+      "relationship": "Holds it."
+    }
+  ],
+  "content": {
+    "guidelines": ["One card per page, for its main task."]
+  },
+  "dosAndDonts": [
+    {
+      "do": "Use one card for the page's main task.",
+      "dont": "Nest cards."
+    }
+  ],
+  "evidence": [
+    {
+      "point": "A single, clear surface keeps the provider page calm and focused (prototype)."
+    }
+  ],
+  "platforms": {
+    "web": {
+      "tag": "doras-card",
+      "formAssociated": false,
+      "slots": [
+        {
+          "name": "",
+          "description": "The content."
+        }
+      ]
+    }
+  }
+}

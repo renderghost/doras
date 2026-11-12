@@ -1,0 +1,131 @@
+{
+  "$schema": "../../schema/component.schema.json",
+  "name": "Details",
+  "group": "Containers",
+  "summary": "Content that's hidden until asked for, such as “Technical details” on the Connect page. Native details and summary.",
+  "usage": {
+    "when": [
+      "For long or technical content most people don't need, such as an app's raw permissions."
+    ],
+    "whenNot": [
+      {
+        "text": "For a less common option.",
+        "instead": "Disclosure"
+      }
+    ]
+  },
+  "anatomy": [
+    {
+      "part": "Summary",
+      "description": "With a chevron, always visible."
+    },
+    {
+      "part": "Content",
+      "description": "Shown when open."
+    }
+  ],
+  "props": [
+    {
+      "name": "open",
+      "type": "boolean",
+      "description": "Whether it's open.",
+      "default": false
+    }
+  ],
+  "states": [
+    {
+      "name": "Closed",
+      "description": "The summary only."
+    },
+    {
+      "name": "Open",
+      "description": "The content shows; the chevron points up."
+    }
+  ],
+  "events": [
+    {
+      "name": "doras-toggle",
+      "kind": "ui",
+      "when": "It's opened or closed.",
+      "detail": {
+        "open": {
+          "type": "boolean",
+          "description": "Whether it's now open."
+        }
+      }
+    }
+  ],
+  "accessibility": {
+    "role": "group, with a summary that acts as a button",
+    "name": "Its summary.",
+    "keyboard": [
+      {
+        "keys": "Tab",
+        "action": "Moves to the summary."
+      },
+      {
+        "keys": "Enter or Space",
+        "action": "Opens or closes it."
+      }
+    ],
+    "screenReader": ["Announced with its summary, and whether it's expanded."],
+    "notes": ["Long technical strings break safely inside it."]
+  },
+  "tokens": [
+    "color.surface.default",
+    "color.text.default",
+    "color.border.strong",
+    "border-width.default",
+    "radius.control",
+    "size.target.min",
+    "space.inset.md",
+    "space.inline.sm",
+    "type.label.md",
+    "motion.duration.fast",
+    "motion.easing.standard",
+    "color.border.focus",
+    "border-width.focus",
+    "focus.offset"
+  ],
+  "strings": [],
+  "related": [
+    {
+      "component": "Disclosure",
+      "relationship": "For less common options, not content."
+    }
+  ],
+  "content": {
+    "guidelines": ["The summary says what's inside: “Technical details”."]
+  },
+  "dosAndDonts": [
+    {
+      "do": "Hide technical detail most people don't need.",
+      "dont": "Hide anything people must read before agreeing."
+    }
+  ],
+  "evidence": [
+    {
+      "point": "Native details and summary are announced and keyboard-operable without extra code.",
+      "source": {
+        "label": "HTML: the details element",
+        "href": "https://html.spec.whatwg.org/multipage/interactive-elements.html#the-details-element"
+      }
+    }
+  ],
+  "platforms": {
+    "web": {
+      "tag": "doras-details",
+      "formAssociated": false,
+      "slots": [
+        {
+          "name": "summary",
+          "description": "The summary."
+        },
+        {
+          "name": "",
+          "description": "The content."
+        }
+      ]
+    }
+  }
+}

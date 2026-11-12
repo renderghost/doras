@@ -117,6 +117,18 @@
     "skipLink.label": {
       "message": "Skip to main content",
       "description": "The first link on a provider page, shown when focused, that skips to the main content."
+    },
+    "sheet.foot": {
+      "message": "One Atmosphere account for Bluesky, {app} and every other Atmosphere app.",
+      "description": "At the foot of Front Door's sheet. {app} is the app's name, such as Potluck."
+    },
+    "provider.label": {
+      "message": "Atmosphere provider",
+      "description": "Beside the provider's name at the top of its own pages."
+    },
+    "provider.foot": {
+      "message": "This is {provider}’s own page. {provider} hosts your Atmosphere account, and {app} never sees your password.",
+      "description": "At the foot of a provider's page. {provider} is its name; {app} is the app's name."
     }
   }
 }
