@@ -76,6 +76,23 @@ A script syncs the tokens one way, into variables in a new Doras library file in
 
 **Why:** one source of truth. Designers use the same values as the code, without two places to edit.
 
+Details settled while building it ([#4](https://github.com/renderghost/doras/issues/4)):
+
+- **Six collections:**
+  - Primitives, hidden from publishing and from every picker.
+  - Theme, with the four theme modes.
+  - Scale, Typography, Motion and Components.
+- **Variables:**
+  - Semantic variables are aliases of primitives, and component variables are aliases of semantic ones, so the chain shows in Figma as it does in code.
+  - Every variable has scopes, a description, and code syntax for web, iOS and Android.
+- **Styles:**
+  - Shadows and type styles can't be single variables, so they're effect and text styles bound to variables.
+  - Each shadow layer's colour is a Theme variable, so shadows change with the mode.
+- **Fonts in Figma:** Figma's Inter has no 650 or 750 weight, so text styles use Semi Bold and Bold. The code style uses Roboto Mono, because Figma doesn't have the system monospace fonts.
+- **Figma plan:** four modes in one collection need a Professional plan or above. On Starter the sync stops and says so.
+- **Re-running the sync:** it finds everything by name, so running it again updates in place and keeps every link. It never deletes: variables the tokens no longer have are kept and reported.
+- **Running it:** designers run it as a development plugin. Agents use `use_figma`, which takes at most 50,000 characters, so the plan and code travel into the file as text in SVGs, and a short loader runs them.
+
 ### Fonts, icons and motion
 
 - **Fonts and icons:** Inter, loaded from Google Fonts, and Lucide icons.
