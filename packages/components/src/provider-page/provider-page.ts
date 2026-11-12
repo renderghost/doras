@@ -15,10 +15,12 @@ export class DorasProviderPage extends LitElement implements DorasProviderPageSh
   static override properties = {
     provider: { type: String },
     appName: { type: String, attribute: 'app-name' },
+    appHosted: { type: Boolean, attribute: 'app-hosted' },
   };
 
   declare provider: string;
   declare appName: string;
+  declare appHosted: boolean;
 
   #i18n = new LocaleController(this);
 
@@ -26,6 +28,7 @@ export class DorasProviderPage extends LitElement implements DorasProviderPageSh
     super();
     this.provider = '';
     this.appName = '';
+    this.appHosted = false;
   }
 
   static override styles = css`
@@ -97,7 +100,13 @@ export class DorasProviderPage extends LitElement implements DorasProviderPageSh
       <main id="main" part="main"><slot></slot></main>
       <footer part="footer">
         <doras-icon name="lock" size="sm"></doras-icon>
-        <span>${this.#i18n.t('provider.foot', { provider: name, app: this.appName })}</span>
+        <span
+          >${
+            this.appHosted
+              ? this.#i18n.t('provider.footApp', { app: this.appName })
+              : this.#i18n.t('provider.foot', { provider: name, app: this.appName })
+          }</span
+        >
       </footer>
     </div>`;
   }

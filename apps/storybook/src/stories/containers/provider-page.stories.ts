@@ -36,3 +36,22 @@ export const Default: Story = {
     );
   },
 };
+
+/** The app hosts the account itself: the footer says it works in every Atmosphere app. */
+export const HostedByTheApp: Story = {
+  name: 'Hosted by the app',
+  render: () =>
+    html`<doras-provider-page provider="Potluck" app-name="Potluck" app-hosted>
+      <doras-card>
+        <h1 style="margin: 0 0 1rem; font-size: 1.5rem">Create your Atmosphere account</h1>
+        <p>Potluck will host it.</p>
+      </doras-card>
+    </doras-provider-page>`,
+  play: async ({ canvasElement }) => {
+    const page = host(canvasElement, 'doras-provider-page');
+    const footer = page.shadowRoot?.querySelector('footer')?.textContent ?? '';
+    await expect(footer.replace(/[⁨⁩]/g, '')).toContain(
+      textIn(page, 'provider.footApp', { app: 'Potluck' }),
+    );
+  },
+};

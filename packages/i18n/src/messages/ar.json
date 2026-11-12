@@ -191,6 +191,7 @@
     "connect.continue": "المتابعة إلى {app}",
     "connect.oneAccount": "إنه حساب واحد لـ {app} وBluesky وكل تطبيقات Atmosphere الأخرى، لذا يمكنك تسجيل الدخول به إليها كلها.",
     "connect.cancelled": "لم تربط حسابك في Atmosphere، لذا لم تسجّل الدخول. حاول مجددًا متى شئت.",
-    "connect.returning": "جارٍ إعادتك إلى {app}…"
+    "connect.returning": "جارٍ إعادتك إلى {app}…",
+    "provider.footApp": "هذه خدمة استضافة الحسابات لدى {app}، وهي منفصلة عن التطبيق. يعمل حسابك في Atmosphere في كل تطبيقات Atmosphere أيًّا كان مستضيفه."
   }
 }

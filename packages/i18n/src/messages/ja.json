@@ -191,6 +191,7 @@
     "connect.continue": "{app} へ進む",
     "connect.oneAccount": "{app}、Bluesky、ほかのすべての Atmosphere アプリで使える1つのアカウントなので、どれにもこれでサインインできます。",
     "connect.cancelled": "Atmosphere アカウントを接続しなかったので、サインインしていません。いつでももう一度試せます。",
-    "connect.returning": "{app} に戻っています…"
+    "connect.returning": "{app} に戻っています…",
+    "provider.footApp": "ここは {app} のアカウントホスティングで、アプリとは別のものです。Atmosphere アカウントは、どこがホストしていても、すべての Atmosphere アプリで使えます。"
   }
 }

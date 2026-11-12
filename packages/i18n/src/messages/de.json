@@ -191,6 +191,7 @@
     "connect.continue": "Weiter zu {app}",
     "connect.oneAccount": "Es ist ein Konto für {app}, Bluesky und jede andere Atmosphere-App, Sie können sich also bei allen damit anmelden.",
     "connect.cancelled": "Sie haben Ihr Atmosphere-Konto nicht verbunden, deshalb sind Sie nicht angemeldet. Versuchen Sie es wieder, wann immer Sie möchten.",
-    "connect.returning": "Sie werden zurück zu {app} gebracht …"
+    "connect.returning": "Sie werden zurück zu {app} gebracht …",
+    "provider.footApp": "Dies ist das Konto-Hosting von {app}, getrennt von der App. Ihr Atmosphere-Konto funktioniert in jeder Atmosphere-App, egal wer es hostet."
   }
 }

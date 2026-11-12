@@ -31,7 +31,7 @@ export class DorasSheetHeader extends LitElement implements DorasSheetHeaderProp
       display: block;
     }
 
-    header {
+    .bar {
       display: grid;
       grid-template-columns: var(--doras-size-target-min) 1fr var(--doras-size-target-min);
       align-items: center;
@@ -57,7 +57,9 @@ export class DorasSheetHeader extends LitElement implements DorasSheetHeaderProp
   `;
 
   override render() {
-    return html`<header part="header">
+    // A plain row, not <header>: inside the sheet's dialog a header would be
+    // a second banner landmark next to the app's own.
+    return html`<div class="bar" part="header">
       ${
         this.back
           ? html`<doras-icon-button
@@ -77,7 +79,7 @@ export class DorasSheetHeader extends LitElement implements DorasSheetHeaderProp
         @click=${() => this.#send('doras-close')}
         ><doras-icon name="x"></doras-icon
       ></doras-icon-button>
-    </header>`;
+    </div>`;
   }
 }
 

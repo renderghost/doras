@@ -761,6 +761,10 @@
     "connect.returning": {
       "message": "Taking you back to {app}…",
       "description": "Shown while returning to the app."
+    },
+    "provider.footApp": {
+      "message": "This is {app}’s account hosting, separate from the app. Your Atmosphere account works in every Atmosphere app, whoever hosts it.",
+      "description": "Footer of the provider page when the app hosts the account itself. {app} is the app's name."
     }
   }
 }
