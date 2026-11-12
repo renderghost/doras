@@ -162,6 +162,16 @@ Settled while building it ([#9](https://github.com/renderghost/doras/issues/9)):
 - **Switch:** named by its label alone. Its description is a description. The story tests caught it including both.
 - **List props:** the spec schema gained a `list` prop type, for the handle field's suggestions and the radio cards' options. Storybook never shows raw JSON for them.
 
+### Display
+
+Settled while building it ([#10](https://github.com/renderghost/doras/issues/10)):
+
+- **One icon list:** the Lucide icons Doras uses live in `@doras/components`. The Icon component and the Icons page both read it, and each icon is imported by name, so only these reach a bundle.
+- **Mirroring:** icons that point a direction mirror with `:dir(rtl)`, which follows the page's direction with no extra attribute.
+- **Divider:** the “or” version is plain text between decorative lines, because a separator's own text isn't read.
+- **Codes:** shown grouped and left to right. Screen readers get the digits spaced (“4 8 2 9 1 3”), so they're read one by one, not as a number.
+- **Roles checkers can see:** a permission item sets `role="listitem"` as an attribute. Browsers understand a role set through `ElementInternals`, but axe and Testing Library don't yet.
+
 ### Fonts, icons and motion
 
 - **Fonts and icons:** Inter, loaded from Google Fonts, and Lucide icons.

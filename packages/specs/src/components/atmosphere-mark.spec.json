@@ -1,0 +1,94 @@
+{
+  "$schema": "../../schema/component.schema.json",
+  "name": "Atmosphere mark",
+  "group": "Display",
+  "summary": "The Atmosphere's placeholder mark. Named “Atmosphere” when it stands alone, and decorative beside words that already say it.",
+  "usage": {
+    "when": ["Beside Atmosphere's name, or alone where it identifies the Atmosphere."],
+    "whenNot": [
+      {
+        "text": "Inside Continue with Atmosphere, which draws its own."
+      }
+    ]
+  },
+  "anatomy": [
+    {
+      "part": "Mark",
+      "description": "A dot inside an open ring, in the icon colour."
+    }
+  ],
+  "props": [
+    {
+      "name": "decorative",
+      "type": "boolean",
+      "description": "Hides it from screen readers, beside words that say “Atmosphere”.",
+      "default": false
+    },
+    {
+      "name": "size",
+      "type": "enum",
+      "description": "How big it is.",
+      "values": [
+        {
+          "value": "md",
+          "description": "20px."
+        },
+        {
+          "value": "lg",
+          "description": "24px."
+        },
+        {
+          "value": "xl",
+          "description": "32px."
+        }
+      ],
+      "default": "lg"
+    }
+  ],
+  "states": [
+    {
+      "name": "Named",
+      "description": "Announced as “Atmosphere”."
+    },
+    {
+      "name": "Decorative",
+      "description": "Hidden from screen readers."
+    }
+  ],
+  "events": [],
+  "accessibility": {
+    "role": "img",
+    "name": "“Atmosphere”, which is never translated.",
+    "keyboard": [],
+    "screenReader": ["Announced as an image called Atmosphere, unless decorative."]
+  },
+  "tokens": ["color.icon.default", "size.icon.md", "size.icon.lg", "size.icon.xl"],
+  "strings": ["atmosphere.mark"],
+  "related": [
+    {
+      "component": "Continue with Atmosphere",
+      "relationship": "Uses the mark."
+    }
+  ],
+  "content": {
+    "guidelines": ["“Atmosphere” is never translated."]
+  },
+  "dosAndDonts": [
+    {
+      "do": "Make it decorative beside the word “Atmosphere”.",
+      "dont": "Announce “Atmosphere” twice."
+    }
+  ],
+  "evidence": [
+    {
+      "point": "The mark is a placeholder until the community agrees one."
+    }
+  ],
+  "platforms": {
+    "web": {
+      "tag": "doras-atmosphere-mark",
+      "formAssociated": false,
+      "slots": []
+    }
+  }
+}

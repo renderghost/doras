@@ -8,7 +8,7 @@ import { measurementEvents } from '@doras/specs';
 import { Unstyled } from '@storybook/addon-docs/blocks';
 import type { IconNode } from 'lucide';
 import { createElement, useState, type CSSProperties, type ReactNode } from 'react';
-import { ICONS } from './icons.ts';
+import { ICONS } from '@doras/components';
 import { THEMES, sameInEveryTheme, type ThemeKey, type Token } from './tokens.ts';
 import './docs.css';
 

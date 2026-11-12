@@ -1,0 +1,106 @@
+{
+  "$schema": "../../schema/component.schema.json",
+  "name": "Divider",
+  "group": "Display",
+  "summary": "A rule between sections, or “or” between two ways to do the same thing, such as a password and “Use a passkey”.",
+  "usage": {
+    "when": [
+      "Between a password and “Use a passkey”.",
+      "Between sections that need more separation than space."
+    ],
+    "whenNot": [
+      {
+        "text": "For spacing alone: use space."
+      }
+    ]
+  },
+  "anatomy": [
+    {
+      "part": "Line",
+      "description": "A thin rule."
+    },
+    {
+      "part": "Or",
+      "description": "“or”, between two lines.",
+      "optional": true
+    }
+  ],
+  "props": [
+    {
+      "name": "variant",
+      "type": "enum",
+      "description": "Plain, or with “or”.",
+      "values": [
+        {
+          "value": "plain",
+          "description": "A rule."
+        },
+        {
+          "value": "or",
+          "description": "“or” between two lines."
+        }
+      ],
+      "default": "plain"
+    }
+  ],
+  "states": [
+    {
+      "name": "Plain",
+      "description": "A rule."
+    },
+    {
+      "name": "Or",
+      "description": "“or” between two short lines."
+    }
+  ],
+  "events": [],
+  "accessibility": {
+    "role": "separator when plain; text when it says “or”",
+    "name": "None.",
+    "keyboard": [],
+    "screenReader": [
+      "A plain divider is a separator.",
+      "The “or” version reads “or”, because a separator's own text isn't read."
+    ]
+  },
+  "tokens": [
+    "color.border.default",
+    "color.text.subtle",
+    "border-width.default",
+    "space.stack.md",
+    "space.inline.md",
+    "type.body.sm"
+  ],
+  "strings": ["divider.or"],
+  "related": [
+    {
+      "component": "Button",
+      "relationship": "The choices it separates."
+    }
+  ],
+  "content": {
+    "guidelines": ["“or” is lower case, between two equal choices."]
+  },
+  "dosAndDonts": [
+    {
+      "do": "Use “or” between two ways to do the same thing.",
+      "dont": "Use it between unrelated actions."
+    }
+  ],
+  "evidence": [
+    {
+      "point": "role=separator makes its content presentational, so a separator with text wouldn't be read.",
+      "source": {
+        "label": "WAI-ARIA: separator",
+        "href": "https://www.w3.org/TR/wai-aria-1.2/#separator"
+      }
+    }
+  ],
+  "platforms": {
+    "web": {
+      "tag": "doras-divider",
+      "formAssociated": false,
+      "slots": []
+    }
+  }
+}

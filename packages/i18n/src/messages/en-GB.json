@@ -69,6 +69,18 @@
     "handle.suggestionCount": {
       "message": "{count, plural, =0 {No matching accounts} one {# matching account} other {# matching accounts}}",
       "description": "Announced to screen readers as suggestions appear under the handle field."
+    },
+    "divider.or": {
+      "message": "or",
+      "description": "Between two ways to do the same thing, such as a password and “Use a passkey”."
+    },
+    "permission.why": {
+      "message": "Why:",
+      "description": "Before the reason an app gives for a permission, on the Connect page."
+    },
+    "atmosphere.mark": {
+      "message": "Atmosphere",
+      "description": "Accessible name of the Atmosphere mark, when it's shown on its own. Never translated."
     }
   }
 }

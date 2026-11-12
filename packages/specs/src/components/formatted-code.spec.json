@@ -1,0 +1,76 @@
+{
+  "$schema": "../../schema/component.schema.json",
+  "name": "Formatted code",
+  "group": "Display",
+  "summary": "A code shown for reading, such as 123 456: grouped, monospace, left to right in every language, and read digit by digit by screen readers.",
+  "usage": {
+    "when": ["To show a sign-in code, such as in the recovery email."],
+    "whenNot": [
+      {
+        "text": "For typing a code.",
+        "instead": "Code field"
+      }
+    ]
+  },
+  "anatomy": [
+    {
+      "part": "Code",
+      "description": "The digits, in groups of three."
+    }
+  ],
+  "props": [
+    {
+      "name": "code",
+      "type": "string",
+      "description": "The code, with or without spaces.",
+      "required": true
+    }
+  ],
+  "states": [
+    {
+      "name": "Default",
+      "description": "Grouped and monospace."
+    }
+  ],
+  "events": [],
+  "accessibility": {
+    "role": "text",
+    "name": "None.",
+    "keyboard": [],
+    "screenReader": ["Read digit by digit, such as “1 2 3 4 5 6”, not as a number."],
+    "notes": ["Never translated, and always left to right."]
+  },
+  "tokens": ["color.text.default", "type.code"],
+  "strings": [],
+  "related": [
+    {
+      "component": "Code field",
+      "relationship": "Where people type it."
+    },
+    {
+      "component": "Facts list",
+      "relationship": "Shows codes among other facts."
+    }
+  ],
+  "content": {
+    "guidelines": ["Codes are never translated, and always use the digits people type."]
+  },
+  "dosAndDonts": [
+    {
+      "do": "Group codes in threes.",
+      "dont": "Show long runs of digits."
+    }
+  ],
+  "evidence": [
+    {
+      "point": "Grouped digits are easier to read and copy correctly; screen readers otherwise read them as one large number."
+    }
+  ],
+  "platforms": {
+    "web": {
+      "tag": "doras-formatted-code",
+      "formAssociated": false,
+      "slots": []
+    }
+  }
+}
