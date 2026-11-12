@@ -18,7 +18,7 @@ pnpm install
 
 Use Node 22 or 24 (see `.nvmrc`) and pnpm 10.
 
-Then `pnpm build` once, so the tokens exist, and `pnpm storybook` to work in Storybook.
+Then `pnpm build` once, so the tokens exist: Storybook and its type-check read them. Run `pnpm storybook` to work in Storybook.
 
 ### Story tests
 
