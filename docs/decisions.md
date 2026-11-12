@@ -48,11 +48,27 @@ From day one, they build to:
 
 **Why:** DTCG is the standard, stable since October 2025. A sparse component tier keeps the system themable without thousands of one-off tokens. Building for mobile now proves the tokens really are device-agnostic.
 
-### Themes: light, dark, increased contrast and forced colours
+Details settled while building them ([#3](https://github.com/renderghost/doras/issues/3)):
 
-Light is the default. Dark and increased contrast (7:1) follow the system setting and can be forced in Storybook. Components stay usable in Windows forced colours. Apps can't theme Doras.
+- **Primitives never leave the package:** they aren't written to CSS, Swift or Kotlin, so components can't use them by accident.
+- **Style Dictionary resolves; Doras formats:** Style Dictionary reads the DTCG files and resolves references, but its Swift and Kotlin formats mishandle 2025.10 values. So Doras writes the CSS, Swift and Kotlin itself, from the same resolved values.
+- **Dimensions:** authored in px. On the web they become rem, so they grow with people's text size. Border widths and the focus ring stay in px. iOS uses the same numbers as points, and Android as dp (sp for type).
+- **Forced colours:** each semantic colour records its Windows forced-colours system colour next to its value, in an `org.doras` extension.
+
+### Themes: light, dark, high contrast of each, and forced colours
+
+Four themes:
+
+- light, the default
+- dark
+- light high contrast
+- dark high contrast
+
+The system's dark and contrast settings choose one, and Storybook can force any of them. Text in the high-contrast themes is at least 7:1. Components stay usable in Windows forced colours. Apps can't theme Doras.
 
 **Why:** the same look in every app is the point of a shared sign-in, and people who need more contrast or dark mode get it everywhere.
+
+**Changed in [#3](https://github.com/renderghost/doras/issues/3):** the plan had a single increased-contrast theme. People can ask for more contrast in dark mode too, and iOS, Android and the web (`prefers-contrast` with `prefers-color-scheme`) all treat the two settings separately. So high contrast became an extra layer on top of light or dark. The DTCG Resolver module models exactly this.
 
 ### Figma follows the code
 

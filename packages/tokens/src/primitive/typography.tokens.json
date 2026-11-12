@@ -1,0 +1,138 @@
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/format.json",
+  "primitive": {
+    "font": {
+      "family": {
+        "$type": "fontFamily",
+        "sans": {
+          "$value": [
+            "Inter",
+            "ui-sans-serif",
+            "system-ui",
+            "-apple-system",
+            "Segoe UI",
+            "Roboto",
+            "sans-serif"
+          ],
+          "$description": "Inter, falling back to the system interface font."
+        },
+        "mono": {
+          "$value": ["ui-monospace", "SF Mono", "Menlo", "Consolas", "monospace"],
+          "$description": "For codes."
+        }
+      },
+      "weight": {
+        "$type": "fontWeight",
+        "regular": {
+          "$value": 400
+        },
+        "medium": {
+          "$value": 550
+        },
+        "semibold": {
+          "$value": 650
+        },
+        "bold": {
+          "$value": 750,
+          "$description": "Inter is variable, so 650 and 750 render exactly on the web. Mobile platforms round to the nearest weight they have."
+        }
+      },
+      "size": {
+        "$type": "dimension",
+        "12": {
+          "$value": {
+            "value": 12,
+            "unit": "px"
+          }
+        },
+        "13": {
+          "$value": {
+            "value": 13,
+            "unit": "px"
+          }
+        },
+        "14": {
+          "$value": {
+            "value": 14,
+            "unit": "px"
+          }
+        },
+        "15": {
+          "$value": {
+            "value": 15,
+            "unit": "px"
+          }
+        },
+        "16": {
+          "$value": {
+            "value": 16,
+            "unit": "px"
+          }
+        },
+        "17": {
+          "$value": {
+            "value": 17,
+            "unit": "px"
+          }
+        },
+        "20": {
+          "$value": {
+            "value": 20,
+            "unit": "px"
+          }
+        },
+        "24": {
+          "$value": {
+            "value": 24,
+            "unit": "px"
+          }
+        },
+        "28": {
+          "$value": {
+            "value": 28,
+            "unit": "px"
+          }
+        }
+      },
+      "line-height": {
+        "$type": "number",
+        "tight": {
+          "$value": 1.2
+        },
+        "snug": {
+          "$value": 1.3
+        },
+        "normal": {
+          "$value": 1.5
+        }
+      },
+      "letter-spacing": {
+        "$type": "dimension",
+        "tighter": {
+          "$value": {
+            "value": -0.72,
+            "unit": "px"
+          }
+        },
+        "tight": {
+          "$value": {
+            "value": -0.4,
+            "unit": "px"
+          }
+        },
+        "none": {
+          "$value": {
+            "value": 0,
+            "unit": "px"
+          }
+        },
+        "wide": {
+          "$value": {
+            "value": 1.5,
+            "unit": "px"
+          }
+        }
+      }
+    }
+  }
+}

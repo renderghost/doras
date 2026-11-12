@@ -13,6 +13,7 @@
     "url": "git+https://github.com/renderghost/doras.git"
   },
   "scripts": {
+    "build": "pnpm -r --if-present build",
     "lint": "eslint . && stylelint \"**/*.css\" --allow-empty-input",
     "typecheck": "tsc -p tsconfig.json",
     "test": "vitest run",

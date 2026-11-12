@@ -29,6 +29,7 @@ pnpm install
 
 | Command          | What it does                                                       |
 | ---------------- | ------------------------------------------------------------------ |
+| `pnpm build`     | Builds every package that has a build, such as the tokens          |
 | `pnpm lint`      | ESLint for TypeScript and Lit, and Stylelint for CSS               |
 | `pnpm typecheck` | TypeScript in strict mode                                          |
 | `pnpm test`      | Vitest                                                             |

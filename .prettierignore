@@ -4,3 +4,4 @@ LICENSE*
 **/dist/
 **/storybook-static/
 **/coverage/
+packages/tokens/schemas/

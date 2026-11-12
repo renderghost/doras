@@ -1,0 +1,557 @@
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/format.json",
+  "color": {
+    "$type": "color",
+    "$description": "Semantic colours: what a colour is for, not what it looks like.",
+    "text": {
+      "$description": "Text colours.",
+      "default": {
+        "$value": "{primitive.color.neutral.1000}",
+        "$description": "Most text.",
+        "$extensions": {
+          "org.doras": {
+            "forcedColor": "CanvasText"
+          }
+        }
+      },
+      "subtle": {
+        "$value": "{primitive.color.neutral.600}",
+        "$description": "Secondary text, such as hints.",
+        "$extensions": {
+          "org.doras": {
+            "forcedColor": "CanvasText"
+          }
+        }
+      },
+      "inverse": {
+        "$value": "{primitive.color.neutral.0}",
+        "$description": "Text on an inverse surface.",
+        "$extensions": {
+          "org.doras": {
+            "forcedColor": "Canvas"
+          }
+        }
+      },
+      "error": {
+        "$value": "{primitive.color.error.800}",
+        "$description": "Error messages.",
+        "$extensions": {
+          "org.doras": {
+            "forcedColor": "CanvasText"
+          }
+        }
+      },
+      "success": {
+        "$value": "{primitive.color.accent.900}",
+        "$description": "Success messages that aren’t in a notice.",
+        "$extensions": {
+          "org.doras": {
+            "forcedColor": "CanvasText"
+          }
+        }
+      },
+      "automated": {
+        "$value": "{primitive.color.automated.700}",
+        "$description": "Something the system worked out or filled in.",
+        "$extensions": {
+          "org.doras": {
+            "forcedColor": "CanvasText"
+          }
+        }
+      }
+    },
+    "icon": {
+      "$description": "Icon colours. Icons that carry meaning use the feedback icon colours instead.",
+      "default": {
+        "$value": "{primitive.color.neutral.1000}",
+        "$extensions": {
+          "org.doras": {
+            "forcedColor": "CanvasText"
+          }
+        }
+      },
+      "subtle": {
+        "$value": "{primitive.color.neutral.600}",
+        "$extensions": {
+          "org.doras": {
+            "forcedColor": "CanvasText"
+          }
+        }
+      }
+    },
+    "link": {
+      "$description": "Links are text-coloured, with a coloured underline.",
+      "text": {
+        "$value": "{primitive.color.neutral.1000}",
+        "$extensions": {
+          "org.doras": {
+            "forcedColor": "LinkText"
+          }
+        }
+      },
+      "decoration": {
+        "$value": "{primitive.color.link.500}",
+        "$description": "The underline.",
+        "$extensions": {
+          "org.doras": {
+            "forcedColor": "LinkText"
+          }
+        }
+      },
+      "decoration-hover": {
+        "$value": "{primitive.color.link.700}",
+        "$extensions": {
+          "org.doras": {
+            "forcedColor": "LinkText"
+          }
+        }
+      }
+    },
+    "surface": {
+      "$description": "Backgrounds.",
+      "default": {
+        "$value": "{primitive.color.neutral.0}",
+        "$description": "The page.",
+        "$extensions": {
+          "org.doras": {
+            "forcedColor": "Canvas"
+          }
+        }
+      },
+      "subtle": {
+        "$value": "{primitive.color.neutral.50}",
+        "$description": "Quiet areas inside the page.",
+        "$extensions": {
+          "org.doras": {
+            "forcedColor": "Canvas"
+          }
+        }
+      },
+      "raised": {
+        "$value": "{primitive.color.neutral.0}",
+        "$description": "Sheets and cards that sit above the page.",
+        "$extensions": {
+          "org.doras": {
+            "forcedColor": "Canvas"
+          }
+        }
+      },
+      "overlay": {
+        "$value": "{primitive.color.alpha.black-36}",
+        "$description": "The scrim behind a sheet.",
+        "$extensions": {
+          "org.doras": {
+            "forcedColor": "Canvas"
+          }
+        }
+      }
+    },
+    "border": {
+      "$description": "Borders and dividers.",
+      "default": {
+        "$value": "{primitive.color.alpha.black-10}",
+        "$description": "Hairlines and dividers. Decorative.",
+        "$extensions": {
+          "org.doras": {
+            "forcedColor": "CanvasText"
+          }
+        }
+      },
+      "strong": {
+        "$value": "{primitive.color.alpha.black-24}",
+        "$description": "Card edges. Decorative.",
+        "$extensions": {
+          "org.doras": {
+            "forcedColor": "CanvasText"
+          }
+        }
+      },
+      "control": {
+        "$value": "{primitive.color.neutral.500}",
+        "$description": "The edge of a field: at least 3:1 against its surroundings (WCAG 1.4.11).",
+        "$extensions": {
+          "org.doras": {
+            "forcedColor": "ButtonBorder"
+          }
+        }
+      },
+      "emphasis": {
+        "$value": "{primitive.color.neutral.1000}",
+        "$description": "A border that must stand out, such as on Continue with Atmosphere.",
+        "$extensions": {
+          "org.doras": {
+            "forcedColor": "CanvasText"
+          }
+        }
+      },
+      "focus": {
+        "$value": "{primitive.color.link.700}",
+        "$description": "The focus ring.",
+        "$extensions": {
+          "org.doras": {
+            "forcedColor": "Highlight"
+          }
+        }
+      },
+      "error": {
+        "$value": "{primitive.color.error.700}",
+        "$description": "The edge of a field with an error.",
+        "$extensions": {
+          "org.doras": {
+            "forcedColor": "CanvasText"
+          }
+        }
+      },
+      "success": {
+        "$value": "{primitive.color.accent.900}",
+        "$extensions": {
+          "org.doras": {
+            "forcedColor": "CanvasText"
+          }
+        }
+      },
+      "automated": {
+        "$value": "{primitive.color.automated.500}",
+        "$extensions": {
+          "org.doras": {
+            "forcedColor": "CanvasText"
+          }
+        }
+      }
+    },
+    "action": {
+      "$description": "Buttons.",
+      "primary": {
+        "surface": {
+          "$value": "{primitive.color.accent.200}",
+          "$extensions": {
+            "org.doras": {
+              "forcedColor": "ButtonFace"
+            }
+          }
+        },
+        "surface-hover": {
+          "$value": "{primitive.color.accent.300}",
+          "$extensions": {
+            "org.doras": {
+              "forcedColor": "ButtonFace"
+            }
+          }
+        },
+        "border": {
+          "$value": "{primitive.color.accent.500}",
+          "$description": "Decorative: the label identifies the button.",
+          "$extensions": {
+            "org.doras": {
+              "forcedColor": "ButtonBorder"
+            }
+          }
+        },
+        "text": {
+          "$value": "{primitive.color.neutral.1000}",
+          "$extensions": {
+            "org.doras": {
+              "forcedColor": "ButtonText"
+            }
+          }
+        }
+      },
+      "secondary": {
+        "surface": {
+          "$value": "{primitive.color.neutral.0}",
+          "$extensions": {
+            "org.doras": {
+              "forcedColor": "ButtonFace"
+            }
+          }
+        },
+        "surface-hover": {
+          "$value": "{primitive.color.neutral.50}",
+          "$extensions": {
+            "org.doras": {
+              "forcedColor": "ButtonFace"
+            }
+          }
+        },
+        "border": {
+          "$value": "{primitive.color.alpha.black-24}",
+          "$description": "Decorative: the label identifies the button.",
+          "$extensions": {
+            "org.doras": {
+              "forcedColor": "ButtonBorder"
+            }
+          }
+        },
+        "text": {
+          "$value": "{primitive.color.neutral.1000}",
+          "$extensions": {
+            "org.doras": {
+              "forcedColor": "ButtonText"
+            }
+          }
+        }
+      }
+    },
+    "selected": {
+      "$description": "A chosen option, such as a provider card.",
+      "surface": {
+        "$value": "{primitive.color.accent.50}",
+        "$extensions": {
+          "org.doras": {
+            "forcedColor": "Highlight"
+          }
+        }
+      },
+      "border": {
+        "$value": "{primitive.color.accent.900}",
+        "$description": "At least 3:1, so the choice is clear without colour alone.",
+        "$extensions": {
+          "org.doras": {
+            "forcedColor": "Highlight"
+          }
+        }
+      },
+      "icon": {
+        "$value": "{primitive.color.accent.900}",
+        "$extensions": {
+          "org.doras": {
+            "forcedColor": "HighlightText"
+          }
+        }
+      }
+    },
+    "feedback": {
+      "$description": "Notices and messages. Text in a notice uses the feedback text colour; the icon carries the meaning with the words, never colour alone.",
+      "success": {
+        "$description": "Done, or a good result.",
+        "surface": {
+          "$value": "{primitive.color.accent.50}",
+          "$extensions": {
+            "org.doras": {
+              "forcedColor": "Canvas"
+            }
+          }
+        },
+        "border": {
+          "$value": "{primitive.color.accent.300}",
+          "$extensions": {
+            "org.doras": {
+              "forcedColor": "CanvasText"
+            }
+          }
+        },
+        "icon": {
+          "$value": "{primitive.color.accent.900}",
+          "$extensions": {
+            "org.doras": {
+              "forcedColor": "CanvasText"
+            }
+          }
+        },
+        "text": {
+          "$value": "{primitive.color.neutral.1000}",
+          "$extensions": {
+            "org.doras": {
+              "forcedColor": "CanvasText"
+            }
+          }
+        }
+      },
+      "error": {
+        "$description": "Something needs fixing.",
+        "surface": {
+          "$value": "{primitive.color.error.50}",
+          "$extensions": {
+            "org.doras": {
+              "forcedColor": "Canvas"
+            }
+          }
+        },
+        "border": {
+          "$value": "{primitive.color.error.300}",
+          "$extensions": {
+            "org.doras": {
+              "forcedColor": "CanvasText"
+            }
+          }
+        },
+        "icon": {
+          "$value": "{primitive.color.error.800}",
+          "$extensions": {
+            "org.doras": {
+              "forcedColor": "CanvasText"
+            }
+          }
+        },
+        "text": {
+          "$value": "{primitive.color.neutral.1000}",
+          "$extensions": {
+            "org.doras": {
+              "forcedColor": "CanvasText"
+            }
+          }
+        }
+      },
+      "info": {
+        "$description": "Neutral information.",
+        "surface": {
+          "$value": "{primitive.color.link.50}",
+          "$extensions": {
+            "org.doras": {
+              "forcedColor": "Canvas"
+            }
+          }
+        },
+        "border": {
+          "$value": "{primitive.color.link.200}",
+          "$extensions": {
+            "org.doras": {
+              "forcedColor": "CanvasText"
+            }
+          }
+        },
+        "icon": {
+          "$value": "{primitive.color.link.800}",
+          "$extensions": {
+            "org.doras": {
+              "forcedColor": "CanvasText"
+            }
+          }
+        },
+        "text": {
+          "$value": "{primitive.color.neutral.1000}",
+          "$extensions": {
+            "org.doras": {
+              "forcedColor": "CanvasText"
+            }
+          }
+        }
+      },
+      "automated": {
+        "$description": "Something the system worked out or filled in.",
+        "surface": {
+          "$value": "{primitive.color.automated.50}",
+          "$extensions": {
+            "org.doras": {
+              "forcedColor": "Canvas"
+            }
+          }
+        },
+        "border": {
+          "$value": "{primitive.color.automated.200}",
+          "$extensions": {
+            "org.doras": {
+              "forcedColor": "CanvasText"
+            }
+          }
+        },
+        "icon": {
+          "$value": "{primitive.color.automated.700}",
+          "$extensions": {
+            "org.doras": {
+              "forcedColor": "CanvasText"
+            }
+          }
+        },
+        "text": {
+          "$value": "{primitive.color.neutral.1000}",
+          "$extensions": {
+            "org.doras": {
+              "forcedColor": "CanvasText"
+            }
+          }
+        }
+      }
+    }
+  },
+  "shadow": {
+    "$type": "shadow",
+    "$description": "Elevation. High-contrast themes keep shadows, but always pair them with a border.",
+    "raised": {
+      "$value": [
+        {
+          "color": "{primitive.color.alpha.black-6}",
+          "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+          "offsetY": {
+            "value": 1,
+            "unit": "px"
+          },
+          "blur": {
+            "value": 2,
+            "unit": "px"
+          },
+          "spread": {
+            "value": 0,
+            "unit": "px"
+          }
+        },
+        {
+          "color": "{primitive.color.alpha.black-5}",
+          "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+          "offsetY": {
+            "value": 2,
+            "unit": "px"
+          },
+          "blur": {
+            "value": 8,
+            "unit": "px"
+          },
+          "spread": {
+            "value": 0,
+            "unit": "px"
+          }
+        }
+      ],
+      "$description": "Cards that sit just above the page."
+    },
+    "overlay": {
+      "$value": [
+        {
+          "color": "{primitive.color.alpha.black-24}",
+          "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+          "offsetY": {
+            "value": 28,
+            "unit": "px"
+          },
+          "blur": {
+            "value": 70,
+            "unit": "px"
+          },
+          "spread": {
+            "value": 0,
+            "unit": "px"
+          }
+        },
+        {
+          "color": "{primitive.color.alpha.black-10}",
+          "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+          "offsetY": {
+            "value": 4,
+            "unit": "px"
+          },
+          "blur": {
+            "value": 14,
+            "unit": "px"
+          },
+          "spread": {
+            "value": 0,
+            "unit": "px"
+          }
+        }
+      ],
+      "$description": "Sheets and dialogs."
+    }
+  }
+}
