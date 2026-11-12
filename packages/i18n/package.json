@@ -1,0 +1,13 @@
+{
+  "name": "@doras/i18n",
+  "version": "0.0.0",
+  "private": true,
+  "description": "ICU message catalogues, test locales and the naughty-list check.",
+  "license": "MIT OR Apache-2.0",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/renderghost/doras.git",
+    "directory": "packages/i18n"
+  }
+}

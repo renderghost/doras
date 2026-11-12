@@ -1,0 +1,13 @@
+{
+  "name": "@doras/specs",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Platform-neutral component specs and the measurement events contract.",
+  "license": "MIT OR Apache-2.0",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/renderghost/doras.git",
+    "directory": "packages/specs"
+  }
+}
