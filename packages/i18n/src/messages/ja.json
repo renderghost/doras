@@ -9,6 +9,15 @@
     "identity.hostedBy": "{provider} がホスト",
     "email.recovery.codeLifetime": "コードの有効期限は {minutes, plural, other {# 分}} です。",
     "email.recovery.noLinks": "サインイン用のリンクをメールで送ることはありません。サインインのためにクリックを求めるメールは、私たちからのものではありません。",
-    "link.opensInNewTab": "（新しいタブで開きます）"
+    "link.opensInNewTab": "（新しいタブで開きます）",
+    "field.errorPrefix": "エラー:",
+    "password.show": "パスワードを表示",
+    "password.hide": "パスワードを隠す",
+    "handle.didYouMean": "もしかして",
+    "handle.readAs": "{typed} を {handle} と読み取りました。",
+    "handle.fixAtSign": "ハンドルでは途中に @ ではなくドットを使います。",
+    "handle.fixEnding": "{ending} はハンドルの末尾ではありません。{provider} のハンドルは {correct} で終わります。",
+    "handle.fixLink": "プロフィールのリンクからハンドルを取り出しました。",
+    "handle.suggestionCount": "{count, plural, =0 {一致するアカウントはありません} other {一致するアカウント: # 件}}"
   }
 }

@@ -1,6 +1,6 @@
 // Shared by the Actions stories.
 import { format, localeOf, matchLocale, withoutIsolation, type MessageKey } from '@doras/i18n';
-import { LOCALES, type Locale as ToolbarLocale } from '../../../.storybook/settings.ts';
+import { LOCALES, type Locale as ToolbarLocale } from '../../.storybook/settings.ts';
 import { within } from 'shadow-dom-testing-library';
 import { html } from 'lit';
 

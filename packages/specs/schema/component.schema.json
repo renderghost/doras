@@ -355,7 +355,7 @@
           "pattern": "^[a-z][A-Za-z0-9]*$"
         },
         "type": {
-          "enum": ["string", "boolean", "number", "enum"]
+          "enum": ["string", "boolean", "number", "enum", "list"]
         },
         "description": {
           "type": "string",
@@ -386,6 +386,11 @@
         },
         "required": {
           "type": "boolean"
+        },
+        "items": {
+          "description": "For list props: what each item holds.",
+          "type": "string",
+          "minLength": 1
         }
       },
       "allOf": [
@@ -422,6 +427,26 @@
               }
             },
             "required": ["default"]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "list"
+              }
+            }
+          },
+          "then": {
+            "required": ["items"],
+            "not": {
+              "required": ["default"]
+            }
+          },
+          "else": {
+            "not": {
+              "required": ["items"]
+            }
           }
         }
       ],

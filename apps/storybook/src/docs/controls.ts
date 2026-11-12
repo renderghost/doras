@@ -34,6 +34,10 @@ export function argTypesFromSpec(spec: ComponentSpec): ArgTypes {
       case 'number':
         argTypes[prop.name] = { ...base, control: 'number' };
         break;
+      case 'list':
+        // Lists are set in code. Controls never show raw JSON.
+        argTypes[prop.name] = { ...base, control: false };
+        break;
       case 'string':
         argTypes[prop.name] = { ...base, control: 'text' };
         break;

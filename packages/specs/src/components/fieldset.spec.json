@@ -1,0 +1,134 @@
+{
+  "$schema": "../../schema/component.schema.json",
+  "name": "Fieldset",
+  "group": "User input",
+  "summary": "Groups related fields under a legend, with a hint and a message for the group as a whole.",
+  "usage": {
+    "when": [
+      "To group fields that answer one question, such as a provider's address and its details."
+    ],
+    "whenNot": [
+      {
+        "text": "For a single field.",
+        "instead": "Text field"
+      },
+      {
+        "text": "For a choice between options.",
+        "instead": "Radio cards"
+      }
+    ]
+  },
+  "anatomy": [
+    {
+      "part": "Legend",
+      "description": "What the group is about."
+    },
+    {
+      "part": "Hint",
+      "description": "Help for the group.",
+      "optional": true
+    },
+    {
+      "part": "Message",
+      "description": "An error for the group as a whole.",
+      "optional": true
+    },
+    {
+      "part": "Fields",
+      "description": "The fields inside."
+    }
+  ],
+  "props": [
+    {
+      "name": "legend",
+      "type": "string",
+      "description": "What the group is about.",
+      "required": true
+    },
+    {
+      "name": "hint",
+      "type": "string",
+      "description": "Help for the group."
+    },
+    {
+      "name": "error",
+      "type": "string",
+      "description": "An error for the group as a whole."
+    }
+  ],
+  "states": [
+    {
+      "name": "Default",
+      "description": "The legend and fields."
+    },
+    {
+      "name": "Invalid",
+      "description": "The group's message under the legend."
+    }
+  ],
+  "events": [],
+  "accessibility": {
+    "role": "group (fieldset)",
+    "name": "Its legend.",
+    "keyboard": [
+      {
+        "keys": "Tab",
+        "action": "Moves through the fields inside, in order."
+      }
+    ],
+    "screenReader": ["The legend is announced when focus enters the group."]
+  },
+  "tokens": [
+    "color.text.default",
+    "color.text.subtle",
+    "color.text.error",
+    "space.stack.md",
+    "space.stack.xs",
+    "space.inline.xs",
+    "size.icon.sm",
+    "type.heading.sm",
+    "type.body.sm",
+    "type.label.sm"
+  ],
+  "strings": ["field.errorPrefix"],
+  "related": [
+    {
+      "component": "Radio cards",
+      "relationship": "A fieldset of choices."
+    },
+    {
+      "component": "Error summary",
+      "relationship": "Links to the group when it has an error."
+    }
+  ],
+  "content": {
+    "guidelines": ["The legend is short, or a question."]
+  },
+  "dosAndDonts": [
+    {
+      "do": "Group fields that answer one question.",
+      "dont": "Wrap a whole page in one fieldset."
+    }
+  ],
+  "evidence": [
+    {
+      "point": "Fieldsets give screen readers the group's context.",
+      "source": {
+        "label": "WCAG technique H71",
+        "href": "https://www.w3.org/WAI/WCAG22/Techniques/html/H71"
+      }
+    }
+  ],
+  "platforms": {
+    "web": {
+      "tag": "doras-fieldset",
+      "formAssociated": false,
+      "slots": [
+        {
+          "name": "",
+          "description": "The fields."
+        }
+      ]
+    }
+  }
+}

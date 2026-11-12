@@ -21,10 +21,25 @@ Or import one component, such as `@doras/components/button/button`. Components t
 | `<doras-continue-with-atmosphere>` | The one door into signing in, the same in every app.                       |
 | `<doras-disclosure>`               | Shows and hides content most people don't need.                            |
 
+## User input (#9)
+
+| Element                  | What it does                                                                     |
+| ------------------------ | -------------------------------------------------------------------------------- |
+| `<doras-text-field>`     | A label, hint, input and message. The base for the others.                       |
+| `<doras-email-field>`    | Tuned for email addresses.                                                       |
+| `<doras-password-field>` | Show and hide, and the right autocomplete for signing in or choosing a password. |
+| `<doras-code-field>`     | One input for a code; submits the digits alone.                                  |
+| `<doras-handle-field>`   | A combobox that forgives how handles are typed and suggests accounts.            |
+| `<doras-radio-cards>`    | A choice drawn as cards. Nothing chosen by default.                              |
+| `<doras-switch>`         | Turns one optional thing on or off.                                              |
+| `<doras-fieldset>`       | Groups fields under a legend.                                                    |
+
+The app validates; fields show the result. Set `error` to a catalogue message to mark a field invalid, and clear it when it's fixed. Listen for `doras-input`, which waits for input methods to finish composing, to validate live once a field has an error. `readHandle()` is exported for apps that need the same forgiving reading.
+
 ## Things to know
 
 - **Buttons are never disabled.** While busy, presses do nothing, and the busy label says what's happening.
 - **`<doras-button>` defaults to `type="button"`.** Set `type="submit"` to submit its form. It takes part in forms through `ElementInternals`, as native buttons do.
-- **Pressing Enter in a text field** submits a form only through a native submit button, so the User input fields (#9) submit the form themselves.
+- **Pressing Enter in a field** submits its form, even when the submit button is a Doras button.
 - **Focus:** every component delegates focus to its native control, so `element.focus()` and the Tab key reach it.
 - **Motion** comes from the motion tokens, so reduced motion stops it, including the busy spinner.

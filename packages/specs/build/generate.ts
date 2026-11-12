@@ -25,6 +25,8 @@ interface FullSpec extends Spec {
 function propType(prop: FullSpec['props'][number]): string {
   if (prop.type === 'enum')
     return (prop.values ?? []).map((v) => JSON.stringify(v.value)).join(' | ');
+  // A list's items are typed by the component itself.
+  if (prop.type === 'list') return 'unknown[]';
   return prop.type;
 }
 

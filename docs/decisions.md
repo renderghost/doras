@@ -131,6 +131,37 @@ Settled while building them ([#8](https://github.com/renderghost/doras/issues/8)
 - **Motion through tokens:** even the busy spinner's speed comes from a duration token, so reduced motion stops it, whether the system or the Storybook toolbar asks.
 - **The Example chip is gone:** the Actions components document themselves with the real template.
 
+### User input
+
+Settled while building it ([#9](https://github.com/renderghost/doras/issues/9)):
+
+- **Fields draw their own label, hint and message:** labels and `aria-describedby` can't reach across a shadow root, so each field keeps them beside its input.
+- **The app validates; fields show the result:**
+  - Setting a field's `error` marks it invalid, with “Error:” read before the message.
+  - Fields don't use the browser's own validation bubbles. `required` is announced, and the app checks it.
+  - On submit, the app sets errors. Afterwards it re-checks a field with an error on `doras-input`, so the error clears as soon as it's fixed.
+- **Input methods:** `doras-input` waits until text being composed with an input method has finished. So live validation never sees half-typed Japanese.
+- **Enter submits:** pressing Enter in a field submits its form, even with a Doras button as the submit button. This closes the gap noted in #8.
+- **Handle field:**
+  - An ARIA 1.2 combobox with a listbox of suggestions.
+  - The app looks accounts up when it hears `doras-query`. The field never calls the network.
+  - `readHandle` reads what people type forgivingly:
+    - a leading @
+    - email-style handles, such as sam@bsky.social
+    - profile links
+    - common slips, such as bsky.app for bsky.social
+  - After someone leaves the field, it says in the automated style how it read what they typed.
+  - The providers' endings and slips are defaults an app can replace.
+- **Password field:**
+  - The show button's name changes between “Show password” and “Hide password”, without `aria-pressed`: using both confuses screen readers.
+  - `purpose` sets `current-password webauthn` or `new-password`, so password managers and passkeys work.
+- **Code field:** one input with `one-time-code`, never a box per digit. It submits the digits alone, however they were typed or pasted, and always reads left to right.
+- **Radio cards:**
+  - Native radios inside one shadow root, so grouping, arrow keys and forms are the browser's own.
+  - Nothing is chosen until someone chooses.
+- **Switch:** named by its label alone. Its description is a description. The story tests caught it including both.
+- **List props:** the spec schema gained a `list` prop type, for the handle field's suggestions and the radio cards' options. Storybook never shows raw JSON for them.
+
 ### Fonts, icons and motion
 
 - **Fonts and icons:** Inter, loaded from Google Fonts, and Lucide icons.
