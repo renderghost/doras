@@ -128,15 +128,6 @@ export class DorasExampleChip extends LitElement {
         composed: true,
       }),
     );
-    if (this.selected) {
-      this.dispatchEvent(
-        new CustomEvent('doras-measure', {
-          detail: { name: 'doras.example_chip_selected' },
-          bubbles: true,
-          composed: true,
-        }),
-      );
-    }
   }
 
   #remove() {

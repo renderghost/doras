@@ -30,10 +30,16 @@
   font-weight: 700;
 }
 
-/* A row's token name. */
+/* A row's name, such as a token, prop or event. */
 .doras-docs-table th > code:first-child {
   display: block;
   font-weight: 700;
+}
+
+/* Props, events and slots have short names: never break them mid-word. */
+.doras-docs-api th > code:first-child {
+  overflow-wrap: normal;
+  white-space: nowrap;
 }
 
 /* Token tables: the token column, then four equal theme columns. */
@@ -170,4 +176,22 @@
 
 .doras-docs-strings dd {
   margin: 0;
+}
+
+.doras-docs-values {
+  margin: 0;
+  padding-inline-start: 1rem;
+}
+
+.doras-docs-note {
+  padding: 1rem;
+  border-inline-start: 4px solid #3a71bc;
+  border-radius: 0.25rem;
+  background: rgb(58 113 188 / 8%);
+}
+
+.doras-docs-subheading {
+  margin-block: 1.5rem 0;
+  font-family: 'Nunito Sans', ui-sans-serif, system-ui, sans-serif;
+  font-size: 1rem;
 }

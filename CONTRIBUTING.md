@@ -42,10 +42,10 @@ Components draw into their shadow DOM, which Testing Library's usual queries can
 
 A component is done when it has all of these:
 
-- [ ] **Spec:** a platform-neutral spec in `@doras/specs`, valid against the schema.
+- [ ] **Spec:** a platform-neutral spec in `packages/specs/src/components`, valid against the schema. The build checks its tokens, strings and measurement events exist. Its Lit class implements the props type generated from it.
 - [ ] **Build:** a Lit implementation that uses semantic tokens only, with logical CSS properties.
 - [ ] **Strings:** every string in the message catalogues, nothing hard-coded.
-- [ ] **Stories:** every state, with Controls (radios, toggles and selects, not raw JSON).
+- [ ] **Stories:** every state, with Controls generated from the spec (`argTypesFromSpec`), and `parameters.doras.spec` set so its docs page is generated.
 - [ ] **Docs:** every section of the docs template:
   - overview
   - when to use it and when not to

@@ -6,7 +6,7 @@ export default defineConfig({
       {
         test: {
           name: 'unit',
-          include: ['scripts/**/*.test.ts', 'packages/**/*.test.ts'],
+          include: ['scripts/**/*.test.ts', 'packages/**/*.test.ts', 'apps/*/src/**/*.test.ts'],
         },
       },
       // Storybook's stories, as browser tests.

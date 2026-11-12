@@ -2,12 +2,38 @@
   "name": "@doras/specs",
   "version": "0.0.0",
   "private": true,
-  "description": "Platform-neutral component specs and the measurement events contract.",
+  "description": "One platform-neutral spec per component, the JSON Schema they follow, types generated from them, and the measurement events list.",
   "license": "MIT OR Apache-2.0",
   "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/renderghost/doras.git",
     "directory": "packages/specs"
+  },
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./schema/*": "./schema/*",
+    "./components/*": "./src/components/*",
+    "./measurement-events.json": "./src/measurement-events.json"
+  },
+  "files": [
+    "dist",
+    "schema",
+    "src",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "node build/index.ts"
+  },
+  "devDependencies": {
+    "@doras/i18n": "workspace:*",
+    "@doras/tokens": "workspace:*",
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1",
+    "json-schema-to-typescript": "^16.0.0"
   }
 }

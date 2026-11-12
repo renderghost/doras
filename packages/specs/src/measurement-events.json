@@ -1,0 +1,142 @@
+{
+  "$schema": "../schema/measurement-events.schema.json",
+  "events": [
+    {
+      "name": "doras.door_opened",
+      "journey": "Sign in",
+      "when": "Front Door opens, after someone presses Continue with Atmosphere.",
+      "carries": {}
+    },
+    {
+      "name": "doras.account_found",
+      "journey": "Sign in",
+      "when": "An account is found for what someone typed or chose.",
+      "carries": {
+        "via": {
+          "description": "How it was found.",
+          "values": ["typed", "suggestion", "browser"]
+        }
+      }
+    },
+    {
+      "name": "doras.account_not_found",
+      "journey": "Sign in",
+      "when": "Nothing is found for what someone typed.",
+      "carries": {}
+    },
+    {
+      "name": "doras.sign_in_started",
+      "journey": "Sign in",
+      "when": "Front Door hands over to the provider's sign-in page.",
+      "carries": {}
+    },
+    {
+      "name": "doras.signed_in",
+      "journey": "Sign in",
+      "when": "On the provider's page, someone proves who they are.",
+      "carries": {
+        "method": {
+          "description": "How they signed in.",
+          "values": ["passkey", "password", "code"]
+        }
+      }
+    },
+    {
+      "name": "doras.existing_account_found",
+      "journey": "Create an account",
+      "when": "The existing-account check finds an account someone may already have.",
+      "carries": {}
+    },
+    {
+      "name": "doras.provider_chosen",
+      "journey": "Create an account",
+      "when": "Someone chooses a provider to host their new account.",
+      "carries": {
+        "typed_address": {
+          "description": "Whether they typed a provider's address instead of choosing from the list.",
+          "type": "boolean"
+        }
+      }
+    },
+    {
+      "name": "doras.account_created",
+      "journey": "Create an account",
+      "when": "The provider finishes making the new account.",
+      "carries": {
+        "method": {
+          "description": "How they'll sign in.",
+          "values": ["passkey", "password"]
+        }
+      }
+    },
+    {
+      "name": "doras.connect_approved",
+      "journey": "Connect",
+      "when": "On the Connect page, someone connects the app to their account.",
+      "carries": {
+        "version": {
+          "description": "The full page, for a first connection, or the short one.",
+          "values": ["full", "short"]
+        }
+      }
+    },
+    {
+      "name": "doras.connect_cancelled",
+      "journey": "Connect",
+      "when": "On the Connect page, someone chooses not to connect.",
+      "carries": {}
+    },
+    {
+      "name": "doras.passkey_offered",
+      "journey": "Passkeys",
+      "when": "The offer to add a passkey is shown.",
+      "carries": {}
+    },
+    {
+      "name": "doras.passkey_added",
+      "journey": "Passkeys",
+      "when": "A passkey is saved.",
+      "carries": {}
+    },
+    {
+      "name": "doras.passkey_declined",
+      "journey": "Passkeys",
+      "when": "Someone chooses not to add a passkey now.",
+      "carries": {}
+    },
+    {
+      "name": "doras.recovery_started",
+      "journey": "Recover",
+      "when": "Someone says they've forgotten their handle.",
+      "carries": {}
+    },
+    {
+      "name": "doras.recovery_email_requested",
+      "journey": "Recover",
+      "when": "The check-your-email step is shown. It never says whether an account exists.",
+      "carries": {
+        "providers_asked": {
+          "description": "How many providers were asked to send the email.",
+          "type": "integer"
+        }
+      }
+    },
+    {
+      "name": "doras.recovery_completed",
+      "journey": "Recover",
+      "when": "The sign-in code from the email is accepted.",
+      "carries": {}
+    },
+    {
+      "name": "doras.failure_shown",
+      "journey": "Any",
+      "when": "One of the four failure states is shown.",
+      "carries": {
+        "failure": {
+          "description": "Which failure.",
+          "values": ["network", "too_many_attempts", "session_expired", "provider_unavailable"]
+        }
+      }
+    }
+  ]
+}

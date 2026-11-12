@@ -4,7 +4,9 @@ import { withoutIsolation } from '@doras/i18n';
 import { within } from 'shadow-dom-testing-library';
 import { expect, fn, userEvent, waitFor } from 'storybook/test';
 import './example-chip.ts';
-import { spec } from './example-chip.spec.ts';
+import { argTypesFromSpec, argsFromSpec } from '../docs/controls.ts';
+import type { ComponentSpec } from '../docs/spec.ts';
+import spec from './example-chip.spec.json';
 import type { ChipTone } from './example-chip.ts';
 
 interface Args {
@@ -29,27 +31,19 @@ const meta: Meta<Args> = {
   title: 'Contributing/Example chip',
   component: 'doras-example-chip',
   parameters: { doras: { spec } },
+  // Controls come from the spec's props.
   argTypes: {
+    ...argTypesFromSpec(spec as ComponentSpec),
     label: {
-      control: 'text',
-      description: 'The chip’s text. Leave empty to use the sample label.',
+      ...argTypesFromSpec(spec as ComponentSpec).label,
+      description: 'The chip’s text. Leave empty to use a sample label in the current locale.',
     },
-    tone: {
-      control: 'inline-radio',
-      options: ['neutral', 'info', 'success', 'automated'],
-      description: 'The colour family.',
-      table: { defaultValue: { summary: 'neutral' } },
-    },
-    selected: { control: 'boolean', description: 'Whether it’s chosen.' },
-    removable: { control: 'boolean', description: 'Shows a remove button.' },
     onToggle: { table: { disable: true } },
     onRemove: { table: { disable: true } },
   },
   args: {
+    ...(argsFromSpec(spec as ComponentSpec) as Partial<Args>),
     label: '',
-    tone: 'neutral',
-    selected: false,
-    removable: false,
     onToggle: fn(),
     onRemove: fn(),
   },

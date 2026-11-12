@@ -1,0 +1,226 @@
+{
+  "$schema": "../../schema/component.schema.json",
+  "name": "Button",
+  "group": "Actions",
+  "summary": "Makes something happen on the page, such as sending a code or going on to the next step. It's never disabled: if something's missing, pressing it says what.",
+  "usage": {
+    "when": [
+      "To do something: continue, send, save or confirm.",
+      "To submit a form. Use one primary button per step, for the main thing people came to do."
+    ],
+    "whenNot": [
+      { "text": "To go to another page or site.", "instead": "Link" },
+      {
+        "text": "For an action with only an icon, such as closing the sheet.",
+        "instead": "Icon button"
+      },
+      {
+        "text": "To sign in or create an account from an app.",
+        "instead": "Continue with Atmosphere"
+      },
+      { "text": "To show or hide content.", "instead": "Disclosure" }
+    ]
+  },
+  "anatomy": [
+    {
+      "part": "Container",
+      "description": "The shape people press. At least 44px in both directions."
+    },
+    {
+      "part": "Icon",
+      "description": "Before or after the label. Decorative: the label names the button.",
+      "optional": true
+    },
+    { "part": "Label", "description": "Says what happens, starting with a verb." },
+    {
+      "part": "Busy indicator",
+      "description": "A spinner shown while busy. It stops spinning for reduced motion.",
+      "optional": true
+    }
+  ],
+  "props": [
+    {
+      "name": "variant",
+      "type": "enum",
+      "description": "How much it stands out.",
+      "values": [
+        { "value": "primary", "description": "The one main action on a step." },
+        { "value": "secondary", "description": "Other actions, beside or below the primary one." },
+        {
+          "value": "tertiary",
+          "description": "Low-emphasis actions that look like links, such as “Try another provider”."
+        }
+      ],
+      "default": "primary"
+    },
+    {
+      "name": "type",
+      "type": "enum",
+      "description": "What it does in a form. Doras buttons only submit when asked to, so a new button never submits a form by accident.",
+      "values": [
+        { "value": "button", "description": "Does nothing in a form; the app handles the press." },
+        { "value": "submit", "description": "Submits its form." },
+        {
+          "value": "reset",
+          "description": "Resets its form. Rarely right: people lose what they typed."
+        }
+      ],
+      "default": "button"
+    },
+    {
+      "name": "busy",
+      "type": "boolean",
+      "description": "Shows that something is happening, such as checking a handle. While busy, presses do nothing.",
+      "default": false
+    },
+    {
+      "name": "busyLabel",
+      "type": "string",
+      "description": "What it says while busy, such as “Checking…”. Without one, the label stays and the spinner shows."
+    },
+    {
+      "name": "fullWidth",
+      "type": "boolean",
+      "description": "Fills the width of its container, as at the foot of the sheet.",
+      "default": false
+    }
+  ],
+  "states": [
+    { "name": "Default", "description": "Ready to press." },
+    { "name": "Hover", "description": "The surface changes to its hover colour." },
+    { "name": "Pressed", "description": "While held down." },
+    { "name": "Focus", "description": "A 2px focus ring, 2px away from the button." },
+    {
+      "name": "Busy",
+      "description": "The busy label and spinner show, and presses do nothing until it's done."
+    }
+  ],
+  "events": [
+    {
+      "name": "click",
+      "kind": "ui",
+      "when": "It's pressed, by pointer, keyboard or assistive technology, and isn't busy. A submit button also submits its form."
+    }
+  ],
+  "accessibility": {
+    "role": "button",
+    "name": "Its label. Icons are hidden from screen readers.",
+    "keyboard": [
+      { "keys": "Tab", "action": "Moves focus to it, in reading order." },
+      { "keys": "Enter or Space", "action": "Presses it." }
+    ],
+    "screenReader": [
+      "Announced as a button, with its label.",
+      "While busy, its name becomes the busy label, and pressing it again does nothing."
+    ],
+    "announcements": [
+      "When it becomes busy, the busy label is announced politely through the shared announcer (#12)."
+    ],
+    "notes": [
+      "Never disabled. A disabled button can't be focused or explain itself, so people can't tell what's wrong (decision in #1).",
+      "Its target is at least 44px by 44px (WCAG 2.5.5).",
+      "Its focus ring is at least 2px, with 3:1 contrast in every theme (WCAG 2.4.13).",
+      "In forced colours it uses the system's button colours, and its focus ring stays visible."
+    ]
+  },
+  "tokens": [
+    "color.action.primary.surface",
+    "color.action.primary.surface-hover",
+    "color.action.primary.border",
+    "color.action.primary.text",
+    "color.action.secondary.surface",
+    "color.action.secondary.surface-hover",
+    "color.action.secondary.border",
+    "color.action.secondary.text",
+    "color.link.text",
+    "color.link.decoration",
+    "color.link.decoration-hover",
+    "color.border.focus",
+    "border-width.strong",
+    "border-width.focus",
+    "focus.offset",
+    "radius.control",
+    "size.control.height",
+    "size.target.min",
+    "size.icon.md",
+    "space.inset.lg",
+    "space.inline.sm",
+    "type.label.md",
+    "motion.duration.fast",
+    "motion.easing.standard"
+  ],
+  "strings": [],
+  "related": [
+    { "component": "Icon button", "relationship": "For actions with only an icon." },
+    { "component": "Link", "relationship": "For going somewhere, not doing something." },
+    {
+      "component": "Continue with Atmosphere",
+      "relationship": "The one door into signing in, with its own look."
+    },
+    {
+      "component": "Error summary",
+      "relationship": "Says what's missing when a submit button is pressed too soon."
+    },
+    { "component": "Busy state", "relationship": "The spinner it shows while busy." }
+  ],
+  "content": {
+    "guidelines": [
+      "Start with a verb that says what happens, such as “Send the code” or “Continue”.",
+      "Use sentence case, and no full stop.",
+      "Never “Submit”, “OK” or “Click here”: they don't say what happens.",
+      "Busy labels say what's happening, and end with an ellipsis: “Checking…”.",
+      "Keep labels short. They must fit in German and the pseudo-locale, which are about 40% longer."
+    ]
+  },
+  "dosAndDonts": [
+    {
+      "do": "Keep the button pressable, and say what's missing when it's pressed.",
+      "dont": "Disable it until the form is complete."
+    },
+    {
+      "do": "Use one primary button per step.",
+      "dont": "Put two primary buttons side by side."
+    },
+    {
+      "do": "Use a link to go to another page.",
+      "dont": "Use a button to navigate."
+    }
+  ],
+  "evidence": [
+    {
+      "point": "Disabled buttons give no reason and can't be focused, so people using screen readers can miss them entirely.",
+      "source": {
+        "label": "GOV.UK Design System: avoid disabled buttons",
+        "href": "https://design-system.service.gov.uk/components/button/#disabled-buttons"
+      }
+    },
+    {
+      "point": "Targets of at least 44px help people with tremors and people using touch.",
+      "source": {
+        "label": "WCAG 2.5.5 Target Size (Enhanced)",
+        "href": "https://www.w3.org/WAI/WCAG22/Understanding/target-size-enhanced"
+      }
+    },
+    {
+      "point": "A visible, thick focus ring helps keyboard users see where they are.",
+      "source": {
+        "label": "WCAG 2.4.13 Focus Appearance",
+        "href": "https://www.w3.org/WAI/WCAG22/Understanding/focus-appearance"
+      }
+    },
+    {
+      "point": "Buttons default to type button, not submit as native buttons do, so adding one to a form never submits it by accident."
+    }
+  ],
+  "platforms": {
+    "web": {
+      "tag": "doras-button",
+      "formAssociated": true,
+      "slots": [
+        { "name": "", "description": "The label." },
+        { "name": "icon-start", "description": "An icon before the label." },
+        { "name": "icon-end", "description": "An icon after the label." }
+      ]
+    }
+  }
+}

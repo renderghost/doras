@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/renderghost/doras/blob/main/packages/specs/schema/measurement-events.schema.json",
+  "title": "MeasurementEvents",
+  "description": "The shared names for sign-in moments that apps can count. Fields carry only fixed values, flags or counts, never free text, so nothing personal can be sent.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["events"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "events": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "journey", "when", "carries"],
+        "properties": {
+          "name": { "type": "string", "pattern": "^doras\\.[a-z]+(_[a-z]+)*$" },
+          "journey": {
+            "enum": ["Sign in", "Create an account", "Recover", "Connect", "Passkeys", "Any"]
+          },
+          "when": { "type": "string", "minLength": 1 },
+          "carries": {
+            "description": "Its fields. Each is a fixed set of values, a flag or a count.",
+            "type": "object",
+            "propertyNames": { "pattern": "^[a-z]+(_[a-z]+)*$" },
+            "additionalProperties": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": ["description", "values"],
+                  "properties": {
+                    "description": { "type": "string", "minLength": 1 },
+                    "values": {
+                      "type": "array",
+                      "minItems": 2,
+                      "uniqueItems": true,
+                      "items": { "type": "string", "pattern": "^[a-z]+(_[a-z]+)*$" }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": ["description", "type"],
+                  "properties": {
+                    "description": { "type": "string", "minLength": 1 },
+                    "type": { "enum": ["boolean", "integer"] }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

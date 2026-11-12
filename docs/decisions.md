@@ -32,6 +32,26 @@ The Lit build implements it, Storybook's docs are generated from it, and mobile 
 
 **Why:** web comes first, but mobile apps are coming. A shared spec stops the platforms drifting apart.
 
+Details settled while building it ([#7](https://github.com/renderghost/doras/issues/7)):
+
+- **Format:** JSON, checked against a JSON Schema (2020-12).
+  - Everything outside `platforms` is platform-neutral.
+  - Web details sit under `platforms.web`: the tag, slots and form association. iOS and Android get their own sections when they arrive.
+- **One source for docs too:** a spec also holds the docs content: usage, content guidelines, do and don't, and evidence. Storybook's docs pages and default Controls are generated from it, so docs can't drift from the component. A docs page can exist before its component does, as the button's does now.
+- **Checked against the rest of Doras:** the build fails if a spec names a token, string or measurement event that doesn't exist, or uses a primitive.
+- **Types:**
+  - `ComponentSpec` is generated from the schema.
+  - Each component's props and events types are generated from its spec, for its Lit class to implement.
+  - `DorasMeasurement` types every measurement event.
+- **Boolean props are off by default,** as HTML boolean attributes are. The schema enforces it.
+- **Button:**
+  - It has no `disabled` prop at all.
+  - Its `type` defaults to `button`, not `submit` as native buttons do, so adding one to a form never submits it by accident.
+- **Measurement events:**
+  - Sent as one DOM event, `doras-measure`, with the event's name in its detail. It bubbles out of shadow roots, so apps listen once, on the document.
+  - Events carry only fixed values, flags or counts. The schema rejects free text, so nothing personal, not even a provider's name, can be sent.
+  - The first list has 17 events across sign in, creating an account, Connect, passkeys, recovery and the four failure states.
+
 ### Tokens: DTCG format, three tiers, three platforms
 
 Tokens are written in the DTCG 2025.10 format and built with Style Dictionary. They come in three tiers:

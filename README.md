@@ -4,7 +4,7 @@ Doras (Irish for "door") is the design system for creating an Atmosphere account
 
 It grows out of the Front Door prototype at [renderghost/at-frontdoor](https://github.com/renderghost/at-frontdoor). The plan is in the epic, [#1](https://github.com/renderghost/doras/issues/1). The decisions behind it are in [docs/decisions.md](docs/decisions.md).
 
-Doras is at an early stage: the tokens, the Figma sync, Storybook and the string catalogues are built, the components are not yet, and nothing is published to npm. Storybook is published at [renderghost.github.io/doras](https://renderghost.github.io/doras/).
+Doras is at an early stage: the tokens, the Figma sync, Storybook, the string catalogues and the spec format are built, the components are not yet, and nothing is published to npm. Storybook is published at [renderghost.github.io/doras](https://renderghost.github.io/doras/).
 
 ## Packages
 
