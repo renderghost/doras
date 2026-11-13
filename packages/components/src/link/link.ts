@@ -14,10 +14,12 @@ export class DorasLink extends LitElement implements DorasLinkProps {
   static override properties = {
     href: { type: String },
     newTab: { type: Boolean, attribute: 'new-tab' },
+    standalone: { type: Boolean, reflect: true },
   };
 
   declare href: string;
   declare newTab: boolean;
+  declare standalone: boolean;
 
   #i18n = new LocaleController(this);
 
@@ -25,6 +27,7 @@ export class DorasLink extends LitElement implements DorasLinkProps {
     super();
     this.href = '';
     this.newTab = false;
+    this.standalone = false;
   }
 
   static override styles = [
@@ -49,6 +52,17 @@ export class DorasLink extends LitElement implements DorasLinkProps {
       a:hover {
         text-decoration-color: var(--doras-color-link-decoration-hover);
       }
+
+      /* On its own, not in a sentence: a 44px target (WCAG 2.5.5). */
+      :host([standalone]) {
+        display: inline-block;
+      }
+
+      :host([standalone]) a {
+        display: inline-flex;
+        align-items: center;
+        min-block-size: var(--doras-size-target-min);
+      }
     `,
   ];
 
@@ -58,7 +72,9 @@ export class DorasLink extends LitElement implements DorasLinkProps {
       href=${this.href}
       target=${this.newTab ? '_blank' : nothing}
       rel=${this.newTab ? 'noopener noreferrer' : nothing}
-      ><slot></slot>${this.newTab ? html` ${this.#i18n.t('link.opensInNewTab')}` : nothing}</a
+      ><span
+        ><slot></slot>${this.newTab ? html` ${this.#i18n.t('link.opensInNewTab')}` : nothing}</span
+      ></a
     >`;
   }
 }

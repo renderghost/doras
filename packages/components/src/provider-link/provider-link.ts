@@ -30,7 +30,7 @@ export class DorasProviderLink extends LitElement implements DorasProviderLinkPr
 
   static override styles = css`
     :host {
-      display: inline;
+      display: inline-block;
     }
 
     doras-icon {
@@ -40,7 +40,7 @@ export class DorasProviderLink extends LitElement implements DorasProviderLinkPr
 
   override render() {
     const name = providerById(this.provider)?.name ?? this.provider;
-    return html`<doras-link href=${this.href} ?new-tab=${!this.sameTab}
+    return html`<doras-link standalone href=${this.href} ?new-tab=${!this.sameTab}
       >${this.#i18n.t('providerLink.manage', { provider: name })}<doras-icon
         name="external-link"
         size="sm"

@@ -1,0 +1,52 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Accessibility statement" />
+
+# Accessibility statement
+
+Doras aims for WCAG 2.2 at level AA everywhere, and level AAA for the criteria that matter most when someone is signing in. This page says what Doras meets, how that's checked, and what hasn't been checked yet.
+
+Last reviewed 13 November 2026.
+
+## Status
+
+Doras **partially conforms** to WCAG 2.2 AA. The automated checks and the keyboard tests below find no failures. Nobody has tested Doras with a screen reader yet, so it doesn't claim full conformance until someone has.
+
+## What it meets, and how that's checked
+
+Every check runs in CI on every change, against every story in the built Storybook. Browser mocks are left out of the target, focus and sign-in checks: they imitate the browser's own UI, which Doras doesn't control.
+
+| Criterion                                              | Level | How it's checked                                                                                                                                                                                                                     |
+| ------------------------------------------------------ | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Everything axe can test in WCAG 2.2 A and AA           | AA    | axe on every story, in all four themes.                                                                                                                                                                                              |
+| 1.4.6 Contrast (enhanced), in the high-contrast themes | AAA   | The token tests check every text pair reaches 7:1, and axe's enhanced contrast rule runs on every story in both high-contrast themes.                                                                                                |
+| 2.5.5 Target size (enhanced)                           | AAA   | Every control in every story is measured: 44 by 44px or more. Links inside a sentence are exempt, as WCAG allows. A link on its own sets `standalone`, which gives it a 44px target.                                                 |
+| 2.4.13 Focus appearance                                | AAA   | Tab through every story: each stop has a 2px outline with at least 3:1 contrast against what's behind it.                                                                                                                            |
+| 2.2.3 No timing                                        | AAA   | Nothing in Doras times out. Toasts stay until they're closed. Codes and sessions expire on the provider's side, and the failure messages say what to do next.                                                                        |
+| 1.4.10 Reflow                                          | AA    | Every story at 320px wide, which is 1280px at 400% zoom: nothing scrolls sideways and no text is cut off.                                                                                                                            |
+| 1.4.12 Text spacing                                    | AA    | Every story with WCAG's text spacing applied: no text is cut off.                                                                                                                                                                    |
+| 2.3.3 Animation from interactions                      | AAA   | Every story with reduced motion on: nothing moves.                                                                                                                                                                                   |
+| 3.3.8 Accessible authentication (minimum)              | AA    | Every field in every story accepts pasting, and credential fields name their purpose so password managers fill them. Passkeys and emailed codes mean nobody has to remember anything.                                                |
+| 1.3.5 Identify input purpose                           | AA    | Handles are `username`, emails are `email`, passwords are `current-password` or `new-password`, and codes are `one-time-code`.                                                                                                       |
+| 2.1.1 Keyboard, 2.4.3 Focus order                      | A     | Signing in, creating an account, recovering an account and using the browser's account chooser, each from start to finish by keyboard alone. Each new step's heading takes focus. Escape and Back put focus back where it came from. |
+
+Windows forced colours were reviewed by hand in light and dark.
+
+## Not tested yet, and known gaps
+
+- **Screen readers.** Not tested yet with VoiceOver and Safari on macOS or iOS, NVDA with Firefox or Chrome on Windows, or TalkBack with Chrome on Android. Each component's docs page has a table of results, and every row says “Not yet tested”. The [screen reader testing guide](https://github.com/renderghost/doras/blob/main/docs/screen-reader-testing.md) says how to test and record a result.
+- **Passkey prompts and password managers with assistive technology.** These are the browser's and the system's own, so they can only be tested on real devices. The browser mocks in Storybook stand in for them when clicking through, and aren't tested as if they were real.
+- **Forced colours** were checked in Chromium's emulation only, not with Windows' own contrast themes.
+- **Zoom** was checked as WCAG's reflow criterion defines it, with a 320px viewport, not with each browser's own zoom.
+- **Safari.** The [Safari checklist](https://github.com/renderghost/doras/blob/main/docs/safari-checklist.md) still needs someone to run it on a Mac and an iPhone.
+- **Emails.** Their structure is checked: one heading, row headers in the facts table, the language and direction set. They haven't been tested in real email apps, or with screen readers.
+- **Automated checks find some problems, not all.** Whether a heading describes its section, or an error says how to fix it, was reviewed when each spec was written, not by a machine.
+- **Your own pages.** The flows here are samples. An app or provider using Doras needs to check its own pages too.
+
+## Reporting a problem
+
+[Open an issue on GitHub](https://github.com/renderghost/doras/issues/new). Say what you were doing, which assistive technology, browser and system you used, and what happened.
+
+## Running the checks
+
+`pnpm build`, then `pnpm a11y` runs the audit against the built Storybook. In CI it's the **Accessibility audit** job. The story tests also run axe on every story in Chromium, Firefox and WebKit.

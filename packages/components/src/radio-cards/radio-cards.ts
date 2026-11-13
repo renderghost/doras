@@ -128,6 +128,25 @@ export class DorasRadioCards extends LitElement implements DorasRadioCardsProps 
         background: var(--doras-color-selected-surface);
       }
 
+      /* Forced colours: the chosen card in the system's selection colours,
+         as Windows draws a selected item, so its text needs no backplate. */
+      @media (forced-colors: active) {
+        label:has(input:checked) {
+          forced-color-adjust: none;
+          border-color: Highlight;
+          background: Highlight;
+        }
+
+        label:has(input:checked) .text,
+        label:has(input:checked) .text * {
+          color: HighlightText;
+        }
+
+        label:has(input:checked) input {
+          forced-color-adjust: auto;
+        }
+      }
+
       label:has(input:focus-visible) {
         outline: var(--doras-border-width-focus) solid var(--doras-color-border-focus);
         outline-offset: var(--doras-focus-offset);

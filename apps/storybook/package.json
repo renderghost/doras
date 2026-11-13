@@ -13,8 +13,9 @@
   "scripts": {
     "dev": "storybook dev -p 6006",
     "build": "storybook build --quiet -o storybook-static",
-    "visual": "playwright test",
-    "visual:update": "playwright test --update-snapshots"
+    "visual": "playwright test visual.spec.ts",
+    "visual:update": "playwright test visual.spec.ts --update-snapshots",
+    "a11y": "playwright test a11y.spec.ts keyboard.spec.ts"
   },
   "devDependencies": {
     "@doras/browser-mocks": "workspace:*",
@@ -34,6 +35,7 @@
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@vitest/browser-playwright": "^5.1.0",
+    "axe-core": "4.14.0",
     "intl-messageformat": "^12.1.5",
     "lit": "^3.3.3",
     "lucide": "1.72.0",

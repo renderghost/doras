@@ -98,6 +98,20 @@ describe('the reference checks', () => {
     ]);
   });
 
+  it('catch two screen reader results for the same setup', () => {
+    const spec = clone(button);
+    const result = {
+      setup: 'nvda-firefox-windows',
+      result: 'works',
+      date: '2026-11-20',
+      versions: 'NVDA 2026.3, Firefox 145, Windows 11',
+    };
+    spec.accessibility = { screenReaderResults: [result, { ...result, date: '2026-12-01' }] };
+    expect(referenceProblems('x', spec, known)).toEqual([
+      'x: has two screen reader results for nvda-firefox-windows',
+    ]);
+  });
+
   it('catch two components with the same tag', () => {
     const twins = new Map<string, unknown>([
       ['button', button],

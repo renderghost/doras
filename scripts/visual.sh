@@ -8,4 +8,4 @@
 set -eu
 IMAGE=mcr.microsoft.com/playwright:v1.65.0-noble
 exec docker run --rm --ipc=host -v "$(pwd)":/work -w /work/apps/storybook "$IMAGE" \
-  node node_modules/@playwright/test/cli.js test "$@"
+  node node_modules/@playwright/test/cli.js test visual.spec.ts "$@"

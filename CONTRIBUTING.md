@@ -45,6 +45,12 @@ CI compares screenshots of every story, and of every flow page in dark, increase
 
 Without Docker, run the **Update visual baselines** workflow on your branch from the Actions tab, and commit the baselines it uploads.
 
+### Accessibility audit
+
+CI also runs an audit on every story in the built Storybook: axe in all four themes, 44px targets, focus appearance, reflow at 320px, text spacing, reduced motion, and pasting and autofill in every field. It also completes each journey by keyboard alone. To run it yourself, `pnpm build`, then `pnpm a11y`. It needs Playwright's Chromium, as the story tests do.
+
+Screen readers are tested by hand. [docs/screen-reader-testing.md](docs/screen-reader-testing.md) says how, and how to record the result in the component's spec so its docs page shows it.
+
 ## Conventions
 
 - **Names:** custom elements are `<doras-…>`, for example `<doras-button>`. Packages are `@doras/…`.
@@ -75,7 +81,8 @@ A component is done when it has all of these:
   - do and don't
   - evidence and decisions
 - [ ] **Tests:** interaction tests for its behaviour, and keyboard tests.
-- [ ] **Accessibility:** no axe violations. It meets WCAG 2.2 AA and the key AAA criteria listed in [docs/decisions.md](docs/decisions.md).
+- [ ] **Accessibility:** no axe violations, and the accessibility audit passes. It meets WCAG 2.2 AA and the key AAA criteria listed in [docs/decisions.md](docs/decisions.md).
+- [ ] **Screen readers:** tested by hand with each setup in [docs/screen-reader-testing.md](docs/screen-reader-testing.md), with the results in its spec.
 - [ ] **Themes:** checked in light, dark, increased contrast and Windows forced colours.
 - [ ] **Locales:** checked in UK English, the pseudo-locale, Arabic (right to left), German and Japanese.
 - [ ] **Zoom and motion:** checked at 400% zoom, and with reduced motion.

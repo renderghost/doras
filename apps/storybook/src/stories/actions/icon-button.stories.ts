@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { expect, fn, userEvent } from 'storybook/test';
 import { argTypesFromSpec } from '../../docs/controls.ts';
-import { ICONS, focusInside, host, inner, textFor, textIn } from '../helpers.ts';
+import { focusInside, host, inner, textFor, textIn } from '../helpers.ts';
 
 interface Args {
   label: string;
@@ -29,8 +29,8 @@ const meta: Meta<Args> = {
     html`<doras-icon-button
       label=${args.label || textFor(globals, 'common.close')}
       @click=${args.onClick}
-      >${ICONS.x}</doras-icon-button
-    >`,
+      ><doras-icon name="x"></doras-icon
+    ></doras-icon-button>`,
 };
 
 export default meta;
@@ -54,8 +54,8 @@ export const Back: Story = {
     html`<doras-icon-button
       label=${args.label || textFor(globals, 'common.back')}
       @click=${args.onClick}
-      >${ICONS.arrowLeft}</doras-icon-button
-    >`,
+      ><doras-icon name="arrow-left"></doras-icon
+    ></doras-icon-button>`,
 };
 
 export const Hover: Story = { parameters: { pseudo: { hover: true } } };

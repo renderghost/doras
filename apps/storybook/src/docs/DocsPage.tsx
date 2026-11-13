@@ -31,6 +31,60 @@ function List({ items }: { items: ReactNode[] }) {
   );
 }
 
+type ScreenReaderResult = NonNullable<
+  ComponentSpec['accessibility']['screenReaderResults']
+>[number];
+
+/** The setups every component is tested with by hand (#19), in this order. */
+const SCREEN_READERS: Record<ScreenReaderResult['setup'], string> = {
+  'voiceover-safari-macos': 'VoiceOver, Safari, macOS',
+  'voiceover-safari-ios': 'VoiceOver, Safari, iOS',
+  'nvda-firefox-windows': 'NVDA, Firefox, Windows',
+  'nvda-chrome-windows': 'NVDA, Chrome, Windows',
+  'talkback-chrome-android': 'TalkBack, Chrome, Android',
+};
+
+const RESULTS: Record<ScreenReaderResult['result'], string> = {
+  works: 'Works',
+  'works-with-notes': 'Works, with notes',
+  problems: 'Problems',
+};
+
+/** Each setup's result, or “Not yet tested”: a gap shows rather than hides. */
+function ScreenReaderResults({ results = [] }: { results?: ScreenReaderResult[] }) {
+  const rows = Object.entries(SCREEN_READERS).map(([setup, label]) => {
+    const found = results.find((r) => r.setup === setup);
+    if (!found) return [label, 'Not yet tested', '', ''];
+    return [
+      label,
+      RESULTS[found.result],
+      <>
+        {found.date}
+        <br />
+        <span className="doras-docs-muted">{found.versions}</span>
+      </>,
+      <>
+        {found.notes?.join(' ')}
+        {found.issue && (
+          <>
+            {' '}
+            <a href={found.issue}>Issue</a>
+          </>
+        )}
+      </>,
+    ];
+  });
+  return (
+    <>
+      <Table head={['Screen reader', 'Result', 'Tested', 'Notes']} rows={rows} />
+      <p className="doras-docs-muted">
+        Tested by hand, following the screen reader testing guide in the repository. See the{' '}
+        <a href="?path=/docs/accessibility-statement--docs">accessibility statement</a>.
+      </p>
+    </>
+  );
+}
+
 function Section({ title, children }: { title: string; children: ReactNode }) {
   return (
     <section className="doras-docs-section">
@@ -256,6 +310,8 @@ export function SpecSections({ spec, live = true }: { spec: ComponentSpec; live?
         />
         <h3>Screen readers</h3>
         <List items={a11y.screenReader} />
+        <h3>Screen reader results</h3>
+        <ScreenReaderResults results={a11y.screenReaderResults} />
         {a11y.announcements && (
           <>
             <h3>Announcements</h3>

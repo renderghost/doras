@@ -90,6 +90,37 @@ jobs:
             apps/storybook/visual-results/
           retention-days: 14
 
+  a11y:
+    name: Accessibility audit
+    runs-on: ubuntu-latest
+    # The same image as the visual checks, for its browsers. Every story in
+    # every theme with axe, 44px targets, focus appearance, reflow, text
+    # spacing, reduced motion, pasting and autofill, and each journey by
+    # keyboard alone (#19).
+    container:
+      image: mcr.microsoft.com/playwright:v1.65.0-noble
+      options: --ipc=host
+    env:
+      HOME: /root
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+      - run: pnpm --filter @doras/storybook a11y
+      - if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: a11y-failures
+          path: |
+            apps/storybook/visual-report/
+            apps/storybook/visual-results/
+          retention-days: 14
+
   mobile-tokens:
     name: Compile the Swift and Kotlin tokens
     runs-on: ubuntu-latest

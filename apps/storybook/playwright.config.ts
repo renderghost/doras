@@ -1,7 +1,8 @@
-// The visual checks (#18): screenshots compared with saved baselines.
-// Baselines are made in the Playwright image CI uses, so fonts and
-// rendering match: `pnpm visual:update` runs it there. Never update them
-// automatically.
+// The Playwright checks on the built Storybook: the visual checks (#18),
+// screenshots compared with saved baselines, and the accessibility audit
+// (#19), a11y.spec.ts and keyboard.spec.ts. Baselines are made in the
+// Playwright image CI uses, so fonts and rendering match: `pnpm
+// visual:update` runs it there. Never update them automatically.
 import { defineConfig } from '@playwright/test';
 
 const PORT = 6123;
@@ -34,6 +35,10 @@ export default defineConfig({
     reducedMotion: 'reduce',
     locale: 'en-GB',
     timezoneId: 'Europe/London',
+    // Locally, a Chromium that's already installed. CI uses the image's own.
+    ...(process.env.CHROMIUM_PATH
+      ? { launchOptions: { executablePath: process.env.CHROMIUM_PATH } }
+      : {}),
   },
   webServer: {
     command: `node visual/serve.ts storybook-static ${PORT}`,

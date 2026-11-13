@@ -177,6 +177,49 @@
         },
         "notes": {
           "$ref": "#/$defs/sentences"
+        },
+        "screenReaderResults": {
+          "description": "What testing it by hand with each screen reader found (#19). A setup that isn't listed hasn't been tested yet, and the docs page says so. docs/screen-reader-testing.md says how to test and record a result.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["setup", "result", "date", "versions"],
+            "properties": {
+              "setup": {
+                "description": "The screen reader, browser and system.",
+                "enum": [
+                  "voiceover-safari-macos",
+                  "voiceover-safari-ios",
+                  "nvda-firefox-windows",
+                  "nvda-chrome-windows",
+                  "talkback-chrome-android"
+                ]
+              },
+              "result": {
+                "description": "works: as the spec says. works-with-notes: usable, with differences the notes describe. problems: something doesn't work; issue links to it.",
+                "enum": ["works", "works-with-notes", "problems"]
+              },
+              "date": {
+                "description": "When it was tested, as YYYY-MM-DD.",
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+              },
+              "versions": {
+                "description": "The versions tested, such as “NVDA 2026.3, Firefox 145, Windows 11”.",
+                "type": "string",
+                "minLength": 1
+              },
+              "notes": {
+                "$ref": "#/$defs/sentences"
+              },
+              "issue": {
+                "description": "The GitHub issue for a problem.",
+                "type": "string",
+                "pattern": "^https://"
+              }
+            }
+          }
         }
       }
     },

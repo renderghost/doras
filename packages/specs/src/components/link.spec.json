@@ -28,6 +28,12 @@
       "type": "boolean",
       "description": "Opens in a new tab, and adds “(opens in a new tab)” after the text. Use it only when leaving would lose someone's place.",
       "default": false
+    },
+    {
+      "name": "standalone",
+      "type": "boolean",
+      "description": "On its own, not in a sentence. Gives it a 44px target (WCAG 2.5.5). Leave it off inside running text.",
+      "default": false
     }
   ],
   "states": [
@@ -50,7 +56,7 @@
     ],
     "notes": [
       "Underlined, so it doesn't rely on colour alone (WCAG 1.4.1).",
-      "Links inside running text are exempt from the 44px target size."
+      "Links inside running text are exempt from the 44px target size. A link on its own sets standalone, which gives it one."
     ]
   },
   "tokens": [
