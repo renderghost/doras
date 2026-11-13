@@ -117,7 +117,10 @@ for (const theme of THEMES) {
         const violations = await page.evaluate(
           async ({ tags, enhanced }) => {
             const axe = (window as never as { axe: typeof import('axe-core') }).axe;
+            // Not into frames: framed stories are checked as stories, and
+            // axe would wait on each frame for an answer that never comes.
             const result = await axe.run(document, {
+              iframes: false,
               runOnly: { type: 'tag', values: tags },
               rules: { 'color-contrast-enhanced': { enabled: enhanced } },
             });
