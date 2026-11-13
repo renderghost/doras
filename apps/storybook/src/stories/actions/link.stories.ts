@@ -10,6 +10,7 @@ interface Args {
   text: string;
   href: string;
   newTab: boolean;
+  standalone: boolean;
 }
 
 const meta: Meta<Args> = {
@@ -24,9 +25,12 @@ const meta: Meta<Args> = {
     ...(argsFromSpec(specs.link) as Partial<Args>),
     text: 'Manage your account on Bluesky',
     href: 'https://bsky.app/settings',
+    standalone: true,
   },
   render: (args) =>
-    html`<doras-link href=${args.href} ?new-tab=${args.newTab}>${args.text}</doras-link>`,
+    html`<doras-link href=${args.href} ?new-tab=${args.newTab} ?standalone=${args.standalone}
+      >${args.text}</doras-link
+    >`,
 };
 
 export default meta;
@@ -53,8 +57,10 @@ export const NewTab: Story = {
   },
 };
 
+/** In a sentence it stays inline, so it isn't standalone. */
 export const InRunningText: Story = {
   name: 'In running text',
+  args: { standalone: false },
   render: (args) =>
     html`<p style="max-inline-size: 30rem">
       Your account is hosted by Bluesky. To change your password,

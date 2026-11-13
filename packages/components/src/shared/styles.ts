@@ -1,9 +1,14 @@
 // Styles every component shares.
 import { css } from 'lit';
 
-/** The focus ring: 2px, 2px away, in the focus colour (WCAG 2.4.13). Forced colours make it Highlight. */
+/**
+ * The focus ring: 2px, 2px away, in the focus colour (WCAG 2.4.13). Forced
+ * colours make it Highlight. Only on things that can take focus, so a focus
+ * state forced for a story doesn't ring a control's label too; :where keeps
+ * the specificity of plain :focus-visible, so components can still override it.
+ */
 export const focusRing = css`
-  :focus-visible {
+  :where(a[href], button, input, select, textarea, summary, [tabindex]):focus-visible {
     outline: var(--doras-border-width-focus) solid var(--doras-color-border-focus);
     outline-offset: var(--doras-focus-offset);
   }

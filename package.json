@@ -21,6 +21,7 @@
     "test:stories": "vitest run --project storybook",
     "visual": "sh scripts/visual.sh",
     "visual:update": "sh scripts/visual.sh --update-snapshots",
+    "a11y": "pnpm --filter @doras/storybook a11y",
     "storybook": "pnpm --filter @doras/storybook dev",
     "format": "prettier --write .",
     "format:check": "prettier --check .",

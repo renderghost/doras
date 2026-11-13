@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html, nothing } from 'lit';
 import { expect, fn, userEvent, waitFor } from 'storybook/test';
 import { argTypesFromSpec, argsFromSpec } from '../../docs/controls.ts';
-import { ICONS, focusInside, host, inner, textFor } from '../helpers.ts';
+import { focusInside, host, inner, textFor } from '../helpers.ts';
 
 interface Args {
   label: string;
@@ -101,7 +101,7 @@ export const WithIcons: Story = {
   name: 'With icons',
   render: (args) =>
     html`<doras-button variant=${args.variant}
-      ><span slot="icon-start">${ICONS.keyRound}</span>Use a passkey</doras-button
+      ><doras-icon slot="icon-start" name="key-round"></doras-icon>Use a passkey</doras-button
     >`,
 };
 

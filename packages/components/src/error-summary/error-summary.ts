@@ -84,14 +84,15 @@ export class DorasErrorSummary extends LitElement implements DorasErrorSummaryPr
       }
 
       ul {
-        display: flex;
-        flex-direction: column;
-        gap: var(--doras-space-stack-xs);
         margin: 0;
         padding-inline-start: var(--doras-space-inset-lg);
       }
 
+      /* Each link is a 44px target (WCAG 2.5.5), so the list needs no gaps. */
       a {
+        display: inline-flex;
+        align-items: center;
+        min-block-size: var(--doras-size-target-min);
         color: var(--doras-color-text-error);
         font-weight: var(--doras-type-label-md-font-weight);
         text-decoration: underline;

@@ -132,6 +132,9 @@ export class FlowHarness extends LitElement {
   #afterCancel: (() => void) | null = null;
   #timers = new Set<ReturnType<typeof setTimeout>>();
   #moved = false;
+  /** Which of the app's buttons opened Front Door, and whether closing it should go back there. */
+  #opener: 'continue' | 'create' | null = null;
+  #toOpener = false;
 
   constructor() {
     super();
@@ -161,11 +164,31 @@ export class FlowHarness extends LitElement {
   }
 
   protected override updated(): void {
-    // Each new step's heading takes focus, so screen readers start there.
-    if (this.#moved) {
-      this.#moved = false;
-      this.querySelector<HTMLElement>('[data-step-heading]')?.focus();
-    }
+    if (!this.#moved) return;
+    this.#moved = false;
+    void this.#focusStep();
+  }
+
+  /**
+   * Each new step's heading takes focus, so screen readers start there.
+   * Closing Front Door puts focus back on the button that opened it, as
+   * closing any dialog should; the app's page is drawn afresh, so the
+   * dialog can't do that itself.
+   */
+  async #focusStep(): Promise<void> {
+    const back = this.#toOpener;
+    this.#toOpener = false;
+    const target = back
+      ? this.querySelector<HTMLElement>(`[data-opener="${this.#opener ?? 'continue'}"]`)
+      : this.querySelector<HTMLElement>('[data-step-heading]');
+    if (!target) return;
+    // A heading slotted into a component that hasn't drawn yet, such as a
+    // provider page's main, can't take focus: wait for its components.
+    const hosts = [...this.querySelectorAll('*')].filter(
+      (el) => el === target || el.contains(target),
+    ) as (Element & { updateComplete?: Promise<unknown> })[];
+    await Promise.all(hosts.map((el) => el.updateComplete));
+    target.focus();
   }
 
   // ---- What pages read ----------------------------------------------------
@@ -286,13 +309,17 @@ export class FlowHarness extends LitElement {
   back = (): void => {
     const history = [...this.s.history];
     const step = history.pop() ?? 'app';
+    this.#toOpener = step === 'app' && SHEET_STEPS.has(this.s.step);
     this.set({ history, step, errors: {}, failure: null, info: null, busy: null });
     this.#moved = true;
   };
 
   /** Closing the sheet, as Front Door's close button or Escape would. */
   closeSheet = (): void => {
-    if (SHEET_STEPS.has(this.s.step)) this.set({ step: 'app', history: [] });
+    if (!SHEET_STEPS.has(this.s.step)) return;
+    this.#toOpener = true;
+    this.set({ step: 'app', history: [] });
+    this.#moved = true;
   };
 
   later(run: () => void, ms = WAIT_MS): void {
@@ -364,6 +391,7 @@ export class FlowHarness extends LitElement {
   // ---- The app ------------------------------------------------------------
 
   continueWithAtmosphere = (): void => {
+    this.#opener = 'continue';
     this.set({ cancelled: false });
     if (this.browserAccounts.length) {
       this.set({ chooser: true });
@@ -373,6 +401,7 @@ export class FlowHarness extends LitElement {
   };
 
   createAccount = (): void => {
+    this.#opener = 'create';
     this.set({ cancelled: false });
     if (this.browserAccounts.length) {
       this.measure({ name: 'doras.existing_account_found' });

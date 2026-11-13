@@ -2,7 +2,6 @@
 import { format, localeOf, matchLocale, withoutIsolation, type MessageKey } from '@doras/i18n';
 import { LOCALES, type Locale as ToolbarLocale } from '../../.storybook/settings.ts';
 import { within } from 'shadow-dom-testing-library';
-import { html } from 'lit';
 
 /** A catalogue string in the locale an element is in, as people see it. */
 export const textIn = (
@@ -41,30 +40,3 @@ export function host<T extends Element>(canvasElement: HTMLElement, tag: string)
   if (!found) throw new Error(`No ${tag}`);
   return found as unknown as T;
 }
-
-/** Lucide icons for stories. The Icon component (#10) will replace them. */
-const icon = (paths: ReturnType<typeof html>) =>
-  html`<svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-    aria-hidden="true"
-    focusable="false"
-  >
-    ${paths}
-  </svg>`;
-
-export const ICONS = {
-  x: icon(html`<path d="M18 6 6 18" /><path d="m6 6 12 12" />`),
-  arrowLeft: icon(html`<path d="m12 19-7-7 7-7" /><path d="M19 12H5" />`),
-  arrowRight: icon(html`<path d="M5 12h14" /><path d="m12 5 7 7-7 7" />`),
-  keyRound: icon(
-    html`<path
-        d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"
-      /><circle cx="16.5" cy="7.5" r=".5" fill="currentColor" />`,
-  ),
-};

@@ -35,9 +35,12 @@ export class DorasSkipLink extends LitElement implements DorasSkipLinkProps {
       a {
         position: absolute;
         z-index: 100;
+        display: inline-flex;
+        align-items: center;
+        min-block-size: var(--doras-size-target-min);
         inset-block-start: var(--doras-space-inset-sm);
         inset-inline-start: var(--doras-space-inset-sm);
-        padding: var(--doras-space-inset-sm) var(--doras-space-inset-md);
+        padding: 0 var(--doras-space-inset-md);
         border-radius: var(--doras-radius-control);
         background: var(--doras-color-surface-raised);
         color: var(--doras-color-link-text);

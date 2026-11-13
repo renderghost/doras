@@ -331,6 +331,25 @@ AA everywhere, which is the European Accessibility Act baseline. Plus these AAA 
 - **No timing (2.2.3):** no time limits.
 - **Contrast (1.4.6):** 7:1 in the increased-contrast theme.
 
+Settled in the audit ([#19](https://github.com/renderghost/doras/issues/19)):
+
+- **The measurable criteria are tests, not a one-off audit.** A Playwright suite runs on the built Storybook in CI, in a job of its own, on every story:
+  - axe in all four themes, with axe's 7:1 rule in the high-contrast ones
+  - 44px targets
+  - focus appearance
+  - reflow at 320px
+  - text spacing
+  - reduced motion
+  - pasting and autofill in every field
+
+  A second suite completes each journey by keyboard alone. Each check was proved able to fail, by breaking a story on purpose, before it was trusted.
+
+- **Links in a sentence keep their size.** WCAG exempts them from 44px targets, and padding them would overlap the lines around them. A link on its own sets `standalone`, which gives it a 44px target. The provider link always does.
+- **Focus follows the step.** Each new step's heading takes focus once the components around it have drawn. Closing Front Door puts focus back on the button that opened it, because the app's page is drawn afresh and the dialog can't.
+- **Screen reader results live in the spec,** under `accessibility.screenReaderResults`, one per setup tested. The docs page lists all five setups and says “Not yet tested” for any without a result, so a gap is visible rather than hidden. [The testing guide](screen-reader-testing.md) says how to test and record one.
+- **The statement claims only what's checked.** It says Doras partially conforms until screen readers have been tested by hand, and lists every gap.
+- **In forced colours, a chosen card uses the system's selection colours,** `Highlight` and `HighlightText`, as Windows draws a selected item. Otherwise its text gets a backplate.
+
 ### Forms
 
 - **Validation:** on submit, then live as people fix errors.

@@ -35,11 +35,12 @@ pnpm install
 | `pnpm typecheck` | TypeScript in strict mode                                          |
 | `pnpm test`      | Vitest: the unit tests, and every story as a browser test          |
 | `pnpm visual`    | Compares screenshots with the baselines, in Docker                 |
+| `pnpm a11y`      | The accessibility audit, on the built Storybook                    |
 | `pnpm storybook` | Runs Storybook at localhost:6006                                   |
 | `pnpm format`    | Formats everything with Prettier (`pnpm format:check` only checks) |
 | `pnpm changeset` | Records a change for the next release                              |
 
-CI runs the same checks on every pull request. [CONTRIBUTING.md](CONTRIBUTING.md) explains how to work on Doras.
+CI runs the same checks on every pull request. [CONTRIBUTING.md](CONTRIBUTING.md) explains how to work on Doras. The accessibility statement, in Storybook, says what Doras meets and what hasn't been tested yet.
 
 ## Things to know
 

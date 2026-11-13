@@ -22,6 +22,7 @@ export interface Spec {
   tokens: string[];
   strings: string[];
   platforms: { web: { tag: string } };
+  accessibility?: { screenReaderResults?: { setup: string }[] };
 }
 
 export interface MeasurementEvent {
@@ -125,6 +126,11 @@ export function referenceProblems(label: string, spec: Spec, known: Known): stri
     if (prop.type === 'enum' && !prop.values?.some((v) => v.value === prop.default)) {
       problems.push(`${label}: ${prop.name}'s default isn't one of its values`);
     }
+  }
+  // A setup tested again replaces its result, so each appears once.
+  const setups = (spec.accessibility?.screenReaderResults ?? []).map((r) => r.setup);
+  for (const setup of setups.filter((s, i) => setups.indexOf(s) !== i)) {
+    problems.push(`${label}: has two screen reader results for ${setup}`);
   }
   return problems;
 }

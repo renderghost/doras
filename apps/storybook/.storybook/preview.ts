@@ -60,6 +60,7 @@ const preview: Preview = {
       storySort: {
         order: [
           'Introduction',
+          'Accessibility statement',
           'Foundations',
           [
             'Overview',

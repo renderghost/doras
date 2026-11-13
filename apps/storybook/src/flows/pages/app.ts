@@ -42,10 +42,11 @@ export function potluck(f: FlowHarness) {
         <p>Save recipes, follow friends and share what you cook.</p>
         <doras-continue-with-atmosphere
           full-width
+          data-opener="continue"
           @click=${f.continueWithAtmosphere}
         ></doras-continue-with-atmosphere>
         <doras-divider variant="or"></doras-divider>
-        <doras-button variant="secondary" full-width @click=${f.createAccount}
+        <doras-button variant="secondary" full-width data-opener="create" @click=${f.createAccount}
           >Create an Atmosphere account</doras-button
         >
       </section>
