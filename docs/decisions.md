@@ -422,7 +422,7 @@ Settled while setting it up ([#18](https://github.com/renderghost/doras/issues/1
 
 ## Storybook
 
-- **Hosting:** Storybook 10, on Vercel, at doras.dev.renderg.host. The build settings live in `vercel.json`, so they are reviewed with the code. Every pull request gets a preview.
+- **Hosting:** Storybook 10, on Vercel, at doras.dev.renderg.host. The build settings live in `vercel.json`, so they are reviewed with the code. Every pull request gets a preview. The GitHub Pages workflow stays as a fallback, run by hand from the Actions tab.
 - **Sidebar:** grouped by behaviour, not by atomic level:
   - Foundations
   - Actions
