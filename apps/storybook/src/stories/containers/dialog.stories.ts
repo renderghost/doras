@@ -63,5 +63,9 @@ export const Open: Story = {
     await userEvent.click(keep);
     await waitFor(() => expect(native.open).toBe(false));
     await waitFor(() => expect(args.onClose).toHaveBeenCalledTimes(1));
+    // Open again, so the docs page, the visual check and the accessibility
+    // audit see the dialog, not an empty page.
+    dialog.open = true;
+    await waitFor(() => expect(native.open).toBe(true));
   },
 };

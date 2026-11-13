@@ -7,7 +7,7 @@ import source from '@doras/i18n/messages/en-GB.json';
 import { measurementEvents } from '@doras/specs';
 import { Unstyled } from '@storybook/addon-docs/blocks';
 import type { IconNode } from 'lucide';
-import { createElement, useState, type CSSProperties, type ReactNode } from 'react';
+import { Fragment, createElement, useState, type CSSProperties, type ReactNode } from 'react';
 import { ICONS } from '@doras/components';
 import { THEMES, sameInEveryTheme, type ThemeKey, type Token } from './tokens.ts';
 import './docs.css';
@@ -15,13 +15,30 @@ import './docs.css';
 const attributeFor = (key: ThemeKey): string =>
   THEMES.find((t) => t.key === key)?.attribute ?? 'light';
 
+/**
+ * A long name, such as a token or a CSS value, wraps after its dots, hyphens,
+ * slashes and brackets, not in the middle of a word.
+ */
+function breakable(text: string): ReactNode {
+  return text.split(/(?<=[./(-])/).map((part, i) => (
+    <Fragment key={i}>
+      {i > 0 && <wbr />}
+      {part}
+    </Fragment>
+  ));
+}
+
+function Code({ children }: { children: string | null }) {
+  return children === null ? null : <code>{breakable(children)}</code>;
+}
+
 /** A token's name in each platform's code. Swift and Kotlin share the name. */
 function CodeNames({ code }: { code: NonNullable<Token['code']> }) {
   return (
     <div className="doras-docs-muted">
-      CSS <code>{code.web}</code>
+      CSS <Code>{code.web}</Code>
       <br />
-      Swift and Kotlin <code>{code.ios}</code>
+      Swift and Kotlin <Code>{code.ios}</Code>
     </div>
   );
 }
@@ -51,8 +68,8 @@ function Value({ t, theme }: { t: Token; theme: ThemeKey }) {
     <>
       {t.type === 'color' && t.cssVar && <Swatch cssVar={t.cssVar} theme={theme} />}
       {t.type === 'shadow' && t.cssVar && <ShadowSample cssVar={t.cssVar} theme={theme} />}
-      <code>{v.css}</code>
-      {v.aliasOf && <div className="doras-docs-muted">{v.aliasOf}</div>}
+      <Code>{v.css}</Code>
+      {v.aliasOf && <div className="doras-docs-muted">{breakable(v.aliasOf)}</div>}
     </>
   );
 }
@@ -76,7 +93,7 @@ export function TokenTable({ tokens, code = true }: { tokens: Token[]; code?: bo
           {tokens.map((t) => (
             <tr key={t.name}>
               <th scope="row">
-                <code>{t.name}</code>
+                <Code>{t.name}</Code>
                 {t.description && <div>{t.description}</div>}
                 {code && t.code && <CodeNames code={t.code} />}
               </th>
@@ -128,7 +145,7 @@ export function TypeSpecimens({ tokens }: { tokens: Token[] }) {
             return (
               <tr key={t.name}>
                 <th scope="row" style={{ inlineSize: '14rem' }}>
-                  <code>{t.name}</code>
+                  <Code>{t.name}</Code>
                   {t.description && <div>{t.description}</div>}
                   {t.code && <CodeNames code={t.code} />}
                 </th>
@@ -137,7 +154,7 @@ export function TypeSpecimens({ tokens }: { tokens: Token[] }) {
                     {SAMPLE_TEXT[kind] ?? SAMPLE_TEXT.body}
                   </div>
                   <div className="doras-docs-muted">
-                    <code>{t.values.light.css}</code>
+                    <Code>{t.values.light.css}</Code>
                   </div>
                 </td>
               </tr>
@@ -203,14 +220,14 @@ export function ScaleTable({
           {tokens.map((t) => (
             <tr key={t.name}>
               <th scope="row" style={{ inlineSize: '16rem' }}>
-                <code>{t.name}</code>
+                <Code>{t.name}</Code>
                 {t.description && <div>{t.description}</div>}
                 {t.code && <CodeNames code={t.code} />}
               </th>
               <td style={{ inlineSize: '8rem' }}>
-                <code>{t.values.light.css}</code>
+                <Code>{t.values.light.css}</Code>
                 {t.values.light.aliasOf && (
-                  <div className="doras-docs-muted">{t.values.light.aliasOf}</div>
+                  <div className="doras-docs-muted">{breakable(t.values.light.aliasOf)}</div>
                 )}
               </td>
               <td>{sample(t)}</td>
@@ -242,12 +259,12 @@ export function MotionTable({ tokens }: { tokens: Token[] }) {
           {tokens.map((t) => (
             <tr key={t.name}>
               <th scope="row" style={{ inlineSize: '16rem' }}>
-                <code>{t.name}</code>
+                <Code>{t.name}</Code>
                 {t.description && <div>{t.description}</div>}
                 {t.code && <CodeNames code={t.code} />}
               </th>
               <td style={{ inlineSize: '12rem' }}>
-                <code>{t.values.light.css}</code>
+                <Code>{t.values.light.css}</Code>
               </td>
               <td>
                 <span

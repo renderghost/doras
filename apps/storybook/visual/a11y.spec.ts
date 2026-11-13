@@ -1,12 +1,12 @@
-// The measurable parts of the accessibility audit (#19), on every story:
-// axe in every theme, with 7:1 contrast in the high-contrast ones (1.4.6),
-// 44px targets (2.5.5), focus appearance (2.4.13), reflow at 320px (1.4.10),
-// text spacing (1.4.12), reduced motion (2.3.3), and pasting and autofill in
-// every field (3.3.8). Screen readers are
+// The measurable parts of the accessibility audit (#19). On every story: axe
+// in every theme, with 7:1 contrast in the high-contrast ones (1.4.6), 44px
+// targets (2.5.5), focus appearance (2.4.13), reflow at 320px (1.4.10), text
+// spacing (1.4.12), reduced motion (2.3.3), and pasting and autofill in every
+// field (3.3.8). On every docs page: axe in every theme. Screen readers are
 // checked by hand: see the accessibility statement.
 import { createRequire } from 'node:module';
 import { expect, test, type Page } from '@playwright/test';
-import { entries, open } from './open.ts';
+import { docsEntries, entries, open, openDocs } from './open.ts';
 
 const AXE = createRequire(import.meta.url).resolve('axe-core/axe.min.js');
 
@@ -87,6 +87,40 @@ for (const theme of THEMES) {
                 rules: { 'color-contrast-enhanced': { enabled: enhanced } },
               },
             );
+            return result.violations.flatMap((v) =>
+              v.nodes.map((n) => `${v.id}: ${n.target.join(' ')}`),
+            );
+          },
+          {
+            tags: theme.endsWith('high-contrast') ? [...tags, 'wcag2aaa'] : tags,
+            enhanced: theme.endsWith('high-contrast'),
+          },
+        );
+        expect(violations).toEqual([]);
+      });
+    }
+  });
+}
+
+// Docs pages, where people read the content, in every theme too. axe runs on
+// the whole page: the prose, the tables, the stories and Storybook's own
+// blocks. Its best-practice rules are left out here: they'd judge Storybook's
+// docs markup, which Doras doesn't control. Stories in frames of their own
+// are checked as stories, above.
+for (const theme of THEMES) {
+  test.describe(`axe on docs pages, ${theme} theme`, () => {
+    for (const { id } of docsEntries) {
+      test(id, async ({ page }) => {
+        await openDocs(page, id, `theme:${theme};locale:en-GB`);
+        await page.addScriptTag({ path: AXE });
+        const tags = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'];
+        const violations = await page.evaluate(
+          async ({ tags, enhanced }) => {
+            const axe = (window as never as { axe: typeof import('axe-core') }).axe;
+            const result = await axe.run(document, {
+              runOnly: { type: 'tag', values: tags },
+              rules: { 'color-contrast-enhanced': { enabled: enhanced } },
+            });
             return result.violations.flatMap((v) =>
               v.nodes.map((n) => `${v.id}: ${n.target.join(' ')}`),
             );

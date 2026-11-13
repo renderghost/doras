@@ -73,11 +73,13 @@ export const uiThemes = Object.fromEntries(
 ) as Record<Theme, ThemeVars>;
 
 /**
- * The selected sidebar item, in Doras's own selected colours. Storybook would
- * fill it with the focus blue, darkened in dark themes, under white text,
- * which is below 4.5:1 in both dark themes.
+ * Two fixes to Storybook's own styles, in the theme's colours. The selected
+ * sidebar item takes Doras's selected colours: Storybook would fill it with
+ * the focus blue, darkened in dark themes, under white text, which is below
+ * 4.5:1 in both dark themes. And the unchosen label of a true or false
+ * control is translucent, which is below 4.5:1 in Light.
  */
-export function sidebarCss(theme: Theme): string {
+export function managerCss(theme: Theme): string {
   const c = (name: string) => colour(name, theme);
   return `
 .sidebar-item[data-selected='true'],
@@ -89,5 +91,8 @@ export function sidebarCss(theme: Theme): string {
 }
 .sidebar-item[data-selected='true'] svg {
   color: ${c('color.selected.icon')} !important;
+}
+label > input[role='switch'] ~ span[aria-hidden='true'] {
+  color: ${c('color.text.subtle')};
 }`;
 }

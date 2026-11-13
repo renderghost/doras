@@ -344,6 +344,9 @@ Settled in the audit ([#19](https://github.com/renderghost/doras/issues/19)):
 
   A second suite completes each journey by keyboard alone. Each check was proved able to fail, by breaking a story on purpose, before it was trusted.
 
+- **Docs pages get axe too, in every theme.** They're where people read the content, and the story checks never saw them. The first run found 173 problems: Storybook's own translucent inline code and true or false labels, syntax colours below 7:1, and pages whose framed stories (Dialog, Sheet, the browser mocks) knocked the page back to Light. The best-practice rules are left out on docs pages, since they'd judge Storybook's markup.
+- **A story ends in the state it's named for.** Dialog's and Toast's Open stories closed them to test closing, so their screenshots, audits and docs previews were empty. They open them again at the end.
+
 - **Links in a sentence keep their size.** WCAG exempts them from 44px targets, and padding them would overlap the lines around them. A link on its own sets `standalone`, which gives it a 44px target. The provider link always does.
 - **Focus follows the step.** Each new step's heading takes focus once the components around it have drawn. Closing Front Door puts focus back on the button that opened it, because the app's page is drawn afresh and the dialog can't.
 - **Screen reader results live in the spec,** under `accessibility.screenReaderResults`, one per setup tested. The docs page lists all five setups and says “Not yet tested” for any without a result, so a gap is visible rather than hidden. [The testing guide](screen-reader-testing.md) says how to test and record one.

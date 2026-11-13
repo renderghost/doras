@@ -19,17 +19,48 @@ interface WithGlobals {
   store?: { userGlobals?: { get?: () => Record<string, unknown> } };
 }
 
+// Read from the docs page's own store: framed stories send their own
+// GLOBALS_UPDATED to this page too, with their settings, not the toolbar's.
+const toolbarSettings = (context: DocsContainerProps['context']): Settings =>
+  readSettings((context as WithGlobals).store?.userGlobals?.get?.() ?? {});
+
+const globalsParam = (s: Settings) =>
+  `theme:${s.theme};locale:${s.locale};direction:${s.direction};motion:${s.motion}`;
+
+/**
+ * Stories shown in a frame of their own (`inline: false`, such as Dialog and
+ * the browser mocks) are separate previews, which would open in the default
+ * settings. Storybook builds their address from PREVIEW_URL, so the settings
+ * go there, and frames already showing are pointed at the new address.
+ */
+function passToFrames(settings: Settings) {
+  const globals = globalsParam(settings);
+  (globalThis as { PREVIEW_URL?: string }).PREVIEW_URL = `iframe.html?globals=${globals}`;
+  for (const frame of document.querySelectorAll<HTMLIFrameElement>(
+    'iframe[src*="viewMode=story"]',
+  )) {
+    const url = new URL(frame.src);
+    if (url.searchParams.get('globals') === globals) continue;
+    url.searchParams.set('globals', globals);
+    frame.src = url.toString();
+  }
+}
+
 export function ThemedDocsContainer({ context, children }: PropsWithChildren<DocsContainerProps>) {
-  const [settings, setSettings] = useState<Settings>(() =>
-    readSettings((context as WithGlobals).store?.userGlobals?.get?.() ?? {}),
-  );
+  const [settings, setSettings] = useState<Settings>(() => toolbarSettings(context));
 
   useEffect(() => {
-    const follow = ({ userGlobals }: { userGlobals: Record<string, unknown> }) =>
-      setSettings(readSettings(userGlobals));
+    const follow = () =>
+      setSettings((previous) => {
+        const next = toolbarSettings(context);
+        return globalsParam(next) === globalsParam(previous) ? previous : next;
+      });
     context.channel.on(GLOBALS_UPDATED, follow);
     return () => context.channel.off(GLOBALS_UPDATED, follow);
-  }, [context.channel]);
+  }, [context]);
+
+  // Before the stories render, so framed stories open in the right settings.
+  passToFrames(settings);
 
   useEffect(() => {
     applyAttributes(document.documentElement, {
