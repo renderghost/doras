@@ -275,7 +275,7 @@ export function SpecSections({ spec, live = true }: { spec: ComponentSpec; live?
             </>
           ))}
         />
-        {live && <Stories title="Every state" includePrimary={false} />}
+        {live && <Stories title={<></>} includePrimary={false} />}
       </Section>
 
       <Section title="Props and events">
@@ -433,7 +433,7 @@ function MockSections({ mock }: { mock: MockDocs }) {
           ])}
         />
         {mock.notes && <List items={mock.notes} />}
-        <Stories title="Every state" includePrimary={false} />
+        <Stories title={<></>} includePrimary={false} />
       </Section>
     </>
   );

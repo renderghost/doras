@@ -45,6 +45,11 @@ export const Open: Story = {
     await userEvent.click(close as HTMLElement);
     await expect(toast.open).toBe(false);
     await expect(args.onClose).toHaveBeenCalledTimes(1);
+    // Open again, so the docs page, the visual check and the accessibility
+    // audit see the toast, not an empty page.
+    toast.open = true;
+    await toast.updateComplete;
+    await expect(toast.open).toBe(true);
   },
 };
 

@@ -1,5 +1,6 @@
 /* Styles for the docs blocks. The docs page is in the chosen Doras theme, so
    they use the tokens too, and read in every theme. */
+
 .doras-docs-table {
   inline-size: 100%;
   margin-block: 1rem 2rem;
@@ -23,7 +24,15 @@
 .doras-docs-table code {
   font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   font-size: 0.75rem;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
+}
+
+/* Storybook's inline code, in the theme's colours. Its own is translucent,
+   which falls below 7:1 in the high-contrast themes. */
+.sbdocs-content :is(p, li) code:not(pre code) {
+  border-color: var(--doras-color-border-default);
+  background: var(--doras-color-surface-subtle);
+  color: var(--doras-color-text-default);
 }
 
 .doras-docs-table thead th {
@@ -64,7 +73,7 @@
 
 .doras-docs-muted {
   color: var(--doras-color-text-subtle);
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
 }
 
 .doras-docs-swatch {
@@ -205,4 +214,17 @@
   margin-block: 1.5rem 0;
   font-family: inherit;
   font-size: 1rem;
+}
+
+/* The unchosen label of a true or false control: Storybook's is translucent,
+   below 4.5:1 in Light. */
+label > input[role='switch'] ~ span[aria-hidden='true'] {
+  color: var(--doras-color-text-subtle);
+}
+
+/* In the high-contrast themes, code is one colour: the syntax colours are
+   Storybook's, and fall below 7:1. They're set by class rules of many
+   classes each, so this needs !important. */
+[data-doras-theme$='high-contrast'] .sbdocs-content pre .token {
+  color: var(--doras-color-text-default) !important;
 }

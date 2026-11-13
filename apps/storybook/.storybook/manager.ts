@@ -3,7 +3,7 @@
 import { addons } from 'storybook/manager-api';
 import { GLOBALS_UPDATED, SET_GLOBALS } from 'storybook/internal/core-events';
 import { readSettings, type Theme } from './settings.ts';
-import { sidebarCss, uiThemes } from './ui-themes.ts';
+import { managerCss, uiThemes } from './ui-themes.ts';
 
 // A link with a theme in it opens in that theme, without a flash of Light first.
 const globalsInUrl = new URLSearchParams(window.location.search).get('globals') ?? '';
@@ -12,7 +12,7 @@ let current: Theme = readSettings({
 }).theme;
 
 const style = document.createElement('style');
-style.textContent = sidebarCss(current);
+style.textContent = managerCss(current);
 document.head.append(style);
 
 addons.setConfig({ theme: uiThemes[current] });
@@ -31,7 +31,7 @@ addons.register('doras/theme', (api) => {
     if (next === current) return;
     current = next;
     api.setOptions({ theme: uiThemes[next] });
-    style.textContent = sidebarCss(next);
+    style.textContent = managerCss(next);
   };
   api.on(SET_GLOBALS, follow);
   api.on(GLOBALS_UPDATED, follow);
