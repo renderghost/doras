@@ -438,9 +438,10 @@ Settled while setting it up ([#18](https://github.com/renderghost/doras/issues/1
 - **Not shown:** atomic levels and maturity badges. Atomic design is how components are built, not how they're filed.
 - **Addons:**
   - Docs, accessibility and Vitest
-  - Viewports, backgrounds, measure and outline
+  - Viewports, measure and outline
   - Controls
   - Toolbars for theme, locale and text direction
+- **Themes:** the theme setting covers the whole of Storybook, not only the stories. The sidebar, toolbar, panels and docs pages take their colours from the tokens in the chosen theme. Having the interface in one theme and the components in another made the content hard to read and the themes hard to judge. There are four choices: Light, Dark and each with high contrast. Follow system went, since the interface needs a definite theme, and the background switcher went, since it painted the light surface behind dark stories.
   - Figma embeds, pseudo-states and token tables
 - **Docs for every component:**
   - overview

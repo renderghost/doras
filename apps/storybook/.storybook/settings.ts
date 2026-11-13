@@ -1,8 +1,9 @@
 // The toolbar settings: theme, locale, text direction and reduced motion.
 // They're applied to every story by the decorator in preview.ts.
 
+// Always one of the four: Storybook's own interface follows the theme too, so
+// it has to be a definite one, not the device's setting.
 export const THEMES = {
-  system: 'Follow system',
   light: 'Light',
   dark: 'Dark',
   'light-high-contrast': 'Light, high contrast',
@@ -41,7 +42,7 @@ export interface Settings {
 }
 
 export const DEFAULTS: Settings = {
-  theme: 'system',
+  theme: 'light',
   locale: 'en-GB',
   direction: 'auto',
   motion: 'system',
@@ -61,14 +62,14 @@ export function readSettings(globals: Record<string, unknown>): Settings {
 
 /** The attributes that put the settings into effect on an element. */
 export function attributesFor(settings: Settings): {
-  'data-doras-theme': string | null;
+  'data-doras-theme': Theme;
   'data-doras-motion': string | null;
   lang: string;
   dir: 'ltr' | 'rtl';
 } {
   const locale = LOCALES[settings.locale];
   return {
-    'data-doras-theme': settings.theme === 'system' ? null : settings.theme,
+    'data-doras-theme': settings.theme,
     'data-doras-motion': settings.motion === 'reduce' ? 'reduce' : null,
     lang: locale.lang,
     dir: settings.direction === 'auto' ? locale.dir : settings.direction,
