@@ -14,21 +14,102 @@ Doras **partially conforms** to WCAG 2.2 AA. The automated checks and the keyboa
 
 ## What it meets, and how that's checked
 
-Every check runs in CI on every change, against every story in the built Storybook. Browser mocks are left out of the target, focus and sign-in checks: they imitate the browser's own UI, which Doras doesn't control.
+Every automated check runs in CI on every change, against every story in the built Storybook. Browser mocks are left out of the target, focus and sign-in checks: they imitate the browser's own UI, which Doras doesn't control.
 
-| Criterion                                              | Level | How it's checked                                                                                                                                                                                                                     |
-| ------------------------------------------------------ | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Everything axe can test in WCAG 2.2 A and AA           | AA    | axe on every story, in all four themes.                                                                                                                                                                                              |
-| 1.4.6 Contrast (enhanced), in the high-contrast themes | AAA   | The token tests check every text pair reaches 7:1, and axe's enhanced contrast rule runs on every story in both high-contrast themes.                                                                                                |
-| 2.5.5 Target size (enhanced)                           | AAA   | Every control in every story is measured: 44 by 44px or more. Links inside a sentence are exempt, as WCAG allows. A link on its own sets `standalone`, which gives it a 44px target.                                                 |
-| 2.4.13 Focus appearance                                | AAA   | Tab through every story: each stop has a 2px outline with at least 3:1 contrast against what's behind it.                                                                                                                            |
-| 2.2.3 No timing                                        | AAA   | Nothing in Doras times out. Toasts stay until they're closed. Codes and sessions expire on the provider's side, and the failure messages say what to do next.                                                                        |
-| 1.4.10 Reflow                                          | AA    | Every story at 320px wide, which is 1280px at 400% zoom: nothing scrolls sideways and no text is cut off.                                                                                                                            |
-| 1.4.12 Text spacing                                    | AA    | Every story with WCAG's text spacing applied: no text is cut off.                                                                                                                                                                    |
-| 2.3.3 Animation from interactions                      | AAA   | Every story with reduced motion on: nothing moves.                                                                                                                                                                                   |
-| 3.3.8 Accessible authentication (minimum)              | AA    | Every field in every story accepts pasting, and credential fields name their purpose so password managers fill them. Passkeys and emailed codes mean nobody has to remember anything.                                                |
-| 1.3.5 Identify input purpose                           | AA    | Handles are `username`, emails are `email`, passwords are `current-password` or `new-password`, and codes are `one-time-code`.                                                                                                       |
-| 2.1.1 Keyboard, 2.4.3 Focus order                      | A     | Signing in, creating an account, recovering an account and using the browser's account chooser, each from start to finish by keyboard alone. Each new step's heading takes focus. Escape and Back put focus back where it came from. |
+<table className="doras-docs-table">
+  <thead>
+    <tr>
+      <th scope="col">Criterion</th>
+      <th scope="col">Level</th>
+      <th scope="col">How it's checked</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Everything axe can test in WCAG 2.2 A and AA</th>
+      <td>AA</td>
+      <td>axe on every story, in all four themes.</td>
+    </tr>
+    <tr>
+      <th scope="row">1.4.6 Contrast (enhanced), in the high-contrast themes</th>
+      <td>AAA</td>
+      <td>
+        The token tests check every text pair reaches 7:1, and axe's enhanced contrast rule runs on
+        every story in both high-contrast themes.
+      </td>
+    </tr>
+    <tr>
+      <th scope="row">2.5.5 Target size (enhanced)</th>
+      <td>AAA</td>
+      <td>
+        Every control in every story is measured: 44 by 44px or more. Links inside a sentence are
+        exempt, as WCAG allows. A link on its own sets <code>standalone</code>, which gives it a
+        44px target.
+      </td>
+    </tr>
+    <tr>
+      <th scope="row">2.4.13 Focus appearance</th>
+      <td>AAA</td>
+      <td>
+        Tab through every story: each stop has a 2px outline with at least 3:1 contrast against
+        what's behind it.
+      </td>
+    </tr>
+    <tr>
+      <th scope="row">2.2.3 No timing</th>
+      <td>AAA</td>
+      <td>
+        By review: nothing in Doras times out. Toasts stay until they're closed. Codes and sessions
+        expire on the provider's side, and the failure messages say what to do next.
+      </td>
+    </tr>
+    <tr>
+      <th scope="row">1.4.10 Reflow</th>
+      <td>AA</td>
+      <td>
+        Every story at 320px wide, which is 1280px at 400% zoom: nothing scrolls sideways and no
+        text is cut off.
+      </td>
+    </tr>
+    <tr>
+      <th scope="row">1.4.12 Text spacing</th>
+      <td>AA</td>
+      <td>Every story with WCAG's text spacing applied: no text is cut off.</td>
+    </tr>
+    <tr>
+      <th scope="row">2.3.3 Animation from interactions</th>
+      <td>AAA</td>
+      <td>Every story with reduced motion on: nothing moves.</td>
+    </tr>
+    <tr>
+      <th scope="row">3.3.8 Accessible authentication (minimum)</th>
+      <td>AA</td>
+      <td>
+        Every field in every story accepts pasting, and credential fields name their purpose so
+        password managers fill them. Passkeys and emailed codes mean nobody has to remember
+        anything.
+      </td>
+    </tr>
+    <tr>
+      <th scope="row">1.3.5 Identify input purpose</th>
+      <td>AA</td>
+      <td>
+        Handles are <code>username</code>, emails are <code>email</code>, passwords are{' '}
+        <code>current-password</code> or <code>new-password</code>, and codes are{' '}
+        <code>one-time-code</code>.
+      </td>
+    </tr>
+    <tr>
+      <th scope="row">2.1.1 Keyboard, 2.4.3 Focus order</th>
+      <td>A</td>
+      <td>
+        Signing in, creating an account, recovering an account and using the browser's account
+        chooser, each from start to finish by keyboard alone. Each new step's heading takes focus.
+        Escape and Back put focus back where it came from.
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 Windows forced colours were reviewed by hand in light and dark.
 

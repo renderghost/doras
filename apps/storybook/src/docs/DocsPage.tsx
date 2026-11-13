@@ -78,7 +78,8 @@ function ScreenReaderResults({ results = [] }: { results?: ScreenReaderResult[] 
     <>
       <Table head={['Screen reader', 'Result', 'Tested', 'Notes']} rows={rows} />
       <p className="doras-docs-muted">
-        Tested by hand, following the screen reader testing guide in the repository. See the{' '}
+        Results come from testing by hand, following the screen reader testing guide in the
+        repository. See the{' '}
         <a href="?path=/docs/accessibility-statement--docs">accessibility statement</a>.
       </p>
     </>
