@@ -12,6 +12,9 @@ const config: StorybookConfig = {
     'storybook-addon-pseudo-states',
   ],
   core: { disableTelemetry: true },
+  // No background switcher: each theme sets its own surface, and the switcher
+  // painted the light surface behind stories in the dark themes.
+  features: { backgrounds: false },
   docs: { defaultName: 'Docs' },
   // Storybook's own preview runtime and axe are larger than Vite's default warning size.
   viteFinal: (vite) => ({ ...vite, build: { ...vite.build, chunkSizeWarningLimit: 1200 } }),

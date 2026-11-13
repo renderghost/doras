@@ -15,6 +15,10 @@ const browsers = (process.env.DORAS_BROWSERS ?? 'chromium').split(',') as Browse
 
 export default defineConfig({
   plugins: [storybookTest({ configDir: path.join(dirname, '.storybook') })],
+  // The docs container themes Storybook's docs pages. Bundling its theming
+  // module up front stops Vite finding it mid-run and reloading the tests,
+  // which fails them on a cold cache, as in CI.
+  optimizeDeps: { include: ['storybook/theming'] },
   test: {
     name: 'storybook',
     browser: {
