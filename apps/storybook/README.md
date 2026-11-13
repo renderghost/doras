@@ -1,6 +1,6 @@
 # @doras/storybook
 
-The Doras documentation site, built with Storybook 10 and published to [renderghost.github.io/doras](https://renderghost.github.io/doras/) on every merge to `main`.
+The Doras documentation site, built with Storybook 10 and published by Vercel to [doras.dev.renderg.host](https://doras.dev.renderg.host/) on every merge to `main`. Its build settings are in `vercel.json`.
 
 ## Running it
 

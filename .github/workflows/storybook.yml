@@ -1,9 +1,11 @@
 name: Storybook
 
-# Publishes Storybook to GitHub Pages on every merge to main.
+# Publishes Storybook to GitHub Pages, when run by hand from the Actions tab.
+# Vercel publishes it on every merge to main (vercel.json). This stays as a
+# fallback: to make it the main route again, add back
+#   push:
+#     branches: [main]
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:
